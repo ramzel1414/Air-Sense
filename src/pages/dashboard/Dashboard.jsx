@@ -1,12 +1,13 @@
 import React from 'react';
 import './dashboard.css'; // Make sure to import the corresponding CSS file
+import HeaderAndSidebar from '../../components/headerAndSidebar/HeaderAndSidebar';
 
 const Dashboard = () => {
   return (
     <div>
-      {/* Quick Select Section */}
+      <HeaderAndSidebar/>
       <section className="quick-select">
-        <h1 className="heading">quick options</h1>
+        <h1 className="heading">overview</h1>
         <div className="box-container">
           {/* Box 1 */}
           <div className="box">
@@ -43,7 +44,7 @@ const Dashboard = () => {
         </div>
       </section>
 
-      {/* Employees Section */}
+
       <section className="employees">
         <h1 className="heading">our employees</h1>
         <div className="box-container">

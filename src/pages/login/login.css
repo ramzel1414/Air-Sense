@@ -1,0 +1,145 @@
+.login {
+    margin-left: -30rem;
+    background-color: #222;
+    position: absolute;
+    width: 100vw;
+    height: max-content;
+}
+
+.login .row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.login .row .image {
+    flex: 1 1 80rem;
+}
+
+.login .row .image img {
+    height: 80rem;
+    width: 100%;
+}
+
+
+
+.login .row form {
+    flex: 1 1 30rem;
+    background-color: var(--white);
+    border-radius: .5rem; 
+    padding: 4rem;
+    text-align: center;
+    height: 100vh;
+    background: #626262;
+
+
+}
+
+.login .row form h3 {
+    font-size: 2.5rem;
+    margin: 4rem 0;
+    color: #FFF;
+}
+
+.login .row form .links {
+    display: flex;
+    gap: 3rem;
+    justify-content: center;
+    width: 100%;
+    text-align: center;
+    font-size: 2rem;
+    margin: 4rem 0;
+}
+
+
+.login .row form .links a {
+    background: grey;
+    padding: 1.2rem;
+    background-color: var(--main-color);
+    color: var(--white);
+    text-decoration: none;
+    width: 100%;
+    border-radius: .5rem;
+
+}
+
+.login .row form .links a:hover {
+    background-color: var(--branch-color);
+}
+
+.login .row form .or {
+    color: #FFF;
+    font-size: 2rem;
+    margin: 4rem 0;
+
+}
+
+.login .row form .boxLabel {
+    width: 100%;
+    color: var(--white);
+    font-size: 2rem;
+    text-align: left;
+    margin: 1.7rem 0;
+}
+
+.login .row form .box {
+    width: 100%;
+    margin: 1rem 0;
+    border-radius: .5rem;
+    background-color: #222;
+    padding: 1.4rem;
+    color: var(--white);
+    font-size: 1.8rem;
+}
+
+
+.login .row form .remember {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    font-size: 2rem;
+    margin: 4rem 0 2rem 0;
+}
+
+.login .row form .remember > div {
+    display: flex;
+    gap: .4rem;
+    align-items: center;
+}
+
+.login .row form .remember a {
+    color: var(--main-color);
+}
+
+.login .row form .remember a:hover{
+    text-decoration: underline;
+}
+
+
+
+.login .row form .boxSubmit {
+    width: 100%;
+    padding: 1.5rem;
+
+}
+
+.login .row form .noACC {
+    margin: 5rem 0;
+    font-size: 2rem;
+    color: var(--white);
+}
+
+.login .row form .noACC a {
+    color: var(--main-color);
+}
+
+
+.login .row form .noACC a:hover{
+    text-decoration: underline;
+
+}
+
+
+
+
