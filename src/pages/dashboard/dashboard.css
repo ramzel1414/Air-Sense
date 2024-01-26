@@ -1,0 +1,136 @@
+/* quick options part*/
+
+.quick-select .box-container {      /*container of ENTIRE quick options*/
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(27.5rem, 1fr));
+    gap: 1.5rem;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.quick-select .box-container .box {     /*boxes inside container of quick options*/
+    border-radius: .5rem;
+    background-color: var(--white);
+    padding: 2rem;
+}
+
+.quick-select .box-container .box .title {      /*titles inside boxes of quick options*/
+    font-size: 2rem;
+    color: var(--black);
+}
+
+.quick-select .box-container .box p {           /*paragraphs inside boxes*/
+    line-height: 1.5;
+    padding-top: 1.5rem;
+    color: var(--light-color);
+    font-size: 1.8rem;
+}
+
+.quick-select .box-container .box p span {      /* values */
+    color: var(--main-color);
+}
+
+.quick-select .box-container .tutor {
+    text-align: center;
+}
+
+.quick-select .box-container .tutor p {
+    padding-bottom: 1rem;
+}
+
+.quick-select .box-container .box .flex {      /*links's container inside quick options*/
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding-top: 2rem;
+}
+
+.quick-select .box-container .box .flex a {     /*links's values*/
+    padding: 1rem 1.5rem;
+    border-radius: .5rem;
+    font-size: 1.6rem;
+    background-color: var(--light-bg);
+}
+
+.quick-select .box-container .box .flex a i {   /*logo color & margin*/
+    margin-right: 1rem;
+    color: var(--black)
+}
+
+.quick-select .box-container .box .flex a span {    /*logo name color*/
+    color:var(--light-color);
+}
+
+.quick-select .box-container .box .flex a:hover {   /*links's color when hovered*/
+    background-color: var(--black);
+}
+
+.quick-select .box-container .box .flex a:hover i {  /*logo color when hovered*/
+    color: var(--white);
+}
+
+.quick-select .box-container .box .flex a:hover span {  /*logo name color when hovered*/
+    color: var(--white);
+}
+
+
+/* employees part */
+/*identical to quick options part*/
+
+.employees .box-container {       /*container of ENTIRE employees*/
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+    gap: 1.5rem;
+    align-items: flex-start;
+    justify-content: center;
+}
+.employees .box-container .box {      /*white boxes inside container of employees*/
+    border-radius: .5rem;
+    background-color: var(--white);
+    padding: 2rem;
+    width: 1000;
+}
+
+.employees .box-container .box .tutor {   /*person description inside every box*/
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.employees .box-container .box .tutor img {   /*person image inside every box*/
+    width: 5rem;
+    height: 5rem;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.employees .box-container .box .tutor h3 {    /*person name inside every box*/
+    font-size: 2rem;
+    color: var(--black);
+    margin-bottom: .2rem;
+}
+
+.employees .box-container .box .tutor span {  /*date*/
+    font-size: 1.5rem;
+    color: var(--light-color);  
+}
+
+.employees .box-container .box .thumb {   /*images below every persons image inside boxes*/
+    width: 100%;
+    border-radius: .5rem;
+    height: 20rem;
+    object-fit: cover;
+}
+
+.employees .box-container .box .title {   /*image title*/
+    font-size: 2rem;
+    color: var(--black);
+    margin-top: .5rem;
+    padding: .5rem 0;
+}
+
+.employees .more-btn {    /*view more botton*/
+    margin-top: 2rem;
+    text-align: center;
+}
