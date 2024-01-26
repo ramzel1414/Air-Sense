@@ -1,9 +1,16 @@
 import React from "react";
 
+import Dashboard from "./pages/dashboard/Dashboard";
+import HeaderAndSidebar from "./components/HeaderAndSidebar";
+
 const App = () => {
     return (
-        <h1>Hello React</h1>
+        <div>
+
+            < HeaderAndSidebar />
+            < Dashboard />
+        </div>
     );   
 }
 
-export default App;   
+export default App;
