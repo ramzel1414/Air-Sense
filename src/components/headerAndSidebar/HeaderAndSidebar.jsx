@@ -1,4 +1,5 @@
 import React from 'react';
+import './headerAndSidebar.css';
 
 import { useState, useEffect } from 'react';
 
@@ -93,7 +94,7 @@ const HeaderAndSidebar = () => {
                 </div>
 
                 <div className={`profile ${isProfileActive ? 'active' : ''}`}>
-                <img src="/assets/images/ref ansai.jpg" alt="" />
+                <img src="/assets/images/airsense.png" alt="" />
                 <h3>Anzai Mitsuyoshi</h3>
                 <span>teacher</span>
                 <a href="profile.html" className="btn">
@@ -116,11 +117,11 @@ const HeaderAndSidebar = () => {
             <div className="icons">
                 <div id="close-btn" className="fas fa-times" onClick={handleCloseBtnClick}></div>
             </div>
-            <img src="/assets/images/ref ansai.jpg" alt="Airsense" />
-            <h3>Anzai Mitsuyoshi</h3>
-            <span>teacher</span>
-            <a href="profile.html" className="btn">
-                view profile
+            <img src="/assets/images/airsense.png" alt="Airsense" />
+            <h3>Air Pollution</h3>
+            <span>monitoring system</span>
+            <a href="about.html" className="btn">
+                about the airSense
             </a>
             </div>
     

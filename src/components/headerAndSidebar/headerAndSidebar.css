@@ -1,0 +1,279 @@
+
+body {
+    background-color: var(--light-bg);
+    padding-left: 30rem;                 /*space for sidebar*/
+    transition: .2s linear;              /*transition if sidebar toggled*/
+}
+
+body.dark {                  /*body with the class dark*/
+    --black: #ffffff;
+    --white: #222222;
+    --light-color: #aaaaaa; 
+    --light-bg: #333;
+    --border: .1rem solid rgba(255,255,255,.2);
+}
+
+body.active {               /*expands when sidebar is closed*/
+    padding-left: 0;
+}
+
+section {                   /*header block*/
+
+    padding: 2rem;
+    max-width: 1200px;      /*imaginary box for header*/
+    margin:0 auto;
+}
+
+
+.heading {                  /*quick options*/
+    padding-bottom: 1.8rem;
+    border-bottom: var(--broder);
+    font-size: 2.5rem;
+    color: var(--black);
+    text-transform: capitalize;
+    margin-bottom: 2rem;
+}
+
+
+.header {                   /*whole header*/
+    background-color: var(--white);
+    border-bottom: var(--border);
+    position: sticky;      /*for header to stick*/
+    top: 0; left: 0; right: 0;
+    z-index: 1000;         /*layering :)*/ 
+
+}
+
+.header .flex {            /*align header horizaontally*/
+    /* border: 2px solid green; */
+
+    padding: 1.5rem 2rem;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;  
+}
+
+.header .flex .logo {       /*logo*/
+    /* border: 2px solid blue; */
+
+    font-size: 2.5rem;
+    color: var(--black);
+    font-weight: bolder;
+}
+
+.header .flex .search-form {  /*search bar*/
+    /* border: 2px solid red; */
+
+    width: 50rem;
+    border-radius: .5rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1rem 2rem;
+    background-color: var(--light-bg);
+}
+
+.header .flex .search-form input { /*search bar input*/
+    width: 100%;
+    background: none;
+    font-size: 1.5rem;
+    color: var(--black);
+}
+
+.header .flex .search-form button { /*search bar button (icon)*/
+    font-size: 2rem;
+    color: var(--black);
+    cursor: pointer;
+    background: none;
+}
+
+.header .flex .search-form button:hover {
+    color: var(--branch-color);
+}
+
+.header .flex .icons div {        /*right icons*/
+    /* border: 2px solid cyan; */
+
+    font-size: 2rem;
+    color: var(--black);
+    border-radius: .5rem;
+    height: 4.5;
+    cursor: pointer;
+    width: 3rem;
+    line-height: 2.5rem;
+    background-color: var(--light-bg);
+    text-align: center;
+    margin-left: .5rem;
+}
+
+.header .flex .icons div:hover {      /*icons when hovered*/
+    background-color: var(--main-color);
+    color: var(--branch-color);
+}
+
+.header .flex .airsense {
+    display: flex;
+    gap: 1rem;
+}
+
+.icons div {        /*special close btn INSIDE SIDE BAR*/
+    /* border: 2px solid cyan; */
+
+    font-size: 2rem;
+    color: var(--black);
+    border-radius: .5rem;
+    height: 4.5;
+    cursor: pointer;
+    width: 3rem;
+    line-height: 2.5rem;
+    background-color: var(--light-bg);
+    text-align: center;
+    margin: 0rem 0 0 23rem;
+}
+
+.icons div:hover {      /*sidebar icon when hovered*/
+    background-color: var(--main-color);
+    color: var(--branch-color);
+}
+
+#menu-btn {             /*class for hiding menu btn*/
+    display: none;
+    transition: display 0.5s ease-in-out;
+    margin-right: 0.5rem;
+}
+
+#menu-btn.active {      /*class for displaying menu btn*/
+    display: inline;
+
+}
+
+#search-btn {                      /*hides the search icon*/
+    display: none;                 /*display only when width is below 450px*/
+}                
+
+
+
+.header .flex .profile {           /*profile toggled*/
+    position: absolute;
+    top: 120%; right: 2rem;
+    background-color: var(--white);
+    border-radius: .5rem;
+    padding: 2rem;
+    text-align: center;
+    width: 30rem;
+    transform: scale(0);            /*hides profile*/
+    transform-origin: top right;    
+    transition: .2s linear;         
+} 
+
+.header .flex .profile.active {     /*show profile after toggle*/
+    transform: scale(1);
+}
+
+.header .flex .profile img {        /*header img, scaling of img*/
+    height: 10rem;
+    width: 10rem;
+    border-radius: 50%;
+    object-fit: cover;              /*scale to cover whole container*/
+    margin-bottom: .5rem;
+}
+
+.header .flex .profile h3 {         /*profile txt*/
+    font-size: 2rem;
+    color:var(--black);
+}
+
+.header .flex .profile span {
+    color: var(--light-color);
+    font-size: 1.5rem;
+}
+
+
+
+/*sidebar starts*/
+
+.side-bar .close-side-bar i {       /*side bar values if exit icon exists*/
+    height: 4.5rem;
+    width: 4.5rem;
+    line-height: 4.4rem;
+    font-size: 2.5rem;
+    color: #FFFFFF;
+    cursor: pointer;
+    background-color: var(--main-color);
+    text-align: center;
+    border-radius: .5rem;
+}
+
+.side-bar .close-side-bar i:hover {  
+    background-color: var(--branch-color);
+}
+
+.side-bar {                         /*sidebar values*/
+    position: fixed;
+    top: 0; left: 0;
+    height: 100vh;
+    width: 30rem;
+    background-color: var(--white);
+    border-right: var(--border);
+    transition: .2s linear;         /*transition if toggled*/
+    z-index: 1200;                  /*appear in front of header*/
+}
+
+.side-bar .profile {                /*sidebar*/
+    /* border: 2px solid black; */
+    padding: 3rem 2rem;             /*horizontally & vertically*/
+    text-align: center;
+}
+
+.side-bar .profile img {            /*sidebar img, scaling of img*/
+    height: 10rem;
+    width: 10rem;
+    border-radius: 50%;
+    object-fit: cover;              /*scale to cover whole container*/
+    margin-bottom: .5rem;
+}
+
+.side-bar .profile h3 {             /*profile txt*/
+    font-size: 2rem;
+    color:var(--black);
+}
+
+.side-bar .profile span {            /*span, profile description*/  
+    color: var(--light-color);
+    font-size: 1.5rem;
+}
+
+.side-bar .navbar {
+    margin-top: 1rem;
+}
+
+.side-bar .navbar a {                /*to align navbar vertically*/
+    /* border: 1px solid black; */
+    display: block;
+    padding: 2rem;
+    margin:.5rem 0;
+    font-size: 1.8rem;
+}
+
+.side-bar .navbar a i {             /*icons*/
+    color: var(--main-color);
+    margin-right: 1.5rem;
+    transition: .2s linear;
+}
+
+.side-bar .navbar a span {          /*navbar text color*/
+    color: var(--light-color);
+}
+
+.side-bar .navbar a:hover {         /*hover grey color*/
+    background-color: var(--light-bg);
+}
+
+.side-bar .navbar a:hover i {       /*hover move*/
+    margin-right: 2.5rem;
+}
+
+.side-bar.active {                  /*hides side bar to the left*/
+    left: -31rem;
+}
