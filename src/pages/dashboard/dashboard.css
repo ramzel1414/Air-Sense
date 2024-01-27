@@ -1,4 +1,4 @@
-/* quick options part*/
+/* overview part*/
 
 .quick-select .box-container {      /*container of ENTIRE quick options*/
     display: grid;
@@ -6,12 +6,15 @@
     gap: 1.5rem;
     align-items: flex-start;
     justify-content: center;
+    background: grey;
 }
 
 .quick-select .box-container .box {     /*boxes inside container of quick options*/
     border-radius: .5rem;
     background-color: var(--white);
     padding: 2rem;
+    height: 27.5rem;
+
 }
 
 .quick-select .box-container .box .title {      /*titles inside boxes of quick options*/
@@ -79,7 +82,7 @@
 
 .employees .box-container {       /*container of ENTIRE employees*/
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(27.5rem, 1fr));
     gap: 1.5rem;
     align-items: flex-start;
     justify-content: center;
@@ -88,7 +91,8 @@
     border-radius: .5rem;
     background-color: var(--white);
     padding: 2rem;
-    width: 1000;
+    height: 27.5rem;
+
 }
 
 .employees .box-container .box .tutor {   /*person description inside every box*/
@@ -130,7 +134,3 @@
     padding: .5rem 0;
 }
 
-.employees .more-btn {    /*view more botton*/
-    margin-top: 2rem;
-    text-align: center;
-}

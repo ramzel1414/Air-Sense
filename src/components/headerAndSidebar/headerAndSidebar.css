@@ -253,17 +253,19 @@ section {                   /*header block*/
     display: block;
     padding: 2rem;
     margin:.5rem 0;
-    font-size: 1.8rem;
 }
 
 .side-bar .navbar a i {             /*icons*/
-    color: var(--main-color);
+    color: var(--black);
     margin-right: 1.5rem;
     transition: .2s linear;
+    font-size: 2rem;
+
 }
 
 .side-bar .navbar a span {          /*navbar text color*/
     color: var(--light-color);
+    font-size:1.8rem;
 }
 
 .side-bar .navbar a:hover {         /*hover grey color*/

@@ -117,39 +117,39 @@ const HeaderAndSidebar = () => {
             <div className="icons">
                 <div id="close-btn" className="fas fa-times" onClick={handleCloseBtnClick}></div>
             </div>
-            <img src="/assets/images/airsense.png" alt="Airsense" />
-            <h3>Air Pollution</h3>
-            <span>monitoring system</span>
-            <a href="about.html" className="btn">
-                about the airSense
-            </a>
+              <img src="/assets/images/airsense.png" alt="Airsense" />
+              <h3>Air Pollution</h3>
+              <span>monitoring system</span>
+              <a href="about.html" className="btn">
+                  about the airSense
+              </a>
             </div>
     
             <nav className="navbar">
-            <a href="home.html">
-                <i className="fas fa-home"></i>
-                <span>home</span>
-            </a>
-            <a href="about.html">
-                <i className="fas fa-question"></i>
-                <span>about us</span>
-            </a>
-            <a href="courses.html">
-                <i className="fas fa-graduation-cap"></i>
-                <span>courses</span>
-            </a>
-            <a href="teachers.html">
-                <i className="fas fa-chalkboard-user"></i>
-                <span>teachers</span>
-            </a>
-            <a href="contact.html">
-                <i className="fas fa-phone"></i>
-                <span>contact us</span>
-            </a>
-            <a href="out.html">
-                <i className="fas fa-power-off"></i>
-                <span>log out</span>
-            </a>
+              <a href="/dashboard">
+                  <i className="fas fa-home"></i>
+                  <span>Dashboard</span>
+              </a>
+              <a href="management">
+                  <i className="fas fa-chart-bar"></i>
+                  <span>Management</span>
+              </a>
+              <a href="location">
+                  <i className="fas fa-map-marker"></i>
+                  <span>Location</span>
+              </a>
+              <a href="settings">
+                  <i className="fas fa-cogs"></i>
+                  <span>Settings</span>
+              </a>
+              <a href="contact">
+                  <i className="fas fa-phone"></i>
+                  <span>contact us</span>
+              </a>
+              <a href="/">
+                  <i className="fas fa-power-off"></i>
+                  <span>log out</span>
+              </a>
             </nav>
         </div>
       </>
