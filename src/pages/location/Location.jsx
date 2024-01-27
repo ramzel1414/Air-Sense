@@ -5,7 +5,35 @@ const Location = () => {
     return (
         <div>
             < HeaderAndSidebar />
-            <h1>Location</h1>
+            <section className="location">
+                <h1 className="heading">Location</h1>
+                <div className="locationContainer">
+                    <div className="locationBox">
+                        <div className="locationName">Let</div>
+                        <div className="locationImage">
+                            <img src="https://64.media.tumblr.com/cda109835d5ec11e2d7969fa55725eca/tumblr_inline_nfz8necoc21skgd1k.jpg" alt="" />
+                        </div>
+                    </div>
+                    <div className="locationBox">
+                        <div className="locationName">The</div>
+                        <div className="locationImage">
+                            <img src="https://64.media.tumblr.com/cda109835d5ec11e2d7969fa55725eca/tumblr_inline_nfz8necoc21skgd1k.jpg" alt="" />
+                        </div>
+                    </div>
+                    <div className="locationBox">
+                        <div className="locationName">Guy</div>
+                        <div className="locationImage">
+                            <img src="https://64.media.tumblr.com/cda109835d5ec11e2d7969fa55725eca/tumblr_inline_nfz8necoc21skgd1k.jpg" alt="" />
+                        </div>
+                    </div>
+                    <div className="locationBox">
+                        <div className="locationName">Cook</div>
+                        <div className="locationImage">
+                            <img src="https://64.media.tumblr.com/cda109835d5ec11e2d7969fa55725eca/tumblr_inline_nfz8necoc21skgd1k.jpg" alt="" />
+                        </div>
+                    </div>
+                </div>
+            </section>
         </div>
     )
 }
