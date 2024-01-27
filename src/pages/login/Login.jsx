@@ -15,7 +15,7 @@ const Login = () => {
           <p className="boxLabel">Email Address:</p>
           <input type="email" name="email" className="box" placeholder="enter your email" required maxLength="100" />
           <p className="boxLabel">Password:</p>
-          <input type="text" name="name" className="box" placeholder="enter your name" required maxLength="100" />
+          <input type="password" name="name" className="box" placeholder="enter your password" required maxLength="100" />
 
           <div className="remember">
               <div>
