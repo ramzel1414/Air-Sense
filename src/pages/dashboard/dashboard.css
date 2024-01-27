@@ -1,12 +1,19 @@
 /* overview part*/
 
+.heading {
+    font-size: 3rem;
+}
+
 .quick-select .box-container {      /*container of ENTIRE quick options*/
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(27.5rem, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(55rem, 1fr));
     gap: 1.5rem;
-    align-items: flex-start;
     justify-content: center;
-    background: grey;
+    align-items: flex-start;
+    background: var(--light-color);
+    padding: 1.5rem;
+    border-radius: 1rem;
+
 }
 
 .quick-select .box-container .box {     /*boxes inside container of quick options*/
@@ -14,8 +21,9 @@
     background-color: var(--white);
     padding: 2rem;
     height: 27.5rem;
-
+    border-radius: 1rem;
 }
+
 
 .quick-select .box-container .box .title {      /*titles inside boxes of quick options*/
     font-size: 2rem;
@@ -45,7 +53,10 @@
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
-    padding-top: 2rem;
+
+    width: max-content;
+    height: 100%;
+    align-items: center;
 }
 
 .quick-select .box-container .box .flex a {     /*links's values*/
@@ -86,51 +97,45 @@
     gap: 1.5rem;
     align-items: flex-start;
     justify-content: center;
+    background: var(--light-color);
+    padding: 2rem;
+    border-radius: 1rem;
 }
 .employees .box-container .box {      /*white boxes inside container of employees*/
     border-radius: .5rem;
     background-color: var(--white);
     padding: 2rem;
     height: 27.5rem;
-
 }
 
-.employees .box-container .box .tutor {   /*person description inside every box*/
-    margin-bottom: 2rem;
-    display: flex;
-    align-items: center;
-    gap: 2rem;
+
+.employees .box-container .box h3 {    /*person name inside every box*/
+    font-size: 2rem;
+    color: var(--black);
 }
 
-.employees .box-container .box .tutor img {   /*person image inside every box*/
-    width: 5rem;
-    height: 5rem;
+.employees .box-container .box .circle {
+    height: 50%;
+    width: 50%;
     border-radius: 50%;
-    object-fit: cover;
+    background-color: green;
+    display: flex;
+    margin: 2rem auto;
 }
 
-.employees .box-container .box .tutor h3 {    /*person name inside every box*/
+.employees .box-container .box:nth-child(2) .circle {
+    background-color: rgba(255, 0, 0, 0.65);
+
+}
+
+.employees .box-container .box .outcome {
+    background-color: var(--light-bg);
+    padding: 1rem;
     font-size: 2rem;
     color: var(--black);
-    margin-bottom: .2rem;
-}
-
-.employees .box-container .box .tutor span {  /*date*/
-    font-size: 1.5rem;
-    color: var(--light-color);  
-}
-
-.employees .box-container .box .thumb {   /*images below every persons image inside boxes*/
-    width: 100%;
+    text-align: center;
     border-radius: .5rem;
-    height: 20rem;
-    object-fit: cover;
-}
 
-.employees .box-container .box .title {   /*image title*/
-    font-size: 2rem;
-    color: var(--black);
-    margin-top: .5rem;
-    padding: .5rem 0;
+
 }
 
