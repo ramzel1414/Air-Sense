@@ -1,0 +1,99 @@
+/*settings*/
+
+
+.settings .settingsGrid {
+    display: grid;
+    grid-template-columns: .5fr 2fr;
+    background-color: var(--white);
+    height: max-content;
+    color: var(--black);
+}
+
+.settings .settingsGrid .firstCol {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    padding: 2rem;
+    margin-top: 1rem;
+
+}
+
+.settings .settingsGrid .firstCol .big {
+    margin: 2rem auto;
+    font-size: 2rem;
+}
+
+.settings .settingsGrid .firstCol .list {
+    display: flex;
+    justify-content: space-between;
+    width: 70%;
+    margin-inline: auto;
+    align-items: center;
+    font-size: 1.5rem;
+}
+
+.settings .settingsGrid .firstCol .list a {
+    background-color: var(--main-color);
+    border-radius: 25%;
+    padding: 0 .5rem;
+    color: #FFF;
+    text-decoration: none;
+}
+
+.settings .settingsGrid .secondCol {
+    display: flex;
+    gap: 5rem;
+    padding: 5rem;
+    text-align: center;
+    position: relative;
+    flex-wrap: wrap;
+}
+
+.settings .settingsGrid .secondCol .big {
+    font-size: 2rem;
+}
+
+.settings .settingsGrid .secondCol .box {  
+    flex: 1 1 40rem; 
+    background-color: var(--light-bg);
+    padding: .5rem;
+    height: 22rem;
+    width: 22rem;
+    font-size: 1.5rem;
+    line-height: 1.5;
+}
+
+
+.settings .settingsGrid .secondCol .box .desc {
+    padding: 2rem;
+    width: 80%;
+    margin-inline: auto;
+}
+
+.settings .settingsGrid .secondCol .box .tog {
+    width: 70%;
+    display: flex;
+    justify-content: space-evenly;
+    margin-inline: auto;
+    margin-top: 2rem;
+    padding: .5rem;
+
+
+}
+
+.settings .settingsGrid .secondCol .box .con {
+    height: max-content;
+    width: 70%;
+    text-align: left;
+
+}
+
+
+.settings .settingsGrid .secondCol .longRect {
+    background: white;
+    position: absolute;
+    top: -20%;
+    left: -2%;
+    height: 100vh;
+    width: 25px;
+}
