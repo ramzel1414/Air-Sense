@@ -5,13 +5,47 @@ const Dashboard = () => {
   return (
     <div>
       <HeaderAndSidebar/>
+
+      <section className="employees">
+        <h1 className="heading">Predicted Outcome</h1>
+        <div className="box-container">
+          {/* Box 2 */}
+          <div className="box">
+            <h3 className="title">PM2.5</h3>
+            <div className="circle"> </div>
+            <p className="outcome">Good</p>
+          </div>
+          {/* Box 2 */}
+          <div className="box">
+            <h3 className="title">PM10</h3>
+            <div className="circle"> </div>
+            <p className="outcome">Bad</p>
+          </div>
+          {/* Box 2 */}
+          <div className="box">
+            <h3 className="title">CO2</h3>
+            <div className="circle"> </div>
+            <p className="outcome">Good</p>
+          </div>
+          {/* Box 2 */}
+          <div className="box">
+            <h3 className="title">NO2</h3>
+            <div className="circle"> </div>
+            <p className="outcome">Good</p>
+          </div>
+        </div>
+      </section>
+
+
+
       <section className="quick-select">
         <h1 className="heading">overview</h1>
         <div className="box-container">
           {/* Box 1 */}
           <div className="box">
-            <h3 className="title">PM2.5</h3>
-
+            <div className="flex">
+              <a href="#"><i className="fas fa-code"></i><span>PM2.5</span></a>
+            </div>
           </div>
           {/* Box 2 */}
           <div className="box">
@@ -22,41 +56,26 @@ const Dashboard = () => {
             </div>
           </div>
 
-        </div>
-      </section>
 
-
-      <section className="employees">
-        <h1 className="heading">our employees</h1>
-        <div className="box-container">
-          {/* Box 3 */}
+          {/* Box 1 */}
           <div className="box">
-            <h3 className="title">popular topics</h3>
             <div className="flex">
-              <a href="#"><i className="fab fa-html5"></i><span>HTML</span></a>
+              <a href="#"><i className="fas fa-code"></i><span>CO2</span></a>
             </div>
           </div>
-          {/* Box 4 */}
-          <div className="box tutor">
-            <h3 className="title">become a tutor</h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. The quick brown fox jumps. </p>
-            <a href="register.html" className="inline-btn">Get Started!</a>
-          </div>
-        {/* Box 3 */}
-        <div className="box">
-            <h3 className="title">popular topics</h3>
+          {/* Box 2 */}
+          <div className="box">
+            {/* <h3 className="title">PM10</h3> */}
             <div className="flex">
-              <a href="#"><i className="fab fa-html5"></i><span>HTML</span></a>
+              <a href="#"><i className="fas fa-code"></i><span>NO2</span></a>
+              {/* Add more category links as needed */}
             </div>
-          </div>
-          {/* Box 4 */}
-          <div className="box tutor">
-            <h3 className="title">become a tutor</h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. The quick brown fox jumps. </p>
-            <a href="register.html" className="inline-btn">Get Started!</a>
           </div>
         </div>
       </section>
+
+
+
     </div>
   );
 };
