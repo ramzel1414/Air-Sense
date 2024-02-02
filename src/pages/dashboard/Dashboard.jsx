@@ -109,39 +109,6 @@ const Dashboard = () => {
   return (
     <div>
       <HeaderAndSidebar/>
-
-      <section className="employees">
-        <h1 className="heading">Predicted Outcome</h1>
-        <div className="box-container">
-          {/* Box 2 */}
-          <div className="box">
-            <h3 className="title">PM2.5</h3>
-            <div className="circle"> </div>
-            <p className="outcome">Good</p>
-          </div>
-          {/* Box 2 */}
-          <div className="box">
-            <h3 className="title">PM10</h3>
-            <div className="circle"> </div>
-            <p className="outcome">Bad</p>
-          </div>
-          {/* Box 2 */}
-          <div className="box">
-            <h3 className="title">CO2</h3>
-            <div className="circle"> </div>
-            <p className="outcome">Good</p>
-          </div>
-          {/* Box 2 */}
-          <div className="box">
-            <h3 className="title">NO2</h3>
-            <div className="circle"> </div>
-            <p className="outcome">Good</p>
-          </div>
-        </div>
-      </section>
-
-
-
       <section className="quick-select">
         <h1 className="heading">overview</h1>
         <div className="box-container">
@@ -192,6 +159,39 @@ const Dashboard = () => {
           </div>
         </div>
       </section>
+      <section className="employees">
+        <h1 className="heading">Predicted Outcome</h1>
+        <div className="box-container">
+          {/* Box 2 */}
+          <div className="box">
+            <h3 className="title">PM2.5</h3>
+            <div className="circle"> </div>
+            <p className="outcome">Good</p>
+          </div>
+          {/* Box 2 */}
+          <div className="box">
+            <h3 className="title">PM10</h3>
+            <div className="circle"> </div>
+            <p className="outcome">Bad</p>
+          </div>
+          {/* Box 2 */}
+          <div className="box">
+            <h3 className="title">CO2</h3>
+            <div className="circle"> </div>
+            <p className="outcome">Good</p>
+          </div>
+          {/* Box 2 */}
+          <div className="box">
+            <h3 className="title">NO2</h3>
+            <div className="circle"> </div>
+            <p className="outcome">Good</p>
+          </div>
+        </div>
+      </section>
+
+
+
+
 
 
 

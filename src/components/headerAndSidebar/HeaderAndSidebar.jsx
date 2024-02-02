@@ -88,7 +88,7 @@ const HeaderAndSidebar = () => {
                 <div className="icons">
                 <div id="search-btn" className="fas fa-search"></div>
                 <DarkModeToggle /> {/* DarkModeToggle component */}
-                <div id="question-btn" className="fas fa-question"></div>
+                {/* <div id="question-btn" className="fas fa-question"></div> */}
                 <div id="user-btn" className="fas fa-user" onClick={handleUserBtnClick}></div>
                 <div id="drop-btn" className="fas fa-chevron-down"></div>
                 </div>
@@ -118,8 +118,8 @@ const HeaderAndSidebar = () => {
                 <div id="close-btn" className="fas fa-times" onClick={handleCloseBtnClick}></div>
             </div>
               <img src="/assets/images/airsense.png" alt="Airsense" />
-              <h3>Air Pollution</h3>
-              <span>monitoring system</span>
+              <h3>Air Quality</h3>
+              <span>Monitoring System</span>
               {/* <a href="#" className="btn">
                   Menu
               </a> */}

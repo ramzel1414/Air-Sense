@@ -37,13 +37,16 @@
 .quick-select .box-container .box .chartGraphContainer {
     height: 100%;
     width: 100%;
+    padding: 1.5rem;
+    padding-left: 0;
+
 }
 
 .quick-select .box-container .box .chartGraph {
     height: 100%;
     width: 100%;
     background: var(--light-bg);
-    padding: 2rem;
+    padding: 1rem;
     color: white;
     border-radius: .5rem;
 
