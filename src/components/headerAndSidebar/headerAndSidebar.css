@@ -252,7 +252,7 @@ section {                   /*header block*/
     /* border: 1px solid black; */
     display: block;
     padding: 2rem;
-    margin:.5rem 0;
+    margin: 1rem 0;
 }
 
 .side-bar .navbar a i {             /*icons*/

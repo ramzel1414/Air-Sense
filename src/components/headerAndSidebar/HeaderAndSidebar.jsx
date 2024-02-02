@@ -120,9 +120,9 @@ const HeaderAndSidebar = () => {
               <img src="/assets/images/airsense.png" alt="Airsense" />
               <h3>Air Pollution</h3>
               <span>monitoring system</span>
-              <a href="about.html" className="btn">
-                  about the airSense
-              </a>
+              {/* <a href="#" className="btn">
+                  Menu
+              </a> */}
             </div>
     
             <nav className="navbar">
@@ -141,10 +141,6 @@ const HeaderAndSidebar = () => {
               <a href="settings">
                   <i className="fas fa-cogs"></i>
                   <span>Settings</span>
-              </a>
-              <a href="contact">
-                  <i className="fas fa-phone"></i>
-                  <span>contact us</span>
               </a>
               <a href="/">
                   <i className="fas fa-power-off"></i>
