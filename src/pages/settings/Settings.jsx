@@ -13,23 +13,23 @@ const Settings = () => {
                     <h3 className="big">General Settings</h3>
                     <div className="list">
                         <p>Language</p>
-                        <a href="#">...</a>
+                        <a href="#">. . .</a>
                     </div>
                     <div className="list">
                         <p>Theme</p>
-                        <a href="#">...</a>
+                        <a href="#">. . .</a>
                     </div>
                     <div className="list">
                         <p>Date & Time</p>
-                        <a href="#">...</a>
+                        <a href="#">. . .</a>
                     </div>
                     <div className="list">
                         <p>Security</p>
-                        <a href="#">...</a>
+                        <a href="#">. . .</a>
                     </div>
                     </div>
                     <div className="secondCol">
-                    <div className="longRect"></div>
+                    {/* <div className="longRect"></div> */}
                     <div className="box">
                         <h3 className="big">Notification</h3>
                         <div className="tog">

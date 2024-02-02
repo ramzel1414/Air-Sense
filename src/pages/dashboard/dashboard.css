@@ -19,73 +19,67 @@
 .quick-select .box-container .box {     /*boxes inside container of quick options*/
     border-radius: .5rem;
     background-color: var(--white);
-    padding: 2rem;
+    /* padding: 1.5rem; */
     height: 27.5rem;
     border-radius: 1rem;
-}
-
-
-.quick-select .box-container .box .title {      /*titles inside boxes of quick options*/
-    font-size: 2rem;
-    color: var(--black);
-}
-
-.quick-select .box-container .box p {           /*paragraphs inside boxes*/
-    line-height: 1.5;
-    padding-top: 1.5rem;
-    color: var(--light-color);
-    font-size: 1.8rem;
-}
-
-.quick-select .box-container .box p span {      /* values */
-    color: var(--main-color);
-}
-
-.quick-select .box-container .tutor {
-    text-align: center;
-}
-
-.quick-select .box-container .tutor p {
-    padding-bottom: 1rem;
-}
-
-.quick-select .box-container .box .flex {      /*links's container inside quick options*/
     display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-
-    width: max-content;
-    height: 100%;
-    align-items: center;
 }
 
-.quick-select .box-container .box .flex a {     /*links's values*/
+
+.quick-select .box-container .box .chartNameContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 15rem;
+    height: 100%;
+}
+
+.quick-select .box-container .box .chartGraphContainer {
+    height: 100%;
+    width: 100%;
+}
+
+.quick-select .box-container .box .chartGraph {
+    height: 100%;
+    width: 100%;
+    background: var(--light-bg);
+    padding: 2rem;
+    color: white;
+    border-radius: .5rem;
+
+}
+
+
+
+.quick-select .box-container .box a {     /*links's values*/
     padding: 1rem 1.5rem;
     border-radius: .5rem;
     font-size: 1.6rem;
     background-color: var(--light-bg);
 }
 
-.quick-select .box-container .box .flex a i {   /*logo color & margin*/
+.quick-select .box-container .box a i {   /*logo color & margin*/
     margin-right: 1rem;
     color: var(--black)
 }
 
-.quick-select .box-container .box .flex a span {    /*logo name color*/
+.quick-select .box-container .box a span {    /*logo name color*/
     color:var(--light-color);
 }
 
-.quick-select .box-container .box .flex a:hover {   /*links's color when hovered*/
+.quick-select .box-container .box a:hover {   /*links's color when hovered*/
     background-color: var(--black);
 }
 
-.quick-select .box-container .box .flex a:hover i {  /*logo color when hovered*/
+.quick-select .box-container .box a:hover i {  /*logo color when hovered*/
     color: var(--white);
 }
 
-.quick-select .box-container .box .flex a:hover span {  /*logo name color when hovered*/
+.quick-select .box-container .box a:hover span {  /*logo name color when hovered*/
     color: var(--white);
 }
+
+
 
 
 /* employees part */
