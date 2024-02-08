@@ -23,9 +23,9 @@ class UsersTableSeeder extends Seeder
                 'username' => 'admin',
                 'email' => 'admin@example.com',
                 'password' => Hash::make('123'),
-
-                
+                'role' => 'admin'    
             ],
+            
 
             //user     
             [
@@ -33,6 +33,7 @@ class UsersTableSeeder extends Seeder
                 'username' => 'user',
                 'email' => 'user@example.com',
                 'password' => Hash::make('123'),
+                'role' => 'user',
             ],
         ]);
     }
