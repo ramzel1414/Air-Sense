@@ -6,11 +6,10 @@
 
         <title>Air Sense</title>
 
-        <!-- Fonts -->
-    <!-- Change the href attribute to the path of your icon file -->
-    <link rel="icon" href="{{ asset('airsense.png') }}" type="image/png">
-    <link rel="shortcut icon" href="/path/to/your/favicon.ico" type="image/x-icon">
+        <!-- Change the href attribute to the path of your icon file -->
+        <link rel="icon" href="{{ asset('airsense.png') }}" type="image/png">
 
+        <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
 
