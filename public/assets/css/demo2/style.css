@@ -22598,3 +22598,7 @@ div.tox .tox-dialog__body {
   width: 100%;
 }
 /*# sourceMappingURL=../maps/demo2/style.css.map */
+
+.capitalize-first {
+  text-transform: capitalize;
+}

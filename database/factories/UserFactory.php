@@ -30,6 +30,8 @@ class UserFactory extends Factory
             'email_verified_at' => now(),
             'phone' => fake()->phoneNumber(),
             'password' => static::$password ??= Hash::make('password'),
+            'photo' => fake()->imageUrl('60', '60'),
+            'address' => fake()->address(),
             'role' => fake()->randomElement(['admin', 'user']),
             'remember_token' => Str::random(10),
         ];

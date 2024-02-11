@@ -61,6 +61,8 @@ License: For each use you must have a valid license purchased only from above li
 	<!-- Plugin js for this page -->
   <script src="{{ asset('../assets/vendors/flatpickr/flatpickr.min.js')}}"></script>
   <script src="{{ asset('../assets/vendors/apexcharts/apexcharts.min.js')}}"></script>
+  {{-- <script src="{{ asset('../assets/vendors/jquery.flot/jquery.flot.js')}}"></script>
+  <script src="{{ asset('../assets/js/jquery.flot-dark.js')}}"></script> --}}
 	<!-- End plugin js for this page -->
 
 	<!-- inject:js -->

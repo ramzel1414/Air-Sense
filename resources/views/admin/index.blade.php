@@ -159,5 +159,19 @@
           </div>
         </div>
 
+        {{-- CURRENTLY WORKING ON THIS, DON'T DELETE --}}
+        {{-- <div class="row">
+					<div class="col-xl-12">
+						<div class="card">
+							<div class="card-body">
+								<h6 class="card-title">Real-Time chart</h6>
+								<div class="flot-chart-wrapper">
+									<div class="flot-chart" id="flotRealTime"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+        </div> --}}
+
 	</div>
 @endsection
