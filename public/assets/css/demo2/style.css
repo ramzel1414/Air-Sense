@@ -18926,6 +18926,8 @@ code {
   display: flex;
   align-items: stretch;
   justify-content: stretch;
+
+
 }
 .stretch-card > .card {
   width: 100%;

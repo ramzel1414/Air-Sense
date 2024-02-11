@@ -1,3 +1,5 @@
+  <!-- Change the href attribute to the path of your icon file -->
+  <link rel="icon" href="{{ asset('airsense.png') }}" type="image/png">
 <x-guest-layout>
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />

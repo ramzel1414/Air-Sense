@@ -300,6 +300,41 @@ $(function() {
 
 
 
+//exmaple chart hehe
+if ($('#exampleChart').length) {
+  var options4 = {
+    chart: {
+      type: "area",
+      height: 60,
+      sparkline: {
+        enabled: true
+      }
+    },
+    series: [{
+      name: '',
+      data: [10, 15, 12, 18, 14, 20, 16, 22, 19, 25, 23]
+    }],
+    xaxis: {
+      type: 'datetime',
+      categories: ["Jan 01 2022", "Jan 02 2022", "Jan 03 2022", "Jan 04 2022", "Jan 05 2022", "Jan 06 2022", "Jan 07 2022", "Jan 08 2022", "Jan 09 2022", "Jan 10 2022", "Jan 11 2022"],
+    },
+    stroke: {
+      width: 2,
+      curve: "smooth"
+    },
+    markers: {
+      size: 0
+    },
+    colors: [colors.secondary], // You can customize the color
+  };
+  new ApexCharts(document.querySelector("#exampleChart"), options4).render();
+}
+// Example Chart - END
+
+
+
+
+
 
   // Revenue Chart
   if ($('#revenueChart').length) {

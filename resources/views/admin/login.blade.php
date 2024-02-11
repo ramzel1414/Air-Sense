@@ -32,10 +32,13 @@ License: For each use you must have a valid license purchased only from above li
   </style>
 
 
+
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
+
   <!-- End fonts -->
 
 	<!-- core:css -->
@@ -92,8 +95,13 @@ License: For each use you must have a valid license purchased only from above li
                         </label>
                       </div>
                       <div>
-                        <button type="submit" class="btn btn-outline-primary btn-icon-text mb-2 mb-md-0">
+                        <button type="submit" class="btn btn-primary me-2 mb-2 mb-md-0 text-white">
                         Login
+                        </button>
+
+                        <button type="button" class="btn btn-outline-primary btn-icon-text mb-2 mb-md-0">
+                          <i class="btn-icon-prepend fab fa-google"></i>
+                          Login with Google
                         </button>
                       </div>
                       <a href="register.html" class="d-block mt-3 text-muted">Not a user? Sign up</a>
