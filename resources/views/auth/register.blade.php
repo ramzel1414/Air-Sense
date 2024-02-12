@@ -1,3 +1,6 @@
+        <!-- Change the href attribute to the path of your icon file -->
+        <link rel="icon" href="{{ asset('airsense.png') }}" type="image/png">
+        
 <x-guest-layout>
     <form method="POST" action="{{ route('register') }}">
         @csrf
