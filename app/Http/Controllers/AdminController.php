@@ -52,12 +52,18 @@ class AdminController extends Controller
 
         if($request->file('photo')) {
             $file = $request->file('photo');
+            @unlink(public_path('upload/admin_images/'.$data->photo));  //replace previous admin image
             $filename = date('YmdHi').$file->getClientOriginalName(); //to avoid similar photo conflict
             $file->move(public_path('upload/admin_images'),$filename);
             $data['photo'] = $filename;
         }
         $data->save();
 
-        return redirect()->back();
+        $notification = array ( //toaster notif when updated
+            'message' => 'Admin Profile Updated Successfully',
+            'alert-type' => 'success',
+        );
+
+        return redirect()->back()->with($notification);
     }
 }
