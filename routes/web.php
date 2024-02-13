@@ -51,5 +51,7 @@ Route::middleware(['auth', 'role:admin'])->group(function() {
 
 
 //The reason this is outside the admin group line 35 is because you can't use it w/o logging in. KUNG WALA KAPA KA LOGIN DILI MAN KA MAKA LOGOUT DIBA?
-Route::get('/admin/login', [AdminController::class, 'AdminLogin'])->name('admin.login');
+// Route::get('/admin/login', [AdminController::class, 'AdminLogin'])->name('admin.login');
+
+//admin and register route is already in the auth.php
 
