@@ -1,13 +1,10 @@
 
-02-08-2024
-->I will put laravel now
+# SetUp
+- composer install
 
-#SetUp
--composer install
-
-#Running
--php artisan serve
--npm run dev (if needed)
+# Running
+- php artisan serve
+- npm run dev (if needed)
 
 
 
