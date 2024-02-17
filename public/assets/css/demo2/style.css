@@ -19420,6 +19420,7 @@ body {
   color: #7987a1;
   display: flex;
   align-items: center;
+
 }
 
 .navbar {
@@ -19530,7 +19531,8 @@ body {
   margin-right: 5px;
   min-width: 30px;
   display: flex;
-  align-items: center;
+  align-items: center;  
+
 }
 .navbar .navbar-content .navbar-nav .nav-item .nav-link {
   color: #7987a1;
@@ -19638,7 +19640,14 @@ body {
   font-size: 25px;
   color: #d0d6e1;
   direction: ltr/*rtl:ignore*/;
+  align-items: center;
 }
+
+.sidebar .sidebar-header .sidebar-brand img {
+  width: 40px;
+  margin-right: .5rem;  
+}
+
 .sidebar .sidebar-header .sidebar-brand span {
   color: #6571ff;
   font-weight: 300;
@@ -19884,14 +19893,16 @@ body {
 }
 .sidebar .sidebar-body .nav .nav-item {
   position: relative;
+  padding: 1.2rem 0
 }
 .sidebar .sidebar-body .nav .nav-item .nav-link {
   display: flex;
   align-items: center;
-  padding: 0;
+  padding: 1.2rem 0;
   height: 32px;
   white-space: nowrap;
   color: #7987a1;
+
 }
 .sidebar .sidebar-body .nav .nav-item .nav-link .link-icon {
   width: 16px;
@@ -19920,6 +19931,7 @@ body {
 .sidebar .sidebar-body .nav .nav-item .nav-link .link-arrow {
   -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
+  font-size: 1rem;
 }
 .sidebar .sidebar-body .nav .nav-item .nav-link[aria-expanded=true] {
   color: #6571ff;
@@ -19930,7 +19942,7 @@ body {
 }
 .sidebar .sidebar-body .nav .nav-item.nav-category {
   color: #d0d6e1;
-  font-size: 11px;
+  font-size: 1rem;
   text-transform: uppercase;
   font-weight: 500;
   letter-spacing: 0.5px;
@@ -19965,6 +19977,7 @@ body {
   fill: rgba(239, 243, 255, 0.5);
   color: #6571ff;
   fill: rgba(101, 113, 255, 0.2);
+  font-size: 1rem;
 }
 .sidebar .sidebar-body .nav.sub-menu {
   padding: 0 0 15px 33px;

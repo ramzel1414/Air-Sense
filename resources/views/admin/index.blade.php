@@ -3,9 +3,9 @@
     	<div class="page-content">
 
         <div class="d-flex justify-content-between align-items-center flex-wrap grid-margin">
-          <div>
-            <h4 class="mb-3 mb-md-0">Welcome to Dashboard</h4>
-          </div>
+
+          <h3 class="mb-3">Overview</h3>
+
           <div class="d-flex align-items-center flex-wrap text-nowrap">
             <div class="input-group flatpickr wd-200 me-2 mb-2 mb-md-0" id="dashboardDate">
               <span class="input-group-text input-group-addon bg-transparent border-primary" data-toggle><i data-feather="calendar" class="text-primary"></i></span>
@@ -126,7 +126,7 @@
             <div class="card overflow-hidden">
               <div class="card-body">
                 <div class="d-flex justify-content-between align-items-baseline mb-4 mb-md-3">
-                  <h6 class="card-title mb-0">Revenue</h6>
+                  <h6 class="card-title mb-0">PM2.5</h6>
                   <div class="dropdown">
                     <a type="button" id="dropdownMenuButton3" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       <i class="icon-lg text-muted pb-3px" data-feather="more-horizontal"></i>
