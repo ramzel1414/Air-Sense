@@ -153,7 +153,7 @@
                     </div>
                   </div>
                 </div>
-                <div id="revenueChart" ></div>
+                <div id="revenueChart" ></div>s
               </div>
             </div>
           </div>

@@ -81,11 +81,11 @@ License: For each use you must have a valid license purchased only from above li
                         @csrf
                       <div class="mb-3">
                         <label for="login" class="form-label">Email/Phone/Name</label>
-                        <input type="text" name="login" class="form-control" id="login" placeholder="Email" autocomplete="off">
+                        <input autocomplete="off" type="text" name="login" class="form-control" id="login" placeholder="Email" >
                       </div>
                       <div class="mb-3">
                         <label for="password" class="form-label">Password</label>
-                        <input type="password" name="password" class="form-control" id="password" autocomplete="off" placeholder="Password">
+                        <input autocomplete="off" type="password" name="password" class="form-control" id="password" placeholder="Password">
                       </div>
                       <!-- Remember Me -->
                       <div class="form-check mb-3">
