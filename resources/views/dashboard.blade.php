@@ -1,3 +1,5 @@
+        <!-- Change the href attribute to the path of your icon file -->
+        <link rel="icon" href="{{ asset('airsense.png') }}" type="image/png">
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">

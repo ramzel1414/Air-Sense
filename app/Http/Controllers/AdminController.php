@@ -14,9 +14,27 @@ class AdminController extends Controller
 {
     public function AdminDashboard() {      //this is a method inside the class AdminController
 
-        return view('admin.index');   //look this file in views
+        return view('admin.index');   //look for this file in views
 
-    } //end method
+    } 
+
+    public function AdminManagement() {      
+
+        return view('admin.admin_management');   
+
+    }
+
+    public function AdminLocation() {      
+
+        return view('admin.admin_location');   
+
+    } 
+    
+    public function AdminSettings() {    
+
+        return view('admin.admin_settings');   
+
+    } 
 
     public function AdminLogout(Request $request): RedirectResponse
     {
@@ -26,7 +44,11 @@ class AdminController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/admin/login');
+        // return redirect('/admin/login');     //commented because we are using the same loginpage for users and admin's, after logout they will be redirected to that page
+
+        // return redirect('/login');
+        return redirect('/');                   //warag mas chada ni
+
     }
 
     public function AdminLogin() {

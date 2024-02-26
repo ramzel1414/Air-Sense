@@ -46,10 +46,17 @@ Route::middleware(['auth', 'role:admin'])->group(function() {
 
     Route::post('/admin/update/password', [AdminController::class, 'AdminUpdatePassword'])->name('admin.update.password');
 
+    Route::get('/admin/management', [AdminController::class, 'AdminManagement'])->name('admin.management');
+
+    Route::get('/admin/location', [AdminController::class, 'AdminLocation'])->name('admin.location');
+
+    Route::get('/admin/settings', [AdminController::class, 'AdminSettings'])->name('admin.settings');
 
 }); //End Group Admin middleware
 
 
 //The reason this is outside the admin group line 35 is because you can't use it w/o logging in. KUNG WALA KAPA KA LOGIN DILI MAN KA MAKA LOGOUT DIBA?
-Route::get('/admin/login', [AdminController::class, 'AdminLogin'])->name('admin.login');
+// Route::get('/admin/login', [AdminController::class, 'AdminLogin'])->name('admin.login');
+
+//admin and register route is already in the auth.php
 

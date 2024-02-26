@@ -3,9 +3,9 @@
     	<div class="page-content">
 
         <div class="d-flex justify-content-between align-items-center flex-wrap grid-margin">
-          <div>
-            <h4 class="mb-3 mb-md-0">Welcome to Dashboard</h4>
-          </div>
+
+          <h3 class="mb-3">Overview</h3>
+
           <div class="d-flex align-items-center flex-wrap text-nowrap">
             <div class="input-group flatpickr wd-200 me-2 mb-2 mb-md-0" id="dashboardDate">
               <span class="input-group-text input-group-addon bg-transparent border-primary" data-toggle><i data-feather="calendar" class="text-primary"></i></span>
@@ -32,7 +32,7 @@
                     </div>
                     <div class="row">
                       <div class="col-6 col-md-12 col-xl-5">
-                        <h4 class="mb-2">PM10</h4>
+                        <h4 class="mb-2">PM2.5</h4>
                         <div class="d-flex align-items-baseline">
                           <p class="text-success">
                             <span>+3.3%</span>
@@ -41,9 +41,10 @@
                         </div>
                       </div>
                       <div class="col-6 col-md-12 col-xl-7">
-                        <div id="customersChart" class="mt-md-3 mt-xl-0"></div>
+                        <div id="ordersChart1" class="mt-md-3 mt-xl-0"></div>
                       </div>
                     </div>
+                    
                   </div>
                 </div>
               </div>
@@ -55,7 +56,7 @@
                     </div>
                     <div class="row">
                       <div class="col-6 col-md-12 col-xl-5">
-                        <h4 class="mb-2">PM2.5</h4>
+                        <h4 class="mb-2">PM10</h4>
                         <div class="d-flex align-items-baseline">
                           <p class="text-danger">
                             <span>-2.8%</span>
@@ -64,7 +65,7 @@
                         </div>
                       </div>
                       <div class="col-6 col-md-12 col-xl-7">
-                        <div id="ordersChart" class="mt-md-3 mt-xl-0"></div>
+                        <div id="ordersChart2" class="mt-md-3 mt-xl-0"></div>
                       </div>
                     </div>
                   </div>
@@ -87,7 +88,7 @@
                         </div>
                       </div>
                       <div class="col-6 col-md-12 col-xl-7">
-                        <div id="growthChart" class="mt-md-3 mt-xl-0"></div>
+                        <div id="ordersChart3" class="mt-md-3 mt-xl-0"></div>
                       </div>
                     </div>
                   </div>
@@ -101,7 +102,7 @@
                     </div>
                     <div class="row">
                       <div class="col-6 col-md-12 col-xl-5">
-                        <h4 class="mb-2">PM10</h4>
+                        <h4 class="mb-2">NO2</h4>
                         <div class="d-flex align-items-baseline">
                           <p class="text-success">
                             <span>+3.3%</span>
@@ -110,7 +111,7 @@
                         </div>
                       </div>
                       <div class="col-6 col-md-12 col-xl-7">
-                        <div id="exampleChart" class="mt-md-3 mt-xl-0"></div>
+                        <div id="ordersChart4" class="mt-md-3 mt-xl-0"></div>
                       </div>
                     </div>
                   </div>
@@ -126,7 +127,7 @@
             <div class="card overflow-hidden">
               <div class="card-body">
                 <div class="d-flex justify-content-between align-items-baseline mb-4 mb-md-3">
-                  <h6 class="card-title mb-0">Revenue</h6>
+                  <h6 class="card-title mb-0">PM2.5</h6>
                   <div class="dropdown">
                     <a type="button" id="dropdownMenuButton3" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       <i class="icon-lg text-muted pb-3px" data-feather="more-horizontal"></i>
@@ -153,7 +154,7 @@
                     </div>
                   </div>
                 </div>
-                <div id="revenueChart" ></div>
+                <div id="revenueChart" ></div>s
               </div>
             </div>
           </div>
