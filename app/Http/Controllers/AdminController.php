@@ -46,7 +46,8 @@ class AdminController extends Controller
 
         // return redirect('/admin/login');     //commented because we are using the same loginpage for users and admin's, after logout they will be redirected to that page
 
-        return redirect('/login');
+        // return redirect('/login');
+        return redirect('/');                   //warag mas chada ni
 
     }
 

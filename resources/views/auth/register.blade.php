@@ -17,7 +17,7 @@ License: For each use you must have a valid license purchased only from above li
 	<meta name="author" content="NobleUI">
 	<meta name="keywords" content="nobleui, bootstrap, bootstrap 5, bootstrap5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
 
-	<title>AirSense Admin Login Page</title>
+	<title>AirSense Admin Register Page</title>
 
     <!-- Change the href attribute to the path of your icon file -->
     <link rel="icon" href="{{ asset('airsense.png') }}" type="image/png">
