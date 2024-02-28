@@ -352,9 +352,68 @@ $(function() {
     new ApexCharts(document.querySelector("#ordersChart4"),options5).render();
   }
   // Orders Chart 4 - END
-    
-    
 
+    // Orders Chart 5
+    if($('#ordersChart5').length) {
+      var options6 = {
+        chart: {
+          type: "bar",
+          height: 60,
+          sparkline: {
+            enabled: !0
+          }
+        },
+        plotOptions: {
+          bar: {
+            borderRadius: 2,
+            columnWidth: "60%"
+          }
+        },
+        colors: [colors.primary],
+        series: [{
+          name: '',
+          data: [36, 77, 52, 90, 74, 35, 55, 23, 47, 10, 63]
+        }],
+        xaxis: {
+          type: 'datetime',
+          categories: ["Jan 01 2022", "Jan 02 2022", "Jan 03 2022", "Jan 04 2022", "Jan 05 2022", "Jan 06 2022", "Jan 07 2022", "Jan 08 2022", "Jan 09 2022", "Jan 10 2022", "Jan 11 2022",],
+        },
+      };
+      new ApexCharts(document.querySelector("#ordersChart5"),options6).render();
+    }
+    // Orders Chart 5 - END
+    
+    // Orders Chart 6
+    if($('#ordersChart6').length) {
+      var options7 = {
+        chart: {
+          type: "bar",
+          height: 60,
+          sparkline: {
+            enabled: !0
+          }
+        },
+        plotOptions: {
+          bar: {
+            borderRadius: 2,
+            columnWidth: "60%"
+          }
+        },
+        colors: [colors.primary],
+        series: [{
+          name: '',
+          data: [36, 77, 52, 90, 74, 35, 55, 23, 47, 10, 63]
+        }],
+        xaxis: {
+          type: 'datetime',
+          categories: ["Jan 01 2022", "Jan 02 2022", "Jan 03 2022", "Jan 04 2022", "Jan 05 2022", "Jan 06 2022", "Jan 07 2022", "Jan 08 2022", "Jan 09 2022", "Jan 10 2022", "Jan 11 2022",],
+        },
+      };
+      new ApexCharts(document.querySelector("#ordersChart6"),options7).render();
+    }
+    // Orders Chart 5 - END
+    
+    
 
 
 

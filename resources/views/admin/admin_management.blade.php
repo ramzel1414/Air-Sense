@@ -13,9 +13,77 @@
             
         <div class="grid-margin d-flex justify-content-evenly py-3 rounded-3"  style="background-color: #0c1427;">
 
-            <a href="#" class="btn btn-primary col-4">Add Location</a>
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary col-4" data-bs-toggle="modal" data-bs-target="#addLocation">
+                Add Location
+            </button>
 
-            <a href="#" class="btn btn-primary col-4">Add Device</a>
+            <!-- Modal -->
+            <div class="modal fade" id="addLocation" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Add a Location</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="btn-close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <!-- Form for adding Location -->
+                            <form>
+                                @csrf
+                                <div class="mb-3">
+                                    <label for="locationId" class="form-label">Location ID:</label>
+                                    <input type="text" class="form-control" id="locationId" name="locationId" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="location" class="form-label">Location:</label>
+                                    <input type="text" class="form-control" id="location" name="location" required>
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary col-4" data-bs-toggle="modal" data-bs-target="#addDevice">
+                Add Device
+            </button>
+            <!-- Modal -->
+            <div class="modal fade" id="addDevice" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Add a Sensor</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="btn-close"></button>
+                    </div>
+                        <div class="modal-body">
+                            <!-- Form for adding Location -->
+                            <form>
+                                @csrf
+                                <div class="mb-3">
+                                    <label for="locationId" class="form-label">Sensor ID:</label>
+                                    <input type="text" class="form-control" id="locationId" name="locationId" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="location" class="form-label">Sensor Name:</label>
+                                    <input type="text" class="form-control" id="location" name="location" required>
+                                </div>
+                                
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
         </div>
 
