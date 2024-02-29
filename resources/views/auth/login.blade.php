@@ -82,10 +82,12 @@ License: For each use you must have a valid license purchased only from above li
                       <div class="mb-3">
                         <label for="login" class="form-label">Email/Phone/Name</label>
                         <input autocomplete="off" type="text" name="login" class="form-control" id="login" placeholder="Email" >
+                        <x-input-error :messages="$errors->get('login')" class="mt-2" />
                       </div>
                       <div class="mb-3">
                         <label for="password" class="form-label">Password</label>
                         <input autocomplete="off" type="password" name="password" class="form-control" id="password" placeholder="Password">
+                        <x-input-error :messages="$errors->get('password')" class="mt-2" />
                       </div>
                       <!-- Remember Me -->
                       <div class="form-check mb-3">

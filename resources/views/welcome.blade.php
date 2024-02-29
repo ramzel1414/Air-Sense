@@ -113,6 +113,8 @@
 
     </div>
 
+    {{-- <h5 class="mb-2">Monitoring</h5> --}}
+
     <div class="row">
       <div class="col-12 col-xl-12 stretch-card ">
         <div class="row flex-grow-1" >
@@ -241,7 +243,7 @@
     </div> 
     <!-- row -->
 
-    
+    <h5 class="mb-2">Forecasting</h5>
     <!-- row -->
     <div class="row">
       <div class="col-xl-12">
