@@ -105,188 +105,37 @@
   <div class="page-content m-4">
 
     <div class="d-flex justify-center align-items-center grid-margin">
-
       <h3 class="mx-1">AirSense</h3>
       <img src="{{ asset('airsense.png') }}" alt="Air Sense Logo" class="mx-1 h-16 w-auto bg-gray-100 dark:bg-gray-900 custom-radius">
-
-
-
     </div>
 
-    {{-- <h5 class="mb-2">Monitoring</h5> --}}
 
     <div class="row">
+      <h5 class="mb-2">Monitoring</h5>
       <div class="col-12 col-xl-12 stretch-card ">
         <div class="row flex-grow-1" >
 
-          <div class="col-md-2 col-sm-3 grid-margin stretch-card">
-            <div class="card">
-              <div class="card-body">
+          @include('charts.monitoring.pm25')
 
-                <div class="row">
-                  <div class="d-flex justify-content-between w-100">
-                    <h6 class="d-flex align-items-center">PM2.5</h6>
-                    <p class="text-success">
-                      <span>+2.8%</span>
-                      <i data-feather="arrow-up" class="icon-sm"></i>
-                    </p>
-                  </div>
-                    <div id="ordersChart1" class="mt-md-3 mt-xl-0"></div>
-                </div>
-                
-              </div>
-            </div>
-          </div>
+          @include('charts.monitoring.pm10')
 
-          <div class="col-md-2 col-sm-3 grid-margin stretch-card">
-            <div class="card">
-              <div class="card-body">
-                <div class="d-flex justify-content-between align-items-baseline">
-                </div>
-                <div class="row">
-                  <div class="d-flex align-items-baseline justify-content-between">
-                    <h6 class="d-flex align-items-center">PM2.10</h6>
-                    <p class="text-success">
-                      <span>+2.8%</span>
-                      <i data-feather="arrow-up" class="icon-sm"></i>
-                    </p>
-                  </div>
-                    <div id="ordersChart2" class="mt-md-3 mt-xl-0"></div>
-                </div>
-                
-              </div>
-            </div>
-          </div>
+          @include('charts.monitoring.co2')
 
-          <div class="col-md-2 col-sm-3 grid-margin stretch-card">
-            <div class="card">
-              <div class="card-body">
-                <div class="d-flex justify-content-between align-items-baseline">
-                </div>
-                <div class="row">
-                  <div class="d-flex align-items-baseline justify-content-between">
-                    <h6 class="d-flex align-items-center">CO2</h6>
-                    <p class="text-danger">
-                      <span>-2.8%</span>
-                      <i data-feather="arrow-down" class="icon-sm"></i>
-                    </p>
-                  </div>
-                    <div id="ordersChart3" class="mt-md-3 mt-xl-0"></div>
-                </div>
-                
-              </div>
-            </div>
-          </div>
+          @include('charts.monitoring.no2')
 
-          <div class="col-md-2 col-sm-3 grid-margin stretch-card">
-            <div class="card">
-              <div class="card-body">
-                <div class="d-flex justify-content-between align-items-baseline">
-                </div>
-                <div class="row">
-                  <div class="d-flex align-items-baseline justify-content-between">
-                    <h6 class="d-flex align-items-center">NO2</h6>
-                    <p class="text-success">
-                      <span>+2.8%</span>
-                      <i data-feather="arrow-up" class="icon-sm"></i>
-                    </p>
-                  </div>
-                    <div id="ordersChart4" class="mt-md-3 mt-xl-0"></div>
-                </div>
-                
-              </div>
-            </div>
-          </div>
+          @include('charts.monitoring.o2')
 
-          <div class="col-md-2 col-sm-3 grid-margin stretch-card">
-            <div class="card">
-              <div class="card-body">
-                <div class="d-flex justify-content-between align-items-baseline">
-                </div>
-                <div class="row">
-                  <div class="d-flex align-items-baseline justify-content-between">
-                    <h6 class="d-flex align-items-center">O2</h6>
-                    <p class="text-success">
-                      <span>+2.8%</span>
-                      <i data-feather="arrow-up" class="icon-sm"></i>
-                    </p>
-                  </div>
-                    <div id="ordersChart5" class="mt-md-3 mt-xl-0"></div>
-                </div>
-                
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-2 col-sm-3 grid-margin stretch-card">
-            <div class="card">
-              <div class="card-body">
-                <div class="d-flex justify-content-between align-items-baseline">
-                </div>
-                <div class="row">
-                  <div class="d-flex align-items-baseline justify-content-between">
-                    <h6 class="d-flex align-items-center">Avg.</h6>
-                    <p class="text-success">
-                      <span>+6.8%</span>
-                      <i data-feather="arrow-up" class="icon-sm"></i>
-                    </p>
-                  </div>
-                    <div id="ordersChart6" class="mt-md-3 mt-xl-0"></div>
-                </div>
-                
-              </div>
-            </div>
-          </div>
+          @include('charts.monitoring.avg')
+          
 
         </div>
       </div>
     </div> 
+
+
     <!-- row -->
+    @include('charts.forecasting')
 
-    <h5 class="mb-2">Forecasting</h5>
-    <!-- row -->
-    <div class="row">
-      <div class="col-xl-12">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title mb-0">PM2.5</h5>
-
-            <div class="row align-items-start">
-              <div class="col-md-7">
-                <p class="text-muted tx-13 mb-3 mb-md-0">Revenue is the income that a business has from its normal business activities, usually from the sale of goods and services to customers.</p>
-              </div>
-              <div class="col-md-5 d-flex justify-content-md-end">
-                <div class="btn-group mb-3 mb-md-0" role="group" aria-label="Basic example">
-                  <button type="button" class="btn btn-primary">PM2.5</button>
-                  <button type="button" class="btn btn-outline-primary mx-2">PM10</button>
-                </div>
-              </div>
-            </div>
-            <div class="flot-chart-wrapper">
-              <div class="flot-chart" id="flotRealTime"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-
-    {{-- CURRENTLY WORKING ON THIS, DON'T DELETE --}}
-    {{-- <div class="row">
-      <div class="col-xl-12">
-        <div class="card">
-          <div class="card-body">
-            <h6 class="card-title">Real-Time chart</h6>
-            <div class="flot-chart-wrapper">
-              <div class="flot-chart" id="flotRealTime"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div> --}}
-
-</div>
-    
 
     
 	<!-- core:js -->

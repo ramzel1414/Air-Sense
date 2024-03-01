@@ -2,7 +2,7 @@
 @section('user')
 
 {{-- custom bootstrap for 5 cards. LOL --}}
-<style> 
+{{-- <style> 
   .col-xs-15,
   .col-sm-15,
   .col-md-15,
@@ -35,7 +35,7 @@
         float: left;
     }
 }
-</style>
+</style> --}}
     	<div class="page-content">
 
         <div class="d-flex justify-content-between align-items-center flex-wrap grid-margin">
@@ -54,142 +54,31 @@
           </div>
         </div>
 
+        <!-- row -->
         <div class="row">
+          <h5 class="mb-2">Monitoring</h5>
           <div class="col-12 col-xl-12 stretch-card ">
             <div class="row flex-grow-1" >
-
-              <div class="col-md-15 col-sm-3 grid-margin stretch-card">
-                <div class="card">
-                  <div class="card-body">
-
-                    <div class="row">
-                      <div class="d-flex justify-content-between w-100">
-                        <h6 class="d-flex align-items-center">PM2.5</h6>
-                        <p class="text-success">
-                          <span>+2.8%</span>
-                          <i data-feather="arrow-up" class="icon-sm"></i>
-                        </p>
-                      </div>
-                        <div id="ordersChart1" class="mt-md-3 mt-xl-0"></div>
-                    </div>
-                    
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-md-15 col-sm-3 grid-margin stretch-card">
-                <div class="card">
-                  <div class="card-body">
-                    <div class="d-flex justify-content-between align-items-baseline">
-                    </div>
-                    <div class="row">
-                      <div class="d-flex align-items-baseline justify-content-between">
-                        <h6 class="d-flex align-items-center">PM2.10</h6>
-                        <p class="text-success">
-                          <span>+2.8%</span>
-                          <i data-feather="arrow-up" class="icon-sm"></i>
-                        </p>
-                      </div>
-                        <div id="ordersChart2" class="mt-md-3 mt-xl-0"></div>
-                    </div>
-                    
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-md-15 col-sm-3 grid-margin stretch-card">
-                <div class="card">
-                  <div class="card-body">
-                    <div class="d-flex justify-content-between align-items-baseline">
-                    </div>
-                    <div class="row">
-                      <div class="d-flex align-items-baseline justify-content-between">
-                        <h6 class="d-flex align-items-center">CO2</h6>
-                        <p class="text-danger">
-                          <span>-2.8%</span>
-                          <i data-feather="arrow-down" class="icon-sm"></i>
-                        </p>
-                      </div>
-                        <div id="ordersChart3" class="mt-md-3 mt-xl-0"></div>
-                    </div>
-                    
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-md-15 col-sm-3 grid-margin stretch-card">
-                <div class="card">
-                  <div class="card-body">
-                    <div class="d-flex justify-content-between align-items-baseline">
-                    </div>
-                    <div class="row">
-                      <div class="d-flex align-items-baseline justify-content-between">
-                        <h6 class="d-flex align-items-center">NO2</h6>
-                        <p class="text-success">
-                          <span>+2.8%</span>
-                          <i data-feather="arrow-up" class="icon-sm"></i>
-                        </p>
-                      </div>
-                        <div id="ordersChart4" class="mt-md-3 mt-xl-0"></div>
-                    </div>
-                    
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-md-15 col-sm-3 grid-margin stretch-card">
-                <div class="card">
-                  <div class="card-body">
-                    <div class="d-flex justify-content-between align-items-baseline">
-                    </div>
-                    <div class="row">
-                      <div class="d-flex align-items-baseline justify-content-between">
-                        <h6 class="d-flex align-items-center">O2</h6>
-                        <p class="text-success">
-                          <span>+2.8%</span>
-                          <i data-feather="arrow-up" class="icon-sm"></i>
-                        </p>
-                      </div>
-                        <div id="ordersChart5" class="mt-md-3 mt-xl-0"></div>
-                    </div>
-                    
-                  </div>
-                </div>
-              </div>
-
+    
+              @include('charts.monitoring.pm25')
+    
+              @include('charts.monitoring.pm10')
+    
+              @include('charts.monitoring.co2')
+    
+              @include('charts.monitoring.no2')
+    
+              @include('charts.monitoring.o2')
+    
+              @include('charts.monitoring.avg')
+    
             </div>
           </div>
         </div> 
-        <!-- row -->
+
 
         <!-- row -->
-
-        <h5 class="mb-2">Forecasting</h5>
-        <!-- row -->
-        <div class="row">
-          <div class="col-xl-12">
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title mb-0">PM2.5</h5>
-
-                <div class="row align-items-start">
-                  <div class="col-md-7">
-                    <p class="text-muted tx-13 mb-3 mb-md-0">Revenue is the income that a business has from its normal business activities, usually from the sale of goods and services to customers.</p>
-                  </div>
-                  <div class="col-md-5 d-flex justify-content-md-end">
-                    <div class="btn-group mb-3 mb-md-0" role="group" aria-label="Basic example">
-                      <button type="button" class="btn btn-primary">PM2.5</button>
-                      <button type="button" class="btn btn-outline-primary mx-2">PM10</button>
-                    </div>
-                  </div>
-                </div>
-                <div class="flot-chart-wrapper">
-                  <div class="flot-chart" id="flotRealTime"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        @include('charts.forecasting')
 
 
 
