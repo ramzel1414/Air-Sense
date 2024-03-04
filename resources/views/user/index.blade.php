@@ -1,5 +1,5 @@
 @extends('user.user_dashboard')
-@section('user')
+@section('content')
 
 {{-- custom bootstrap for 5 cards. LOL --}}
 {{-- <style> 

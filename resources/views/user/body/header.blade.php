@@ -5,16 +5,20 @@
     <div class="navbar-content">
         <form class="search-form">
             <div class="input-group">
-    <div class="input-group-text">
-    <i data-feather="search"></i>
-    </div>
+                <div class="input-group-text">
+                    <i data-feather="search"></i>
+                </div>
                 <input type="text" class="form-control" id="navbarForm" placeholder="Search here...">
             </div>
         </form>
         <ul class="navbar-nav">
 
 
+            <li class="nav-item">
+                <i  data-feather="sun" id="toggle-btn"></i>
+            </li>
 
+            
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="notificationDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i data-feather="bell"></i>
@@ -128,3 +132,4 @@
         </ul>
     </div>
 </nav>
+

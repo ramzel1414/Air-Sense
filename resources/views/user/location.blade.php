@@ -1,7 +1,7 @@
 
 
 @extends('user.user_dashboard')
-@section('user')
+@section('content')
 
 
 

@@ -55,11 +55,15 @@
   --bs-body-font-size: 0.875rem;
   --bs-body-font-weight: 400;
   --bs-body-line-height: 1.5;
+  /* --bs-body-color: #d0d6e1; */
   --bs-body-color: #000;
+  /* --bs-body-bg: #070d19; */
   --bs-body-bg: #f9fafb;
   --bs-border-width: 1px;
   --bs-border-style: solid;
+  /* --bs-border-color: #172340; */
   --bs-border-color: #e9ecef;
+
   --bs-border-color-translucent: rgba(0, 0, 0, 0.175);
   --bs-border-radius: 0.25rem;
   --bs-border-radius-sm: 0.25rem;
@@ -91,9 +95,9 @@ body {
   font-size: var(--bs-body-font-size);
   font-weight: var(--bs-body-font-weight);
   line-height: var(--bs-body-line-height);
-  color: var(--bs-body-color);
+  color: #FFF;
   text-align: var(--bs-body-text-align);
-  background-color: var(--bs-body-bg);
+  background-color: #000;
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
@@ -19360,9 +19364,10 @@ body {
 .main-wrapper {
   display: flex;
 }
+
 .main-wrapper .page-wrapper {
   min-height: 100vh;
-  background: #f9fafb;
+  background: var(--bs-gray-900);/* ramon */
   width: calc(100% - 240px);
   margin-left: 240px;
   display: flex;
@@ -19420,10 +19425,10 @@ body {
   align-items: center;
 }
 
-.navbar {
+.navbar {       /*customize*/
   width: calc(100% - 240px);
   height: 60px;
-  background: #fff;
+  background: #FFF;
   border-bottom: 1px solid #e9ecef;
   display: flex;
   align-items: center;
@@ -19610,6 +19615,10 @@ body {
   font-size: 25px;
   color: #000865;
   direction: ltr/*rtl:ignore*/;
+}
+.sidebar .sidebar-header .sidebar-brand img {     /* custom added */
+  width: 40px;
+  margin-right: .5rem;  
 }
 .sidebar .sidebar-header .sidebar-brand span {
   color: #6571ff;
@@ -19856,11 +19865,13 @@ body {
 }
 .sidebar .sidebar-body .nav .nav-item {
   position: relative;
+  padding: 1.2rem 0;            /*custom added*/
+
 }
 .sidebar .sidebar-body .nav .nav-item .nav-link {
   display: flex;
   align-items: center;
-  padding: 0;
+  padding: 1.2rem 0;             /*custom added*/
   height: 32px;
   white-space: nowrap;
   color: #000;
@@ -19886,12 +19897,14 @@ body {
   -webkit-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
   color: inherit;
+
 }
 .sidebar .sidebar-body .nav .nav-item .nav-link .link-icon,
 .sidebar .sidebar-body .nav .nav-item .nav-link .link-title,
 .sidebar .sidebar-body .nav .nav-item .nav-link .link-arrow {
   -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
+  font-size: 1rem;        /*custom added*/
 }
 .sidebar .sidebar-body .nav .nav-item .nav-link[aria-expanded=true] {
   color: #6571ff;

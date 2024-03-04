@@ -18,7 +18,7 @@ use App\Http\Controllers\UserController;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('welcome');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -62,9 +62,13 @@ Route::middleware(['auth', 'role:admin'])->group(function() {
 
 //group route for user role
 Route::middleware(['auth', 'role:user'])->group(function () {
+    
     Route::get('/user/dashboard', [UserController::class, 'UserDashboard'])->name('user.dashboard');
+
     Route::get('/user/logout', [UserController::class, 'UserLogout'])->name('user.logout');
-    Route::get('/userlocation', [UserController::class, 'UserLocation'])->name('user.location');
+
+    Route::get('/user/location', [UserController::class, 'UserLocation'])->name('user.location');
+
     Route::get('/user/settings', [UserController::class, 'UserSettings'])->name('user.settings');
 });
 

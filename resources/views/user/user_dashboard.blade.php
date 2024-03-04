@@ -38,9 +38,10 @@ License: For each use you must have a valid license purchased only from above li
 	<link rel="stylesheet" href="{{ asset('../assets/vendors/flag-icon-css/css/flag-icon.min.css') }}">
 	<!-- endinject -->
 
-  <!-- Layout styles -->  
-	<link rel="stylesheet" href="{{ asset('../assets/css/demo2/style.css') }}">
-  <!-- End layout styles -->
+<!-- Layout styles -->
+<link rel="stylesheet" href="../assets/css/demo2/style.css">
+<link rel="stylesheet" href="../assets/css/demo1/style.css">
+<!-- End layout styles -->
 
   {{-- toaster for update notif --}}
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
@@ -52,7 +53,7 @@ License: For each use you must have a valid license purchased only from above li
         @include('user.body.header')
         @include('user.body.sidebar')
 		<div class="page-wrapper">
-            @yield('user')
+            @yield('content')
             @include('user.body.footer')
 		</div>
 	</div>
@@ -103,6 +104,9 @@ License: For each use you must have a valid license purchased only from above li
  @endif 
 </script>
 {{-- end of toaster for update notif --}}
+
+
+
 
 </body>
 </html>    
