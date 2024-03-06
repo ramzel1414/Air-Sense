@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('welcome');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -54,9 +55,24 @@ Route::middleware(['auth', 'role:admin'])->group(function() {
 
 }); //End Group Admin middleware
 
-
-//The reason this is outside the admin group line 35 is because you can't use it w/o logging in. KUNG WALA KAPA KA LOGIN DILI MAN KA MAKA LOGOUT DIBA?
 // Route::get('/admin/login', [AdminController::class, 'AdminLogin'])->name('admin.login');
 
-//admin and register route is already in the auth.php
+//login and register route is in the auth.php
+
+
+//group route for user role
+Route::middleware(['auth', 'role:user'])->group(function () {
+    
+    Route::get('/user/dashboard', [UserController::class, 'UserDashboard'])->name('user.dashboard');
+
+    Route::get('/user/logout', [UserController::class, 'UserLogout'])->name('user.logout');
+
+    Route::get('/user/location', [UserController::class, 'UserLocation'])->name('user.location');
+
+    Route::get('/user/settings', [UserController::class, 'UserSettings'])->name('user.settings');
+
+    Route::get('/user/management', [UserController::class, 'UserManagement'])->name('user.management');
+
+});
+
 

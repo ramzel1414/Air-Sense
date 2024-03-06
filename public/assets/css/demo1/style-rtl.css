@@ -19808,7 +19808,7 @@ body {
   height: 100%;
   -webkit-box-shadow: 0 8px 10px 0 rgba(183, 192, 206, 0.2);
   box-shadow: 0 8px 10px 0 rgba(183, 192, 206, 0.2);
-  background: #fff;
+  background: #ff0000;
 }
 .sidebar .sidebar-body .nav {
   display: flex;

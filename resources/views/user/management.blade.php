@@ -1,7 +1,7 @@
 
 
-@extends('admin.admin_dashboard')
-@section('admin')
+@extends('user.user_dashboard')
+@section('content')
 
 
 
@@ -11,7 +11,7 @@
       
     <div class="row">
             
-        <div class="grid-margin d-flex justify-content-evenly py-3 rounded-3"  style="background-color: #0c1427;">
+        <div class="grid-margin d-flex justify-content-evenly py-3 rounded-3 custom-background">
 
             <!-- Button trigger modal -->
             <button type="button" class="btn btn-primary col-4" data-bs-toggle="modal" data-bs-target="#addLocation">
@@ -32,11 +32,11 @@
                                 @csrf
                                 <div class="mb-3">
                                     <label for="locationId" class="form-label">Location ID:</label>
-                                    <input type="text" class="form-control" id="locationId" name="locationId" required>
+                                    <input type="text" class="form-control" id="locationId" name="locationId" placeholder="Enter Location ID" required>
                                 </div>
                                 <div class="mb-3">
                                     <label for="location" class="form-label">Location:</label>
-                                    <input type="text" class="form-control" id="location" name="location" required>
+                                    <input type="text" class="form-control" id="location" name="location" placeholder="Enter Location Name" required>
                                 </div>
 
                                 <div class="modal-footer">
@@ -68,11 +68,11 @@
                                 @csrf
                                 <div class="mb-3">
                                     <label for="locationId" class="form-label">Sensor ID:</label>
-                                    <input type="text" class="form-control" id="locationId" name="locationId" required>
+                                    <input type="text" class="form-control" id="locationId" name="locationId" placeholder="Enter Sensor ID" required>
                                 </div>
                                 <div class="mb-3">
                                     <label for="location" class="form-label">Sensor Name:</label>
-                                    <input type="text" class="form-control" id="location" name="location" required>
+                                    <input type="text" class="form-control" id="location" name="location" placeholder="Enter Sensor Name" required>
                                 </div>
                                 
                                 <div class="modal-footer">

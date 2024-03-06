@@ -19643,7 +19643,7 @@ body {
   align-items: center;
 }
 
-.sidebar .sidebar-header .sidebar-brand img {
+.sidebar .sidebar-header .sidebar-brand img {    /* custom added */
   width: 40px;
   margin-right: .5rem;  
 }

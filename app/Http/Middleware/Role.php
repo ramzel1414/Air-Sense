@@ -15,9 +15,10 @@ class Role
      */
     public function handle(Request $request, Closure $next, $role): Response
     {
-        if($request->user()->role !== $role) {
-            return redirect('dashboard');
+        if ($request->user()->role !== $role) { // kung mag log in gani nga dili user or dili admin ang role, ma redirected sa / (welcome)
+            return redirect('/');
         }
+        
 
         return $next($request);
     }
