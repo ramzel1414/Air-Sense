@@ -19,6 +19,9 @@ License: For each use you must have a valid license purchased only from above li
 
 	<title>AirSense</title>
 
+	{{-- fontawesome --}}
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
+
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -39,7 +42,7 @@ License: For each use you must have a valid license purchased only from above li
 	<!-- endinject -->
 
 <!-- Layout styles -->
-<link rel="stylesheet" href="../assets/css/demo2/style.css">
+{{-- <link rel="stylesheet" href="../assets/css/demo2/style.css"> --}}
 <link rel="stylesheet" href="../assets/css/demo1/style.css">
 <!-- End layout styles -->
 
@@ -57,6 +60,7 @@ License: For each use you must have a valid license purchased only from above li
             @include('user.body.footer')
 		</div>
 	</div>
+	
 
 	<!-- core:js -->
 	<script src="{{ asset('../assets/vendors/core/core.js')}}"></script>
@@ -104,6 +108,7 @@ License: For each use you must have a valid license purchased only from above li
  @endif 
 </script>
 {{-- end of toaster for update notif --}}
+
 
 
 

@@ -70,6 +70,9 @@ Route::middleware(['auth', 'role:user'])->group(function () {
     Route::get('/user/location', [UserController::class, 'UserLocation'])->name('user.location');
 
     Route::get('/user/settings', [UserController::class, 'UserSettings'])->name('user.settings');
+
+    Route::get('/user/management', [UserController::class, 'UserManagement'])->name('user.management');
+
 });
 
 

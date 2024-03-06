@@ -37,7 +37,7 @@
     <!-- endinject -->
   
     <!-- Layout styles -->  
-    <link rel="stylesheet" href="{{ asset('../assets/css/demo2/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('../assets/css/demo1/style.css') }}">
     <!-- End layout styles -->
   
     {{-- toaster for update notif --}}
@@ -54,15 +54,16 @@
 
     <body>
 
+
     @if (Route::has('login'))
       <div class="sm:fixed sm:top-0 sm:right-0 p-5 text-right z-10">
           @auth
               <a href="{{ url('/dashboard') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Dashboard</a>
           @else
-              <a href="{{ route('login') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Log in</a>
+              <a href="{{ route('login') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-700 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Log in</a>
 
               @if (Route::has('register'))
-                  <a href="{{ route('register') }}" class="ml-4 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Register</a>
+                  <a href="{{ route('register') }}" class="ml-4 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-700 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Register</a>
               @endif
           @endauth
       </div>
@@ -76,7 +77,7 @@
 
     <div class="d-flex justify-center align-items-center grid-margin">
       <h3 class="mx-1">AirSense</h3>
-      <img src="{{ asset('airsense.png') }}" alt="Air Sense Logo" class="mx-1 h-16 w-auto bg-gray-100 dark:bg-gray-900 custom-radius">
+      <img src="{{ asset('airsense.png') }}" alt="Air Sense Logo" class="toggle-air-logo mx-1 h-16 w-auto bg-gray-100 dark:bg-gray-900 custom-radius">
     </div>
 
 
@@ -96,7 +97,7 @@
           @include('charts.monitoring.o2')
 
           @include('charts.monitoring.avg')
-          
+
 
         </div>
       </div>

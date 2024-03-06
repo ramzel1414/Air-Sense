@@ -1,88 +1,24 @@
-<nav class="navbar">
+<nav class="navbar bg-transparent">
     <a href="#" class="sidebar-toggler">
         <i data-feather="menu"></i>
     </a>
     <div class="navbar-content">
         <form class="search-form">
             <div class="input-group">
-                <div class="input-group-text">
+                <div class="input-group-text bg-transparent">
                     <i data-feather="search"></i>
                 </div>
-                <input type="text" class="form-control" id="navbarForm" placeholder="Search here...">
+                <input type="text" class="form-control bg-transparent" id="navbarForm" placeholder="Search here...">
             </div>
         </form>
         <ul class="navbar-nav">
 
 
             <li class="nav-item">
-                <i  data-feather="sun" id="toggle-btn"></i>
+                <div id="toggle-btn" class="fas fa-sun"></div>
             </li>
-
             
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="notificationDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i data-feather="bell"></i>
-                    <div class="indicator">
-                        <div class="circle"></div>
-                    </div>
-                </a>
-                <div class="dropdown-menu p-0" aria-labelledby="notificationDropdown">
-                    <div class="px-3 py-2 d-flex align-items-center justify-content-between border-bottom">
-                        <p>6 New Notifications</p>
-                        <a href="javascript:;" class="text-muted">Clear all</a>
-                    </div>
-                    <div class="p-1">
-                        <a href="javascript:;" class="dropdown-item d-flex align-items-center py-2">
-                        <div class="wd-30 ht-30 d-flex align-items-center justify-content-center bg-primary rounded-circle me-3">
-                            <i class="icon-sm text-white" data-feather="gift"></i>
-                        </div>
-                        <div class="flex-grow-1 me-2">
-                            <p>New Order Recieved</p>
-                            <p class="tx-12 text-muted">30 min ago</p>
-                        </div>	
-                        </a>
-                        <a href="javascript:;" class="dropdown-item d-flex align-items-center py-2">
-                        <div class="wd-30 ht-30 d-flex align-items-center justify-content-center bg-primary rounded-circle me-3">
-                            <i class="icon-sm text-white" data-feather="alert-circle"></i>
-                        </div>
-                        <div class="flex-grow-1 me-2">
-                            <p>Server Limit Reached!</p>
-                            <p class="tx-12 text-muted">1 hrs ago</p>
-                        </div>	
-                        </a>
-                        <a href="javascript:;" class="dropdown-item d-flex align-items-center py-2">
-                        <div class="wd-30 ht-30 d-flex align-items-center justify-content-center bg-primary rounded-circle me-3">
-                            <img class="wd-30 ht-30 rounded-circle" src="https://via.placeholder.com/30x30" alt="userr">
-                        </div>
-                        <div class="flex-grow-1 me-2">
-                            <p>New customer registered</p>
-                            <p class="tx-12 text-muted">2 sec ago</p>
-                        </div>	
-                        </a>
-                        <a href="javascript:;" class="dropdown-item d-flex align-items-center py-2">
-                        <div class="wd-30 ht-30 d-flex align-items-center justify-content-center bg-primary rounded-circle me-3">
-                            <i class="icon-sm text-white" data-feather="layers"></i>
-                        </div>
-                        <div class="flex-grow-1 me-2">
-                            <p>Apps are ready for update</p>
-                            <p class="tx-12 text-muted">5 hrs ago</p>
-                        </div>	
-                        </a>
-                        <a href="javascript:;" class="dropdown-item d-flex align-items-center py-2">
-                        <div class="wd-30 ht-30 d-flex align-items-center justify-content-center bg-primary rounded-circle me-3">
-                            <i class="icon-sm text-white" data-feather="download"></i>
-                        </div>
-                        <div class="flex-grow-1 me-2">
-                            <p>Download completed</p>
-                            <p class="tx-12 text-muted">6 hrs ago</p>
-                        </div>	
-                        </a>
-                    </div>
-                    <div class="px-3 py-2 d-flex align-items-center justify-content-center border-top">
-                        <a href="javascript:;">View all</a>
-                    </div>
-                </div>
-            </li>
+            
 
             @php
 
@@ -132,4 +68,42 @@
         </ul>
     </div>
 </nav>
+
+
+<script>
+    let body = document.body;           //html's body element
+    //darkmode part start=====>
+    let toggleBtn = document.querySelector('#toggle-btn');  //selecting the sun icon
+    let darkMode = localStorage.getItem('dark-mode');
+
+    const enableDarkMode = () => {
+        toggleBtn.classList.replace('fa-sun', 'fa-moon');
+        body.classList.add('dark');
+        localStorage.setItem('dark-mode', 'enabled');
+    }
+
+    const disableDarkMode = () => {
+        toggleBtn.classList.replace('fa-moon', 'fa-sun');
+        body.classList.remove('dark');
+        localStorage.setItem('dark-mode', 'disabled');
+    }
+
+    if(darkMode === 'enabled') {
+        enableDarkMode();
+    }
+
+    toggleBtn.onclick = (e) => {
+        let darkMode = localStorage.getItem('dark-mode');
+        if(darkMode === 'disabled') {
+            enableDarkMode();
+        } else {
+            disableDarkMode();
+        }
+    }
+    //end of darkmode part=====>
+
+
+
+
+</script>
 

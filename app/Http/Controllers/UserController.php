@@ -7,11 +7,17 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    public function UserDashboard() {      //this is a method inside the class AdminController
+    public function UserDashboard() {     
 
         return view('user.index');   //look for this file in views
 
     } 
+
+    public function UserManagement() {      
+
+        return view('user.management');   
+
+    }
 
 
     public function UserLocation() {      
