@@ -113,7 +113,7 @@
                 </div>
             </div>
             <div class="card rounded p-3">
-                <a href="#" class="btn btn-secondary col-6 mx-auto rounded-3">View Details</a>
+                <a href="{{ route('user.pollutants') }}" class="btn btn-secondary col-6 mx-auto rounded-3">View Details</a>
             </div>
         </div>
         

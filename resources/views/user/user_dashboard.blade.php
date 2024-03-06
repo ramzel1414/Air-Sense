@@ -41,15 +41,18 @@ License: For each use you must have a valid license purchased only from above li
 	<link rel="stylesheet" href="{{ asset('../assets/vendors/flag-icon-css/css/flag-icon.min.css') }}">
 	<!-- endinject -->
 
-<!-- Layout styles -->
-{{-- <link rel="stylesheet" href="../assets/css/demo2/style.css"> --}}
-<link rel="stylesheet" href="../assets/css/demo1/style.css">
-<!-- End layout styles -->
+	<!-- Layout styles -->
+	{{-- <link rel="stylesheet" href="../assets/css/demo2/style.css"> --}}
+	<link rel="stylesheet" href="../assets/css/demo1/style.css">
+	<!-- End layout styles -->
 
-  {{-- toaster for update notif --}}
-  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
-     
-  <link rel="shortcut icon" href="{{ asset('../assets/images/airsense.png') }}" />
+	<!-- Plugin css for page that has data tables -->
+	<link rel="stylesheet" href="../../../assets/vendors/datatables.net-bs5/dataTables.bootstrap5.css">
+
+	{{-- toaster for update notif --}}
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
+		
+	<link rel="shortcut icon" href="{{ asset('../assets/images/airsense.png') }}" />
 </head>
 <body>
 	<div class="main-wrapper">
@@ -79,8 +82,14 @@ License: For each use you must have a valid license purchased only from above li
 	<!-- endinject -->
 
 	<!-- Custom js for this page -->
-  <script src="{{ asset('../assets/js/dashboard-dark.js')}}"></script>
+  	<script src="{{ asset('../assets/js/dashboard-light.js')}}"></script>
 	<!-- End custom js for this page -->
+
+	<!-- Plugin js for pages that has data tables -->
+	<script src="../../../assets/vendors/datatables.net/jquery.dataTables.js"></script>
+	<script src="../../../assets/vendors/datatables.net-bs5/dataTables.bootstrap5.js"></script>
+	<!-- Custom js for pages that has data tables -->
+	<script src="../../../assets/js/data-table.js"></script>
 
 {{-- toaster for update notif --}}
  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>

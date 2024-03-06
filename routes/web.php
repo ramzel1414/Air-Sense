@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\PollutantController;
 
 /*
 |--------------------------------------------------------------------------
@@ -73,6 +74,8 @@ Route::middleware(['auth', 'role:user'])->group(function () {
 
     Route::get('/user/management', [UserController::class, 'UserManagement'])->name('user.management');
 
+    Route::get('/user/pollutants', [PollutantController::class, 'showPollutant'])->name('user.pollutants');
+    
 });
 
 

@@ -46,4 +46,6 @@ class UserController extends Controller
         return redirect('/');                   //redirected to welcome page
 
     }
+
+    
 }
