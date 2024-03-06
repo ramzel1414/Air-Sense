@@ -3346,9 +3346,9 @@ textarea.is-invalid.typeahead.tt-hint, .select2-container--default .select2-sear
   --bs-dropdown-padding-y: 0.5rem;
   --bs-dropdown-spacer: 0.125rem;
   --bs-dropdown-font-size: 0.875rem;
-  --bs-dropdown-color: #000;
-  --bs-dropdown-bg: #fff;
-  --bs-dropdown-border-color: #f2f4f9;
+  --bs-dropdown-color: var(--bs-body-color);  /*ramon*/   
+  --bs-dropdown-bg: var(--custom-card-bg) ;    /*ramon*/
+  --bs-dropdown-border-color: var(--bs-border-color);        /*ramon*/
   --bs-dropdown-border-radius: 0.25rem;
   --bs-dropdown-border-width: 1px;
   --bs-dropdown-inner-border-radius: calc(0.25rem - 1px);
@@ -3376,7 +3376,7 @@ textarea.is-invalid.typeahead.tt-hint, .select2-container--default .select2-sear
   color: var(--bs-dropdown-color);
   text-align: left;
   list-style: none;
-  background-color: var(--bs-dropdown-bg);
+  background-color: var(--bs-dropdown-bg);  
   background-clip: padding-box;
   border: var(--bs-dropdown-border-width) solid var(--bs-dropdown-border-color);
   border-radius: var(--bs-dropdown-border-radius);
@@ -22499,7 +22499,7 @@ div.tox .tox-dialog__body {
 /*# sourceMappingURL=../maps/demo1/style.css.map */
 
 
-/* for the light dark mode  */
+/* for the light and dark mode  */
 
 #toggle-btn {        
   cursor: pointer;
@@ -22515,8 +22515,6 @@ div.tox .tox-dialog__body {
 }
 
 
-
-
 #toggle-air-logo {        
   cursor: pointer
 }
@@ -22530,6 +22528,9 @@ div.tox .tox-dialog__body {
   background: var(--custom-card-bg) ;
 }
 
+.custom-dd-color {      /* for drop down profile */
+  color: var(--bs-body-color);
+}
 /* 
 --custom-card-bg: #0c1427;
 --bs-gray-100: #060c17;

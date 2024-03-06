@@ -1,7 +1,7 @@
 
 
 @extends('admin.admin_dashboard')
-@section('admin')
+@section('content')
 
 
 

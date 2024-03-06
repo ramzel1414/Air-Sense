@@ -9,7 +9,7 @@ class PollutantController extends Controller
     
     public function showPollutant() {      
 
-        return view('user.pollutants');   
+        return view('admin.admin_pollutants');   
 
     }
 }

@@ -1,5 +1,3 @@
-
-
 @extends('user.user_dashboard')
 @section('content')
 
@@ -113,7 +111,7 @@
                 </div>
             </div>
             <div class="card rounded p-3">
-                <a href="{{ route('user.pollutants') }}" class="btn btn-secondary col-6 mx-auto rounded-3">View Details</a>
+                <a href="#" class="btn btn-secondary col-6 mx-auto rounded-3">View Details</a>
             </div>
         </div>
         

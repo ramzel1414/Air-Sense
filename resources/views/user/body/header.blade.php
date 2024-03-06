@@ -20,8 +20,8 @@
             
             
 
-            @php
 
+            @php
                 $id = Auth::user()->id;         //access user table authenticated field
                 $profileData = App\Models\User::find($id);
 
@@ -39,27 +39,27 @@
                             <img class="wd-80 ht-80 rounded-circle" src="{{ (!empty($profileData->photo)) ? url('upload/admin_images/'.$profileData->photo) : url('/upload/no_image.png')}}" alt="">
                         </div>
                         <div class="text-center">
-                            <p class="tx-16 fw-bolder">{{ $profileData->name }}</p>
-                            <p class="tx-12 text-muted">{{ $profileData->email}}</p>
+                            <p class="tx-16 fw-bolder custom-dd-color">{{ $profileData->name }}</p>
+                            <p class="tx-12 text-muted custom-dd-color">{{ $profileData->email}}</p>
                         </div>
                     </div>
                 <ul class="list-unstyled p-1">
                     <li class="dropdown-item py-2">
                         <a href="#" class="text-body ms-0">
                             <i class="me-2 icon-md" data-feather="user"></i>
-                            <span>Profile</span>
+                            <span class="custom-dd-color">Profile</span>
                         </a>
                     </li>
                     <li class="dropdown-item py-2">
                         <a href="#" class="text-body ms-0">
                             <i class="me-2 icon-md" data-feather="edit"></i>
-                            <span>Change Password</span>
+                            <span class="custom-dd-color">Change Password</span>
                         </a>
                     </li>
                     <li class="dropdown-item py-2">
                         <a href="{{route('user.logout')}}" class="text-body ms-0">
                             <i class="me-2 icon-md" data-feather="log-out"></i>
-                            <span>Log Out</span>
+                            <span class="custom-dd-color">Log Out</span>
                         </a>
                     </li>
                 </ul>
