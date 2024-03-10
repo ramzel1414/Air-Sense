@@ -67,8 +67,8 @@ License: For each use you must have a valid license purchased only from above li
 	<!-- Plugin js for this page -->
   <script src="{{ asset('../assets/vendors/flatpickr/flatpickr.min.js')}}"></script>
   <script src="{{ asset('../assets/vendors/apexcharts/apexcharts.min.js')}}"></script>
-  <script src="{{ asset('../assets/vendors/jquery.flot/jquery.flot.js')}}"></script>
-  <script src="{{ asset('../assets/js/jquery.flot-dark.js')}}"></script>
+  <script src="{{ asset('../assets/vendors/jquery.flot/jquery.flot.js')}}"></script>	{{--JAVASCRIPT DATA OF FORECASTING GRAPH --}}
+  <script src="{{ asset('../assets/js/jquery.flot-light.js')}}"></script>				{{--JAVASCRIPT DATA OF FORECASTING GRAPH --}}
 	<!-- End plugin js for this page -->
 
 	<!-- inject:js -->
@@ -77,7 +77,7 @@ License: For each use you must have a valid license purchased only from above li
 	<!-- endinject -->
 
 	<!-- Custom js for this page -->
-  <script src="{{ asset('../assets/js/dashboard-dark.js')}}"></script>
+  <script src="{{ asset('../assets/js/dashboard-light.js')}}"></script>					{{--JAVASCRIPT DATA OF MONITORING GRAPH --}}
 	<!-- End custom js for this page -->
 
 {{-- toaster for update notif --}}

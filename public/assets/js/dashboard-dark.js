@@ -233,6 +233,8 @@ $(function() {
 
 
 
+
+  // ramon
   // Orders Chart1
   if($('#ordersChart1').length) {
     var options2 = {
@@ -411,7 +413,7 @@ $(function() {
       };
       new ApexCharts(document.querySelector("#ordersChart6"),options7).render();
     }
-    // Orders Chart 5 - END
+    // Orders Chart 6 - END
     
     
 

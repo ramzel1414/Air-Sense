@@ -3873,7 +3873,7 @@ div.tox .btn-group-vertical > .btn-group:not(:first-child) > .tox-button,
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
-
+  
 .nav-pills {
   --bs-nav-pills-border-radius: 0.25rem;
   --bs-nav-pills-link-active-color: #fff;
@@ -19613,6 +19613,7 @@ body {
   width: 240px;
   -webkit-transition: width 0.1s ease;
   transition: width 0.1s ease;
+
 }
 .sidebar-open .sidebar .sidebar-header {
   border-bottom: 1px solid var(--bs-border-color);  /*ramon*/
@@ -19861,13 +19862,20 @@ body {
   }
 }
 .sidebar .sidebar-body {
-  max-height: calc(100% - 60px);
   position: relative;
   border-right: 1px solid var(--bs-border-color);   /*ramon*/
   height: 100%;
   -webkit-box-shadow: 0 8px 10px 0 rgba(183, 192, 206, 0.2);
   box-shadow: 0 8px 10px 0 rgba(183, 192, 206, 0.2);
   background: var(--custom-card-bg);
+  overflow-y: scroll; /* Always show the vertical scrollbar */
+
+}
+.sidebar .sidebar-body:hover {
+  cursor: pointer;
+  overflow-y: scroll; /* Always show the vertical scrollbar */
+
+
 }
 .sidebar .sidebar-body .nav {
   display: flex;
@@ -22531,6 +22539,11 @@ div.tox .tox-dialog__body {
 .custom-dd-color {      /* for drop down profile */
   color: var(--bs-body-color);
 }
+
+#airMonitoringChart {
+
+}
+
 /* 
 --custom-card-bg: #0c1427;
 --bs-gray-100: #060c17;
