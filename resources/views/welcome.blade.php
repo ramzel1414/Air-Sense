@@ -47,13 +47,7 @@
 
     </head>
 
-
-
-
-
-
     <body>
-
 
     @if (Route::has('login'))
       <div class="sm:fixed sm:top-0 sm:right-0 p-5 text-right z-10">
@@ -76,9 +70,15 @@
   <div class="page-content m-4">
 
     <div class="d-flex justify-center align-items-center grid-margin">
-      <h3 class="mx-1">AirSense</h3>
       <img src="{{ asset('airsense.png') }}" alt="Air Sense Logo" class="toggle-air-logo mx-1 h-16 w-auto bg-gray-100 dark:bg-gray-900 custom-radius">
+      <h3 class="mx-1">AirSense</h3>
     </div>
+
+
+    
+    <!-- row -->
+    @include('charts.forecasting')
+
 
 
     <div class="row">
@@ -90,7 +90,7 @@
 
           @include('charts.monitoring.pm10')
 
-          @include('charts.monitoring.co2')
+          @include('charts.monitoring.co')
 
           @include('charts.monitoring.no2')
 
@@ -102,10 +102,6 @@
         </div>
       </div>
     </div> 
-
-
-    <!-- row -->
-    @include('charts.forecasting')
 
 
     

@@ -1,4 +1,12 @@
 
+# SetUp
+- composer install
+- npm install
+
+# Running
+- php artisan serve
+- npm run dev 
+
 02-08-2024
 ->I will put laravel now
 
@@ -71,8 +79,5 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
-
-name: admin
-password: kyouka1234
 
 

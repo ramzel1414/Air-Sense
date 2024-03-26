@@ -65,7 +65,7 @@
     
               @include('charts.monitoring.pm10')
     
-              @include('charts.monitoring.co2')
+              @include('charts.monitoring.co')
     
               @include('charts.monitoring.no2')
     

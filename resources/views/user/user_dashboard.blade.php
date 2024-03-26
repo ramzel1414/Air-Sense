@@ -82,7 +82,7 @@ License: For each use you must have a valid license purchased only from above li
 	<!-- endinject -->
 
 	<!-- Custom js for this page -->
-  	<script src="{{ asset('../assets/js/dashboard-dark.js')}}"></script>			{{-- NAA DIRI NGA JAVASCRIPT ANG DATA SA MGA MONITORING GRAPH --}}
+  	<script src="{{ asset('../assets/js/dashboard-light.js')}}"></script>			{{-- NAA DIRI NGA JAVASCRIPT ANG DATA SA MGA MONITORING GRAPH --}}
 	<!-- End custom js for this page -->
 
 	<!-- Plugin js for pages that has data tables -->
