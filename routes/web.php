@@ -4,6 +4,11 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\PollutantController;
+use App\Http\Controllers\LocationController;
+
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -20,9 +25,11 @@ Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
+
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -53,6 +60,11 @@ Route::middleware(['auth', 'role:admin'])->group(function() {
 
     Route::get('/admin/settings', [AdminController::class, 'AdminSettings'])->name('admin.settings');
 
+    Route::get('/admin/pollutants', [PollutantController::class, 'showPollutant'])->name('admin.pollutants');
+
+    Route::get('/admin/location_tab', [LocationController::class, 'index'])->name('admin.location_tab');
+
+
 }); //End Group Admin middleware
 
 // Route::get('/admin/login', [AdminController::class, 'AdminLogin'])->name('admin.login');
@@ -72,7 +84,21 @@ Route::middleware(['auth', 'role:user'])->group(function () {
     Route::get('/user/settings', [UserController::class, 'UserSettings'])->name('user.settings');
 
     Route::get('/user/management', [UserController::class, 'UserManagement'])->name('user.management');
-
+    
 });
 
 
+
+Route::get('/pdf', function (Codedge\Fpdf\Fpdf\Fpdf $fpdf) {
+
+    $fpdf->AddPage();
+    $fpdf->SetFont('Arial', 'B', 18);
+    for($i=0; $i<100; $i++) {
+
+        $fpdf->LN(10);
+        $fpdf->Cell(50, 25, 'Hello Worldo!');
+    }
+    $fpdf->Output();
+    exit;
+
+});

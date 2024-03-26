@@ -19,11 +19,14 @@ License: For each use you must have a valid license purchased only from above li
 
 	<title>Admin - AirSense</title>
 
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
-  <!-- End fonts -->
+	{{-- fontawesome --}}
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
+
+	<!-- Fonts -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+	<!-- End fonts -->
 
 	<!-- core:css -->
 	<link rel="stylesheet" href="{{ asset('../assets/vendors/core/core.css') }}">
@@ -38,12 +41,12 @@ License: For each use you must have a valid license purchased only from above li
 	<link rel="stylesheet" href="{{ asset('../assets/vendors/flag-icon-css/css/flag-icon.min.css') }}">
 	<!-- endinject -->
 
-  <!-- Layout styles -->  
-	<link rel="stylesheet" href="{{ asset('../assets/css/demo2/style.css') }}">
-  <!-- End layout styles -->
+	<!-- Layout styles -->  
+	<link rel="stylesheet" href="{{ asset('../assets/css/demo1/style.css') }}">
+	<!-- End layout styles -->
 
-  {{-- toaster for update notif --}}
-  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
+	{{-- toaster for update notif --}}
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
      
   <link rel="shortcut icon" href="{{ asset('../assets/images/airsense.png') }}" />
 </head>
@@ -52,7 +55,7 @@ License: For each use you must have a valid license purchased only from above li
         @include('admin.body.header')
         @include('admin.body.sidebar')
 		<div class="page-wrapper">
-            @yield('admin')
+            @yield('content')
             @include('admin.body.footer')
 		</div>
 	</div>
@@ -64,8 +67,8 @@ License: For each use you must have a valid license purchased only from above li
 	<!-- Plugin js for this page -->
   <script src="{{ asset('../assets/vendors/flatpickr/flatpickr.min.js')}}"></script>
   <script src="{{ asset('../assets/vendors/apexcharts/apexcharts.min.js')}}"></script>
-  {{-- <script src="{{ asset('../assets/vendors/jquery.flot/jquery.flot.js')}}"></script>
-  <script src="{{ asset('../assets/js/jquery.flot-dark.js')}}"></script> --}}
+  <script src="{{ asset('../assets/vendors/jquery.flot/jquery.flot.js')}}"></script>	{{--JAVASCRIPT DATA OF FORECASTING GRAPH --}}
+  <script src="{{ asset('../assets/js/jquery.flot-light.js')}}"></script>				{{--JAVASCRIPT DATA OF FORECASTING GRAPH --}}
 	<!-- End plugin js for this page -->
 
 	<!-- inject:js -->
@@ -74,7 +77,7 @@ License: For each use you must have a valid license purchased only from above li
 	<!-- endinject -->
 
 	<!-- Custom js for this page -->
-  <script src="{{ asset('../assets/js/dashboard-dark.js')}}"></script>
+  <script src="{{ asset('../assets/js/dashboard-light.js')}}"></script>					{{--JAVASCRIPT DATA OF MONITORING GRAPH --}}
 	<!-- End custom js for this page -->
 
 {{-- toaster for update notif --}}

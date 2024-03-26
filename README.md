@@ -1,12 +1,11 @@
 
 # SetUp
 - composer install
+- npm install
 
 # Running
 - php artisan serve
-- npm run dev (if needed)
-
-
+- npm run dev 
 
 pricing idea 
 - extended forecast / forecast capabilities for normal users
@@ -77,8 +76,5 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
-
-name: admin
-password: kyouka1234
 
 

@@ -22,11 +22,11 @@ License: For each use you must have a valid license purchased only from above li
 	{{-- fontawesome --}}
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
 
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
-  <!-- End fonts -->
+	<!-- Fonts -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+	<!-- End fonts -->
 
 	<!-- core:css -->
 	<link rel="stylesheet" href="{{ asset('../assets/vendors/core/core.css') }}">
@@ -41,15 +41,18 @@ License: For each use you must have a valid license purchased only from above li
 	<link rel="stylesheet" href="{{ asset('../assets/vendors/flag-icon-css/css/flag-icon.min.css') }}">
 	<!-- endinject -->
 
-<!-- Layout styles -->
-{{-- <link rel="stylesheet" href="../assets/css/demo2/style.css"> --}}
-<link rel="stylesheet" href="../assets/css/demo1/style.css">
-<!-- End layout styles -->
+	<!-- Layout styles -->
+	{{-- <link rel="stylesheet" href="../assets/css/demo2/style.css"> --}}
+	<link rel="stylesheet" href="../assets/css/demo1/style.css">
+	<!-- End layout styles -->
 
-  {{-- toaster for update notif --}}
-  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
-     
-  <link rel="shortcut icon" href="{{ asset('../assets/images/airsense.png') }}" />
+	<!-- Plugin css for page that has data tables -->
+	<link rel="stylesheet" href="../../../assets/vendors/datatables.net-bs5/dataTables.bootstrap5.css">
+
+	{{-- toaster for update notif --}}
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
+		
+	<link rel="shortcut icon" href="{{ asset('../assets/images/airsense.png') }}" />
 </head>
 <body>
 	<div class="main-wrapper">
@@ -69,8 +72,8 @@ License: For each use you must have a valid license purchased only from above li
 	<!-- Plugin js for this page -->
   <script src="{{ asset('../assets/vendors/flatpickr/flatpickr.min.js')}}"></script>
   <script src="{{ asset('../assets/vendors/apexcharts/apexcharts.min.js')}}"></script>
-  <script src="{{ asset('../assets/vendors/jquery.flot/jquery.flot.js')}}"></script>
-  <script src="{{ asset('../assets/js/jquery.flot-dark.js')}}"></script>
+  <script src="{{ asset('../assets/vendors/jquery.flot/jquery.flot.js')}}"></script>	{{--  NAA DIRI ANG DATA SA FORECASTING GRAPH --}}
+<script src="{{ asset('../assets/js/jquery.flot-dark.js')}}"></script>	  				{{--  NAA DIRI ANG DATA SA FORECASTING GRAPH --}}
 	<!-- End plugin js for this page -->
 
 	<!-- inject:js -->
@@ -79,8 +82,14 @@ License: For each use you must have a valid license purchased only from above li
 	<!-- endinject -->
 
 	<!-- Custom js for this page -->
-  <script src="{{ asset('../assets/js/dashboard-dark.js')}}"></script>
+  	<script src="{{ asset('../assets/js/dashboard-light.js')}}"></script>			{{-- NAA DIRI NGA JAVASCRIPT ANG DATA SA MGA MONITORING GRAPH --}}
 	<!-- End custom js for this page -->
+
+	<!-- Plugin js for pages that has data tables -->
+	<script src="../../../assets/vendors/datatables.net/jquery.dataTables.js"></script>
+	<script src="../../../assets/vendors/datatables.net-bs5/dataTables.bootstrap5.js"></script>
+	<!-- Custom js for pages that has data tables -->
+	<script src="../../../assets/js/data-table.js"></script>
 
 {{-- toaster for update notif --}}
  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>

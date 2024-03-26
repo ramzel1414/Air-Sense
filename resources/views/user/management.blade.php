@@ -1,5 +1,3 @@
-
-
 @extends('user.user_dashboard')
 @section('content')
 

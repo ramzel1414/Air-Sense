@@ -1,4 +1,4 @@
-<div class="col-md-4 col-sm-3 grid-margin stretch-card">
+<div class="col-md-6 col-sm-4 grid-margin stretch-card">
     <div class="card">
       <div class="card-body">
 
@@ -10,7 +10,7 @@
               <i data-feather="arrow-up" class="icon-sm"></i>
             </p>
           </div>
-          <div id="ordersChart1" class="mt-md-3 mt-xl-0 order-last"></div>
+          <div id="airMonitoringChart" class="mt-md-3 mt-xl-0 order-last"></div>
         </div>
         
       </div>
