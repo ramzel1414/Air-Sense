@@ -240,6 +240,9 @@ if ($('#airMonitoringChart').length) {
     chart: {
       type: "line",
       height: 300,
+      sparkline: {
+        enabled: !0
+      }
     },
     series: [
       {
@@ -321,6 +324,9 @@ if($('#ordersChart2').length) {
     chart: {
       type: "line",
       height: 300,
+      sparkline: {
+        enabled: !0
+      }
     },
     series: [
       {
@@ -401,6 +407,9 @@ if($('#ordersChart3').length) {
     chart: {
       type: "line",
       height: 300,
+      sparkline: {
+        enabled: !0
+      }
     },
     series: [
       {
@@ -481,6 +490,9 @@ if($('#ordersChart4').length) {
     chart: {
       type: "line",
       height: 300,
+      sparkline: {
+        enabled: !0
+      }
     },
     series: [
       {
@@ -562,6 +574,9 @@ if($('#ordersChart4').length) {
       chart: {
         type: "line",
         height: 300,
+        sparkline: {
+          enabled: !0
+        }
       },
       series: [
         {
@@ -642,6 +657,9 @@ if($('#ordersChart4').length) {
       chart: {
         type: "line",
         height: 300,
+        sparkline: {
+          enabled: !0
+        }
       },
       series: [
         {

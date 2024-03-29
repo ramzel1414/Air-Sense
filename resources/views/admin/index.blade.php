@@ -56,8 +56,12 @@
 
 
         <!-- row -->
+        @include('charts.forecasting')
+
+
+        <!-- row -->
         <div class="row">
-          <h5 class="mb-2">Monitoring</h5>
+          <h5 class="mb-2 mt-5">Monitoring</h5>
           <div class="col-12 col-xl-12 stretch-card ">
             <div class="row flex-grow-1" >
     
@@ -76,10 +80,6 @@
             </div>
           </div>
         </div> 
-
-
-        <!-- row -->
-        @include('charts.forecasting')
 
 
 

@@ -7,6 +7,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\PollutantController;
 use App\Http\Controllers\LocationController;
 
+use App\Http\Controllers\PdfController;
 
 
 
@@ -89,16 +90,5 @@ Route::middleware(['auth', 'role:user'])->group(function () {
 
 
 
-Route::get('/pdf', function (Codedge\Fpdf\Fpdf\Fpdf $fpdf) {
+Route::get('/pdf', [ PdfController::class, 'index' ]);
 
-    $fpdf->AddPage();
-    $fpdf->SetFont('Arial', 'B', 18);
-    for($i=0; $i<100; $i++) {
-
-        $fpdf->LN(10);
-        $fpdf->Cell(50, 25, 'Hello Worldo!');
-    }
-    $fpdf->Output();
-    exit;
-
-});
