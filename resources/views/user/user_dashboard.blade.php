@@ -51,7 +51,7 @@ License: For each use you must have a valid license purchased only from above li
 
 	{{-- toaster for update notif --}}
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
-		
+
 	<link rel="shortcut icon" href="{{ asset('../assets/images/airsense.png') }}" />
 </head>
 <body>
@@ -63,7 +63,7 @@ License: For each use you must have a valid license purchased only from above li
             @include('user.body.footer')
 		</div>
 	</div>
-	
+
 
 	<!-- core:js -->
 	<script src="{{ asset('../assets/vendors/core/core.js')}}"></script>
@@ -82,7 +82,23 @@ License: For each use you must have a valid license purchased only from above li
 	<!-- endinject -->
 
 	<!-- Custom js for this page -->
-  	<script src="{{ asset('../assets/js/dashboard-light.js')}}"></script>			{{-- NAA DIRI NGA JAVASCRIPT ANG DATA SA MGA MONITORING GRAPH --}}
+  	 <script src="{{ asset('../assets/js/dashboard-light.js')}}"></script>		{{-- NAA DIRI NGA JAVASCRIPT ANG DATA SA MGA MONITORING GRAPH --}}
+
+    {{-- PM2.5 Chart--}}
+  	<script src="{{ asset('../assets/pm25.js')}}"></script>
+    {{-- PM10 Chart--}}
+  	<script src="{{ asset('../assets/pm10.js')}}"></script>
+    {{-- CO Chart--}}
+  	<script src="{{ asset('../assets/co.js')}}"></script>
+    {{-- NO2 Chart--}}
+  	<script src="{{ asset('../assets/no2.js')}}"></script>
+    {{-- O3 Chart--}}
+  	<script src="{{ asset('../assets/o3.js')}}"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+
+
 	<!-- End custom js for this page -->
 
 	<!-- Plugin js for pages that has data tables -->
@@ -112,9 +128,9 @@ License: For each use you must have a valid license purchased only from above li
 
     case 'error':
     toastr.error(" {{ Session::get('message') }} ");
-    break; 
+    break;
  }
- @endif 
+ @endif
 </script>
 {{-- end of toaster for update notif --}}
 
@@ -123,4 +139,4 @@ License: For each use you must have a valid license purchased only from above li
 
 
 </body>
-</html>    
+</html>

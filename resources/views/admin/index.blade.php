@@ -2,7 +2,7 @@
 @section('content')
 
 {{-- custom bootstrap for 5 cards. LOL --}}
-{{-- <style> 
+{{-- <style>
   .col-xs-15,
   .col-sm-15,
   .col-md-15,
@@ -58,28 +58,27 @@
         <!-- row -->
         @include('charts.forecasting')
 
-
         <!-- row -->
         <div class="row">
           <h5 class="mb-2 mt-5">Monitoring</h5>
           <div class="col-12 col-xl-12 stretch-card ">
             <div class="row flex-grow-1" >
-    
+
               @include('charts.monitoring.pm25')
-    
+
               @include('charts.monitoring.pm10')
-    
+
               @include('charts.monitoring.co')
-    
+
               @include('charts.monitoring.no2')
-    
+
               @include('charts.monitoring.o2')
-    
+
               @include('charts.monitoring.avg')
-    
+
             </div>
           </div>
-        </div> 
+        </div>
 
 
 
