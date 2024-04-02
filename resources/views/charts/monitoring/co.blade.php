@@ -11,9 +11,9 @@
               <i data-feather="arrow-down" class="icon-sm"></i>
             </p>
           </div>
-            <div id="ordersChart3" class="mt-md-3 mt-xl-0"></div>
+            <div id="co" class="mt-md-3 mt-xl-0"></div>
         </div>
-        
+
       </div>
     </div>
   </div>

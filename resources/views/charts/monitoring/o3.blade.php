@@ -5,15 +5,15 @@
         </div>
         <div class="row">
           <div class="d-flex align-items-baseline justify-content-between">
-            <h6 class="d-flex align-items-center">O2</h6>
+            <h6 class="d-flex align-items-center">O3</h6>
             <p class="text-success">
               <span>+2.8%</span>
               <i data-feather="arrow-up" class="icon-sm"></i>
             </p>
           </div>
-            <div id="ordersChart5" class="mt-md-3 mt-xl-0"></div>
+            <div id="o3" class="mt-md-3 mt-xl-0"></div>
         </div>
-        
+
       </div>
     </div>
   </div>

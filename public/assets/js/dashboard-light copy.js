@@ -14,8 +14,8 @@ $(function () {
         dark: "#060c17",
         muted: "#7987a1",
         gridBorder: "rgba(77, 138, 240, .15)",
-        bodyColor: "#b8c3d9",
-        cardBg: "#0c1427"
+        bodyColor: "#000",
+        cardBg: "#fff"
     }
 
     var fontFamily = "'Roboto', Helvetica, sans-serif"
@@ -230,190 +230,506 @@ $(function () {
     }
     // New Customers Chart - END
 
+    // Monitoring PM2.5
 
-
-
-
-    // ramon
-    // Orders Chart1
-    if ($('#ordersChart1').length) {
-        var options2 = {
+    if ($('#pm25').length) {
+        var options = {
             chart: {
-                type: "bar",
-                height: 60,
+                type: "line",
+                height: 300,
                 sparkline: {
                     enabled: !0
                 }
             },
-            plotOptions: {
-                bar: {
-                    borderRadius: 2,
-                    columnWidth: "60%"
-                }
-            },
-            colors: [colors.primary],
-            series: [{
-                name: '',
-                data: [36, 77, 52, 90, 74, 35, 55, 23, 47, 10, 63]
-            }],
+            series: [
+                {
+                    name: 'PM2.5',
+                    data: [12, 15, 18, 21, 11, 20, 17, 19, 18, 23, 17, 19, 15, 18, 22, 14, 25, 20, 18, 23, 17, 19, 18, 23, 18, 23, 17, 19, 18, 23]
+                },
+
+                // Add more pollutants as needed
+            ],
             xaxis: {
                 type: 'datetime',
-                categories: ["Jan 01 2022", "Jan 02 2022", "Jan 03 2022", "Jan 04 2022", "Jan 05 2022", "Jan 06 2022", "Jan 07 2022", "Jan 08 2022", "Jan 09 2022", "Jan 10 2022", "Jan 11 2022",],
+                categories: [
+                    "2022-01-01T00:00:01",
+                    "2022-01-01T00:00:02",
+                    "2022-01-01T00:00:03",
+                    "2022-01-01T00:00:04",
+                    "2022-01-01T00:00:05",
+                    "2022-01-01T00:00:06",
+                    "2022-01-01T00:00:07",
+                    "2022-01-01T00:00:08",
+                    "2022-01-01T00:00:09",
+                    "2022-01-01T00:00:10",
+                    "2022-01-01T00:00:11",
+                    "2022-01-01T00:00:12",
+                    "2022-01-01T00:00:13",
+                    "2022-01-01T00:00:14",
+                    "2022-01-01T00:00:15",
+                    "2022-01-01T00:00:16",
+                    "2022-01-01T00:00:17",
+                    "2022-01-01T00:00:18",
+                    "2022-01-01T00:00:19",
+                    "2022-01-01T00:00:20",
+                    "2022-01-01T00:00:21",
+                    "2022-01-01T00:00:22",
+                    "2022-01-01T00:00:23",
+                    "2022-01-01T00:00:24",
+                    "2022-01-01T00:00:25",
+                    "2022-01-01T00:00:26",
+                    "2022-01-01T00:00:27",
+                    "2022-01-01T00:00:28",
+                    "2022-01-01T00:00:29",
+                    "2022-01-01T00:00:30",
+                ],
+                labels: {
+                    style: {
+                        colors: 'var(--bs-body-color)', // Set the color of x-axis labels
+                    },
+                },
+            },
+            yaxis: {
+                title: {
+                    text: 'Concentration (µg/m³)',
+                    style: {
+                        color: 'var(--bs-body-color)', // Set the color of x-axis labels
+                    },
+                },
+                labels: {
+                    style: {
+                        colors: 'var(--bs-body-color)', // Set the color of x-axis labels
+                    },
+                },
+            },
+            stroke: {
+                width: 2,
+                curve: "smooth"
+            },
+            markers: {
+                size: 4
             },
         };
-        new ApexCharts(document.querySelector("#ordersChart1"), options2).render();
+        new ApexCharts(document.querySelector("#pm25"), options).render();
     }
-    // Orders Chart1 - END
 
-    // Orders Chart2
-    if ($('#ordersChart2').length) {
-        var options3 = {
+    // Monitoring PM2.5 - END
+
+    // Monitoring PM10
+    if ($('#pm10').length) {
+        var options = {
             chart: {
-                type: "bar",
-                height: 60,
+                type: "line",
+                height: 300,
                 sparkline: {
                     enabled: !0
                 }
             },
-            plotOptions: {
-                bar: {
-                    borderRadius: 2,
-                    columnWidth: "60%"
-                }
-            },
-            colors: [colors.primary],
-            series: [{
-                name: '',
-                data: [36, 77, 52, 90, 74, 35, 55, 23, 47, 10, 63]
-            }],
+            series: [
+                {
+                    name: 'PM2.5',
+                    data: [12, 15, 18, 21, 11, 20, 17, 19, 18, 23, 17, 19, 15, 18, 22, 14, 25, 20, 18, 23, 17, 19, 18, 23, 18, 23, 17, 19, 18, 23]
+                },
+
+                // Add more pollutants as needed
+            ],
             xaxis: {
                 type: 'datetime',
-                categories: ["Jan 01 2022", "Jan 02 2022", "Jan 03 2022", "Jan 04 2022", "Jan 05 2022", "Jan 06 2022", "Jan 07 2022", "Jan 08 2022", "Jan 09 2022", "Jan 10 2022", "Jan 11 2022",],
+                categories: [
+                    "2022-01-01T00:00:01",
+                    "2022-01-01T00:00:02",
+                    "2022-01-01T00:00:03",
+                    "2022-01-01T00:00:04",
+                    "2022-01-01T00:00:05",
+                    "2022-01-01T00:00:06",
+                    "2022-01-01T00:00:07",
+                    "2022-01-01T00:00:08",
+                    "2022-01-01T00:00:09",
+                    "2022-01-01T00:00:10",
+                    "2022-01-01T00:00:11",
+                    "2022-01-01T00:00:12",
+                    "2022-01-01T00:00:13",
+                    "2022-01-01T00:00:14",
+                    "2022-01-01T00:00:15",
+                    "2022-01-01T00:00:16",
+                    "2022-01-01T00:00:17",
+                    "2022-01-01T00:00:18",
+                    "2022-01-01T00:00:19",
+                    "2022-01-01T00:00:20",
+                    "2022-01-01T00:00:21",
+                    "2022-01-01T00:00:22",
+                    "2022-01-01T00:00:23",
+                    "2022-01-01T00:00:24",
+                    "2022-01-01T00:00:25",
+                    "2022-01-01T00:00:26",
+                    "2022-01-01T00:00:27",
+                    "2022-01-01T00:00:28",
+                    "2022-01-01T00:00:29",
+                    "2022-01-01T00:00:30",
+                ],
+                labels: {
+                    style: {
+                        colors: 'var(--bs-body-color)', // Set the color of x-axis labels
+                    },
+                },
+            },
+            yaxis: {
+                title: {
+                    text: 'Concentration (µg/m³)',
+                    style: {
+                        color: 'var(--bs-body-color)', // Set the color of x-axis labels
+                    },
+                },
+                labels: {
+                    style: {
+                        colors: 'var(--bs-body-color)', // Set the color of x-axis labels
+                    },
+                },
+            },
+            stroke: {
+                width: 2,
+                curve: "smooth"
+            },
+            markers: {
+                size: 4
             },
         };
-        new ApexCharts(document.querySelector("#ordersChart2"), options3).render();
+        new ApexCharts(document.querySelector("#pm10"), options).render();
     }
-    // Orders Chart 2 - END
+    // Monitoring PM10 - END
 
-    // Orders Chart3
-    if ($('#ordersChart3').length) {
-        var options4 = {
+    // Monitoring CO
+    if ($('#CO').length) {
+        var options = {
             chart: {
-                type: "bar",
-                height: 60,
+                type: "line",
+                height: 300,
                 sparkline: {
                     enabled: !0
                 }
             },
-            plotOptions: {
-                bar: {
-                    borderRadius: 2,
-                    columnWidth: "60%"
-                }
-            },
-            colors: [colors.primary],
-            series: [{
-                name: '',
-                data: [36, 77, 52, 90, 74, 35, 55, 23, 47, 10, 63]
-            }],
+            series: [
+                {
+                    name: 'PM2.5',
+                    data: [12, 15, 18, 21, 11, 20, 17, 19, 18, 23, 17, 19, 15, 18, 22, 14, 25, 20, 18, 23, 17, 19, 18, 23, 18, 23, 17, 19, 18, 23]
+                },
+
+                // Add more pollutants as needed
+            ],
             xaxis: {
                 type: 'datetime',
-                categories: ["Jan 01 2022", "Jan 02 2022", "Jan 03 2022", "Jan 04 2022", "Jan 05 2022", "Jan 06 2022", "Jan 07 2022", "Jan 08 2022", "Jan 09 2022", "Jan 10 2022", "Jan 11 2022",],
+                categories: [
+                    "2022-01-01T00:00:01",
+                    "2022-01-01T00:00:02",
+                    "2022-01-01T00:00:03",
+                    "2022-01-01T00:00:04",
+                    "2022-01-01T00:00:05",
+                    "2022-01-01T00:00:06",
+                    "2022-01-01T00:00:07",
+                    "2022-01-01T00:00:08",
+                    "2022-01-01T00:00:09",
+                    "2022-01-01T00:00:10",
+                    "2022-01-01T00:00:11",
+                    "2022-01-01T00:00:12",
+                    "2022-01-01T00:00:13",
+                    "2022-01-01T00:00:14",
+                    "2022-01-01T00:00:15",
+                    "2022-01-01T00:00:16",
+                    "2022-01-01T00:00:17",
+                    "2022-01-01T00:00:18",
+                    "2022-01-01T00:00:19",
+                    "2022-01-01T00:00:20",
+                    "2022-01-01T00:00:21",
+                    "2022-01-01T00:00:22",
+                    "2022-01-01T00:00:23",
+                    "2022-01-01T00:00:24",
+                    "2022-01-01T00:00:25",
+                    "2022-01-01T00:00:26",
+                    "2022-01-01T00:00:27",
+                    "2022-01-01T00:00:28",
+                    "2022-01-01T00:00:29",
+                    "2022-01-01T00:00:30",
+                ],
+                labels: {
+                    style: {
+                        colors: 'var(--bs-body-color)', // Set the color of x-axis labels
+                    },
+                },
+            },
+            yaxis: {
+                title: {
+                    text: 'Concentration (µg/m³)',
+                    style: {
+                        color: 'var(--bs-body-color)', // Set the color of x-axis labels
+                    },
+                },
+                labels: {
+                    style: {
+                        colors: 'var(--bs-body-color)', // Set the color of x-axis labels
+                    },
+                },
+            },
+            stroke: {
+                width: 2,
+                curve: "smooth"
+            },
+            markers: {
+                size: 4
             },
         };
-        new ApexCharts(document.querySelector("#ordersChart3"), options4).render();
+        new ApexCharts(document.querySelector("#CO"), options).render();
     }
-    // Orders Chart 3 - END
+    // Monitoring CO - END
 
-    // Orders Chart 4
-    if ($('#ordersChart4').length) {
-        var options5 = {
+    // Monitoring NO2
+    if ($('#NO2').length) {
+        var options = {
             chart: {
-                type: "bar",
-                height: 60,
+                type: "line",
+                height: 300,
                 sparkline: {
                     enabled: !0
                 }
             },
-            plotOptions: {
-                bar: {
-                    borderRadius: 2,
-                    columnWidth: "60%"
-                }
-            },
-            colors: [colors.primary],
-            series: [{
-                name: '',
-                data: [36, 77, 52, 90, 74, 35, 55, 23, 47, 10, 63]
-            }],
+            series: [
+                {
+                    name: 'PM2.5',
+                    data: [12, 15, 18, 21, 11, 20, 17, 19, 18, 23, 17, 19, 15, 18, 22, 14, 25, 20, 18, 23, 17, 19, 18, 23, 18, 23, 17, 19, 18, 23]
+                },
+
+                // Add more pollutants as needed
+            ],
             xaxis: {
                 type: 'datetime',
-                categories: ["Jan 01 2022", "Jan 02 2022", "Jan 03 2022", "Jan 04 2022", "Jan 05 2022", "Jan 06 2022", "Jan 07 2022", "Jan 08 2022", "Jan 09 2022", "Jan 10 2022", "Jan 11 2022",],
+                categories: [
+                    "2022-01-01T00:00:01",
+                    "2022-01-01T00:00:02",
+                    "2022-01-01T00:00:03",
+                    "2022-01-01T00:00:04",
+                    "2022-01-01T00:00:05",
+                    "2022-01-01T00:00:06",
+                    "2022-01-01T00:00:07",
+                    "2022-01-01T00:00:08",
+                    "2022-01-01T00:00:09",
+                    "2022-01-01T00:00:10",
+                    "2022-01-01T00:00:11",
+                    "2022-01-01T00:00:12",
+                    "2022-01-01T00:00:13",
+                    "2022-01-01T00:00:14",
+                    "2022-01-01T00:00:15",
+                    "2022-01-01T00:00:16",
+                    "2022-01-01T00:00:17",
+                    "2022-01-01T00:00:18",
+                    "2022-01-01T00:00:19",
+                    "2022-01-01T00:00:20",
+                    "2022-01-01T00:00:21",
+                    "2022-01-01T00:00:22",
+                    "2022-01-01T00:00:23",
+                    "2022-01-01T00:00:24",
+                    "2022-01-01T00:00:25",
+                    "2022-01-01T00:00:26",
+                    "2022-01-01T00:00:27",
+                    "2022-01-01T00:00:28",
+                    "2022-01-01T00:00:29",
+                    "2022-01-01T00:00:30",
+                ],
+                labels: {
+                    style: {
+                        colors: 'var(--bs-body-color)', // Set the color of x-axis labels
+                    },
+                },
+            },
+            yaxis: {
+                title: {
+                    text: 'Concentration (µg/m³)',
+                    style: {
+                        color: 'var(--bs-body-color)', // Set the color of x-axis labels
+                    },
+                },
+                labels: {
+                    style: {
+                        colors: 'var(--bs-body-color)', // Set the color of x-axis labels
+                    },
+                },
+            },
+            stroke: {
+                width: 2,
+                curve: "smooth"
+            },
+            markers: {
+                size: 4
             },
         };
-        new ApexCharts(document.querySelector("#ordersChart4"), options5).render();
-    }
-    // Orders Chart 4 - END
+        new ApexCharts(document.querySelector("#NO2"), options).render();
 
-    // Orders Chart 5
-    if ($('#ordersChart5').length) {
-        var options6 = {
+    }
+    // Monitoring NO2 - END
+
+    // Monitoring O2
+    if ($('#O2').length) {
+        var options = {
             chart: {
-                type: "bar",
-                height: 60,
+                type: "line",
+                height: 300,
                 sparkline: {
                     enabled: !0
                 }
             },
-            plotOptions: {
-                bar: {
-                    borderRadius: 2,
-                    columnWidth: "60%"
-                }
-            },
-            colors: [colors.primary],
-            series: [{
-                name: '',
-                data: [36, 77, 52, 90, 74, 35, 55, 23, 47, 10, 63]
-            }],
+            series: [
+                {
+                    name: 'PM2.5',
+                    data: [12, 15, 18, 21, 11, 20, 17, 19, 18, 23, 17, 19, 15, 18, 22, 14, 25, 20, 18, 23, 17, 19, 18, 23, 18, 23, 17, 19, 18, 23]
+                },
+
+                // Add more pollutants as needed
+            ],
             xaxis: {
                 type: 'datetime',
-                categories: ["Jan 01 2022", "Jan 02 2022", "Jan 03 2022", "Jan 04 2022", "Jan 05 2022", "Jan 06 2022", "Jan 07 2022", "Jan 08 2022", "Jan 09 2022", "Jan 10 2022", "Jan 11 2022",],
+                categories: [
+                    "2022-01-01T00:00:01",
+                    "2022-01-01T00:00:02",
+                    "2022-01-01T00:00:03",
+                    "2022-01-01T00:00:04",
+                    "2022-01-01T00:00:05",
+                    "2022-01-01T00:00:06",
+                    "2022-01-01T00:00:07",
+                    "2022-01-01T00:00:08",
+                    "2022-01-01T00:00:09",
+                    "2022-01-01T00:00:10",
+                    "2022-01-01T00:00:11",
+                    "2022-01-01T00:00:12",
+                    "2022-01-01T00:00:13",
+                    "2022-01-01T00:00:14",
+                    "2022-01-01T00:00:15",
+                    "2022-01-01T00:00:16",
+                    "2022-01-01T00:00:17",
+                    "2022-01-01T00:00:18",
+                    "2022-01-01T00:00:19",
+                    "2022-01-01T00:00:20",
+                    "2022-01-01T00:00:21",
+                    "2022-01-01T00:00:22",
+                    "2022-01-01T00:00:23",
+                    "2022-01-01T00:00:24",
+                    "2022-01-01T00:00:25",
+                    "2022-01-01T00:00:26",
+                    "2022-01-01T00:00:27",
+                    "2022-01-01T00:00:28",
+                    "2022-01-01T00:00:29",
+                    "2022-01-01T00:00:30",
+                ],
+                labels: {
+                    style: {
+                        colors: 'var(--bs-body-color)', // Set the color of x-axis labels
+                    },
+                },
+            },
+            yaxis: {
+                title: {
+                    text: 'Concentration (µg/m³)',
+                    style: {
+                        color: 'var(--bs-body-color)', // Set the color of x-axis labels
+                    },
+                },
+                labels: {
+                    style: {
+                        colors: 'var(--bs-body-color)', // Set the color of x-axis labels
+                    },
+                },
+            },
+            stroke: {
+                width: 2,
+                curve: "smooth"
+            },
+            markers: {
+                size: 4
             },
         };
-        new ApexCharts(document.querySelector("#ordersChart5"), options6).render();
+        new ApexCharts(document.querySelector("#O2"), options).render();
     }
-    // Orders Chart 5 - END
+    // Monitoring O2 - END
 
-    // Orders Chart 6
-    if ($('#ordersChart6').length) {
-        var options7 = {
+    // Monitoring Avg
+    if ($('#Avg').length) {
+        var options = {
             chart: {
-                type: "bar",
-                height: 60,
+                type: "line",
+                height: 300,
                 sparkline: {
                     enabled: !0
                 }
             },
-            plotOptions: {
-                bar: {
-                    borderRadius: 2,
-                    columnWidth: "60%"
-                }
-            },
-            colors: [colors.primary],
-            series: [{
-                name: '',
-                data: [36, 77, 52, 90, 74, 35, 55, 23, 47, 10, 63]
-            }],
+            series: [
+                {
+                    name: 'PM2.5',
+                    data: [12, 15, 18, 21, 11, 20, 17, 19, 18, 23, 17, 19, 15, 18, 22, 14, 25, 20, 18, 23, 17, 19, 18, 23, 18, 23, 17, 19, 18, 23],
+                },
+
+                // Add more pollutants as needed
+            ],
             xaxis: {
                 type: 'datetime',
-                categories: ["Jan 01 2022", "Jan 02 2022", "Jan 03 2022", "Jan 04 2022", "Jan 05 2022", "Jan 06 2022", "Jan 07 2022", "Jan 08 2022", "Jan 09 2022", "Jan 10 2022", "Jan 11 2022",],
+                categories: [
+                    "2022-01-01T00:00:01",
+                    "2022-01-01T00:00:02",
+                    "2022-01-01T00:00:03",
+                    "2022-01-01T00:00:04",
+                    "2022-01-01T00:00:05",
+                    "2022-01-01T00:00:06",
+                    "2022-01-01T00:00:07",
+                    "2022-01-01T00:00:08",
+                    "2022-01-01T00:00:09",
+                    "2022-01-01T00:00:10",
+                    "2022-01-01T00:00:11",
+                    "2022-01-01T00:00:12",
+                    "2022-01-01T00:00:13",
+                    "2022-01-01T00:00:14",
+                    "2022-01-01T00:00:15",
+                    "2022-01-01T00:00:16",
+                    "2022-01-01T00:00:17",
+                    "2022-01-01T00:00:18",
+                    "2022-01-01T00:00:19",
+                    "2022-01-01T00:00:20",
+                    "2022-01-01T00:00:21",
+                    "2022-01-01T00:00:22",
+                    "2022-01-01T00:00:23",
+                    "2022-01-01T00:00:24",
+                    "2022-01-01T00:00:25",
+                    "2022-01-01T00:00:26",
+                    "2022-01-01T00:00:27",
+                    "2022-01-01T00:00:28",
+                    "2022-01-01T00:00:29",
+                    "2022-01-01T00:00:30",
+                ],
+                labels: {
+                    style: {
+                        colors: 'var(--bs-body-color)', // Set the color of x-axis labels
+                    },
+                },
+            },
+            yaxis: {
+                title: {
+                    text: 'Concentration (µg/m³)',
+                    style: {
+                        color: 'var(--bs-body-color)', // Set the color of x-axis labels
+                    },
+                },
+                labels: {
+                    style: {
+                        colors: 'var(--bs-body-color)', // Set the color of x-axis labels
+                    },
+                },
+            },
+            stroke: {
+                width: 2,
+                curve: "smooth"
+            },
+            markers: {
+                size: 4
             },
         };
-        new ApexCharts(document.querySelector("#ordersChart6"), options7).render();
+        new ApexCharts(document.querySelector("#Avg"), options).render();
     }
-    // Orders Chart 6 - END
+    // Monitoring Avg - END
 
 
 
@@ -453,6 +769,7 @@ $(function () {
 
 
 
+
     //exmaple chart hehe
     if ($('#exampleChart').length) {
         var options4 = {
@@ -465,7 +782,7 @@ $(function () {
             },
             series: [{
                 name: '',
-                data: [19, 25, 10, 15, 12, 18, 14, 20, 22, 19, 25, 23]
+                data: [10, 15, 12, 18, 14, 20, 16, 22, 19, 25, 23]
             }],
             xaxis: {
                 type: 'datetime',
@@ -483,6 +800,8 @@ $(function () {
         new ApexCharts(document.querySelector("#exampleChart"), options4).render();
     }
     // Example Chart - END
+
+
 
 
 
@@ -636,7 +955,7 @@ $(function () {
                 opposite: true,
                 title: {
                     text: 'Revenue ( $1000 x )',
-                    offsetX: -135,
+                    offsetX: -130,
                     style: {
                         size: 9,
                         color: colors.muted
@@ -771,7 +1090,6 @@ $(function () {
 
 
 
-
     // Monthly Sales Chart - RTL
     if ($('#monthlySalesChartRTL').length) {
         var options = {
@@ -824,7 +1142,7 @@ $(function () {
                 opposite: true,
                 title: {
                     text: 'Number of Sales',
-                    offsetX: -108,
+                    offsetX: -100,
                     style: {
                         size: 9,
                         color: colors.muted
@@ -833,7 +1151,7 @@ $(function () {
                 labels: {
                     align: 'left',
                     offsetX: -20,
-                }
+                },
             },
             legend: {
                 show: true,
@@ -878,56 +1196,57 @@ $(function () {
 
 
     // Cloud Storage Chart
-    if ($('#storageChart').length) {
-        var options = {
-            chart: {
-                height: 260,
-                type: "radialBar"
-            },
-            series: [67],
-            colors: [colors.primary],
-            plotOptions: {
-                radialBar: {
-                    hollow: {
-                        margin: 15,
-                        size: "70%"
-                    },
-                    track: {
-                        show: true,
-                        background: colors.dark,
-                        strokeWidth: '100%',
-                        opacity: 1,
-                        margin: 5,
-                    },
-                    dataLabels: {
-                        showOn: "always",
-                        name: {
-                            offsetY: -11,
-                            show: true,
-                            color: colors.muted,
-                            fontSize: "13px"
-                        },
-                        value: {
-                            color: colors.bodyColor,
-                            fontSize: "30px",
-                            show: true
-                        }
-                    }
-                }
-            },
-            fill: {
-                opacity: 1
-            },
-            stroke: {
-                lineCap: "round",
-            },
-            labels: ["Storage Used"]
-        };
+    // if ($('#storageChart').length) {
+    //     var options = {
+    //         chart: {
+    //             height: 260,
+    //             type: "radialBar"
+    //         },
+    //         series: [67],
+    //         colors: [colors.primary],
+    //         plotOptions: {
+    //             radialBar: {
+    //                 hollow: {
+    //                     margin: 15,
+    //                     size: "70%"
+    //                 },
+    //                 track: {
+    //                     show: true,
+    //                     background: colors.light,
+    //                     strokeWidth: '100%',
+    //                     opacity: 1,
+    //                     margin: 5,
+    //                 },
+    //                 dataLabels: {
+    //                     showOn: "always",
+    //                     name: {
+    //                         offsetY: -11,
+    //                         show: true,
+    //                         color: colors.muted,
+    //                         fontSize: "13px"
+    //                     },
+    //                     value: {
+    //                         color: colors.bodyColor,
+    //                         fontSize: "30px",
+    //                         show: true
+    //                     }
+    //                 }
+    //             }
+    //         },
+    //         fill: {
+    //             opacity: 1
+    //         },
+    //         stroke: {
+    //             lineCap: "round",
+    //         },
+    //         labels: ["Storage Used"]
+    //     };
 
-        var chart = new ApexCharts(document.querySelector("#storageChart"), options);
-        chart.render();
-    }
+    //     var chart = new ApexCharts(document.querySelector("#storageChart"), options);
+    //     chart.render();
+    // }
     // Cloud Storage Chart - END
 
 
 });
+

@@ -2,11 +2,13 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AirQualityDataController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PollutantController;
 use App\Http\Controllers\LocationController;
 
+use App\Http\Controllers\PdfController;
 
 
 
@@ -45,11 +47,11 @@ Route::middleware(['auth', 'role:admin'])->group(function() {
     Route::get('/admin/dashboard', [AdminController::class, 'AdminDashboard'])->name('admin.dashboard');
 
     Route::get('/admin/logout', [AdminController::class, 'AdminLogout'])->name('admin.logout');
-    
+
     Route::get('/admin/profile', [AdminController::class, 'AdminProfile'])->name('admin.profile');
-    
+
     Route::post('/admin/profile/store', [AdminController::class, 'AdminProfileStore'])->name('admin.profile.store');
-    
+
     Route::get('/admin/change/password', [AdminController::class, 'AdminChangePassword'])->name('admin.change.password');
 
     Route::post('/admin/update/password', [AdminController::class, 'AdminUpdatePassword'])->name('admin.update.password');
@@ -74,7 +76,7 @@ Route::middleware(['auth', 'role:admin'])->group(function() {
 
 //group route for user role
 Route::middleware(['auth', 'role:user'])->group(function () {
-    
+
     Route::get('/user/dashboard', [UserController::class, 'UserDashboard'])->name('user.dashboard');
 
     Route::get('/user/logout', [UserController::class, 'UserLogout'])->name('user.logout');
@@ -84,21 +86,27 @@ Route::middleware(['auth', 'role:user'])->group(function () {
     Route::get('/user/settings', [UserController::class, 'UserSettings'])->name('user.settings');
 
     Route::get('/user/management', [UserController::class, 'UserManagement'])->name('user.management');
-    
-});
-
-
-
-Route::get('/pdf', function (Codedge\Fpdf\Fpdf\Fpdf $fpdf) {
-
-    $fpdf->AddPage();
-    $fpdf->SetFont('Arial', 'B', 18);
-    for($i=0; $i<100; $i++) {
-
-        $fpdf->LN(10);
-        $fpdf->Cell(50, 25, 'Hello Worldo!');
-    }
-    $fpdf->Output();
-    exit;
 
 });
+
+
+
+Route::get('/pdf', [ PdfController::class, 'index' ]);
+
+
+
+//Air Quality
+Route::post('/air-quality-data', [AirQualityDataController::class, 'store'])->name('data.store');
+Route::get('/pm25-data', [AirQualityDataController::class, 'getPM25Data']);
+Route::get('/pm10-data', [AirQualityDataController::class, 'getPM10Data']);
+Route::get('/co-data', [AirQualityDataController::class, 'getCOData']);
+Route::get('/no2-data', [AirQualityDataController::class, 'getNO2Data']);
+Route::get('/o3-data', [AirQualityDataController::class, 'getO3Data']);
+
+
+
+
+
+
+
+
