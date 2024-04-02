@@ -11,9 +11,9 @@
               <i data-feather="arrow-up" class="icon-sm"></i>
             </p>
           </div>
-            <div id="ordersChart4" class="mt-md-3 mt-xl-0"></div>
+            <div id="no2" class="mt-md-3 mt-xl-0"></div>
         </div>
-        
+
       </div>
     </div>
   </div>
