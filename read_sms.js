@@ -1,6 +1,8 @@
+import axios from 'axios';
 import serialportgsm from 'serialport-gsm';
 
-const sender = '639606421564';
+// const sender = '639606421564';
+const sender = '639537399626';
 
 let modem = serialportgsm.Modem();
 let options = {
@@ -22,47 +24,53 @@ let options = {
     logger: console
 };
 
-modem.open('COM5', options, {});
+modem.open('COM8', options, {});
 
 modem.on('open', data => {
     // initialize modem
     modem.initializeModem(() => {
         console.log("Modem is initialized");
 
-        // Get SMS filtered
-        modem.getSimInbox((messages) => {
-            const filteredMessages = messages.data.filter(message => message.sender === sender);
-            const messageContents = filteredMessages.map(message => message.message);
-            console.log(messageContents);
-        });
+        // Function to process messages and delete them
+        const processMessages = () => {
+            modem.getSimInbox((messages) => {
+                const filteredMessages = messages.data.filter(message => message.sender === sender);
 
-        // Get SMS all
-        // modem.getSimInbox((data => {
-        //     console.log(data);
-        // }))
+                filteredMessages.forEach(message => {
+                    // Extract air quality data from the message
+                    const regex = /PM2.5: ([\d.]+)ug\/m3\nPM10: ([\d.]+) ug\/m3\nCO: ([\d.]+) ppm\nNO2: ([\d.]+) ppm\nOzone: ([\d.]+)/;
+                    const matches = message.message.match(regex);
 
+                    if (matches) {
+                        // Send air quality data to Laravel application
+                        axios.post('http://127.0.0.1:8000/air-quality-data', {
+                            sender: message.sender,
+                            message: message.message,
+                            pm10: parseFloat(matches[2]),
+                            pm25: parseFloat(matches[1]),
+                            co: parseFloat(matches[3]),
+                            no2: parseFloat(matches[4]),
+                            ozone: parseFloat(matches[5]),
+                            dateTime: message.dateTimeSent,
+                        })
+                            .then(response => {
+                                console.log('Air quality data sent successfully:', response.data.message);
+                            })
+                            .catch(error => {
+                                console.error('Error sending air quality data:', error);
+                            });
+                    }
+                });
+            });
+
+            // Delete all messages after processing
+            modem.deleteAllSimMessages((data) => {
+                console.log('Deleted Automatically Successful');
+            });
+        };
+
+        // Call the function immediately and then set it to run every 1 second
+        processMessages();
+        setInterval(processMessages, 1000);
     });
 });
-
-
-
-
-//DEBUG COMMANDS
-// Get SIM number
-// modem.getOwnNumber((data) => {
-//     console.log(data);
-// });
-
-// Get SIM signal
-// modem.getNetworkSignal((data) => {
-//     console.log(data);
-// });
-
-// Delete All SMS Inbox
-// modem.deleteAllSimMessages((data) => {
-//     console.log("Deleted All Messages")
-//     console.log(data);
-// })
-
-
-
