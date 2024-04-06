@@ -16,8 +16,6 @@ $(function () {
         cardBg: "#fff"
     };
 
-    maroon = "#"
-
     var fontFamily = "'Roboto', Helvetica, sans-serif";
 
     function renderChart(data) {
