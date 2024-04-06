@@ -16,6 +16,8 @@ $(function () {
         cardBg: "#fff"
     };
 
+    maroon = "#"
+
     var fontFamily = "'Roboto', Helvetica, sans-serif";
 
     function renderChart(data) {
@@ -163,7 +165,7 @@ $(function () {
                 var averageData = calculateAverageByHour(data);
 
                 // Generate CSV content with classification
-                var csvContent = "DateTime,PM2.5,Classification,Health Impact\n";
+                var csvContent = "DateTime,PM2.5 (ug/m3),Classification,Health Impact\n";
                 averageData.forEach(function (item) {
                     var classification = getClassification(item.avgPM25);
                     var healthImpact = getHealthImpact(classification);
@@ -253,7 +255,7 @@ $(function () {
             case "Hazardous (Maroon)":
                 return "Very high risk for everyone";
             default:
-                return "Over values";
+                return "Unknown Classification";
         }
     }
 });
