@@ -13,11 +13,11 @@ License: For each use you must have a valid license purchased only from above li
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-  	<meta name="description" content="Responsive HTML Admin Dashboard Template based on Bootstrap 5">
+		<meta name="description" content="Responsive HTML Admin Dashboard Template based on Bootstrap 5">
 	<meta name="author" content="NobleUI">
 	<meta name="keywords" content="nobleui, bootstrap, bootstrap 5, bootstrap5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
 
-	<title>AirSense</title>
+	<title>User - AirSense</title>
 
 	{{-- fontawesome --}}
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
@@ -42,12 +42,8 @@ License: For each use you must have a valid license purchased only from above li
 	<!-- endinject -->
 
 	<!-- Layout styles -->
-	{{-- <link rel="stylesheet" href="../assets/css/demo2/style.css"> --}}
-	<link rel="stylesheet" href="../assets/css/demo1/style.css">
+	<link rel="stylesheet" href="{{ asset('../assets/css/demo1/style.css') }}">
 	<!-- End layout styles -->
-
-	<!-- Plugin css for page that has data tables -->
-	<link rel="stylesheet" href="../../../assets/vendors/datatables.net-bs5/dataTables.bootstrap5.css">
 
 	{{-- toaster for update notif --}}
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >

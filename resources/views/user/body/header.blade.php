@@ -44,24 +44,24 @@
                         </div>
                     </div>
                 <ul class="list-unstyled p-1">
-                    <li class="dropdown-item py-2">
-                        <a href="#" class="text-body ms-0">
+                    <a href="{{route('user.profile')}}" class="text-body ms-0">
+                        <li class="dropdown-item py-2">
                             <i class="me-2 icon-md" data-feather="user"></i>
                             <span class="custom-dd-color">Profile</span>
-                        </a>
-                    </li>
-                    <li class="dropdown-item py-2">
-                        <a href="#" class="text-body ms-0">
+                        </li>
+                    </a>
+                    <a href="{{route('user.change.password')}}" class="text-body ms-0">
+                        <li class="dropdown-item py-2">
                             <i class="me-2 icon-md" data-feather="edit"></i>
                             <span class="custom-dd-color">Change Password</span>
-                        </a>
-                    </li>
-                    <li class="dropdown-item py-2">
-                        <a href="{{route('user.logout')}}" class="text-body ms-0">
+                        </li>
+                    </a>
+                    <a href="{{route('user.logout')}}" class="text-body ms-0">
+                        <li class="dropdown-item py-2">
                             <i class="me-2 icon-md" data-feather="log-out"></i>
                             <span class="custom-dd-color">Log Out</span>
-                        </a>
-                    </li>
+                        </li>
+                    </a>
                 </ul>
                 </div>
             </li>

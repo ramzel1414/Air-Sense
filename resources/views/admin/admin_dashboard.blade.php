@@ -41,13 +41,13 @@ License: For each use you must have a valid license purchased only from above li
 	<link rel="stylesheet" href="{{ asset('../assets/vendors/flag-icon-css/css/flag-icon.min.css') }}">
 	<!-- endinject -->
 
-	<!-- Layout styles -->  
+	<!-- Layout styles -->
 	<link rel="stylesheet" href="{{ asset('../assets/css/demo1/style.css') }}">
 	<!-- End layout styles -->
 
 	{{-- toaster for update notif --}}
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
-     
+
   <link rel="shortcut icon" href="{{ asset('../assets/images/airsense.png') }}" />
 </head>
 <body>
@@ -80,6 +80,17 @@ License: For each use you must have a valid license purchased only from above li
   <script src="{{ asset('../assets/js/dashboard-light.js')}}"></script>					{{--JAVASCRIPT DATA OF MONITORING GRAPH --}}
 	<!-- End custom js for this page -->
 
+    {{-- PM2.5 Chart--}}
+  	<script src="{{ asset('../assets/pm25.js')}}"></script>
+    {{-- PM10 Chart--}}
+  	<script src="{{ asset('../assets/pm10.js')}}"></script>
+    {{-- CO Chart--}}
+  	<script src="{{ asset('../assets/co.js')}}"></script>
+    {{-- NO2 Chart--}}
+  	<script src="{{ asset('../assets/no2.js')}}"></script>
+    {{-- O3 Chart--}}
+  	<script src="{{ asset('../assets/o3.js')}}"></script>
+
 {{-- toaster for update notif --}}
  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
@@ -101,11 +112,11 @@ License: For each use you must have a valid license purchased only from above li
 
     case 'error':
     toastr.error(" {{ Session::get('message') }} ");
-    break; 
+    break;
  }
- @endif 
+ @endif
 </script>
 {{-- end of toaster for update notif --}}
 
 </body>
-</html>    
+</html>

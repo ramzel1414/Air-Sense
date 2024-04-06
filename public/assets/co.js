@@ -41,7 +41,7 @@ $(function () {
                     }
                 },
                 toolbar: {
-                    show: true,
+                    show: false,
                     offsetX: 0,
                     offsetY: 0,
                     tools: {
@@ -53,23 +53,6 @@ $(function () {
                         pan: false,
                         reset: false,
                         customIcons: []
-                    },
-                    export: {
-                        csv: {
-                            filename: "Pollutant CO",
-                            columnDelimiter: ',',
-                            headerCategory: 'category',
-                            headerValue: 'value',
-                            dateFormatter(timestamp) {
-                                return new Date(timestamp).toDateString()
-                            }
-                        },
-                        svg: {
-                            filename: "Pollutant CO",
-                        },
-                        png: {
-                            filename: "Pollutant CO",
-                        }
                     },
                 },
             },
@@ -170,4 +153,109 @@ $(function () {
             console.log('Error fetching initial data:', error);
         }
     });
+
+
+    // Attach click event listener to export CO data
+    $('#expCO').on('click', function () {
+        $.ajax({
+            url: '/co-data',
+            method: 'GET',
+            success: function (data) {
+                // Calculate average CO values by hour
+                var averageData = calculateAverageByHour(data);
+
+                // Generate CSV content with classification
+                var csvContent = "DateTime,CO (ppm),Classification,Health Impact\n";
+                averageData.forEach(function (item) {
+                    var classification = getClassification(item.avgCO);
+                    var healthImpact = getHealthImpact(classification);
+
+                    var avgCOFormatted = item.avgCO.toFixed(1);
+
+                    csvContent += item.dateTime + "," + avgCOFormatted + "," + classification + "," + healthImpact + "\n";
+                });
+
+                // Download CSV file
+                var blob = new Blob([csvContent], { type: 'text/csv' });
+                var url = window.URL.createObjectURL(blob);
+                var a = document.createElement('a');
+                a.href = url;
+                a.download = 'co-average-per-hour.csv';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                window.URL.revokeObjectURL(url);
+            },
+            error: function (error) {
+                console.log('Error fetching CO data:', error);
+            }
+        });
+    });
+
+    // Function to calculate average CO values by date
+    function calculateAverageByHour(data) {
+        var hourlyAverages = {};
+        data.forEach(function (item) {
+            var dateTimeParts = item.dateTime.split(' ');
+            var date = dateTimeParts[0];
+            var time = dateTimeParts[1];
+            var hour = time.split(':')[0];
+
+            var dateTime = date + ' ' + time;
+
+            if (!hourlyAverages[hour]) {
+                hourlyAverages[hour] = { dateTime: dateTime, sumCO: 0, count: 0 };
+            }
+            hourlyAverages[hour].sumCO += item.co;
+            hourlyAverages[hour].count++;
+        });
+
+        var result = [];
+        Object.keys(hourlyAverages).forEach(function (hour) {
+            var avgCO = hourlyAverages[hour].sumCO / hourlyAverages[hour].count;
+            result.push({ dateTime: hourlyAverages[hour].dateTime, avgCO: avgCO });
+        });
+
+        return result;
+    }
+
+
+    // Function to determine classification based on PM10 value
+    function getClassification(co) {
+        if (co >= 0 && co <= 25) {
+            return "Good (Green)";
+        } else if (co > 25 && co <= 50) {
+            return "Moderate (Yellow)";
+        } else if (co > 51 && co <= 69) {
+            return "Unhealthy for Sensitive Groups (Orange)";
+        } else if (co > 70 && co <= 150) {
+            return "Unhealthy (Red)";
+        } else if (co > 151 && co <= 400) {
+            return "Very Unhealthy (Purple)";
+        } else if (co > 401) {
+            return "Hazardous (Maroon)";
+        } else {
+            return "Unknown Classification";
+        }
+    }
+
+    // Function to determine health impact based on classification
+    function getHealthImpact(classification) {
+        switch (classification) {
+            case "Good (Green)":
+                return "Low risk";
+            case "Moderate (Yellow)":
+                return "Low to moderate risk";
+            case "Unhealthy for Sensitive Groups (Orange)":
+                return "Moderate risk for sensitive groups like children, elderly, and those with lung/heart problems";
+            case "Unhealthy (Red)":
+                return "Considerable risk for everyone";
+            case "Very Unhealthy (Purple)":
+                return "High risk for everyone";
+            case "Hazardous (Maroon)":
+                return "Very high risk for everyone";
+            default:
+                return "Unknown Classification";
+        }
+    }
 });
