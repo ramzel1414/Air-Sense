@@ -94,7 +94,7 @@
 
           @include('charts.monitoring.no2')
 
-          @include('charts.monitoring.o2')
+          @include('charts.monitoring.o3')
 
           @include('charts.monitoring.avg')
 
@@ -124,6 +124,17 @@
 	<!-- Custom js for this page -->
   <script src="{{ asset('../assets/js/dashboard-light.js')}}"></script>
 	<!-- End custom js for this page -->
+
+        {{-- PM2.5 Chart--}}
+  	<script src="{{ asset('../assets/pm25.js')}}"></script>
+    {{-- PM10 Chart--}}
+  	<script src="{{ asset('../assets/pm10.js')}}"></script>
+    {{-- CO Chart--}}
+  	<script src="{{ asset('../assets/co.js')}}"></script>
+    {{-- NO2 Chart--}}
+  	<script src="{{ asset('../assets/no2.js')}}"></script>
+    {{-- O3 Chart--}}
+  	<script src="{{ asset('../assets/o3.js')}}"></script>
 
 
     </body>

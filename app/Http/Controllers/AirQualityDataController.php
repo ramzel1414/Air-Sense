@@ -7,13 +7,11 @@ use App\Models\AirQualityData;
 
 class AirQualityDataController extends Controller
 {
-    // Function to get PM2.5 data from the database
     public function getPM25Data(){
         $pm25Data = AirQualityData::select('dateTime', 'pm25')->get();
         return response()->json($pm25Data);
     }
 
-        // Function to get PM10 data from the database
     public function getPM10Data(){
         $pm10Data = AirQualityData::select('dateTime', 'pm10')->get();
         return response()->json($pm10Data);
@@ -39,7 +37,7 @@ class AirQualityDataController extends Controller
         $data = $request->validate([
             'sender' => 'required|string',
             'message' => 'required|string',
-            'dateTime' => 'required|date', // Add validation for dateTimeSent
+            'dateTime' => 'required|date',
         ]);
 
         $message = $data['message'];

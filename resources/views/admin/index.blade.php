@@ -72,7 +72,7 @@
 
               @include('charts.monitoring.no2')
 
-              @include('charts.monitoring.o2')
+              @include('charts.monitoring.o3')
 
               @include('charts.monitoring.avg')
 
