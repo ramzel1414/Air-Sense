@@ -41,7 +41,7 @@ $(function () {
                     }
                 },
                 toolbar: {
-                    show: true,
+                    show: false,
                     offsetX: 0,
                     offsetY: 0,
                     tools: {
@@ -53,23 +53,6 @@ $(function () {
                         pan: false,
                         reset: false,
                         customIcons: []
-                    },
-                    export: {
-                        csv: {
-                            filename: "Pollutant NO2",
-                            columnDelimiter: ',',
-                            headerCategory: 'category',
-                            headerValue: 'value',
-                            dateFormatter(timestamp) {
-                                return new Date(timestamp).toDateString()
-                            }
-                        },
-                        svg: {
-                            filename: "Pollutant NO2",
-                        },
-                        png: {
-                            filename: "Pollutant NO2",
-                        }
                     },
                 },
             },
@@ -170,4 +153,111 @@ $(function () {
             console.log('Error fetching initial data:', error);
         }
     });
+
+
+    // Attach click event listener to export NO2 data
+    $('#expNO2').on('click', function () {
+        $.ajax({
+            url: '/no2-data',
+            method: 'GET',
+            success: function (data) {
+                // Calculate average NO2 values by hour
+                var averageData = calculateAverageByHour(data);
+
+                // Generate CSV content with classification
+                // var csvContent = "DateTime,NO2 (ppm),Classification,Health Impact\n";
+                var csvContent = "DateTime,NO2 (ppm)\n";
+                averageData.forEach(function (item) {
+                    // var classification = getClassification(item.avgNO2);
+                    // var healthImpact = getHealthImpact(classification);
+
+                    var avgNO2Formatted = item.avgNO2.toFixed(1);
+
+                    // csvContent += item.dateTime + "," + avgNO2Formatted + "," + classification + "," + healthImpact + "\n";
+                    csvContent += item.dateTime + "," + avgNO2Formatted + "\n";
+
+                });
+
+                // Download CSV file
+                var blob = new Blob([csvContent], { type: 'text/csv' });
+                var url = window.URL.createObjectURL(blob);
+                var a = document.createElement('a');
+                a.href = url;
+                a.download = 'no2-average-per-hour.csv';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                window.URL.revokeObjectURL(url);
+            },
+            error: function (error) {
+                console.log('Error fetching NO2 data:', error);
+            }
+        });
+    });
+
+    // Function to calculate average NO2 values by hour
+    function calculateAverageByHour(data) {
+        var hourlyAverages = {};
+        data.forEach(function (item) {
+            var dateTimeParts = item.dateTime.split(' ');
+            var date = dateTimeParts[0];
+            var time = dateTimeParts[1];
+            var hour = time.split(':')[0];
+
+            var dateTime = date + ' ' + time;
+
+            if (!hourlyAverages[hour]) {
+                hourlyAverages[hour] = { dateTime: dateTime, sumNO2: 0, count: 0 };
+            }
+            hourlyAverages[hour].sumNO2 += item.no2;
+            hourlyAverages[hour].count++;
+        });
+
+        var result = [];
+        Object.keys(hourlyAverages).forEach(function (hour) {
+            var avgNO2 = hourlyAverages[hour].sumNO2 / hourlyAverages[hour].count;
+            result.push({ dateTime: hourlyAverages[hour].dateTime, avgNO2: avgNO2 });
+        });
+
+        return result;
+    }
+
+    // Function to determine classification based on PM10 value
+    // function getClassification(no2) {
+    //     if (no2 >= 0 && no2 <= 12) {
+    //         return "Good (Green)";
+    //     } else if (no2 > 12 && no2 <= 35) {
+    //         return "Moderate (Yellow)";
+    //     } else if (no2 > 35 && no2 <= 55) {
+    //         return "Unhealthy for Sensitive Groups (Orange)";
+    //     } else if (no2 > 55 && no2 <= 150) {
+    //         return "Unhealthy (Red)";
+    //     } else if (no2 > 150 && no2 <= 250) {
+    //         return "Very Unhealthy (Purple)";
+    //     } else if (no2 > 250 && no2 <= 500) {
+    //         return "Hazardous (Maroon)";
+    //     } else {
+    //         return "Unknown classification";
+    //     }
+    // }
+
+    // Function to determine health impact based on classification
+    // function getHealthImpact(classification) {
+    //     switch (classification) {
+    //         case "Good (Green)":
+    //             return "Low risk";
+    //         case "Moderate (Yellow)":
+    //             return "Low to moderate risk";
+    //         case "Unhealthy for Sensitive Groups (Orange)":
+    //             return "Moderate risk for sensitive groups like children, elderly, and those with lung/heart problems";
+    //         case "Unhealthy (Red)":
+    //             return "Considerable risk for everyone";
+    //         case "Very Unhealthy (Purple)":
+    //             return "High risk for everyone";
+    //         case "Hazardous (Maroon)":
+    //             return "Very high risk for everyone";
+    //         default:
+    //             return "Unknown classification";
+    //     }
+    // }
 });
