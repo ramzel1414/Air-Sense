@@ -65,7 +65,7 @@ modem.on('open', data => {
 
             // Delete all messages after processing
             modem.deleteAllSimMessages((data) => {
-                console.log('Deleted Automatically Successful');
+                console.log('Deleting Automatically');
             });
         };
 

@@ -40,8 +40,12 @@ $(function () {
                         speed: 500
                     }
                 },
+
+                show: false,
+                offsetX: 0,
+                offsetY: 0,
                 toolbar: {
-                    show: true,
+                    show: false,
                     offsetX: 0,
                     offsetY: 0,
                     tools: {
@@ -53,23 +57,6 @@ $(function () {
                         pan: false,
                         reset: false,
                         customIcons: []
-                    },
-                    export: {
-                        csv: {
-                            filename: "Pollutant O3",
-                            columnDelimiter: ',',
-                            headerCategory: 'category',
-                            headerValue: 'value',
-                            dateFormatter(timestamp) {
-                                return new Date(timestamp).toDateString()
-                            }
-                        },
-                        svg: {
-                            filename: "Pollutant O3",
-                        },
-                        png: {
-                            filename: "Pollutant O3",
-                        }
                     },
                 },
             },
@@ -170,4 +157,109 @@ $(function () {
             console.log('Error fetching initial data:', error);
         }
     });
+
+
+    // Attach click event listener to export O3 data
+    $('#expO3').on('click', function () {
+        $.ajax({
+            url: '/o3-data',
+            method: 'GET',
+            success: function (data) {
+                // Calculate average O3 values by hour
+                var averageData = calculateAverageByHour(data);
+
+                // Generate CSV content with classification
+                var csvContent = "DateTime,O3,Classification,Health Impact\n";
+                averageData.forEach(function (item) {
+                    var classification = getClassification(item.avgO3);
+                    var healthImpact = getHealthImpact(classification);
+
+                    // Format average O3 value to two decimal places
+                    var avgO3Formatted = item.avgO3.toFixed(1);
+
+                    csvContent += item.dateTime + "," + avgO3Formatted + "," + classification + "," + healthImpact + "\n";
+                });
+
+                // Download CSV file
+                var blob = new Blob([csvContent], { type: 'text/csv' });
+                var url = window.URL.createObjectURL(blob);
+                var a = document.createElement('a');
+                a.href = url;
+                a.download = 'o3-average-per-hour.csv';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                window.URL.revokeObjectURL(url);
+            },
+            error: function (error) {
+                console.log('Error fetching O3 data:', error);
+            }
+        });
+    });
+
+    // Function to calculate average O3 values by hour
+    function calculateAverageByHour(data) {
+        var hourlyAverages = {};
+        data.forEach(function (item) {
+            var dateTimeParts = item.dateTime.split(' ');
+            var date = dateTimeParts[0];
+            var time = dateTimeParts[1];
+            var hour = time.split(':')[0];
+
+            var dateTime = date + ' ' + time;
+
+            if (!hourlyAverages[hour]) {
+                hourlyAverages[hour] = { dateTime: dateTime, sumO3: 0, count: 0 };
+            }
+            hourlyAverages[hour].sumO3 += item.ozone;
+            hourlyAverages[hour].count++;
+        });
+
+        var result = [];
+        Object.keys(hourlyAverages).forEach(function (hour) {
+            var avgO3 = hourlyAverages[hour].sumO3 / hourlyAverages[hour].count;
+            result.push({ dateTime: hourlyAverages[hour].dateTime, avgO3: avgO3 });
+        });
+
+        return result;
+    }
+
+    // Function to determine classification based on PM2.5 value
+    function getClassification(ozone) {
+        if (ozone >= 0 && ozone <= 12) {
+            return "Good (Green)";
+        } else if (ozone > 12 && ozone <= 35) {
+            return "Moderate (Yellow)";
+        } else if (ozone > 35 && ozone <= 55) {
+            return "Unhealthy for Sensitive Groups (Orange)";
+        } else if (ozone > 55 && ozone <= 150) {
+            return "Unhealthy (Red)";
+        } else if (ozone > 150 && ozone <= 250) {
+            return "Very Unhealthy (Purple)";
+        } else if (ozone > 250 && ozone <= 500) {
+            return "Hazardous (Maroon)";
+        } else {
+            return "Over values";
+        }
+    }
+
+    // Function to determine health impact based on classification
+    function getHealthImpact(classification) {
+        switch (classification) {
+            case "Good (Green)":
+                return "Low risk";
+            case "Moderate (Yellow)":
+                return "Low to moderate risk";
+            case "Unhealthy for Sensitive Groups (Orange)":
+                return "Moderate risk for sensitive groups like children, elderly, and those with lung/heart problems";
+            case "Unhealthy (Red)":
+                return "Considerable risk for everyone";
+            case "Very Unhealthy (Purple)":
+                return "High risk for everyone";
+            case "Hazardous (Maroon)":
+                return "Very high risk for everyone";
+            default:
+                return "Over values";
+        }
+    }
 });
