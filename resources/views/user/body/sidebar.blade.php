@@ -21,12 +21,6 @@
             </a>
           </li>
 
-          <li class="nav-item">
-            <a href="{{ route ('user.management') }}" class="nav-link">
-              <i class="link-icon" data-feather="briefcase"></i>
-              <span class="link-title">Management</span>
-            </a>
-          </li>
           
           <li class="nav-item">
             <a href="{{ route ('user.location') }}" class="nav-link">
