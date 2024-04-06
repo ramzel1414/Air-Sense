@@ -165,7 +165,7 @@ $(function () {
                 var averageData = calculateAverageByHour(data);
 
                 // Generate CSV content with classification
-                var csvContent = "DateTime,CO,Classification,Health Impact\n";
+                var csvContent = "DateTime,CO (ppm),Classification,Health Impact\n";
                 averageData.forEach(function (item) {
                     var classification = getClassification(item.avgCO);
                     var healthImpact = getHealthImpact(classification);
@@ -222,20 +222,20 @@ $(function () {
 
     // Function to determine classification based on PM10 value
     function getClassification(co) {
-        if (co >= 0 && co <= 12) {
+        if (co >= 0 && co <= 25) {
             return "Good (Green)";
-        } else if (co > 12 && co <= 35) {
+        } else if (co > 25 && co <= 50) {
             return "Moderate (Yellow)";
-        } else if (co > 35 && co <= 55) {
+        } else if (co > 51 && co <= 69) {
             return "Unhealthy for Sensitive Groups (Orange)";
-        } else if (co > 55 && co <= 150) {
+        } else if (co > 70 && co <= 150) {
             return "Unhealthy (Red)";
-        } else if (co > 150 && co <= 250) {
+        } else if (co > 151 && co <= 400) {
             return "Very Unhealthy (Purple)";
-        } else if (co > 250 && co <= 500) {
+        } else if (co > 401) {
             return "Hazardous (Maroon)";
         } else {
-            return "Over values";
+            return "Unknown Classification";
         }
     }
 
@@ -255,7 +255,7 @@ $(function () {
             case "Hazardous (Maroon)":
                 return "Very high risk for everyone";
             default:
-                return "Over values";
+                return "Unknown Classification";
         }
     }
 });

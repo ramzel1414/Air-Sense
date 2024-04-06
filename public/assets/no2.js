@@ -165,14 +165,17 @@ $(function () {
                 var averageData = calculateAverageByHour(data);
 
                 // Generate CSV content with classification
-                var csvContent = "DateTime,NO2,Classification,Health Impact\n";
+                // var csvContent = "DateTime,NO2 (ppm),Classification,Health Impact\n";
+                var csvContent = "DateTime,NO2 (ppm)\n";
                 averageData.forEach(function (item) {
-                    var classification = getClassification(item.avgNO2);
-                    var healthImpact = getHealthImpact(classification);
+                    // var classification = getClassification(item.avgNO2);
+                    // var healthImpact = getHealthImpact(classification);
 
                     var avgNO2Formatted = item.avgNO2.toFixed(1);
 
-                    csvContent += item.dateTime + "," + avgNO2Formatted + "," + classification + "," + healthImpact + "\n";
+                    // csvContent += item.dateTime + "," + avgNO2Formatted + "," + classification + "," + healthImpact + "\n";
+                    csvContent += item.dateTime + "," + avgNO2Formatted + "\n";
+
                 });
 
                 // Download CSV file
@@ -220,41 +223,41 @@ $(function () {
     }
 
     // Function to determine classification based on PM10 value
-    function getClassification(no2) {
-        if (no2 >= 0 && no2 <= 12) {
-            return "Good (Green)";
-        } else if (no2 > 12 && no2 <= 35) {
-            return "Moderate (Yellow)";
-        } else if (no2 > 35 && no2 <= 55) {
-            return "Unhealthy for Sensitive Groups (Orange)";
-        } else if (no2 > 55 && no2 <= 150) {
-            return "Unhealthy (Red)";
-        } else if (no2 > 150 && no2 <= 250) {
-            return "Very Unhealthy (Purple)";
-        } else if (no2 > 250 && no2 <= 500) {
-            return "Hazardous (Maroon)";
-        } else {
-            return "Over values";
-        }
-    }
+    // function getClassification(no2) {
+    //     if (no2 >= 0 && no2 <= 12) {
+    //         return "Good (Green)";
+    //     } else if (no2 > 12 && no2 <= 35) {
+    //         return "Moderate (Yellow)";
+    //     } else if (no2 > 35 && no2 <= 55) {
+    //         return "Unhealthy for Sensitive Groups (Orange)";
+    //     } else if (no2 > 55 && no2 <= 150) {
+    //         return "Unhealthy (Red)";
+    //     } else if (no2 > 150 && no2 <= 250) {
+    //         return "Very Unhealthy (Purple)";
+    //     } else if (no2 > 250 && no2 <= 500) {
+    //         return "Hazardous (Maroon)";
+    //     } else {
+    //         return "Unknown classification";
+    //     }
+    // }
 
     // Function to determine health impact based on classification
-    function getHealthImpact(classification) {
-        switch (classification) {
-            case "Good (Green)":
-                return "Low risk";
-            case "Moderate (Yellow)":
-                return "Low to moderate risk";
-            case "Unhealthy for Sensitive Groups (Orange)":
-                return "Moderate risk for sensitive groups like children, elderly, and those with lung/heart problems";
-            case "Unhealthy (Red)":
-                return "Considerable risk for everyone";
-            case "Very Unhealthy (Purple)":
-                return "High risk for everyone";
-            case "Hazardous (Maroon)":
-                return "Very high risk for everyone";
-            default:
-                return "Over values";
-        }
-    }
+    // function getHealthImpact(classification) {
+    //     switch (classification) {
+    //         case "Good (Green)":
+    //             return "Low risk";
+    //         case "Moderate (Yellow)":
+    //             return "Low to moderate risk";
+    //         case "Unhealthy for Sensitive Groups (Orange)":
+    //             return "Moderate risk for sensitive groups like children, elderly, and those with lung/heart problems";
+    //         case "Unhealthy (Red)":
+    //             return "Considerable risk for everyone";
+    //         case "Very Unhealthy (Purple)":
+    //             return "High risk for everyone";
+    //         case "Hazardous (Maroon)":
+    //             return "Very high risk for everyone";
+    //         default:
+    //             return "Unknown classification";
+    //     }
+    // }
 });
