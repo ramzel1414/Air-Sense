@@ -60,7 +60,7 @@ Route::middleware(['auth', 'role:admin'])->group(function() {
 
     Route::get('/admin/location', [AdminController::class, 'AdminLocation'])->name('admin.location');
 
-    Route::get('/admin/settings', [AdminController::class, 'AdminSettings'])->name('admin.settings');
+    Route::get('/admin/about', [AdminController::class, 'AdminAbout'])->name('admin.about');
 
     Route::get('/admin/pollutants', [PollutantController::class, 'showPollutant'])->name('admin.pollutants');
 

@@ -30,9 +30,9 @@ class AdminController extends Controller
 
     } 
     
-    public function AdminSettings() {    
+    public function AdminAbout() {    
 
-        return view('admin.admin_settings');   
+        return view('admin.admin_about');   
 
     } 
 
