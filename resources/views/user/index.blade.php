@@ -78,7 +78,9 @@
 
 
         <!-- row -->
-        @include('charts.forecasting')
+        @include('charts.forecastingpm25')
+
+        @include('charts.forecastingpm10')
 
 
 
