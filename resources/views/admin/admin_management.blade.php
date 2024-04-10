@@ -30,15 +30,19 @@
                                 @csrf
                                 <div class="mb-3">
                                     <label for="locationId" class="form-label">Device Location:</label>
-                                    <input type="text" class="form-control" id="locationId" name="locationId" placeholder="Enter Sensor ID" required>
+                                    <input type="text" class="form-control" id="addLocation" name="locationId" placeholder="Enter Sensor ID" required>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="locationId" class="form-label">Device Name:</label>
-                                    <input type="text" class="form-control" id="locationId" name="locationId" placeholder="Enter Sensor ID" required>
+                                    <label for="locationId" class="form-label">Devive Name:</label>
+                                    <input type="text" class="form-control" id="addName" name="locationId" placeholder="Enter Sensor ID" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="locationId" class="form-label">Devive COM:</label>
+                                    <input type="text" class="form-control" id="addCom" name="locationId" placeholder="Enter Sensor ID" required>
                                 </div>
                                 <div class="mb-3">
                                     <label for="location" class="form-label">Device Sim #:</label>
-                                    <input type="text" class="form-control" id="location" name="location" placeholder="Enter Sensor Name" required>
+                                    <input type="text" class="form-control" id="addSim" name="location" placeholder="Enter Sensor Name" required>
                                 </div>
 
                                 <div class="modal-footer">
@@ -64,6 +68,7 @@
                     <div class="mb-2 lh-3">
                         <p class="card-title mb-0">Location: <span>Bukidnon State Uniersity</span></p>
                         <p class="card-title mb-0">Device Name: <span>Sensor 1</span></p>
+                        <p class="card-title mb-0">Device COM: <span>COM3</span></p>
                         <p class="card-title mb-0">Device Sim #: <span>09123456879</span></p>
                         <p class="card-title mb-0">Pollutant Data: </p>
                     </div>
@@ -78,7 +83,7 @@
                 </div>
             </div>
             <div class="card rounded p-3">
-                <a href="#" class="btn btn-secondary col-6 mx-auto rounded-3">View Details</a>
+                <a href="#" class="btn btn-secondary col-6 mx-auto rounded-3">Delete</a>
             </div>
         </div>
 
