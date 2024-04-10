@@ -5,7 +5,13 @@
           <div class="col-2 d-flex justify-content-between w-100">
             <h6 class="d-flex align-items-center">CO</h6>
             <div class="btns">
+
+              @auth
+              <a href="{{route('admin.location')}}" class="btn btn-outline-secondary btn-icon-text me-2 mb-2 mb-md-0">View Location</a>
+              @else
               <a href="{{route('location')}}" class="btn btn-outline-secondary btn-icon-text me-2 mb-2 mb-md-0">View Location</a>
+              @endauth
+              
               <button id="expCO" class="btn btn-outline-secondary btn-icon-text me-2 mb-2 mb-md-0">Download CSV</button>
             </div>
           </div>

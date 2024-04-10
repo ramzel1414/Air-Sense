@@ -68,12 +68,12 @@ License: For each use you must have a valid license purchased only from above li
 						<div class="card">
 							<div class="row">
                 <div class="col-md-4 pe-md-0">
-                    <div class="auth-side-wrapper">
+                    <div class="authLogin-side-wrapper">
 
                   </div>
                 </div>
                 <div class="col-md-8 ps-md-0">
-                  <div class="auth-form-wrapper px-4 py-5">
+                  <div class="auth-form-wrapper px-4 py-4">
                     <a href="#" class="noble-ui-logo logo-light d-block mb-2">Air<span>Sense</span></a>
                     <h5 class="text-muted fw-normal mb-4">Create a free account.</h5>
                   
@@ -101,16 +101,14 @@ License: For each use you must have a valid license purchased only from above li
                             <input type="password" name="password_confirmation" class="form-control" id="password_confirmation"autocomplete="new-password" placeholder="Confirm Password" required>
                             <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
                         </div>
-                        <div>
+                        <div class="d-flex justify-content-between align-items-center">
+                            
                             <button type="submit" class="btn btn-primary me-2 mb-2 mb-md-0 text-white">
                                 Sign up
                             </button>
-                            <button type="button" class="btn btn-outline-primary btn-icon-text mb-2 mb-md-0">
-                                <i class="btn-icon-prepend fab fa-google"></i>
-                                Login with Google
-                            </button>
+
+                            <a href="{{ route('login') }}" class="d-block text-muted" style="text-align: right;">Already a user? Sign in</a>
                         </div>
-                        <a href="{{ route('login') }}" class="d-block mt-3 text-muted">Already a user? Sign in</a>
                     </form>
                   </div>
                 </div>

@@ -73,6 +73,7 @@ License: For each use you must have a valid license purchased only from above li
                   </div>
                 </div>
                 <div class="col-md-8 ps-md-0">
+                  <a href="{{route('welcome')}}" style="position: absolute; top: 2%; right: 2%;">Back</a>
                   <div class="auth-form-wrapper px-4 py-5">
                     <a href="#" class="noble-ui-logo logo-light d-block mb-2">Air<span>Sense</span></a>
                     <h5 class="text-muted fw-normal mb-4">Welcome back! Log in to your account.</h5>
@@ -100,12 +101,8 @@ License: For each use you must have a valid license purchased only from above li
                         <button type="submit" class="btn btn-primary me-2 mb-2 mb-md-0 text-white">
                         Login
                         </button>
-                        <button type="button" class="btn btn-outline-primary btn-icon-text mb-2 mb-md-0">
-                          <i class="btn-icon-prepend fab fa-google"></i>
-                          Login with Google
-                        </button>
                       </div>
-                      <div class="flex justify-between mt-4">                    
+                      <div class="d-flex justify-content-between mt-4">                    
                         @if (Route::has('password.request'))
                             <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
                                 {{ __('Forgot your password?') }}
