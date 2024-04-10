@@ -9,5 +9,6 @@ class Device extends Model
 {
     use HasFactory;
 
-    protected $guarded = [];  //every field will be filled
+    protected $fillable = ['deviceName', 'devicePort', 'deviceSim', 'latitude', 'longitude'];
+
 }
