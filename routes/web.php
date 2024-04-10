@@ -60,6 +60,8 @@ Route::middleware(['auth', 'role:admin'])->group(function() {
 
     Route::post('/admin/update/password', [AdminController::class, 'AdminUpdatePassword'])->name('admin.update.password');
 
+    Route::get('/admin/management', [AdminController::class, 'AdminManagement'])->name('admin.management');
+
     Route::get('/admin/location', [AdminController::class, 'AdminLocation'])->name('admin.location');
 
     Route::get('/admin/about', [AdminController::class, 'AdminAbout'])->name('admin.about');
