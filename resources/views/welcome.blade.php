@@ -77,7 +77,9 @@
 
 
     <!-- row -->
-    @include('charts.forecasting')
+    @include('charts.forecastingpm25')
+
+    @include('charts.forecastingpm10')
 
 
 
@@ -133,6 +135,12 @@
   	<script src="{{ asset('../assets/no2.js')}}"></script>
     {{-- O3 Chart--}}
   	<script src="{{ asset('../assets/o3.js')}}"></script>
+
+    {{-- PM2.5 Forecasting Chart--}}
+  	<script src="{{ asset('../assets/pm25f.js')}}"></script>
+
+    {{-- PM10 Forecasting Chart--}}
+  	<script src="{{ asset('../assets/pm10f.js')}}"></script>
 
 
     </body>
