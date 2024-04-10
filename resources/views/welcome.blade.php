@@ -123,10 +123,6 @@
 	<script src="{{ asset('../assets/js/template.js')}}"></script>
 	<!-- endinject -->
 
-	<!-- Custom js for this page -->
-  <script src="{{ asset('../assets/js/dashboard-light.js')}}"></script>
-	<!-- End custom js for this page -->
-
         {{-- PM2.5 Chart--}}
   	<script src="{{ asset('../assets/pm25.js')}}"></script>
     {{-- PM10 Chart--}}
