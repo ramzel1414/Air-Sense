@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AirQualityDataController;
+use App\Http\Controllers\DeviceController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PollutantController;
@@ -70,6 +71,12 @@ Route::middleware(['auth', 'role:admin'])->group(function() {
 
     Route::get('/admin/location_tab', [LocationController::class, 'index'])->name('admin.location_tab');
 
+    //Devices
+    Route::get('/admin/management', [DeviceController::class, 'AdminManagement'])->name('admin.management');
+    Route::put('/admin/management/{id}', [DeviceController::class, 'update'])->name('admin.update');
+    Route::delete('/admin/management/{id}', [DeviceController::class, 'delete'])->name('admin.delete');
+
+
 
 }); //End Group Admin middleware
 
@@ -101,24 +108,26 @@ Route::middleware(['auth', 'role:user'])->group(function () {
 
 
 
-Route::get('/pdf', [ PdfController::class, 'index' ]);
+    Route::get('/pdf', [ PdfController::class, 'index' ]);
 
 
-//Air Quality
+    //Air Quality
 
-//Monitoring
-Route::post('/air-quality-data', [AirQualityDataController::class, 'store'])->name('data.store');
-Route::get('/pm25-data', [AirQualityDataController::class, 'getPM25Data']);
-Route::get('/pm10-data', [AirQualityDataController::class, 'getPM10Data']);
-Route::get('/co-data', [AirQualityDataController::class, 'getCOData']);
-Route::get('/no2-data', [AirQualityDataController::class, 'getNO2Data']);
-Route::get('/o3-data', [AirQualityDataController::class, 'getO3Data']);
-//Forecasting
-Route::get('/pm25-data-forecast', [AirQualityDataController::class, 'getPM25FCSV']);
-Route::get('/pm10-data-forecast', [AirQualityDataController::class, 'getPM10FCSV']);
+    //Monitoring
+    Route::get('/device-count', [DeviceController::class, 'getDeviceCount'])->name('device.count');
+    Route::post('/air-quality-data', [AirQualityDataController::class, 'store'])->name('data.store');
+    Route::get('/pm25-data', [AirQualityDataController::class, 'getPM25Data']);
+    Route::get('/pm10-data', [AirQualityDataController::class, 'getPM10Data']);
+    Route::get('/co-data', [AirQualityDataController::class, 'getCOData']);
+    Route::get('/no2-data', [AirQualityDataController::class, 'getNO2Data']);
+    Route::get('/o3-data', [AirQualityDataController::class, 'getO3Data']);
+
+    //Forecasting
+    Route::get('/pm25-data-forecast', [AirQualityDataController::class, 'getPM25FCSV']);
+    Route::get('/pm10-data-forecast', [AirQualityDataController::class, 'getPM10FCSV']);
 
 
-
-
+    //Devices
+    Route::post('/devices', [DeviceController::class, 'store'])->name('data.store');
 
 

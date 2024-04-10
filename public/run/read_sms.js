@@ -1,9 +1,7 @@
 import axios from 'axios';
 import serialportgsm from 'serialport-gsm';
 
-// const sender = '639606421564';
 const sender = '639537399626';
-
 let modem = serialportgsm.Modem();
 let options = {
     baudRate: 9600,
