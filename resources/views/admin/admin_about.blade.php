@@ -5,11 +5,11 @@
     .classification th, td {
         text-align: center;
         vertical-align: middle;
-        
+
     }
     .text-wrap {
-        word-wrap: break-word; 
-        overflow-wrap: break-word; 
+        word-wrap: break-word;
+        overflow-wrap: break-word;
     }
 
     .text-left {
@@ -69,7 +69,7 @@
                   PM2.5, or fine particulate matter, refers to tiny airborne particles with diameters of 2.5 micrometers or smaller. These particles, often from sources like vehicle emissions and industrial processes, can penetrate deep into the lungs and pose health risks, making monitoring essential for safeguarding air quality and public health.
               </p>
 
-              
+
             </div>
             <div class="tab-pane fade mt-4" id="v-profile" role="tabpanel" aria-labelledby="v-profile-tab">
                 <h6 class="mb-3">PM10</h6>
@@ -98,7 +98,7 @@
           </div>
         </div>
       </div>
-      
+
     {{-- 3rd row --}}
     <div class="row">
         <div class="col-md-12 grid-margin stretch-card">
@@ -107,65 +107,77 @@
                     <h6 class="card-title">Air Quality Index Classification</h6>
                     <div class="table-responsive">
                         <table class="table classification">
-                            <thead>
-                                <tr>
-                                    <th rowspan="2">CATEGORY</th>
-                                    <th rowspan="2">COLOR</th>
-                                    <th colspan="2">BREAKPOINTS</th>
-                                    <th rowspan="2">CAUTIONARY STATEMENTS</th>
-                                    
-                                </tr>
-                                <tr>
-                                    <th>PM<sub>10</sub> (ug/m<sup>3</sup>)</th>
-                                    <th>PM<sub>2.5</sub> (ug/m<sup>3</sup>)</th>
-                                </tr>
-                            </thead>
-                            <tbody>
+                                <thead>
+                                    <tr>
+                                        <th rowspan="3">CATEGORY</th>
+                                        <th rowspan="3">COLOR</th>
+                                        <th colspan="3">BREAKPOINTS</th>
+                                        <th rowspan="3">CAUTIONARY STATEMENTS</th>
 
-                                <tr>
-                                    <td>Good</td>
-                                    <td style="background: green;" class="text-light">Green</td>
-                                    <td>0 - 54</td>
-                                    <td>0 - 25</td>
-                                    <td>No</td>
-                                </tr>
-                                <tr>
-                                    <td>Fair</td>
-                                    <td style="background: yellow;">Yellow</td>
-                                    <td>55 - 154</td>
-                                    <td>25.1 - 35.0</td>
-                                    <td>No</td>
-                                </tr>
-                                <tr>
-                                    <td class="text-wrap" style="line-height: 1.5;">Unhealthy for Sensitive Groups</td>
-                                    <td  style="background: orange;">Orange</td>
-                                    <td>155 - 254</td>
-                                    <td>35.1 - 45.0</td>
-                                    <td class="text-wrap text-left">People with respiratory disease, such as asthma, should limit their outdoor exertion.</td>
-                                </tr>
-                                <tr>
-                                    <td>Very Unhealthy</td>
-                                    <td style="background: red;" class="text-light">Red</td>
-                                    <td>255 - 354</td>
-                                    <td>45.1 - 55</td>
-                                    <td class="text-wrap text-left">Pedestrians should avoid heavy traffic areas. People with respiratory disease such as asthma should stay indoors and rest as much as possible. Unnecessary trips should be postponed. People should voluntarily restrict the use of vehicles</td>
-                                </tr>
-                                <tr>
-                                    <td>Accutely Unhealthy</td>
-                                    <td style="background: purple;" class="text-light">Purple</td>
-                                    <td>355 - 424</td>
-                                    <td>55.1 - 90</td>
-                                    <td class="text-wrap text-left">Pedestrians should avoid heavy traffic areas. People with respiratory disease such as asthma should stay indoors and rest as much as possible. Unnecessary trips should be postponed. Motor vehicles use may be restricted. Industrial activities may be curtailed.</td>
-                                </tr>
-                                <tr>
-                                    <td>Emergency</td>
-                                    <td style="background:maroon;" class="text-light">Maroon</td>
-                                    <td>425 - 504</td>
-                                    <td>Above 91</td>
-                                    <td class="text-wrap text-left">Everyone should remain indoors. (keeping windows and doors closed unless heat stress is possible). Motor vehicles should be prohibited except for emergency situations. Industrial activities, except that which is vital for public safety should and health should be curtailed.</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                                    </tr>
+                                    <tr>
+                                        <th>PM<sub>10</sub> (ug/m<sup>3</sup>)</th>
+                                        <th>PM<sub>2.5</sub> (ug/m<sup>3</sup>)</th>
+                                        <th>CO (ppm)</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Good</td>
+                                        <td style="background: green;" class="text-light">Green</td>
+                                        <td>0 - 54</td>
+                                        <td>0 - 25</td>
+                                        <td>0 - 25</td>
+
+                                        <td>No</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Fair</td>
+                                        <td style="background: yellow;">Yellow</td>
+                                        <td>55 - 154</td>
+                                        <td>25.1 - 35.0</td>
+                                        <td>25 - 50</td>
+
+                                        <td>No</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-wrap" style="line-height: 1.5;">Unhealthy for Sensitive Groups</td>
+                                        <td  style="background: orange;">Orange</td>
+                                        <td>155 - 254</td>
+                                        <td>35.1 - 45.0</td>
+                                        <td>51 - 69</td>
+                                        <td class="text-wrap text-center">People with respiratory disease, such as asthma, should limit their outdoor exertion.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Unhealthy</td>
+                                        <td style="background: red;" class="text-light">Red</td>
+                                        <td>255 - 354</td>
+                                        <td>45.1 - 55</td>
+                                        <td>70 - 150</td>
+
+                                        <td class="text-wrap text-center">Pedestrians should avoid heavy traffic areas. People with respiratory disease such as asthma should stay indoors and rest as much as possible. Unnecessary trips should be postponed. People should voluntarily restrict the use of vehicles</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Very Unhealthy</td>
+                                        <td style="background: purple;" class="text-light">Purple</td>
+                                        <td>355 - 424</td>
+                                        <td>55.1 - 90</td>
+                                        <td>151 - 400</td>
+
+                                        <td class="text-wrap text-center">Pedestrians should avoid heavy traffic areas. People with respiratory disease such as asthma should stay indoors and rest as much as possible. Unnecessary trips should be postponed. Motor vehicles use may be restricted. Industrial activities may be curtailed.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Hazardous</td>
+                                        <td style="background:maroon;" class="text-light">Maroon</td>
+                                        <td>425 - 504</td>
+                                        <td>Above 91</td>
+                                        <td>Above 401</td>
+
+                                        <td class="text-wrap text-center">Everyone should remain indoors. (keeping windows and doors closed unless heat stress is possible). Motor vehicles should be prohibited except for emergency situations. Industrial activities, except that which is vital for public safety should and health should be curtailed.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                     </div>
                 </div>
             </div>
@@ -186,7 +198,7 @@
                             </h2>
                             <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#FaqAccordion">
                                 <div class="accordion-body">
-                                    The AirSense system is an innovative air quality monitoring solution designed to track various pollutants in the atmosphere, including PM2.5, PM10, O3, CO, and NO2. It utilizes advanced sensors and machine learning algorithms to provide real-time insights into air quality levels.       
+                                    The AirSense system is an innovative air quality monitoring solution designed to track various pollutants in the atmosphere, including PM2.5, PM10, O3, CO, and NO2. It utilizes advanced sensors and machine learning algorithms to provide real-time insights into air quality levels.
                                 </div>
                             </div>
                         </div>
@@ -198,7 +210,7 @@
                             </h2>
                             <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#FaqAccordion">
                                 <div class="accordion-body">
-                                    The AirSense system consists of sensors deployed in various locations to continuously monitor air quality parameters. These sensors collect real-time data on pollutant levels, which are then processed and analyzed using machine learning algorithms, particularly Random Forest models. These models help in forecasting future pollutant levels based on historical data and other relevant factors. 
+                                    The AirSense system consists of sensors deployed in various locations to continuously monitor air quality parameters. These sensors collect real-time data on pollutant levels, which are then processed and analyzed using machine learning algorithms, particularly Random Forest models. These models help in forecasting future pollutant levels based on historical data and other relevant factors.
                                 </div>
                             </div>
                         </div>
@@ -267,14 +279,14 @@
        height: 15px;
        margin-right: .5rem;
    }
-   
+
    /* Hide the default checkbox */
    .custom-toggle input {
        opacity: 0;
        width: 0;
        height: 0;
    }
-   
+
    /* Style for the track/background of the toggle switch */
    .custom-toggle label {
        position: absolute;
@@ -288,12 +300,12 @@
        cursor: pointer;
        transition: background-color 0.3s; /* Smooth color transition */
    }
-   
+
    /* Change background color when the toggle switch is checked */
    .custom-toggle input:checked + label {
        background-color: blue; /* Blue color when checked */
    }
-   
+
    /* Style for the sliding circle inside the toggle switch */
    .custom-toggle label:before {
        content: '';
@@ -306,7 +318,7 @@
        border-radius: 50%; /* Rounded shape */
        transition: transform 0.3s; /* Smooth sliding transition */
    }
-   
+
    /* Move the circle to the right when the toggle switch is checked */
    .custom-toggle input:checked + label:before {
        transform: translate(15px, -50%);
