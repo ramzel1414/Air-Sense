@@ -74,8 +74,6 @@
 
               @include('charts.monitoring.o3')
 
-              @include('charts.monitoring.avg')
-
             </div>
           </div>
         </div>
