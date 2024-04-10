@@ -18,12 +18,6 @@ class AdminController extends Controller
 
     } 
 
-    public function AdminManagement() {      
-
-        return view('admin.admin_management');   
-
-    }
-
     public function AdminLocation() {      
 
         return view('admin.admin_location');   

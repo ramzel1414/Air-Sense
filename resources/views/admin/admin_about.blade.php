@@ -8,8 +8,8 @@
         
     }
     .text-wrap {
-        word-wrap: break-word; /* Allow long words to break and wrap onto the next line */
-        overflow-wrap: break-word; /* Additional property for better word wrapping support */
+        word-wrap: break-word; 
+        overflow-wrap: break-word; 
     }
 
     .text-left {
@@ -26,7 +26,7 @@
         <div class="col-md-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <h6 class="card-title mb-3 d-flex justify-content-start">About</h6>
+                    <h6 class="card-title mb-3 d-flex justify-content-start">About AirSense</h6>
                     <p class="text-right mb-1">
                         Welcome to AirSense, where innovation meets environmental stewardship. At AirSense, our mission is to revolutionize air quality monitoring and management through advanced technology, data-driven solutions, and <strong>Random Forest</strong> forecasting method.                    </p>
                     <p class="text-right mb-1">
@@ -125,42 +125,42 @@
                                 <tr>
                                     <td>Good</td>
                                     <td style="background: green;" class="text-light">Green</td>
-                                    <td>0-54</td>
-                                    <td>0-25</td>
+                                    <td>0 - 54</td>
+                                    <td>0 - 25</td>
                                     <td>No</td>
                                 </tr>
                                 <tr>
                                     <td>Fair</td>
                                     <td style="background: yellow;">Yellow</td>
-                                    <td>55-154</td>
-                                    <td>25.1-35.0</td>
+                                    <td>55 - 154</td>
+                                    <td>25.1 - 35.0</td>
                                     <td>No</td>
                                 </tr>
                                 <tr>
-                                    <td>Unhealthy for sensitive groups</td>
+                                    <td class="text-wrap" style="line-height: 1.5;">Unhealthy for Sensitive Groups</td>
                                     <td  style="background: orange;">Orange</td>
-                                    <td>155-254</td>
-                                    <td>35.1-45.0</td>
+                                    <td>155 - 254</td>
+                                    <td>35.1 - 45.0</td>
                                     <td class="text-wrap text-left">People with respiratory disease, such as asthma, should limit their outdoor exertion.</td>
                                 </tr>
                                 <tr>
                                     <td>Very Unhealthy</td>
                                     <td style="background: red;" class="text-light">Red</td>
-                                    <td>255-354</td>
-                                    <td>45.1-55</td>
+                                    <td>255 - 354</td>
+                                    <td>45.1 - 55</td>
                                     <td class="text-wrap text-left">Pedestrians should avoid heavy traffic areas. People with respiratory disease such as asthma should stay indoors and rest as much as possible. Unnecessary trips should be postponed. People should voluntarily restrict the use of vehicles</td>
                                 </tr>
                                 <tr>
                                     <td>Accutely Unhealthy</td>
                                     <td style="background: purple;" class="text-light">Purple</td>
-                                    <td>355-424</td>
-                                    <td>55.1-90</td>
+                                    <td>355 - 424</td>
+                                    <td>55.1 - 90</td>
                                     <td class="text-wrap text-left">Pedestrians should avoid heavy traffic areas. People with respiratory disease such as asthma should stay indoors and rest as much as possible. Unnecessary trips should be postponed. Motor vehicles use may be restricted. Industrial activities may be curtailed.</td>
                                 </tr>
                                 <tr>
                                     <td>Emergency</td>
                                     <td style="background:maroon;" class="text-light">Maroon</td>
-                                    <td>425-504</td>
+                                    <td>425 - 504</td>
                                     <td>Above 91</td>
                                     <td class="text-wrap text-left">Everyone should remain indoors. (keeping windows and doors closed unless heat stress is possible). Motor vehicles should be prohibited except for emergency situations. Industrial activities, except that which is vital for public safety should and health should be curtailed.</td>
                                 </tr>

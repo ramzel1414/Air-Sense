@@ -27,6 +27,10 @@ Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 
+Route::get('/location', function () {
+    return view('location');
+})->name('location');
+
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');
@@ -55,8 +59,6 @@ Route::middleware(['auth', 'role:admin'])->group(function() {
     Route::get('/admin/change/password', [AdminController::class, 'AdminChangePassword'])->name('admin.change.password');
 
     Route::post('/admin/update/password', [AdminController::class, 'AdminUpdatePassword'])->name('admin.update.password');
-
-    Route::get('/admin/management', [AdminController::class, 'AdminManagement'])->name('admin.management');
 
     Route::get('/admin/location', [AdminController::class, 'AdminLocation'])->name('admin.location');
 
