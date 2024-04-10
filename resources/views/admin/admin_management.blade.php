@@ -1,3 +1,5 @@
+
+
 @extends('admin.admin_dashboard')
 @section('content')
 
@@ -5,17 +7,53 @@
 
 <div class="page-content">
 
-    <div class="d-flex justify-content-between rounded-3 ">
-        
-        <h3 class="mb-4">System Management</h3>
+    <h3 class="mb-4">System Management</h3>
+      
+    <div class="row">
+            
+        <div class="grid-margin d-flex justify-content-evenly py-3 rounded-3 custom-background">
 
-        <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary col-2 mx-3 mb-3" data-bs-toggle="modal" data-bs-target="#addDevice">
-            Add Device
-        </button>
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary col-4" data-bs-toggle="modal" data-bs-target="#addLocation">
+                Add Location
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="addLocation" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Add a Location</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="btn-close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <!-- Form for adding Location -->
+                            <form>
+                                @csrf
+                                <div class="mb-3">
+                                    <label for="locationId" class="form-label">Longitude:</label>
+                                    <input type="text" class="form-control" id="addLogitude" name="longitude" placeholder="Enter Longitude (e.g., -122.4194)" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="location" class="form-label">Latitude:</label>
+                                    <input type="text" class="form-control" id="addLatitude" name="latitude" placeholder="Enter Latitude (e.g., 37.7749)" required>
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
 
-
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary col-4" data-bs-toggle="modal" data-bs-target="#addDevice">
+                Add Device
+            </button>
             <!-- Modal -->
             <div class="modal fade" id="addDevice" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
@@ -25,24 +63,20 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="btn-close"></button>
                     </div>
                         <div class="modal-body">
-                            <!-- Form for adding Location -->
+                            <!-- Form for adding Device -->
                             <form>
                                 @csrf
                                 <div class="mb-3">
-                                    <label for="locationId" class="form-label">Device Location:</label>
-                                    <input type="text" class="form-control" id="addLocation" name="locationId" placeholder="Enter Sensor ID" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="locationId" class="form-label">Devive Name:</label>
-                                    <input type="text" class="form-control" id="addName" name="locationId" placeholder="Enter Sensor ID" required>
+                                    <label for="locationId" class="form-label">Device Name:</label>
+                                    <input type="text" class="form-control" id="addName" name="locationId" placeholder="Sensor 1" required>
                                 </div>
                                 <div class="mb-3">
                                     <label for="locationId" class="form-label">Devive COM:</label>
-                                    <input type="text" class="form-control" id="addCom" name="locationId" placeholder="Enter Sensor ID" required>
+                                    <input type="text" class="form-control" id="addCom" name="locationId" placeholder="COM 3" required>
                                 </div>
                                 <div class="mb-3">
                                     <label for="location" class="form-label">Device Sim #:</label>
-                                    <input type="text" class="form-control" id="addSim" name="location" placeholder="Enter Sensor Name" required>
+                                    <input type="text" class="form-control" id="addSim" name="location" placeholder="09123456789" required>
                                 </div>
 
                                 <div class="modal-footer">
@@ -57,6 +91,7 @@
 
         </div>
 
+    </div>
 
     <h5 class="mb-3">Recently Added!</h5>
 
