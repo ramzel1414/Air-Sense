@@ -100,16 +100,18 @@ Route::middleware(['auth', 'role:user'])->group(function () {
 Route::get('/pdf', [ PdfController::class, 'index' ]);
 
 
-
 //Air Quality
+
+//Monitoring
 Route::post('/air-quality-data', [AirQualityDataController::class, 'store'])->name('data.store');
 Route::get('/pm25-data', [AirQualityDataController::class, 'getPM25Data']);
 Route::get('/pm10-data', [AirQualityDataController::class, 'getPM10Data']);
 Route::get('/co-data', [AirQualityDataController::class, 'getCOData']);
 Route::get('/no2-data', [AirQualityDataController::class, 'getNO2Data']);
 Route::get('/o3-data', [AirQualityDataController::class, 'getO3Data']);
-
-
+//Forecasting
+Route::get('/pm25-data-forecast', [AirQualityDataController::class, 'getPM25FCSV']);
+Route::get('/pm10-data-forecast', [AirQualityDataController::class, 'getPM10FCSV']);
 
 
 

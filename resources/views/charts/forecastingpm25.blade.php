@@ -7,7 +7,7 @@
         <h5 class="card-title mb-0">PM2.5</h5>
         <div class="row align-items-start">
           <div class="col-md-7">
-            <p class="text-muted tx-13 mb-3 mb-md-0">Forecasting PM2.5 using Random Forest Regressor Algorithm</p>
+            <p class="text-muted tx-13 mb-3 mb-md-0">Forecasting PM2.5 Concentration for Yr. 2024</p>
           </div>
           <div class="col-md-5 d-flex justify-content-md-end">
           </div>

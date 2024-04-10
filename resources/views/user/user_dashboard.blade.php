@@ -77,9 +77,6 @@ License: For each use you must have a valid license purchased only from above li
 	<script src="{{ asset('../assets/js/template.js')}}"></script>
 	<!-- endinject -->
 
-	<!-- Custom js for this page -->
-  	 <script src="{{ asset('../assets/js/dashboard-light.js')}}"></script>		{{-- NAA DIRI NGA JAVASCRIPT ANG DATA SA MGA MONITORING GRAPH --}}
-
     {{-- PM2.5 Chart--}}
   	<script src="{{ asset('../assets/pm25.js')}}"></script>
     {{-- PM10 Chart--}}
