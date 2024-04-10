@@ -56,7 +56,10 @@
 
 
         <!-- row -->
-        @include('charts.forecasting')
+        @include('charts.forecastingpm25')
+
+        @include('charts.forecastingpm10')
+
 
         <!-- row -->
         <div class="row">
@@ -72,9 +75,7 @@
 
               @include('charts.monitoring.no2')
 
-              @include('charts.monitoring.o2')
-
-              @include('charts.monitoring.avg')
+              @include('charts.monitoring.o3')
 
             </div>
           </div>

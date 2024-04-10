@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Air Sense</title>
+        <title>AirSense</title>
 
         <!-- Change the href attribute to the path of your icon file -->
         <link rel="icon" href="{{ asset('airsense.png') }}" type="image/png">
@@ -48,41 +48,44 @@
     </head>
 
     <body>
-
-    @if (Route::has('login'))
+      
+      @if (Route::has('login'))
       <div class="sm:fixed sm:top-0 sm:right-0 p-5 text-right z-10">
+          <a href="{{route('about')}}" class="p-1 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-700 focus:outline focus:outline-2 focus:rounded-sm focus:outline-gray-500">About</a>
           @auth
-              <a href="{{ url('/dashboard') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Dashboard</a>
+              <a href="{{ route('admin.location')}}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-700 focus:outline focus:outline-2 focus:rounded-sm focus:outline-gray-500">Back</a>
           @else
-              <a href="{{ route('login') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-700 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Log in</a>
+              <a href="{{ route('login') }}" class="p-1 ml-2 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-700 focus:outline focus:outline-2 focus:rounded-sm focus:outline-gray-500">Log in</a>
 
               @if (Route::has('register'))
-                  <a href="{{ route('register') }}" class="ml-4 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-700 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Register</a>
+                  <a href="{{ route('register') }}" class="p-1 ml-2 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-700 focus:outline focus:outline-2 focus:rounded-sm focus:outline-gray-500">Register</a>
               @endif
           @endauth
       </div>
     @endif
 
 
-
-
-
   <div class="page-content m-4">
 
-    <div class="d-flex justify-center align-items-center grid-margin">
-      <img src="{{ asset('airsense.png') }}" alt="Air Sense Logo" class="toggle-air-logo mx-1 h-16 w-auto bg-gray-100 dark:bg-gray-900 custom-radius">
-      <h3 class="mx-1">AirSense</h3>
-    </div>
+
+      <div class="d-flex justify-content-center align-items-center grid-margin pb-4" style="border-bottom: 1px solid black">
+        <a href="{{route('welcome')}}" class="d-flex align-items-center text-gray-600 hover:text-gray-900 focus:outline-gray-500 p-1 focus:outline focus:outline-2 focus:rounded-sm">
+          <img src="{{ asset('airsense.png') }}" alt="Air Sense Logo" class="toggle-air-logo h-16 w-auto bg-gray-100 dark:bg-gray-900 custom-radius">
+        <h3 class="mx-1">AirSense</h3>
+        </a>
+      </div>
 
 
 
     <!-- row -->
-    @include('charts.forecasting')
+    @include('charts.forecastingpm25')
+
+    @include('charts.forecastingpm10')
 
 
 
     <div class="row">
-      <h5 class="mb-2">Monitoring</h5>
+      <h5 class="mt-4 mb-2">Monitoring</h5>
       <div class="col-12 col-xl-12 stretch-card ">
         <div class="row flex-grow-1" >
 
@@ -94,15 +97,13 @@
 
           @include('charts.monitoring.no2')
 
-          @include('charts.monitoring.o2')
-
-          @include('charts.monitoring.avg')
+          @include('charts.monitoring.o3')
 
 
         </div>
       </div>
     </div>
-
+  </div>
 
 
 	<!-- core:js -->
@@ -121,9 +122,22 @@
 	<script src="{{ asset('../assets/js/template.js')}}"></script>
 	<!-- endinject -->
 
-	<!-- Custom js for this page -->
-  <script src="{{ asset('../assets/js/dashboard-light.js')}}"></script>
-	<!-- End custom js for this page -->
+        {{-- PM2.5 Chart--}}
+  	<script src="{{ asset('../assets/pm25.js')}}"></script>
+    {{-- PM10 Chart--}}
+  	<script src="{{ asset('../assets/pm10.js')}}"></script>
+    {{-- CO Chart--}}
+  	<script src="{{ asset('../assets/co.js')}}"></script>
+    {{-- NO2 Chart--}}
+  	<script src="{{ asset('../assets/no2.js')}}"></script>
+    {{-- O3 Chart--}}
+  	<script src="{{ asset('../assets/o3.js')}}"></script>
+
+    {{-- PM2.5 Forecasting Chart--}}
+  	<script src="{{ asset('../assets/pm25f.js')}}"></script>
+
+    {{-- PM10 Forecasting Chart--}}
+  	<script src="{{ asset('../assets/pm10f.js')}}"></script>
 
 
     </body>

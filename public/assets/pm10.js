@@ -2,18 +2,12 @@ $(function () {
     'use strict';
 
     var colors = {
-        primary: "#6571ff",
-        secondary: "#7987a1",
-        success: "#05a34a",
-        info: "#66d1d1",
-        warning: "#fbbc06",
-        danger: "#ff3366",
-        light: "#e9ecef",
-        dark: "#060c17",
-        muted: "#7987a1",
-        gridBorder: "rgba(77, 138, 240, .15)",
-        bodyColor: "#000",
-        cardBg: "#fff"
+        "Good (Green)": "#00B050",
+        "Moderate (Yellow)": "#FFFF00",
+        "Unhealthy for Sensitive Groups (Orange)": "#FF6600",
+        "Unhealthy (Red)": "#FF0000",
+        "Very Unhealthy (Purple)": "#7030A0",
+        "Hazardous (Maroon)": "#990033"
     };
 
     var fontFamily = "'Roboto', Helvetica, sans-serif";
@@ -26,7 +20,7 @@ $(function () {
             return item.dateTime;
         });
         var pm10 = latestData.map(function (item) {
-            return item.pm10; // Change from pm25 to pm10
+            return item.pm10; // Changed from pm25 to pm10
         });
 
         var options = {
@@ -41,7 +35,7 @@ $(function () {
                     }
                 },
                 toolbar: {
-                    show: true,
+                    show: false,
                     offsetX: 0,
                     offsetY: 0,
                     tools: {
@@ -54,30 +48,13 @@ $(function () {
                         reset: false,
                         customIcons: []
                     },
-                    export: {
-                        csv: {
-                            filename: "Pollutant 10", // Change filename
-                            columnDelimiter: ',',
-                            headerCategory: 'category',
-                            headerValue: 'value',
-                            dateFormatter(timestamp) {
-                                return new Date(timestamp).toDateString()
-                            }
-                        },
-                        svg: {
-                            filename: "Pollutant 10", // Change filename
-                        },
-                        png: {
-                            filename: "Pollutant 10", // Change filename
-                        }
-                    },
                 },
             },
 
             series: [
                 {
-                    name: 'PM10', // Change from PM2.5 to PM10
-                    data: pm10 // Change from pm25 to pm10
+                    name: 'PM10', // Changed from PM2.5 to PM10
+                    data: pm10 // Changed from pm25 to pm10
                 }
             ],
             xaxis: {
@@ -107,11 +84,21 @@ $(function () {
                 curve: "smooth"
             },
             markers: {
-                size: 4
+                size: 4,
             },
+
+            tooltip: {
+                x: {
+                    show: false,
+                },
+                marker: {
+                    show: false,
+                },
+            }
+
         };
 
-        var chart = new ApexCharts(document.querySelector("#pm10"), options); // Change pm25 to pm10
+        var chart = new ApexCharts(document.querySelector("#pm10"), options);
         chart.render();
 
         var intervalId;
@@ -127,7 +114,7 @@ $(function () {
 
         function updateChart() {
             $.ajax({
-                url: '/pm10-data', // Change from pm25-data to pm10-data
+                url: '/pm10-data',
                 method: 'GET',
                 success: function (data) {
                     var newDateTime = data.map(function (item) {
@@ -154,14 +141,13 @@ $(function () {
                 }
             });
         }
-
         // Update chart every second
         intervalId = setInterval(updateChart, 1000);
     }
 
     // Fetch initial data and render the chart
     $.ajax({
-        url: '/pm10-data', // Change from pm25-data to pm10-data
+        url: '/pm10-data',
         method: 'GET',
         success: function (data) {
             renderChart(data);
@@ -170,4 +156,108 @@ $(function () {
             console.log('Error fetching initial data:', error);
         }
     });
+
+    // Attach click event listener to the button for exporting PM10 data
+    $('#expPM10').on('click', function () {
+        $.ajax({
+            url: '/pm10-data',
+            method: 'GET',
+            success: function (data) {
+                // Calculate average PM10 values by hour
+                var averageData = calculateAverageByHour(data);
+
+                // Generate CSV content with classification
+                var csvContent = "Timestamp,PM10,Classification,Health Impact\n";
+                averageData.forEach(function (item) {
+                    var classification = getClassification(item.avgPM10);
+                    var healthImpact = getHealthImpact(classification);
+
+                    // Format average PM10 value to one decimal place
+                    var avgPM10Formatted = item.avgPM10.toFixed(1);
+
+                    csvContent += item.dateTime + "," + avgPM10Formatted + "," + classification + "," + healthImpact + "\n";
+                });
+
+                // Download CSV file
+                var blob = new Blob([csvContent], { type: 'text/csv' });
+                var url = window.URL.createObjectURL(blob);
+                var a = document.createElement('a');
+                a.href = url;
+                a.download = 'pm10-average-per-hour.csv';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                window.URL.revokeObjectURL(url);
+            },
+            error: function (error) {
+                console.log('Error fetching data:', error);
+            }
+        });
+    });
+
+    // Function to calculate average PM10 values by hour
+    function calculateAverageByHour(data) {
+        var hourlyAverages = {};
+        data.forEach(function (item) {
+            var dateTimeParts = item.dateTime.split(' ');
+            var date = dateTimeParts[0];
+            var time = dateTimeParts[1];
+            var hour = time.split(':')[0];
+
+            var dateTime = date + ' ' + time;
+
+            if (!hourlyAverages[hour]) {
+                hourlyAverages[hour] = { dateTime: dateTime, sumPM10: 0, count: 0 };
+            }
+            hourlyAverages[hour].sumPM10 += item.pm10;
+            hourlyAverages[hour].count++;
+        });
+
+        var result = [];
+        Object.keys(hourlyAverages).forEach(function (hour) {
+            var avgPM10 = hourlyAverages[hour].sumPM10 / hourlyAverages[hour].count;
+            result.push({ dateTime: hourlyAverages[hour].dateTime, avgPM10: avgPM10 });
+        });
+
+        return result;
+    }
+
+    // Function to determine classification based on PM10 value
+    function getClassification(pm10) {
+        if (pm10 >= 0 && pm10 <= 54) {
+            return "Good (Green)";
+        } else if (pm10 > 55 && pm10 <= 154) {
+            return "Moderate (Yellow)";
+        } else if (pm10 > 155 && pm10 <= 254) {
+            return "Unhealthy for Sensitive Groups (Orange)";
+        } else if (pm10 > 255 && pm10 <= 354) {
+            return "Unhealthy (Red)";
+        } else if (pm10 > 355 && pm10 <= 424) {
+            return "Very Unhealthy (Purple)";
+        } else if (pm10 > 425 && pm10 <= 504) {
+            return "Hazardous (Maroon)";
+        } else {
+            return "Unknown Classification";
+        }
+    }
+
+    // Function to determine health impact based on classification
+    function getHealthImpact(classification) {
+        switch (classification) {
+            case "Good (Green)":
+                return "Low risk";
+            case "Moderate (Yellow)":
+                return "Low to moderate risk";
+            case "Unhealthy for Sensitive Groups (Orange)":
+                return "Moderate risk for sensitive groups like children, elderly, and those with lung/heart problems";
+            case "Unhealthy (Red)":
+                return "Considerable risk for everyone";
+            case "Very Unhealthy (Purple)":
+                return "High risk for everyone";
+            case "Hazardous (Maroon)":
+                return "Very high risk for everyone";
+            default:
+                return "Unknown Classification";
+        }
+    }
 });
