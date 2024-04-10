@@ -32,6 +32,10 @@ Route::get('/location', function () {
     return view('location');
 })->name('location');
 
+Route::get('/about', function () {
+    return view('about');
+})->name('about');
+
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');
@@ -83,28 +87,6 @@ Route::middleware(['auth', 'role:admin'])->group(function() {
 // Route::get('/admin/login', [AdminController::class, 'AdminLogin'])->name('admin.login');
 
 //login and register route is in the auth.php
-
-
-//group route for user role
-Route::middleware(['auth', 'role:user'])->group(function () {
-
-    Route::get('/user/dashboard', [UserController::class, 'UserDashboard'])->name('user.dashboard');
-
-    Route::get('/user/logout', [UserController::class, 'UserLogout'])->name('user.logout');
-
-    Route::get('/user/profile', [UserController::class, 'UserProfile'])->name('user.profile');
-
-    Route::post('/user/profile/store', [UserController::class, 'UserProfileStore'])->name('user.profile.store');
-
-    Route::get('/user/change/password', [UserController::class, 'UserChangePassword'])->name('user.change.password');
-
-    Route::post('/user/update/password', [UserController::class, 'userUpdatePassword'])->name('user.update.password');
-
-    Route::get('/user/location', [UserController::class, 'UserLocation'])->name('user.location');
-
-    Route::get('/user/settings', [UserController::class, 'UserSettings'])->name('user.settings');
-
-});
 
 
 
