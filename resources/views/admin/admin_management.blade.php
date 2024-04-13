@@ -26,35 +26,45 @@
                 Add Location
             </button>
             <!-- Modal -->
+            <!-- Modal for adding a location -->
             <div class="modal fade" id="addLocation" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="exampleModalLabel">Add a Location</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="btn-close"></button>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
                             <!-- Form for adding Location -->
-                            <form>
+                            <form method="POST" action="{{ route('admin.location.store') }}">
                                 @csrf
                                 <div class="mb-3">
-                                    <label for="locationId" class="form-label">Longitude:</label>
-                                    <input type="number" class="form-control" id="addLogitude" name="longitude" placeholder="Enter Longitude (e.g., -122.4194)" required>
+                                    <label for="deviceId" class="form-label">Device ID:</label>
+                                    <select class="form-select" id="deviceId" name="deviceId" required>
+                                        <option value="">Select Device ID</option>
+                                        @foreach ($devices as $device)
+                                            <option value="{{ $device->id }}">{{ $device->id }} - {{ $device->deviceName }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="location" class="form-label">Latitude:</label>
-                                    <input type="number" class="form-control" id="addLatitude" name="latitude" placeholder="Enter Latitude (e.g., 37.7749)" required>
+                                    <label for="latitude" class="form-label">Latitude:</label>
+                                    <input type="number" class="form-control" id="latitude" name="latitude" placeholder="Enter Latitude (e.g., 37.7749)"  step="any" required>
                                 </div>
-
+                                <div class="mb-3">
+                                    <label for="longitude" class="form-label">Longitude:</label>
+                                    <input type="number" class="form-control" id="longitude" name="longitude" placeholder="Enter Longitude (e.g., -122.4194)"  step="any" required>
+                                </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                    <button type="submit" class="btn btn-primary">Save changes</button>
                                 </div>
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
+
 
 
             <!-- Button trigger modal -->
@@ -145,9 +155,12 @@
             <div class="card rounded mb-2">
                 <div class="card-body">
                     <div class="mb-2 lh-3">
+                        <p class="card-title mb-0">Device ID: <span>{{ $device->id }}</span></p>
                         <p class="card-title mb-0">Device Name: <span>{{ $device->deviceName }}</span></p>
                         <p class="card-title mb-0">Device COM: <span>{{ $device->devicePort }}</span></p>
                         <p class="card-title mb-0">Device Sim #: <span>{{ $device->deviceSim }}</span></p>
+                        <p class="card-title mb-0">Device Latitude: <span>{{ $device->latitude }}</span></p>
+                        <p class="card-title mb-0">Device Longitude: <span>{{ $device->longitude }}</span></p>
                         <p class="card-title mb-0">Pollutant Data:</p>
                     </div>
                     <div class="mx-4">
@@ -159,10 +172,10 @@
                     </div>
                 </div>
             </div>
-            
+
 
             <div class="row d-flex justify-content-between">
-                
+
 
                 <!-- Update Device Button -->
                 <div class="col-6 card rounded p-3">
