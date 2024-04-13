@@ -96,7 +96,6 @@ Route::middleware(['auth', 'role:admin'])->group(function() {
     //Air Quality
 
     //Monitoring
-    Route::get('/device-count', [DeviceController::class, 'getDeviceCount'])->name('device.count');
     Route::post('/air-quality-data', [AirQualityDataController::class, 'store'])->name('data.store');
     Route::get('/pm25-data', [AirQualityDataController::class, 'getPM25Data']);
     Route::get('/pm10-data', [AirQualityDataController::class, 'getPM10Data']);
@@ -110,6 +109,9 @@ Route::middleware(['auth', 'role:admin'])->group(function() {
 
 
     //Devices
+    Route::get('/device-count', [DeviceController::class, 'getDeviceCount'])->name('device.count');
+    Route::get('/device-locations', [DeviceController::class, 'getDeviceLocation'])->name('device.locations');
     Route::post('/devices', [DeviceController::class, 'store'])->name('data.store');
+    Route::post('/admin/location/store', [DeviceController::class, 'storeLocation'])->name('admin.location.store');
 
 
