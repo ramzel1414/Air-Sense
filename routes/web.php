@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AirQualityDataController;
+use App\Http\Controllers\DeviceController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PollutantController;
@@ -26,6 +27,14 @@ use App\Http\Controllers\PdfController;
 Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
+
+Route::get('/location', function () {
+    return view('location');
+})->name('location');
+
+Route::get('/about', function () {
+    return view('about');
+})->name('about');
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
@@ -60,11 +69,17 @@ Route::middleware(['auth', 'role:admin'])->group(function() {
 
     Route::get('/admin/location', [AdminController::class, 'AdminLocation'])->name('admin.location');
 
-    Route::get('/admin/settings', [AdminController::class, 'AdminSettings'])->name('admin.settings');
+    Route::get('/admin/about', [AdminController::class, 'AdminAbout'])->name('admin.about');
 
     Route::get('/admin/pollutants', [PollutantController::class, 'showPollutant'])->name('admin.pollutants');
 
     Route::get('/admin/location_tab', [LocationController::class, 'index'])->name('admin.location_tab');
+
+    //Devices
+    Route::get('/admin/management', [DeviceController::class, 'AdminManagement'])->name('admin.management');
+    Route::put('/admin/management/{id}', [DeviceController::class, 'update'])->name('admin.update');
+    Route::delete('/admin/management/{id}', [DeviceController::class, 'delete'])->name('admin.delete');
+
 
 
 }); //End Group Admin middleware
@@ -74,45 +89,27 @@ Route::middleware(['auth', 'role:admin'])->group(function() {
 //login and register route is in the auth.php
 
 
-//group route for user role
-Route::middleware(['auth', 'role:user'])->group(function () {
 
-    Route::get('/user/dashboard', [UserController::class, 'UserDashboard'])->name('user.dashboard');
-
-    Route::get('/user/logout', [UserController::class, 'UserLogout'])->name('user.logout');
-
-    Route::get('/user/profile', [UserController::class, 'UserProfile'])->name('user.profile');
-
-    Route::post('/user/profile/store', [UserController::class, 'UserProfileStore'])->name('user.profile.store');
-
-    Route::get('/user/change/password', [UserController::class, 'UserChangePassword'])->name('user.change.password');
-
-    Route::post('/user/update/password', [UserController::class, 'userUpdatePassword'])->name('user.update.password');
-
-    Route::get('/user/location', [UserController::class, 'UserLocation'])->name('user.location');
-
-    Route::get('/user/settings', [UserController::class, 'UserSettings'])->name('user.settings');
-
-});
+    Route::get('/pdf', [ PdfController::class, 'index' ]);
 
 
+    //Air Quality
 
-Route::get('/pdf', [ PdfController::class, 'index' ]);
+    //Monitoring
+    Route::get('/device-count', [DeviceController::class, 'getDeviceCount'])->name('device.count');
+    Route::post('/air-quality-data', [AirQualityDataController::class, 'store'])->name('data.store');
+    Route::get('/pm25-data', [AirQualityDataController::class, 'getPM25Data']);
+    Route::get('/pm10-data', [AirQualityDataController::class, 'getPM10Data']);
+    Route::get('/co-data', [AirQualityDataController::class, 'getCOData']);
+    Route::get('/no2-data', [AirQualityDataController::class, 'getNO2Data']);
+    Route::get('/o3-data', [AirQualityDataController::class, 'getO3Data']);
 
-
-
-//Air Quality
-Route::post('/air-quality-data', [AirQualityDataController::class, 'store'])->name('data.store');
-Route::get('/pm25-data', [AirQualityDataController::class, 'getPM25Data']);
-Route::get('/pm10-data', [AirQualityDataController::class, 'getPM10Data']);
-Route::get('/co-data', [AirQualityDataController::class, 'getCOData']);
-Route::get('/no2-data', [AirQualityDataController::class, 'getNO2Data']);
-Route::get('/o3-data', [AirQualityDataController::class, 'getO3Data']);
-
-
-
-
+    //Forecasting
+    Route::get('/pm25-data-forecast', [AirQualityDataController::class, 'getPM25FCSV']);
+    Route::get('/pm10-data-forecast', [AirQualityDataController::class, 'getPM10FCSV']);
 
 
+    //Devices
+    Route::post('/devices', [DeviceController::class, 'store'])->name('data.store');
 
 

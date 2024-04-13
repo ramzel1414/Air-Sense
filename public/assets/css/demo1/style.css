@@ -75,6 +75,9 @@
   --bs-code-color: #d63384;
   --bs-highlight-bg: #fff3cd;
   --custom-card-bg: #FFF;
+  --custom-faq-active-bg: #f0f1ff;
+  --custom-faq-active-color: #515acc;
+
 }
 
 *,
@@ -109,6 +112,10 @@ body.dark {
     --bs-body-color: #d0d6e1;
     --bs-body-bg: #f9fafb;
     --bs-border-color: #172340;
+    --custom-faq-active-bg: #515acc;
+    --custom-faq-active-color: #f0f1ff;
+
+
 }
 
 hr {
@@ -4524,11 +4531,12 @@ div.tox .btn-group-vertical > .btn-group:not(:first-child) > .tox-button,
   }
 }
 
+/* ramon faq*/
 .accordion {
-  --bs-accordion-color: #000;
-  --bs-accordion-bg: #fff;
+  --bs-accordion-color: var(--bs-body-color);
+  --bs-accordion-bg: var(--bs-bg-color);
   --bs-accordion-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, border-radius 0.15s ease;
-  --bs-accordion-border-color: #e9ecef;
+  --bs-accordion-border-color: var(--bs-border-color);
   --bs-accordion-border-width: 1px;
   --bs-accordion-border-radius: 0.25rem;
   --bs-accordion-inner-border-radius: calc(0.25rem - 1px);
@@ -4545,8 +4553,8 @@ div.tox .btn-group-vertical > .btn-group:not(:first-child) > .tox-button,
   --bs-accordion-btn-focus-box-shadow: none;
   --bs-accordion-body-padding-x: 1.25rem;
   --bs-accordion-body-padding-y: 1rem;
-  --bs-accordion-active-color: #5b66e6;
-  --bs-accordion-active-bg: #f0f1ff;
+  --bs-accordion-active-color: var(--custom-faq-active-color);
+  --bs-accordion-active-bg: var(--custom-faq-active-bg);
 }
 
 .accordion-button {
@@ -4658,6 +4666,8 @@ div.tox .btn-group-vertical > .btn-group:not(:first-child) > .tox-button,
 .accordion-flush .accordion-item .accordion-button {
   border-radius: 0;
 }
+
+
 
 .breadcrumb {
   --bs-breadcrumb-padding-x: 0;
@@ -19448,6 +19458,7 @@ body {
   z-index: 978;
   box-shadow: 3px 0 10px 0 rgba(183, 192, 206, 0.2);
   transition: width 0.1s ease, left 0.1s ease;
+  display: flex;
 }
 @media (max-width: 991px) {
   .navbar {
@@ -19455,12 +19466,11 @@ body {
     left: 0;
   }
   .navbar .navbar-content {
-    width: calc(100% - 70px - 1px);
+    width: calc(100% - 70px - 1);
   }
 }
 .navbar .sidebar-toggler {
   height: 100%;
-  border-right: 1px solid var(--bs-border-color);   /*ramon*/
   align-items: center;
   padding: 0 25px;
   display: none;
@@ -19894,6 +19904,7 @@ body {
   height: 32px;
   white-space: nowrap;
   color: var(--bs-body-color);   /*ramon*/
+  
 }
 .sidebar .sidebar-body .nav .nav-item .nav-link .link-icon {
   width: 16px;
@@ -21201,11 +21212,13 @@ div.tox .btn-group-lg > .btn-icon-text.tox-button .btn-icon-append,
   color: #000;
   background-color: #f8f9fa;
   cursor: pointer;
+
 }
 .nav.nav-tabs .nav-item .nav-link.active {
   border-color: #dee2e6 #dee2e6 #fff;
   color: #6571ff;
   background: #fff;
+
 }
 .nav.nav-tabs .nav-item .nav-link.disabled {
   background-color: transparent;
@@ -21219,10 +21232,19 @@ div.tox .btn-group-lg > .btn-icon-text.tox-button .btn-icon-append,
   width: 100%;
   border: 1px solid transparent;
   border-radius: 0;
-  border-color: #e9ecef #e9ecef #dee2e6;
-  color: #000;
-  background-color: #f8f9fa;
+  border-color: var(--bs-border-color);      /*ramon about desc*/
+  color: var(--bs-body-color);
+  background-color: var(--custom-card-bg);
 }
+
+/* --custom-card-bg: #0c1427;
+--bs-gray-100: #060c17;
+--bs-body-color: #d0d6e1;
+--bs-body-bg: #f9fafb;
+--bs-border-color: #172340;
+--custom-faq-active-bg: #515acc;
+--custom-faq-active-color: #f0f1ff; */
+
 .nav.nav-tabs.nav-tabs-vertical .nav-link:first-child {
   border-radius: 0.25rem 0 0 0;
 }
@@ -21230,7 +21252,7 @@ div.tox .btn-group-lg > .btn-icon-text.tox-button .btn-icon-append,
   border-radius: 0 0 0 0.25rem;
 }
 .nav.nav-tabs.nav-tabs-vertical .nav-link.active {
-  background-color: #fff;
+  background-color: var(--custom-card-bg);
   color: #6571ff;
   border-right-color: transparent;
 }
@@ -21528,7 +21550,7 @@ div.tox .btn-group-lg > .btn-icon-text.tox-button .btn-icon-append,
   background: #7987a1;
 }
 
-.auth-page .auth-side-wrapper {
+.auth-side-wrapper {
   width: 100%;
   height: 100%;
   background-image: url(https://via.placeholder.com/219x452);
@@ -22522,6 +22544,15 @@ div.tox .tox-dialog__body {
   color: var(--bs-gray-100);
 }
 
+.user-header #toggle-btn {
+  color: #6571ff;
+}
+
+.user-header #toggle-btn:hover {
+  color: #3140E8;
+  background: transparent;
+}
+
 
 #toggle-air-logo {        
   cursor: pointer
@@ -22540,8 +22571,17 @@ div.tox .tox-dialog__body {
   color: var(--bs-body-color);
 }
 
-#airMonitoringChart {
+.user-header {
+  background: var(--custom-card-bg);
+  border-bottom: 1px solid var(--bs-border-color);
+}
 
+.user-body {
+  background: var(--bs-gray-100);
+}
+
+.pol-desc { /*pollutant description in about page*/
+  background: var(--custom-card-bg);
 }
 
 /* 

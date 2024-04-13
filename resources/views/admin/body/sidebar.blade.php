@@ -36,9 +36,9 @@
           </li>
 
           <li class="nav-item">
-            <a href="{{ route ('admin.settings') }}" class="nav-link">
-              <i class="link-icon" data-feather="settings"></i>
-              <span class="link-title">Settings</span>
+            <a href="{{ route ('admin.about') }}" class="nav-link">
+              <i class="link-icon" data-feather="help-circle"></i>
+              <span class="link-title">About</span>
             </a>
           </li>
 

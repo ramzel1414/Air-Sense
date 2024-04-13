@@ -2,18 +2,12 @@ $(function () {
     'use strict';
 
     var colors = {
-        primary: "#6571ff",
-        secondary: "#7987a1",
-        success: "#05a34a",
-        info: "#66d1d1",
-        warning: "#fbbc06",
-        danger: "#ff3366",
-        light: "#e9ecef",
-        dark: "#060c17",
-        muted: "#7987a1",
-        gridBorder: "rgba(77, 138, 240, .15)",
-        bodyColor: "#000",
-        cardBg: "#fff"
+        "Good (Green)": "#00B050",
+        "Moderate (Yellow)": "#FFFF00",
+        "Unhealthy for Sensitive Groups (Orange)": "#FF6600",
+        "Unhealthy (Red)": "#FF0000",
+        "Very Unhealthy (Purple)": "#7030A0",
+        "Hazardous (Maroon)": "#990033"
     };
 
     var fontFamily = "'Roboto', Helvetica, sans-serif";
@@ -90,8 +84,18 @@ $(function () {
                 curve: "smooth"
             },
             markers: {
-                size: 4
+                size: 4,
             },
+
+
+            tooltip: {
+                x: {
+                    show: false,
+                },
+                marker: {
+                    show: false,
+                },
+            }
         };
 
         var chart = new ApexCharts(document.querySelector("#pm25"), options);
@@ -137,6 +141,7 @@ $(function () {
                 }
             });
         }
+
         // Update chart every second
         intervalId = setInterval(updateChart, 1000);
     }
@@ -162,8 +167,13 @@ $(function () {
                 // Calculate average PM2.5 values by hour
                 var averageData = calculateAverageByHour(data);
 
+                // Sort averageData array by dateTime (ascending order)
+                averageData.sort((a, b) => {
+                    return new Date(a.dateTime) - new Date(b.dateTime);
+                });
+
                 // Generate CSV content with classification
-                var csvContent = "DateTime,PM2.5 (ug/m3),Classification,Health Impact\n";
+                var csvContent = "Timestamp,PM2.5,Classification,Health Impact\n";
                 averageData.forEach(function (item) {
                     var classification = getClassification(item.avgPM25);
                     var healthImpact = getHealthImpact(classification);
@@ -190,6 +200,7 @@ $(function () {
             }
         });
     });
+
 
     // Function to calculate average PM2.5 values by hour
     function calculateAverageByHour(data) {
@@ -257,4 +268,3 @@ $(function () {
         }
     }
 });
-

@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\AirQualityData;
+use League\Csv\Reader;
+use Illuminate\Support\Facades\Storage;
+
 
 class AirQualityDataController extends Controller
 {
@@ -54,4 +57,54 @@ class AirQualityDataController extends Controller
             'dateTime' => $dateTime,
         ]);
     }
+
+    public function getPM25FCSV()
+    {
+        $csvPath = storage_path('Data/average_pm25_per_day_2024.csv');
+
+        $csv = Reader::createFromPath($csvPath, 'r');
+        $csv->setHeaderOffset(0); // Assumes first row is header
+
+        $records = $csv->getRecords(); // Get all CSV records
+
+        $data = [];
+
+        foreach ($records as $record) {
+            $date = $record['Date'];
+            $pm25Value = number_format((float) $record['Average PM2.5'], 2); // Limit to 2 decimal places
+
+            $data[] = [
+                'Date' => $date,
+                'ForecastPM25' => $pm25Value,
+            ];
+        }
+
+        return response()->json($data);
+    }
+
+    public function getPM10FCSV()
+    {
+        $csvPath = storage_path('Data/average_pm10_per_day_2024.csv');
+
+        $csv = Reader::createFromPath($csvPath, 'r');
+        $csv->setHeaderOffset(0); // Assumes first row is header
+
+        $records = $csv->getRecords(); // Get all CSV records
+
+        $data = [];
+
+        foreach ($records as $record) {
+            $date = $record['Date'];
+            $pm10Value = number_format((float) $record['Average PM10'], 2); // Limit to 2 decimal places
+
+
+            $data[] = [
+                'Date' => $date,
+                'ForecastPM10' => $pm10Value,
+            ];
+        }
+
+        return response()->json($data);
+    }
+
 }
