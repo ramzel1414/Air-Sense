@@ -33,53 +33,166 @@ class PdfController extends Controller
         $fpdf->Cell(0, 0, 'Microscale to Middle Scale                                                                                    ', 0, 1, 'R');
         
 
-        // Add a table header
-        $fpdf->Ln(10);
-        $fpdf->SetFont('Arial', 'B', 10);
-        $fpdf->Cell(35, 10, 'Date of Sampling', 1, 0, 'C');
-        $fpdf->Cell(60, 10, 'PM 2.5 Concentration (µg/m³)' , 1, 0, 'C'); // Using MultiCell for header
-        $fpdf->Cell(30, 10, 'Remarks', 1, 0, 'C');
-        $fpdf->Cell(35, 10, 'Air Quality Index', 1, 0, 'C');
-        $fpdf->Cell(30, 10, 'Data Capture', 1, 1, 'C');
+//Table start
 
-        // Dummy table data
-        $dummyData = [
-            ['2024-03-01', '25', 'Normal', '50', 'Automated'],
-            ['2024-03-02', '30', 'Normal', '55', 'Automated'],
-            ['2024-03-03', '35', 'Moderate', '60', 'Manual'],
-            ['2024-03-04', '40', 'Moderate', '65', 'Manual'],
-            ['2024-03-05', '45', 'Moderate', '70', 'Manual'],
-            ['2024-03-06', '25', 'Normal', '50', 'Automated'],
-            ['2024-03-07', '30', 'Normal', '55', 'Automated'],
-            ['2024-03-08', '35', 'Moderate', '60', 'Manual'],
-            ['2024-03-09', '40', 'Moderate', '65', 'Manual'],
-            ['2024-03-10', '45', 'Moderate', '70', 'Manual'],
-            ['2024-03-11', '25', 'Normal', '50', 'Automated'],
-            ['2024-03-12', '30', 'Normal', '55', 'Automated'],
-            ['2024-03-13', '35', 'Moderate', '60', 'Manual'],
-            ['2024-03-14', '40', 'Moderate', '65', 'Manual'],
-            ['2024-03-15', '45', 'Moderate', '70', 'Manual'],
-            ['2024-03-16', '25', 'Normal', '50', 'Automated'],
-            ['2024-03-17', '30', 'Normal', '55', 'Automated'],
-            ['2024-03-18', '35', 'Moderate', '60', 'Manual'],
-            ['2024-03-19', '40', 'Moderate', '65', 'Manual'],
-            ['2024-03-20', '45', 'Moderate', '70', 'Manual'],
-            ['2024-03-01', '25', 'Normal', '50', 'Automated'],
-            ['2024-03-02', '30', 'Normal', '55', 'Automated'],
-            ['2024-03-03', '35', 'Moderate', '60', 'Manual'],
-            ['2024-03-04', '40', 'Moderate', '65', 'Manual'],
-            ['2024-03-05', '45', 'Moderate', '70', 'Manual'],
-            ['2024-03-06', '25', 'Normal', '50', 'Automated'],
-            ['2024-03-07', '30', 'Normal', '55', 'Automated'],
-        ];
-        // Add table rows with dummy data
-        foreach ($dummyData as $row) {
-            $fpdf->Cell(35, 10, $row[0], 1, 0, 'C');
-            $fpdf->Cell(60, 10, $row[1], 1, 0, 'C');
-            $fpdf->Cell(30, 10, $row[2], 1, 0, 'C');
-            $fpdf->Cell(35, 10, $row[3], 1, 0, 'C');
-            $fpdf->Cell(30, 10, $row[4], 1, 1, 'C');
-        }
+// First batch table header
+$fpdf->Ln(10);
+$fpdf->SetFont('Arial', 'B', 10);
+$fpdf->SetFillColor(173, 216, 230); // Light blue color
+$fpdf->Cell(40, 10, 'Date of Sampling', 1, 0, 'C', true);
+$fpdf->Cell(40, 10, 'PM2.5 (µg/m²)', 1, 0, 'C', true);
+$fpdf->Cell(35, 10, 'Remarks', 1, 0, 'C', true);
+$fpdf->Cell(40, 10, 'PM10 (µg/m²)', 1, 0, 'C', true);
+$fpdf->Cell(35, 10, 'Remarks', 1, 1, 'C', true);
+
+// First batch of data
+$firstBatchData = [
+    ['2024-03-01', '25', 'Normal', '50', 'Normal'],
+    ['2024-03-02', '30', 'Normal', '55', 'Normal'],
+    ['2024-03-03', '35', 'Moderate', '60', 'Moderate'],
+    ['2024-03-04', '35', 'Moderate', '60', 'Moderate'],
+    ['2024-03-05', '35', 'High', '60', 'Moderate'],
+    ['2024-03-06', '35', 'High', '60', 'Moderate'],
+    ['2024-03-07', '25', 'Normal', '50', 'Normal'],
+    ['2024-03-08', '30', 'Normal', '55', 'Normal'],
+    ['2024-03-09', '35', 'Moderate', '60', 'Moderate'],
+    ['2024-03-10', '35', 'Moderate', '60', 'Moderate'],
+    ['2024-03-11', '35', 'High', '60', 'Moderate'],
+    ['2024-03-12', '35', 'High', '60', 'Moderate'],
+    ['2024-03-13', '35', 'Moderate', '60', 'Moderate'],
+    ['2024-03-14', '35', 'Moderate', '60', 'Moderate'],
+];
+
+// Populate first batch table with dummy data
+foreach ($firstBatchData as $row) {
+    $fpdf->Cell(40, 10, $row[0], 1, 0, 'C');
+    $fpdf->Cell(40, 10, $row[1], 1, 0, 'C');
+    // $row[2]
+    // Check the value of Remarks and set background color
+    $color = '';
+    switch ($row[2]) {
+        case 'Normal':
+            $color = [144, 238, 144]; // Light green
+            break;
+        case 'Moderate':
+            $color = [220, 220, 30]; // Yellow
+            break;
+        case 'High':
+            $color = [255, 99, 71]; // Light red
+            break;
+        default:
+            $color = [255, 255, 255]; // White (default)
+            break;
+    }
+    $fpdf->SetFillColor($color[0], $color[1], $color[2]); // Set background color
+    $fpdf->Cell(35, 10, $row[2], 1, 0, 'C', true);
+    $fpdf->Cell(40, 10, $row[3], 1, 0, 'C');
+    // $row[4]
+    // Check the value of Remarks and set background color
+    $color = '';
+    switch ($row[4]) {
+        case 'Normal':
+            $color = [144, 238, 144]; // Light green
+            break;
+        case 'Moderate':
+            $color = [220, 220, 30]; // Yellow
+            break;
+        case 'High':
+            $color = [255, 99, 71]; // Light red
+            break;
+        default:
+            $color = [255, 255, 255]; // White (default)
+            break;
+    }
+    $fpdf->SetFillColor($color[0], $color[1], $color[2]); // Set background color
+    $fpdf->Cell(35, 10, $row[4], 1, 1, 'C', true);
+}
+
+// Second batch table header
+$fpdf->Ln(10);
+$fpdf->SetFillColor(173, 216, 230); // Light blue color
+$fpdf->Cell(35, 10, 'Date of Sampling', 1, 0, 'C', true);
+$fpdf->Cell(25, 10, 'CO (ppm)', 1, 0, 'C', true);
+$fpdf->Cell(27, 10, 'Remarks', 1, 0, 'C', true);
+$fpdf->Cell(25, 10, 'NO2 (ppm)', 1, 0, 'C', true);
+$fpdf->Cell(27, 10, 'Remarks', 1, 0, 'C', true);
+$fpdf->Cell(25, 10, 'Ozone', 1, 0, 'C', true);
+$fpdf->Cell(27, 10, 'Remarks', 1, 1, 'C', true);
+
+// Second batch of data
+$secondBatchData = [
+    ['2024-03-01', '0.3', 'Normal', '0.5', 'Moderate', '0.5', 'Moderate'],
+    ['2024-03-02', '0.4', 'Normal', '0.6', 'Moderate', '0.5', 'Moderate'],
+    ['2024-03-03', '0.5', 'Moderate', '0.7', 'High', '0.5', 'Moderate'],
+    ['2024-03-03', '0.5', 'Moderate', '0.7', 'High', '0.5', 'Moderate'],
+    ['2024-03-03', '0.5', 'High', '0.7', 'High', '0.5', 'Moderate'],
+    ['2024-03-03', '0.5', 'High', '0.7', 'High', '0.5', 'Moderate'],
+    // Add more data as needed
+];
+// Populate second batch table with dummy data
+foreach ($secondBatchData as $row) {
+    $fpdf->Cell(35, 10, $row[0], 1, 0, 'C');
+    $fpdf->Cell(25, 10, $row[1], 1, 0, 'C');
+    // $row[2]
+    // Check the value of Remarks and set background color
+    $color = '';
+    switch ($row[2]) {
+        case 'Normal':
+            $color = [144, 238, 144]; // Light green
+            break;
+        case 'Moderate':
+            $color = [220, 220, 30]; // Yellow
+            break;
+        case 'High':
+            $color = [255, 99, 71]; // Light red
+            break;
+        default:
+            $color = [255, 255, 255]; // White (default)
+            break;
+    }
+    $fpdf->SetFillColor($color[0], $color[1], $color[2]); // Set background color
+    $fpdf->Cell(27, 10, $row[2], 1, 0, 'C', true);
+    $fpdf->Cell(25, 10, $row[3], 1, 0, 'C');
+    // $row[4]
+    // Check the value of Remarks and set background color
+    $color = '';
+    switch ($row[4]) {
+        case 'Normal':
+            $color = [144, 238, 144]; // Light green
+            break;
+        case 'Moderate':
+            $color = [220, 220, 30]; // Yellow
+            break;
+        case 'High':
+            $color = [255, 99, 71]; // Light red
+            break;
+        default:
+            $color = [255, 255, 255]; // White (default)
+            break;
+    }
+    $fpdf->SetFillColor($color[0], $color[1], $color[2]); // Set background color
+    $fpdf->Cell(27, 10, $row[4], 1, 0, 'C', true);
+    $fpdf->Cell(25, 10, $row[5], 1, 0, 'C');
+    // $row[6]
+    // Check the value of Remarks and set background color
+    $color = '';
+    switch ($row[6]) {
+        case 'Normal':
+            $color = [144, 238, 144]; // Light green
+            break;
+        case 'Moderate':
+            $color = [220, 220, 30]; // Yellow
+            break;
+        case 'High':
+            $color = [255, 99, 71]; // Light red
+            break;
+        default:
+            $color = [255, 255, 255]; // White (default)
+            break;
+    }
+    $fpdf->SetFillColor($color[0], $color[1], $color[2]); // Set background color
+    $fpdf->Cell(27, 10, $row[6], 1, 1, 'C', true);
+}
         $fpdf->Output();
 
         

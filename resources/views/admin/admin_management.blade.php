@@ -161,7 +161,7 @@
             </div>
             
 
-            <div class="row d-flex justify-content-between">
+            <div class="d-flex justify-content-between">
                 
 
                 <!-- Update Device Button -->
