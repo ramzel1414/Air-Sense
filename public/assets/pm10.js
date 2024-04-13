@@ -2,18 +2,12 @@ $(function () {
     'use strict';
 
     var colors = {
-        primary: "#6571ff",
-        secondary: "#7987a1",
-        success: "#05a34a",
-        info: "#66d1d1",
-        warning: "#fbbc06",
-        danger: "#ff3366",
-        light: "#e9ecef",
-        dark: "#060c17",
-        muted: "#7987a1",
-        gridBorder: "rgba(77, 138, 240, .15)",
-        bodyColor: "#000",
-        cardBg: "#fff"
+        "Good (Green)": "#00B050",
+        "Moderate (Yellow)": "#FFFF00",
+        "Unhealthy for Sensitive Groups (Orange)": "#FF6600",
+        "Unhealthy (Red)": "#FF0000",
+        "Very Unhealthy (Purple)": "#7030A0",
+        "Hazardous (Maroon)": "#990033"
     };
 
     var fontFamily = "'Roboto', Helvetica, sans-serif";
@@ -90,8 +84,18 @@ $(function () {
                 curve: "smooth"
             },
             markers: {
-                size: 4
+                size: 4,
             },
+
+            tooltip: {
+                x: {
+                    show: false,
+                },
+                marker: {
+                    show: false,
+                },
+            }
+
         };
 
         var chart = new ApexCharts(document.querySelector("#pm10"), options);
@@ -117,7 +121,7 @@ $(function () {
                         return item.dateTime;
                     });
                     var newPm10 = data.map(function (item) {
-                        return item.pm10; // Changed from pm25 to pm10
+                        return item.pm10;
                     });
 
                     // Update chart with only the latest 15 data points
@@ -129,7 +133,7 @@ $(function () {
                     });
 
                     chart.updateSeries([{
-                        data: newPm10.slice(-15) // Changed from pm25 to pm10
+                        data: newPm10.slice(-15)
                     }]);
                 },
                 error: function (error) {
@@ -163,7 +167,7 @@ $(function () {
                 var averageData = calculateAverageByHour(data);
 
                 // Generate CSV content with classification
-                var csvContent = "DateTime,PM10 (ug/m3),Classification,Health Impact\n";
+                var csvContent = "Timestamp,PM10,Classification,Health Impact\n";
                 averageData.forEach(function (item) {
                     var classification = getClassification(item.avgPM10);
                     var healthImpact = getHealthImpact(classification);

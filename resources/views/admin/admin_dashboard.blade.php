@@ -76,10 +76,6 @@ License: For each use you must have a valid license purchased only from above li
 	<script src="{{ asset('../assets/js/template.js')}}"></script>
 	<!-- endinject -->
 
-	<!-- Custom js for this page -->
-  <script src="{{ asset('../assets/js/dashboard-light.js')}}"></script>					{{--JAVASCRIPT DATA OF MONITORING GRAPH --}}
-	<!-- End custom js for this page -->
-
     {{-- PM2.5 Chart--}}
   	<script src="{{ asset('../assets/pm25.js')}}"></script>
     {{-- PM10 Chart--}}
@@ -90,6 +86,12 @@ License: For each use you must have a valid license purchased only from above li
   	<script src="{{ asset('../assets/no2.js')}}"></script>
     {{-- O3 Chart--}}
   	<script src="{{ asset('../assets/o3.js')}}"></script>
+
+    {{-- PM2.5 Forecasting Chart--}}
+  	<script src="{{ asset('../assets/pm25f.js')}}"></script>
+    {{-- PM10 Forecasting Chart--}}
+  	<script src="{{ asset('../assets/pm10f.js')}}"></script>
+
 
 {{-- toaster for update notif --}}
  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
