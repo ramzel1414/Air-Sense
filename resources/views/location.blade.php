@@ -45,7 +45,7 @@
             <div class="d-flex justify-content-center">
                 <p class="mb-3" id="locationTitle">Device Locations</p>
             </div>
-            <div id="map" class="rounded-3" style="height: 500px"></div>
+            <div id="map" class="rounded-3" style="height: 700px"></div>
         </div>
     </div>
 
