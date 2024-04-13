@@ -46,9 +46,9 @@
         </div>
     </div>
     {{-- 2nd row orig --}}
-    <div class="row">
+    <div class="d-flex" >
         <div class="col-5 col-md-3 pe-0 grid-margin">
-            <div class="card">
+            <div class="card rounded">
                 <div class="card-body">
                     <h6 class="card-title mb-3 d-flex justify-content-start">Pollutant Description</h6>
                     <div class="nav nav-tabs nav-tabs-vertical" id="v-tab" role="tablist" aria-orientation="vertical">
@@ -61,7 +61,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-7 col-md-9 ps-0 grid-margin">
+        <div class="col-7 col-md-9 ps-0 grid-margin pol-desc">
           <div class="tab-content tab-content-vertical border p-3" id="v-tabContent">
             <div class="tab-pane fade show active mt-4" id="v-home" role="tabpanel" aria-labelledby="v-home-tab">
               <h6 class="mb-3">PM2.5</h6>

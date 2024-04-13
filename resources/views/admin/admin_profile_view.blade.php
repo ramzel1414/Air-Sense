@@ -56,54 +56,53 @@
           </div>
         </div>
       </div>
-      <!-- left wrapper end -->
+      <!-- right wrapper end -->
 
       <div class="col-md-8 col-xl-8 middle-wrapper">
-        <div class="row">
-                <div class="card">
-                  <div class="card-body">
-                    <h6 class="card-title">Update Admin Profile</h6>
-                    <form class="forms-sample" method="POST" action="{{ route('admin.profile.store')}}" enctype="multipart/form-data">
-                        @csrf
-                        <div class="mb-3">
-                            <label for="exampleInputUsername1" class="form-label">Username</label>
-                            <input type="text" class="form-control" autocomplete="off" name="username" value="{{$profileData->username}}">
-                        </div>
-                        <div class="mb-3">
-                            <label for="exampleInputUsername1" class="form-label">Name</label>
-                            <input type="text" class="form-control capitalize-first" autocomplete="off" name="name" value="{{$profileData->name}}">
-                        </div>
-                        <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">Email Address</label>
-                            <input type="email" class="form-control" name="email" value="{{$profileData->email}}">
-                        </div>
-                        <div class="mb-3">
-                            <label for="exampleInputUsername1" class="form-label">Phone</label>
-                            <input type="number" class="form-control capitalize-first" autocomplete="off" name="phone" value="{{$profileData->phone}}">
-                        </div>
-                        <div class="mb-3">
-                            <label for="exampleInputPassword1" class="form-label">Address</label>
-                            <input type="text" class="form-control" autocomplete="off" name="address" value="{{$profileData->address}}">
-                        </div>
-                        <div class="mb-3">
-                            <label for="exampleInputPassword1" class="form-label">Photo</label>
-                            <input id="image" type="file" class="form-control" autocomplete="off" name="photo">
-                        </div>
-
-                        <div class="mb-3">
-                          <label for="exampleInputPassword1" class="form-label"></label>
-                          <img id="showImage" class="wd-80 rounded-circle" src="{{ (!empty($profileData->photo)) ? url('upload/admin_images/'.$profileData->photo) : url('/upload/no_image.png')}}" alt="profile">
-                        </div>
-                        
-                        <button type="submit" class="btn btn-primary me-2">Save Changes</button>
-                    </form>
-    
+          <div class="card rounded">
+            <div class="card-body">
+              <h6 class="card-title">Update Admin Profile</h6>
+              <form class="forms-sample" method="POST" action="{{ route('admin.profile.store')}}" enctype="multipart/form-data">
+                  @csrf
+                  <div class="mb-3">
+                      <label for="exampleInputUsername1" class="form-label">Username</label>
+                      <input type="text" class="form-control" autocomplete="off" name="username" value="{{$profileData->username}}">
                   </div>
-                </div>
+                  <div class="mb-3">
+                      <label for="exampleInputUsername1" class="form-label">Name</label>
+                      <input type="text" class="form-control capitalize-first" autocomplete="off" name="name" value="{{$profileData->name}}">
+                  </div>
+                  <div class="mb-3">
+                      <label for="exampleInputEmail1" class="form-label">Email Address</label>
+                      <input type="email" class="form-control" name="email" value="{{$profileData->email}}">
+                  </div>
+                  <div class="mb-3">
+                      <label for="exampleInputUsername1" class="form-label">Phone</label>
+                      <input type="number" class="form-control capitalize-first" autocomplete="off" name="phone" value="{{$profileData->phone}}">
+                  </div>
+                  <div class="mb-3">
+                      <label for="exampleInputPassword1" class="form-label">Address</label>
+                      <input type="text" class="form-control" autocomplete="off" name="address" value="{{$profileData->address}}">
+                  </div>
+                  <div class="mb-3">
+                      <label for="exampleInputPassword1" class="form-label">Photo</label>
+                      <input id="image" type="file" class="form-control" autocomplete="off" name="photo">
+                  </div>
 
-        </div>
+                  <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label"></label>
+                    <img id="showImage" class="wd-80 rounded-circle" src="{{ (!empty($profileData->photo)) ? url('upload/admin_images/'.$profileData->photo) : url('/upload/no_image.png')}}" alt="profile">
+                  </div>
+                  
+                  <button type="submit" class="btn btn-primary me-2">Save Changes</button>
+              </form>
+
+            </div>
+          </div>
+
       </div>
     </div>
+  </div>
 
 </div>
 
