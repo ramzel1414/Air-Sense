@@ -321,13 +321,37 @@ class DeviceController extends Controller
         return redirect()->route('admin.management')->with('success', 'Device updated successfully!');
     }
 
-
-
     public function getDeviceCount()
     {
         $deviceCount = Device::count();
         return response()->json($deviceCount); // Return the count as JSON response
     }
 
+    public function getDeviceLocation()
+    {
+        $deviceLocations = Device::all(['deviceName', 'latitude', 'longitude']);
+        return response()->json($deviceLocations); // Return the count as JSON response
+    }
+
+    public function storeLocation(Request $request)
+    {
+        // Validate the incoming request data
+        $request->validate([
+            'deviceId' => 'required|exists:devices,id',
+            'latitude' => 'required',
+            'longitude' => 'required',
+        ]);
+
+        // Find the device by ID
+        $device = Device::findOrFail($request->input('deviceId'));
+
+        // Update latitude and longitude of the device
+        $device->update([
+            'latitude' => $request->input('latitude'),
+            'longitude' => $request->input('longitude'),
+        ]);
+
+        return redirect()->route('admin.management')->with('success', 'Location added successfully!');
+    }
 
 }

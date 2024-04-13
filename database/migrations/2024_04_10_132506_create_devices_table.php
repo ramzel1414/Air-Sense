@@ -13,8 +13,8 @@ class CreateDevicesTable extends Migration
             $table->string('deviceName');
             $table->integer('devicePort')->unique();
             $table->string('deviceSim')->unique();
-            $table->float('latitude')->nullable();
-            $table->float('longitude')->nullable();
+            $table->string('latitude')->nullable();
+            $table->string('longitude')->nullable();
             $table->timestamps();
         });
     }
