@@ -22544,6 +22544,15 @@ div.tox .tox-dialog__body {
   color: var(--bs-gray-100);
 }
 
+.user-header #toggle-btn {
+  color: #6571ff;
+}
+
+.user-header #toggle-btn:hover {
+  color: #3140E8;
+  background: transparent;
+}
+
 
 #toggle-air-logo {        
   cursor: pointer
@@ -22562,8 +22571,17 @@ div.tox .tox-dialog__body {
   color: var(--bs-body-color);
 }
 
-#airMonitoringChart {
+.user-header {
+  background: var(--custom-card-bg);
+  border-bottom: 1px solid var(--bs-border-color);
+}
 
+.user-body {
+  background: var(--bs-gray-100);
+}
+
+.pol-desc { /*pollutant description in about page*/
+  background: var(--custom-card-bg);
 }
 
 /* 

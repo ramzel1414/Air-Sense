@@ -47,13 +47,15 @@ License: For each use you must have a valid license purchased only from above li
 
   <link rel="shortcut icon" href="{{ asset('../assets/images/airsense.png') }}" />
 </head>
-<body>
-    <div class="col-12 mb-4 card p-2 rounded-2">
-        <div class="d-flex justify-content-between">
-            <p class="mb-2">Bukidnon State University (Main)</p>
-            <a href="{{ route('welcome') }}">Back to Welcome Page</a>
-        </div>
-        <img class="img-fluid rounded-3" src="{{ asset('../assets/images/location.png') }}" alt="">
-    </div>
+<body class="user-body">
+	@include('layouts.header');
+	<div class="page-content m-4">
+		<div class="col-12 mb-4 card p-2 rounded-2">
+			<div class="d-flex justify-content-center">
+				<p class="mb-3">Bukidnon State University (Main Campus)</p>
+			</div>
+			<img class="img-fluid rounded-3" src="{{ asset('../assets/images/location.png') }}" alt="">
+		</div>
+	</div>
 </body>
 </html>
