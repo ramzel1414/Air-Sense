@@ -142,7 +142,7 @@
     <div class="row d-flex justify-content-evenly">
         @foreach ($devices as $device)
         <div class="col-12 col-sm-5 mb-4">
-            <div class="card rounded mb-1">
+            <div class="card rounded mb-2">
                 <div class="card-body">
                     <div class="mb-2 lh-3">
                         <p class="card-title mb-0">Device Name: <span>{{ $device->deviceName }}</span></p>
@@ -159,17 +159,25 @@
                     </div>
                 </div>
             </div>
-            <!-- Delete Form -->
-            <form action="{{ route('admin.delete', $device->id) }}" method="POST" class="card rounded p-3">
-                @csrf
-                @method('DELETE')
-                <button type="submit" class="btn btn-danger col-6 mx-auto rounded-3">Delete</button>
-            </form>
-            <!-- Update Device Button -->
-            <div class="card rounded p-3">
-                <button type="button" class="btn btn-warning col-6 mx-auto rounded-3" data-bs-toggle="modal" data-bs-target="#updateDevice{{ $device->id }}">
-                    Update
-                </button>
+            
+
+            <div class="row d-flex justify-content-between">
+                
+
+                <!-- Update Device Button -->
+                <div class="col-6 card rounded p-3">
+                    <button type="button" class="btn btn-secondary rounded-3" data-bs-toggle="modal" data-bs-target="#updateDevice{{ $device->id }}">
+                        Update
+                    </button>
+                </div>
+
+                <!-- Delete Form -->
+                <form action="{{ route('admin.delete', $device->id) }}" method="POST" class="col-6 card rounded p-3">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-secondary rounded-3">Delete</button>
+                </form>
+
             </div>
         </div>
         @endforeach
