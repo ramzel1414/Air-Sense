@@ -204,21 +204,19 @@ $(function () {
             var time = dateTimeParts[1];
             var hour = time.split(':')[0];
 
-            var dateTime = date + ' ' + time;
-
-            if (!hourlyAverages[hour]) {
-                hourlyAverages[hour] = { dateTime: dateTime, sumCO: 0, count: 0 };
+            var hourDateTime = date + ' ' + hour + ':00:00';
+            if (!hourlyAverages[hourDateTime]) {
+                hourlyAverages[hourDateTime] = { sumCO: 0, count: 0 };
             }
-            hourlyAverages[hour].sumCO += item.co;
-            hourlyAverages[hour].count++;
+            hourlyAverages[hourDateTime].sumCO += item.co;
+            hourlyAverages[hourDateTime].count++;
         });
 
         var result = [];
-        Object.keys(hourlyAverages).forEach(function (hour) {
-            var avgCO = hourlyAverages[hour].sumCO / hourlyAverages[hour].count;
-            result.push({ dateTime: hourlyAverages[hour].dateTime, avgCO: avgCO });
+        Object.keys(hourlyAverages).forEach(function (hourDateTime) {
+            var avgCO = hourlyAverages[hourDateTime].sumCO / hourlyAverages[hourDateTime].count;
+            result.push({ dateTime: hourDateTime, avgCO: avgCO });
         });
-
         return result;
     }
 

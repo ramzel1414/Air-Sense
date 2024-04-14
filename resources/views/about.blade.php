@@ -155,16 +155,17 @@
                             <table class="table classification">
                                 <thead>
                                     <tr>
-                                        <th rowspan="3">CATEGORY</th>
-                                        <th rowspan="3">COLOR</th>
-                                        <th colspan="3">BREAKPOINTS</th>
-                                        <th rowspan="3">CAUTIONARY STATEMENTS</th>
+                                        <th rowspan="4">CATEGORY</th>
+                                        <th rowspan="4">COLOR</th>
+                                        <th colspan="4">BREAKPOINTS</th>
+                                        <th rowspan="4">CAUTIONARY STATEMENTS</th>
 
                                     </tr>
                                     <tr>
                                         <th>PM<sub>10</sub> (ug/m<sup>3</sup>)</th>
                                         <th>PM<sub>2.5</sub> (ug/m<sup>3</sup>)</th>
                                         <th>CO (ppm)</th>
+                                        <th>NO2 (ppm)</th>
 
                                     </tr>
                                 </thead>
@@ -175,7 +176,7 @@
                                         <td>0 - 54</td>
                                         <td>0 - 25</td>
                                         <td>0 - 25</td>
-
+                                        <td>0 - 0.05</td>
                                         <td>No</td>
                                     </tr>
                                     <tr>
@@ -184,7 +185,7 @@
                                         <td>55 - 154</td>
                                         <td>25.1 - 35.0</td>
                                         <td>25 - 50</td>
-
+                                        <td>0.06 - 0.10</td>
                                         <td>No</td>
                                     </tr>
                                     <tr>
@@ -193,6 +194,7 @@
                                         <td>155 - 254</td>
                                         <td>35.1 - 45.0</td>
                                         <td>51 - 69</td>
+                                        <td>0.11 - 0.36</td>
                                         <td class="text-wrap text-center">People with respiratory disease, such as asthma, should limit their outdoor exertion.</td>
                                     </tr>
                                     <tr>
@@ -201,7 +203,7 @@
                                         <td>255 - 354</td>
                                         <td>45.1 - 55</td>
                                         <td>70 - 150</td>
-
+                                        <td>0.37 - 0.65</td>
                                         <td class="text-wrap text-center">Pedestrians should avoid heavy traffic areas. People with respiratory disease such as asthma should stay indoors and rest as much as possible. Unnecessary trips should be postponed. People should voluntarily restrict the use of vehicles</td>
                                     </tr>
                                     <tr>
@@ -210,6 +212,7 @@
                                         <td>355 - 424</td>
                                         <td>55.1 - 90</td>
                                         <td>151 - 400</td>
+                                        <td>0.66 - 1.24</td>
 
                                         <td class="text-wrap text-center">Pedestrians should avoid heavy traffic areas. People with respiratory disease such as asthma should stay indoors and rest as much as possible. Unnecessary trips should be postponed. Motor vehicles use may be restricted. Industrial activities may be curtailed.</td>
                                     </tr>
@@ -219,6 +222,7 @@
                                         <td>425 - 504</td>
                                         <td>Above 91</td>
                                         <td>Above 401</td>
+                                        <td>Above 1.24</td>
 
                                         <td class="text-wrap text-center">Everyone should remain indoors. (keeping windows and doors closed unless heat stress is possible). Motor vehicles should be prohibited except for emergency situations. Industrial activities, except that which is vital for public safety should and health should be curtailed.</td>
                                     </tr>

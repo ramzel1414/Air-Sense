@@ -36,7 +36,6 @@ class PdfReport extends FPDF
         $this->Cell(0, 10, 'Page '.$this->PageNo(), 0, 0, 'R');
     }
 
-
         //Cell with horizontal scaling if text is too wide
     function CellFit($w, $h=0, $txt='', $border=0, $ln=0, $align='', $fill=false, $link='', $scale=false, $force=true)
     {
@@ -101,5 +100,4 @@ class PdfReport extends FPDF
             //Same as calling CellFit directly
             $this->CellFit($w,$h,$txt,$border,$ln,$align,$fill,$link,false,true);
         }
-
 }
