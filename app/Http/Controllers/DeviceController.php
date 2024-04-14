@@ -10,7 +10,7 @@ class DeviceController extends Controller
 {
     public function store(Request $request)
     {
-
+        
         // Check if devicePort or deviceSim already exists
         $existingDevice = Device::where('devicePort', $request->input('devicePort'))
                                 ->orWhere('deviceSim', $request->input('deviceSim'))
@@ -18,22 +18,26 @@ class DeviceController extends Controller
 
         if ($existingDevice) {
             // Redirect back with error message if devicePort or deviceSim already exists
-            return redirect()->route('admin.management')->with('error', 'Device Port or SIM # already exists.');
+            return redirect()->route('admin.management')->with(array ('message' => 'Device port or sim # already exist',
+             'alert-type' => 'error'));
         }
 
         // Check if devicePort is numeric
         if (!is_numeric($request->input('devicePort'))) {
-            return redirect()->route('admin.management')->with('error', 'Device Port must be a valid number.');
+            return redirect()->route('admin.management')->with(array ('message' => 'Device Port must be a valid number.',
+            'alert-type' => 'error'));
         }
-
+        
         // Check if the existing deviceSim does not have exactly 12 characters
         if (strlen($request->input('deviceSim')) !== 12) {
-            return redirect()->route('admin.management')->with('error', 'Device SIM # must be exactly 12 characters long.');
+            return redirect()->route('admin.management')->with(array ('message' => 'Device SIM # must be exactly 12 characters long.',
+            'alert-type' => 'error'));
         }
 
         // Check if deviceSim is numeric
         if (!is_numeric($request->input('deviceSim'))) {
-            return redirect()->route('admin.management')->with('error', 'Device SIM # must be a valid number.');
+            return redirect()->route('admin.management')->with(array ('message' => 'Device SIM # must be a valid number.',
+            'alert-type' => 'error'));
         }
 
         // Validate the incoming request data
@@ -141,7 +145,9 @@ class DeviceController extends Controller
         file_put_contents($jsFilePath, $jsContent);
 
         // Redirect back to admin management page with success message
-        return redirect()->route('admin.management')->with('success', 'Device created successfully!');
+        return redirect()->route('admin.management')->with(array ('message' => 'Device Created Successfully!',
+            'alert-type' => 'success',
+        ));
     }
 
 
@@ -162,13 +168,15 @@ class DeviceController extends Controller
 
         // Check if the deviceSim matches the restricted value
         if ($device->deviceSim === '639537399626') {
-            return redirect()->route('admin.management')->with('error', 'Cannot delete this device as it is being used.');
+            return redirect()->route('admin.management')->with(array ('message' => 'Cannot delete this device, as it is being used',
+            'alert-type' => 'error'));
         }
 
         // Check if any other device is using the same devicePort
         $existingDevice = Device::where('devicePort', $device->devicePort)->where('id', '!=', $device->id)->first();
         if ($existingDevice) {
-            return redirect()->route('admin.management')->with('error', 'Cannot delete this device. Another device is using the same COMPORT.');
+            return redirect()->route('admin.management')->with(array ('message' => 'Cannot delete this device. Another device is using the same COMPORT.',
+            'alert-type' => 'error'));
         }
 
         // Delete the associated JavaScript file
@@ -182,7 +190,8 @@ class DeviceController extends Controller
         // Proceed with deleting the device
         $device->delete();
 
-        return redirect()->route('admin.management')->with('success', 'Device deleted successfully!');
+        return redirect()->route('admin.management')->with(array ('message' => 'Device deleted Successfully!',
+        'alert-type' => 'success'));
     }
 
     public function update(Request $request, $id)
@@ -200,28 +209,33 @@ class DeviceController extends Controller
 
         if ($existingDevice) {
             // Redirect back with error message if devicePort or deviceSim already exists for another device
-            return redirect()->route('admin.management')->with('error', 'Device Port or SIM # already exists for another device.');
+            return redirect()->route('admin.management')->with(array ('message' => 'Device Port or SIM # already exists for another device.',
+            'alert-type' => 'error'));
         }
 
         // Check if the existing deviceSim does not have exactly 12 characters
         if (strlen($request->input('deviceSim')) !== 12) {
-            return redirect()->route('admin.management')->with('error', 'Device SIM # must be exactly 12 characters long.');
+            return redirect()->route('admin.management')->with(array ('message' => 'Device SIM # must be exactly 12 characters long.',
+            'alert-type' => 'error'));
         }
 
         // Check if the existing deviceSim matches the restricted value
         if ($device->deviceSim === '639537399626') {
             // If the deviceSim matches the restricted value, prevent updating deviceSim
-            return redirect()->route('admin.management')->with('error', 'Cannot update this device as it is being used.');
+            return redirect()->route('admin.management')->with(array ('message' => 'Cannot update this device as it is being used.',
+            'alert-type' => 'error'));
         }
-
+        
         // Validate devicePort to ensure it is a number
         if (!is_numeric($request->input('devicePort'))) {
-            return redirect()->route('admin.management')->with('error', 'Device Port must be a valid number.');
+            return redirect()->route('admin.management')->with(array ('message' => 'Device Port must be a valid number.',
+            'alert-type' => 'error'));
         }
-
+        
         // Validate deviceSim to ensure it is a number
         if (!is_numeric($request->input('deviceSim'))) {
-            return redirect()->route('admin.management')->with('error', 'Device SIM # must be a valid number.');
+            return redirect()->route('admin.management')->with(array ('message' => 'Device SIM # must be a valid number.',
+            'alert-type' => 'error'));
         }
 
 
@@ -318,7 +332,8 @@ class DeviceController extends Controller
         File::put($newJsFilePath, $newJsContent);
 
         // Redirect back to admin management page with success message
-        return redirect()->route('admin.management')->with('success', 'Device updated successfully!');
+        return redirect()->route('admin.management')->with(array ('message' => 'Device updated successfully!',
+        'alert-type' => 'success'));
     }
 
     public function getDeviceCount()
@@ -351,7 +366,8 @@ class DeviceController extends Controller
             'longitude' => $request->input('longitude'),
         ]);
 
-        return redirect()->route('admin.management')->with('success', 'Location added successfully!');
+        return redirect()->route('admin.management')->with(array ('message' => 'Location added successfully!',
+        'alert-type' => 'success'));
     }
 
 }
