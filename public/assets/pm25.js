@@ -211,21 +211,19 @@ $(function () {
             var time = dateTimeParts[1];
             var hour = time.split(':')[0];
 
-            var dateTime = date + ' ' + time;
-
-            if (!hourlyAverages[hour]) {
-                hourlyAverages[hour] = { dateTime: dateTime, sumPM25: 0, count: 0 };
+            var hourDateTime = date + ' ' + hour + ':00:00';
+            if (!hourlyAverages[hourDateTime]) {
+                hourlyAverages[hourDateTime] = { sumPM25: 0, count: 0 };
             }
-            hourlyAverages[hour].sumPM25 += item.pm25;
-            hourlyAverages[hour].count++;
+            hourlyAverages[hourDateTime].sumPM25 += item.pm25;
+            hourlyAverages[hourDateTime].count++;
         });
 
         var result = [];
-        Object.keys(hourlyAverages).forEach(function (hour) {
-            var avgPM25 = hourlyAverages[hour].sumPM25 / hourlyAverages[hour].count;
-            result.push({ dateTime: hourlyAverages[hour].dateTime, avgPM25: avgPM25 });
+        Object.keys(hourlyAverages).forEach(function (hourDateTime) {
+            var avgPM25 = hourlyAverages[hourDateTime].sumPM25 / hourlyAverages[hourDateTime].count;
+            result.push({ dateTime: hourDateTime, avgPM25: avgPM25 });
         });
-
         return result;
     }
 

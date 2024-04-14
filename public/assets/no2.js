@@ -175,15 +175,13 @@ $(function () {
 
                 // Generate CSV content with classification
                 var csvContent = "DateTime,NO2 (ppm),Classification,Health Impact\n";
-                // var csvContent = "DateTime,NO2 (ppm)\n";
                 averageData.forEach(function (item) {
                     var classification = getClassification(item.avgNO2);
                     var healthImpact = getHealthImpact(classification);
 
-                    var avgNO2Formatted = item.avgNO2.toFixed(2); // Format average NO2 to 2 decimal places
+                    var avgNO2Formatted = item.avgNO2.toFixed(2);
 
                     csvContent += item.dateTime + "," + avgNO2Formatted + "," + classification + "," + healthImpact + "\n";
-                    // csvContent += item.dateTime + "," + avgNO2Formatted + "\n";
 
                 });
 
@@ -206,37 +204,26 @@ $(function () {
 
     // Function to calculate average NO2 values by hour
     function calculateAverageByHour(data) {
-        // Initialize an object to store hourly sums and counts
         var hourlyAverages = {};
-
-        // Iterate through each data item
         data.forEach(function (item) {
-            // Extract date and time components
             var dateTimeParts = item.dateTime.split(' ');
             var date = dateTimeParts[0];
             var time = dateTimeParts[1];
             var hour = time.split(':')[0];
 
-            // Construct a dateTime string for the current hour
-            var dateTime = date + ' ' + hour + ':00:00'; // Round down to the nearest hour
-
-            // Initialize an entry for the hour if it doesn't exist
-            if (!hourlyAverages[dateTime]) {
-                hourlyAverages[dateTime] = { sumNO2: 0, count: 0 };
+            var hourDateTime = date + ' ' + hour + ':00:00';
+            if (!hourlyAverages[hourDateTime]) {
+                hourlyAverages[hourDateTime] = { sumNO2: 0, count: 0 };
             }
-
-            // Accumulate sum and count for the current hour
-            hourlyAverages[dateTime].sumNO2 += item.no2;
-            hourlyAverages[dateTime].count++;
+            hourlyAverages[hourDateTime].sumNO2 += item.no2;
+            hourlyAverages[hourDateTime].count++;
         });
 
-        // Calculate average NO2 for each hour
         var result = [];
-        Object.keys(hourlyAverages).forEach(function (dateTime) {
-            var avgNO2 = hourlyAverages[dateTime].sumNO2 / hourlyAverages[dateTime].count;
-            result.push({ dateTime: dateTime, avgNO2: avgNO2 });
+        Object.keys(hourlyAverages).forEach(function (hourDateTime) {
+            var avgNO2 = hourlyAverages[hourDateTime].sumNO2 / hourlyAverages[hourDateTime].count;
+            result.push({ dateTime: hourDateTime, avgNO2: avgNO2 });
         });
-
         return result;
     }
 

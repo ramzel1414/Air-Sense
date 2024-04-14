@@ -142,7 +142,10 @@ class PdfController extends Controller
         }
 
 
-        $fpdf->Output();
+    // Get today's date
+    $today = date('Y'); // Get current year only (YYYY format)
+    // $nextYear = $today + 1; // Add 1 to get next year
+    $fpdf->Output('D', "AirSense $today Daily_Assessment.pdf");
     exit;
     }
 
@@ -248,19 +251,19 @@ class PdfController extends Controller
         // Define color mappings based on classification
         switch ($classification) {
             case "Good":
-                return [0, 128, 0];
+                return [111, 241, 117];
             case "Moderate":
-                return [255, 255, 0];
+                return [255, 255, 77];
             case "Acutely Unhealthy":
-                return [255, 165, 0];
+                return [250, 123, 91];
             case "Unhealthy":
-                return [255, 0, 0];
+                return [253, 93, 114];
             case "Very Unhealthy":
-                return [148, 0, 211];
+                return [127, 88, 151];
             case "Hazardous":
                 return [128, 0, 0];
             default:
-                return [153, 152, 145];
+                return [142, 86, 81];
         }
     }
 
