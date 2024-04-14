@@ -2,18 +2,12 @@ $(function () {
     'use strict';
 
     var colors = {
-        primary: "#6571ff",
-        secondary: "#7987a1",
-        success: "#05a34a",
-        info: "#66d1d1",
-        warning: "#fbbc06",
-        danger: "#ff3366",
-        light: "#e9ecef",
-        dark: "#060c17",
-        muted: "#7987a1",
-        gridBorder: "rgba(77, 138, 240, .15)",
-        bodyColor: "#000",
-        cardBg: "#fff"
+        "Good (Green)": "#00B050",
+        "Moderate (Yellow)": "#FFFF00",
+        "Unhealthy for Sensitive Groups (Orange)": "#FF6600",
+        "Unhealthy (Red)": "#FF0000",
+        "Very Unhealthy (Purple)": "#7030A0",
+        "Hazardous (Maroon)": "#990033"
     };
 
     var fontFamily = "'Roboto', Helvetica, sans-serif";
@@ -90,8 +84,17 @@ $(function () {
                 curve: "smooth"
             },
             markers: {
-                size: 4
+                size: 4,
             },
+
+            tooltip: {
+                x: {
+                    show: false,
+                },
+                marker: {
+                    show: false,
+                },
+            }
         };
 
         var chart = new ApexCharts(document.querySelector("#co"), options);
@@ -201,21 +204,19 @@ $(function () {
             var time = dateTimeParts[1];
             var hour = time.split(':')[0];
 
-            var dateTime = date + ' ' + time;
-
-            if (!hourlyAverages[hour]) {
-                hourlyAverages[hour] = { dateTime: dateTime, sumCO: 0, count: 0 };
+            var hourDateTime = date + ' ' + hour + ':00:00';
+            if (!hourlyAverages[hourDateTime]) {
+                hourlyAverages[hourDateTime] = { sumCO: 0, count: 0 };
             }
-            hourlyAverages[hour].sumCO += item.co;
-            hourlyAverages[hour].count++;
+            hourlyAverages[hourDateTime].sumCO += item.co;
+            hourlyAverages[hourDateTime].count++;
         });
 
         var result = [];
-        Object.keys(hourlyAverages).forEach(function (hour) {
-            var avgCO = hourlyAverages[hour].sumCO / hourlyAverages[hour].count;
-            result.push({ dateTime: hourlyAverages[hour].dateTime, avgCO: avgCO });
+        Object.keys(hourlyAverages).forEach(function (hourDateTime) {
+            var avgCO = hourlyAverages[hourDateTime].sumCO / hourlyAverages[hourDateTime].count;
+            result.push({ dateTime: hourDateTime, avgCO: avgCO });
         });
-
         return result;
     }
 

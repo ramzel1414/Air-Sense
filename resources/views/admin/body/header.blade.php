@@ -3,21 +3,11 @@
         <i data-feather="menu"></i>
     </a>
     <div class="navbar-content">
-        <form class="search-form">
-            <div class="input-group">
-                <div class="input-group-text bg-transparent">
-                    <i data-feather="search"></i>
-                </div>
-                <input type="text" class="form-control bg-transparent" id="navbarForm" placeholder="Search here...">
-            </div>
-        </form>
         <ul class="navbar-nav">
-
 
             <li class="nav-item">
                 <div id="toggle-btn" class="fas fa-sun"></div>
             </li>
-
 
             @php
 
@@ -25,8 +15,6 @@
                 $profileData = App\Models\User::find($id);
 
             @endphp
-
-
 
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

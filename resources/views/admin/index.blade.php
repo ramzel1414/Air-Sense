@@ -43,20 +43,31 @@
           <h3 class="mb-3">Overview</h3>
 
           <div class="d-flex align-items-center flex-wrap text-nowrap">
-            <button type="button" class="btn btn-outline-primary btn-icon-text me-2 mb-2 mb-md-0">
-              <i class="btn-icon-prepend" data-feather="printer"></i>
-              Print
-            </button>
-            <button type="button" class="btn btn-primary btn-icon-text mb-2 mb-md-0">
-              <i class="btn-icon-prepend" data-feather="download-cloud"></i>
-              Download Report
-            </button>
+            <a href="{{ route('pdf.download') }}" class="btn btn-primary btn-icon-text mb-2 mb-md-0">
+            <i class="btn-icon-prepend" data-feather="download-cloud"></i>
+            Report
+            </a>
           </div>
         </div>
 
+        {{-- Tab --}}
+        <ul class="nav nav-tabs nav-tabs-line" id="lineTab" role="tablist" style="width: max-content; border-radius: 1rem;">
+          <li class="nav-item">
+            <a class="nav-link active" id="pm25-line-tab" data-bs-toggle="tab" href="#pm25tab" role="tab" aria-controls="pm25tab" aria-selected="true">PM2.5</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="pm10-line-tab" data-bs-toggle="tab" href="#pm10tab" role="tab" aria-controls="pm10tab" aria-selected="false">PM10</a>
+          </li>
+        </ul>
+        
+        {{-- Tab Content --}}
+        <div class="tab-content mt-3" id="lineTabContent">
+          {{-- PM2.5 --}}
+          @include('charts.forecastingpm25')
+          {{-- PM10 --}}
+          @include('charts.forecastingpm10')
+        </div>
 
-        <!-- row -->
-        @include('charts.forecasting')
 
         <!-- row -->
         <div class="row">
@@ -73,8 +84,6 @@
               @include('charts.monitoring.no2')
 
               @include('charts.monitoring.o3')
-
-              @include('charts.monitoring.avg')
 
             </div>
           </div>

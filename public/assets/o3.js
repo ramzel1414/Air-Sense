@@ -96,6 +96,15 @@ $(function () {
             markers: {
                 size: 4
             },
+
+            tooltip: {
+                x: {
+                    show: false,
+                },
+                marker: {
+                    show: false,
+                },
+            }
         };
 
         var chart = new ApexCharts(document.querySelector("#o3"), options);
