@@ -89,7 +89,7 @@
                             fillOpacity: 0.35,
                             map: map,
                             center: marker.getPosition(),
-                            radius: 20, // 30 meters radius
+                            radius: 20, // 20 meters radius
                         });
                     });
                 })
