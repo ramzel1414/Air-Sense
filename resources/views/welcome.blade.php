@@ -4,7 +4,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
 
-      <title>AirSense</title>
+      <title>AirSense - Dashboard</title>
 
       <!-- Change the href attribute to the path of your icon file -->
       <link rel="icon" href="{{ asset('airsense.png') }}" type="image/png">
@@ -37,14 +37,28 @@
 
   @include('layouts.header');
 
-    <div class="page-content m-4">
+    <div class="page-content mx-4">
 
     <h3 class="mb-2">AirSense</h3>
 
-    <!-- row -->
-    @include('charts.forecastingpm25')
+        {{-- Tab --}}
+        <ul class="nav nav-tabs nav-tabs-line" id="lineTab" role="tablist" style="width: max-content; border-radius: 1rem;">
+          <li class="nav-item">
+            <a class="nav-link active" id="pm25-line-tab" data-bs-toggle="tab" href="#pm25tab" role="tab" aria-controls="pm25tab" aria-selected="true">PM2.5</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="pm10-line-tab" data-bs-toggle="tab" href="#pm10tab" role="tab" aria-controls="pm10tab" aria-selected="false">PM10</a>
+          </li>
+        </ul>
+        
+        {{-- Tab Content --}}
+        <div class="tab-content mt-3" id="lineTabContent">
+          {{-- PM2.5 --}}
+          @include('charts.forecastingpm25')
+          {{-- PM10 --}}
+          @include('charts.forecastingpm10')
+        </div>
 
-    @include('charts.forecastingpm10')
 
 
 

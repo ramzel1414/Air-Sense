@@ -54,11 +54,23 @@
           </div>
         </div>
 
-
-        <!-- row -->
-        @include('charts.forecastingpm25')
-
-        @include('charts.forecastingpm10')
+        {{-- Tab --}}
+        <ul class="nav nav-tabs nav-tabs-line" id="lineTab" role="tablist" style="width: max-content; border-radius: 1rem;">
+          <li class="nav-item">
+            <a class="nav-link active" id="pm25-line-tab" data-bs-toggle="tab" href="#pm25tab" role="tab" aria-controls="pm25tab" aria-selected="true">PM2.5</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="pm10-line-tab" data-bs-toggle="tab" href="#pm10tab" role="tab" aria-controls="pm10tab" aria-selected="false">PM10</a>
+          </li>
+        </ul>
+        
+        {{-- Tab Content --}}
+        <div class="tab-content mt-3" id="lineTabContent">
+          {{-- PM2.5 --}}
+          @include('charts.forecastingpm25')
+          {{-- PM10 --}}
+          @include('charts.forecastingpm10')
+        </div>
 
 
         <!-- row -->

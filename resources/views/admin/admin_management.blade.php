@@ -19,7 +19,7 @@
     @endif
 
     <div class="row">
-        <div class="grid-margin d-flex justify-content-evenly py-3 rounded-3 custom-background">
+        <div class="grid-margin d-flex justify-content-evenly py-3 rounded-3 custom-background gap-5">
 
             <!-- Button trigger modal -->
             <button type="button" class="btn btn-primary col-4" data-bs-toggle="modal" data-bs-target="#addLocation">
@@ -174,23 +174,22 @@
             </div>
 
 
-            <div class="d-flex justify-content-between">
-                
-
-                <!-- Update Device Button -->
-                <div class="col-6 card rounded p-3">
-                    <button type="button" class="btn btn-secondary rounded-3" data-bs-toggle="modal" data-bs-target="#updateDevice{{ $device->id }}">
-                        Update
-                    </button>
+            <div class="card">
+                <div class="card-body d-flex justify-content-center gap-4">
+                    
+                        <!-- Update Device Button -->
+                        <div class="col-6 rounded">
+                            <button type="button" class="btn btn-secondary rounded-3 w-100" data-bs-toggle="modal" data-bs-target="#updateDevice{{ $device->id }}">
+                                Update
+                            </button>
+                        </div>
+                        <!-- Delete Form -->
+                        <form action="{{ route('admin.delete', $device->id) }}" method="POST" class="col-6 rounded">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-secondary rounded-3 w-100">Delete</button>
+                        </form>
                 </div>
-
-                <!-- Delete Form -->
-                <form action="{{ route('admin.delete', $device->id) }}" method="POST" class="col-6 card rounded p-3">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="btn btn-secondary rounded-3">Delete</button>
-                </form>
-
             </div>
         </div>
         @endforeach

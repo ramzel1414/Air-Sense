@@ -25,7 +25,6 @@
               </div>
             </div>
             
-
             <div class="mt-3">
               <label class="tx-11 fw-bolder mb-0 text-uppercase">Name:</label>
               <p class="text-muted capitalize-first">{{ $profileData->name }}</p>
@@ -42,23 +41,12 @@
               <label class="tx-11 fw-bolder mb-0 text-uppercase">Address:</label>
               <p class="text-muted">{{ $profileData->address }}</p>
             </div>
-            <div class="mt-3 d-flex social-links">
-              <a href="javascript:;" class="btn btn-icon border btn-xs me-2">
-                <i data-feather="github"></i>
-              </a>
-              <a href="javascript:;" class="btn btn-icon border btn-xs me-2">
-                <i data-feather="twitter"></i>
-              </a>
-              <a href="javascript:;" class="btn btn-icon border btn-xs me-2">
-                <i data-feather="instagram"></i>
-              </a>
-            </div>
           </div>
         </div>
       </div>
 
       <!-- right wrapper end -->
-      <div class="col-md-8 col-xl-8 middle-wrapper">
+      <div class="col-md-8 col-xl-8 right-wrapper">
         <div class="card rounded">
           <div class="card-body">
             <h6 class="card-title">Admin Change Password</h6>
