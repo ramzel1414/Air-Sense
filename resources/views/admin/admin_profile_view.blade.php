@@ -42,24 +42,13 @@
               <label class="tx-11 fw-bolder mb-0 text-uppercase">Address:</label>
               <p class="text-muted">{{ $profileData->address }}</p>
             </div>
-            <div class="mt-3 d-flex social-links">
-              <a href="javascript:;" class="btn btn-icon border btn-xs me-2">
-                <i data-feather="github"></i>
-              </a>
-              <a href="javascript:;" class="btn btn-icon border btn-xs me-2">
-                <i data-feather="twitter"></i>
-              </a>
-              <a href="javascript:;" class="btn btn-icon border btn-xs me-2">
-                <i data-feather="instagram"></i>
-              </a>
-            </div>
           </div>
         </div>
       </div>
-      <!-- right wrapper end -->
+      <!-- left wrapper end -->
 
-      <div class="col-md-8 col-xl-8 middle-wrapper">
-          <div class="card rounded">
+      <div class="col-md-8 col-xl-8 right-wrapper">
+          <div class="card">
             <div class="card-body">
               <h6 class="card-title">Update Admin Profile</h6>
               <form class="forms-sample" method="POST" action="{{ route('admin.profile.store')}}" enctype="multipart/form-data">
@@ -102,7 +91,6 @@
 
       </div>
     </div>
-  </div>
 
 </div>
 

@@ -61,12 +61,9 @@
 
     <body class="user-body">
 
+    @include('layouts.header');
 
-        @include('layouts.header');
-
-
-
-    <div class="page-content m-4">
+    <div class="page-content mx-4">
 
         <h3 class="mb-2">About Us</h3>
         {{-- 1st row --}}
