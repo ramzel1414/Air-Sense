@@ -8,7 +8,7 @@
 	<meta name="author" content="NobleUI">
 	<meta name="keywords" content="nobleui, bootstrap, bootstrap 5, bootstrap5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
 
-	<title>Admin - AirSense</title>
+	<title>AirSense - Location</title>
 
 	{{-- fontawesome --}}
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
@@ -40,12 +40,17 @@
 <body class="user-body">
 	@include('layouts.header');
 
-    <div class="page-content m-4">
-        <div class="col-12 mb-4 card p-2 rounded-2">
-            <div class="d-flex justify-content-center">
-                <p class="mb-3" id="locationTitle">Device Locations</p>
+    <div class="page-content mx-4">
+        <h3 class="mb-2">Device Location</h3>
+        <div class="card">
+            <div class="card-body">
+                <div class="col-12 rounded-2">
+                    <div class="d-flex justify-content-center">
+                        <p class="mb-3" id="locationTitle">Device Locations</p>
+                    </div>
+                    <div id="map" class="rounded-3" style="height: 700px"></div>
+                </div>
             </div>
-            <div id="map" class="rounded-3" style="height: 700px"></div>
         </div>
     </div>
 
@@ -105,7 +110,9 @@
         // Initialize the map
         window.initMap = initMap;
     </script>
+
+<!-- Include the Google Maps API script with the callback to initialize the maps -->
+<script async defer src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAP_API') }}&callback=initMap"></script>
+
 </body>
-    <!-- Include the Google Maps API script with the callback to initialize the maps -->
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAP_API') }}&callback=initMap"></script>
 </html>
