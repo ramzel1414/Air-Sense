@@ -90,7 +90,7 @@ Route::middleware(['auth', 'role:admin'])->group(function() {
 
 
 
-    Route::get('/pdf', [ PdfController::class, 'index' ]);
+    Route::get('/pdf', [ PdfController::class, 'index' ])->name('pdf.download');
 
 
     //Air Quality
