@@ -1,5 +1,5 @@
-<div class="tab-pane fade show active" id="pm25tab" role="tabpanel" aria-labelledby="pm25-line-tab">
-  <div class="row">
+{{-- <div class="tab-pane fade show active" id="pm25tab" role="tabpanel" aria-labelledby="pm25-line-tab"> --}}
+  <div class="row grid-margin">
     <div class="col-xl-12">
       <div class="card">
         <div class="card-body">
@@ -19,4 +19,4 @@
       </div>
     </div>
   </div>
-</div>
+{{-- </div> --}}

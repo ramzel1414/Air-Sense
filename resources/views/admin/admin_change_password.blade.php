@@ -21,7 +21,7 @@
             <div class="mb-2">
               <!-- Name row -->
               <div class="d-flex align-items-center justify-content-center">
-                <span class="h4 text-light capitalize-first text-center">{{ $profileData->name }}</span>
+                <span class="h4 capitalize-first text-center">{{ $profileData->name }}</span>
               </div>
             </div>
             
