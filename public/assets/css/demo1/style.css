@@ -21210,6 +21210,7 @@ div.tox .btn-group-lg > .btn-icon-text.tox-button .btn-icon-append,
 
 .nav.nav-tabs .nav-item  {       
   border: 1px solid #6571ff;
+  border-radius: 5px;
 
 }
 

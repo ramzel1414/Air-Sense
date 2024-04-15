@@ -1,4 +1,4 @@
-<div class="tab-pane fade" id="pm10tab" role="tabpanel" aria-labelledby="pm10-line-tab">
+{{-- <div class="tab-pane fade" id="pm10tab" role="tabpanel" aria-labelledby="pm10-line-tab"> --}}
   <div class="row">
     <div class="col-xl-12">
       <div class="card">
@@ -19,4 +19,4 @@
       </div>
     </div>
   </div>
-</div>
+{{-- </div> --}}
