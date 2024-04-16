@@ -32,13 +32,36 @@ class PdfController extends Controller
         $formattedMinDate = Carbon::parse($minDate)->format('F d, Y');
 
 
+                
+
         $fpdf = new PdfReport('P','mm','A4');
         $fpdf->AddPage();
-        $fpdf->SetFont('Arial', 'B', 10);
-        $fpdf->Ln(10);
-        $fpdf->Cell(0, 0, 'CY 2024-2025 Assessment Report from AirSense IoT Monitoring Device', 0, 1, 'C');
-        $fpdf->Cell(0, 10, 'PM2.5, PM10, O3, CO & NO2 Ambient Air Quality Monitoring Station', 0, 1, 'C');
 
+
+        // front page
+        $fpdf->Image('airsense-prot.png', 15, 50, 180);          //x, y, size
+        
+        // Draw a white box inside the image
+        $boxWidth = 130;
+        $boxHeight = 50;
+        $boxX = 40;
+        $boxY = 210;
+        $fpdf->SetFillColor(255, 255, 255); // White color
+        $fpdf->Rect($boxX, $boxY, $boxWidth, $boxHeight, 'F'); // 'F' indicates to fill the rectangle
+
+        // Add the description inside the white box
+        $description = "CY 2023\nANNUAL ASSESSMENT REPORT OF CAGAYAN DE ORO CITY-PAGULANGAN\nMANUAL AIR QUALITY MONITORING STATION\n(PM2.5, PM10, CO, NO2, AND O3)";
+        $fpdf->SetFont('Arial', '', 15);
+        $fpdf->SetXY($boxX + 5, $boxY + 5); // Adjust the position for the description
+        $fpdf->MultiCell($boxWidth - 10, 8, $description, 0, 'C');
+
+
+        $fpdf->SetFont('Arial', 'B', 10);
+        // second page
+        $fpdf->Ln(240); 
+        $fpdf->Cell(0, 10, 'CY 2024-2025 Assessment Report from AirSense IoT Monitoring Device', 0, 1, 'C');
+        $fpdf->Cell(0, 0, 'PM2.5, PM10, O3, CO & NO2 Ambient Air Quality Monitoring Station', 0, 1, 'C');
+        $fpdf->Ln(10);
         $fpdf->SetFont('Arial', '', 10);
         $fpdf->Cell(50, 10, '                    Station: ', 0, 0, 'L');
         $fpdf->Cell(0, 10, 'Bukidnon State University - Main Campus                                                             ', 0, 1, 'R');
@@ -64,9 +87,9 @@ class PdfController extends Controller
         $fpdf->SetFillColor(173, 216, 230); // Light blue color
         $fpdf->Cell(40, 10, 'Date of Sampling', 1, 0, 'C', true);
         $fpdf->Cell(40, 10, 'PM2.5 (ug/m3)', 1, 0, 'C', true);
-        $fpdf->Cell(35, 10, 'Remarks', 1, 0, 'C', true);
+        $fpdf->Cell(35, 10, 'Classification', 1, 0, 'C', true);
         $fpdf->Cell(40, 10, 'PM10 (ug/m3)', 1, 0, 'C', true);
-        $fpdf->Cell(35, 10, 'Remarks', 1, 1, 'C', true);
+        $fpdf->Cell(35, 10, 'Classification', 1, 1, 'C', true);
 
         $fpdf->SetFont('Arial','', 10);
         // Populate table with daily average data
@@ -100,11 +123,11 @@ class PdfController extends Controller
         $fpdf->SetFillColor(173, 216, 230); // Light blue color
         $fpdf->Cell(35, 10, 'Date of Sampling', 1, 0, 'C', true);
         $fpdf->Cell(25, 10, 'CO (ppm)', 1, 0, 'C', true);
-        $fpdf->Cell(27, 10, 'Remarks', 1, 0, 'C', true);
+        $fpdf->Cell(27, 10, 'Classification', 1, 0, 'C', true);
         $fpdf->Cell(25, 10, 'NO2 (ppm)', 1, 0, 'C', true);
-        $fpdf->Cell(27, 10, 'Remarks', 1, 0, 'C', true);
+        $fpdf->Cell(27, 10, 'Classification', 1, 0, 'C', true);
         $fpdf->Cell(25, 10, 'Ozone (ppm)', 1, 0, 'C', true); // Added "Ozone" column
-        $fpdf->Cell(27, 10, 'Remarks', 1, 1, 'C', true); // Added "Remarks" for Ozone
+        $fpdf->Cell(27, 10, 'Classification', 1, 1, 'C', true); // Added "Classification" for Ozone
 
         $fpdf->SetFont('Arial', '', 10);
         // Populate table with daily average data
@@ -145,7 +168,7 @@ class PdfController extends Controller
     // Get today's date
     $today = date('Y'); // Get current year only (YYYY format)
     // $nextYear = $today + 1; // Add 1 to get next year
-    $fpdf->Output('D', "AirSense $today Daily_Assessment.pdf");
+    $fpdf->Output('I', "AirSense $today Daily_Assessment.pdf");
     exit;
     }
 
