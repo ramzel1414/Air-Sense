@@ -77,6 +77,8 @@
   --custom-card-bg: #FFF;
   --custom-faq-active-bg: #f0f1ff;
   --custom-faq-active-color: #515acc;
+  --for-light-mode-bg: #E9ECEF;
+
 
 }
 
@@ -114,6 +116,7 @@ body.dark {
     --bs-border-color: #172340;
     --custom-faq-active-bg: #515acc;
     --custom-faq-active-color: #f0f1ff;
+    --for-light-mode-bg: transparent;
 
 
 }
@@ -21208,9 +21211,8 @@ div.tox .btn-group-lg > .btn-icon-text.tox-button .btn-icon-append,
 }
 
 
-.nav.nav-tabs .nav-item  {       
+.nav.nav-tabs .nav-item  {     /*ramon for the tabs! */
   border: 1px solid #6571ff;
-  border-radius: 5px;
 
 }
 
@@ -21224,12 +21226,14 @@ div.tox .btn-group-lg > .btn-icon-text.tox-button .btn-icon-append,
   border-color: var(--bs-primary);
   color: #FAFAFA;          
   background: var(--bs-primary);
+  border-radius: 0px;
 }
 
 .nav.nav-tabs .nav-item .nav-link.active { /*ramon tabs for pm10 & pm2.5*/
   border-color: var(--bs-primary);
   color: #FAFAFA;          
   background: var(--bs-primary);
+  border-radius: 0px;
 }
 
 
@@ -22596,6 +22600,10 @@ div.tox .tox-dialog__body {
 
 .pol-desc { /*pollutant description in about page*/
   background: var(--custom-card-bg);
+}
+
+.for-light-mode-bg {
+  background: var(--for-light-mode-bg);
 }
 
 /* 

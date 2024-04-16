@@ -92,7 +92,7 @@
         </div>
 
         {{-- 2nd row --}}
-        <div class="row">
+        <div class="d-flex">
             <div class="col-5 col-md-3 pe-0 grid-margin">
                 <div class="card">
                     <div class="card-body">

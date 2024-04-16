@@ -85,10 +85,10 @@
     {{-- End of Tabs --}}
 
     {{-- Tab contents --}}
-    <div class="tab-content mt-3" id="lineTabContent">
+    <div class="tab-content" id="lineTabContent">
 
-      {{-- monitoring content --}}
-      <div class="tab-pane fade show active p-3" id="monitoring" role="tabpanel" aria-labelledby="monitoring-line-tab">
+      {{-- Start of Monitoring content --}}
+      <div class="tab-pane fade show active p-3 for-light-mode-bg" id="monitoring" role="tabpanel" aria-labelledby="monitoring-line-tab">
         <div class="mb-3">
           <h5>REAL-TIME AIR QUALITY MONITORING</h5">
         </div>
@@ -214,10 +214,10 @@
           </div>
         </div>
       </div>
-      {{-- End of monitoring content --}}
+      {{-- End of Monitoring content --}}
 
       {{-- Start of Forecasting content --}}
-      <div class="tab-pane fade p-3" id="forecasting" role="tabpanel" aria-labelledby="forecasting-line-tab">
+      <div class="tab-pane fade p-3 for-light-mode-bg" id="forecasting" role="tabpanel" aria-labelledby="forecasting-line-tab">
         <div class="mb-3">
           <h5>AIR QUALITY FORECASTING</h5">
         </div>
@@ -228,19 +228,9 @@
       {{-- End of forecasting content --}}
     </div>
 
+    @include('layouts.footer');
 
-
-        
-
-
-      
-
-
-    
 </div>
-
-  @i  nclude('layouts.footer');
-
 
 	<!-- core:js -->
 	<script src="{{ asset('../assets/vendors/core/core.js')}}"></script>
