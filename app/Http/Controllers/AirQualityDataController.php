@@ -37,6 +37,11 @@ class AirQualityDataController extends Controller
         return response()->json($O3Data);
     }
 
+    public function getOzoneData(){
+        $O3Data = AirQualityData::select('dateTime', 'ozone')->get();
+        return response()->json($O3Data);
+    }
+
     // Function to store new air quality data
     public function store(Request $request){
         $data = $request->validate([

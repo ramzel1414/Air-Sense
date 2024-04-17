@@ -220,7 +220,6 @@ $(function () {
         return result;
     }
 
-
     // Function to determine classification based on PM10 value
     function getClassification(co) {
         if (co >= 0 && co <= 25) {
