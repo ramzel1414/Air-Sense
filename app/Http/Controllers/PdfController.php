@@ -32,7 +32,7 @@ class PdfController extends Controller
         $formattedMinDate = Carbon::parse($minDate)->format('F d, Y');
 
 
-                
+
 
         $fpdf = new PdfReport('P','mm','A4');
         $fpdf->AddPage();
@@ -40,7 +40,7 @@ class PdfController extends Controller
 
         // front page
         $fpdf->Image('airsense-prot.png', 15, 50, 180);          //x, y, size
-        
+
         // Draw a white box inside the image
         $boxWidth = 130;
         $boxHeight = 50;
@@ -58,7 +58,7 @@ class PdfController extends Controller
 
         $fpdf->SetFont('Arial', 'B', 10);
         // second page
-        $fpdf->Ln(240); 
+        $fpdf->Ln(240);
         $fpdf->Cell(0, 10, 'CY 2024-2025 Assessment Report from AirSense IoT Monitoring Device', 0, 1, 'C');
         $fpdf->Cell(0, 0, 'PM2.5, PM10, O3, CO & NO2 Ambient Air Quality Monitoring Station', 0, 1, 'C');
         $fpdf->Ln(10);
@@ -180,11 +180,11 @@ class PdfController extends Controller
         } elseif ($value > 25 && $value <= 35) {
             return "Moderate";
         } elseif ($value > 35 && $value <= 45) {
-            return "Acutely Unhealthy";
+            return "Slightly Unhealthy";
         } elseif ($value > 45 && $value <= 55) {
             return "Unhealthy";
         } elseif ($value > 55 && $value <= 90) {
-            return "Very Unhealthy";
+            return "Acutely Unhealthy";
         } elseif ($value > 90) {
             return "Hazardous";
         } else {
@@ -200,11 +200,11 @@ class PdfController extends Controller
         } elseif ($value > 54 && $value <= 154) {
             return "Moderate";
         } elseif ($value > 154 && $value <= 254) {
-            return "Acutely Unhealthy";
+            return "Slightly Unhealthy";
         } elseif ($value > 254 && $value <= 354) {
             return "Unhealthy";
         } elseif ($value > 354 && $value <= 424) {
-            return "Very Unhealthy";
+            return "Acutely Unhealthy";
         } elseif ($value > 424) {
             return "Hazardous";
         } else {
@@ -219,11 +219,11 @@ class PdfController extends Controller
         } elseif ($value > 25 && $value <= 50) {
             return "Moderate";
         } elseif ($value > 50 && $value <= 69) {
-            return "Acutely Unhealthy";
+            return "Slightly Unhealthy";
         } elseif ($value > 69 && $value <= 150) {
             return "Unhealthy";
         } elseif ($value > 150 && $value <= 400) {
-            return "Very Unhealthy";
+            return "Acutely Unhealthy";
         } elseif ($value > 400) {
             return "Hazardous";
         } else {
@@ -238,11 +238,11 @@ class PdfController extends Controller
         } elseif ($value > 0.05 && $value <= 0.10) {
             return "Moderate";
         } elseif ($value > 0.10 && $value <= 0.36) {
-            return "Acutely Unhealthy";
+            return "Slightly Unhealthy";
         } elseif ($value > 0.36 && $value <= 0.65) {
             return "Unhealthy";
         } elseif ($value > 0.65 && $value <= 1.24) {
-            return "Very Unhealthy";
+            return "Acutely Unhealthy";
         } elseif ($value > 1.24) {
             return "Hazardous";
         } else {
@@ -257,11 +257,11 @@ class PdfController extends Controller
         } elseif ($value > 0.054 && $value <= 0.070) {
             return "Moderate";
         } elseif ($value > 0.070 && $value <= 0.085) {
-            return "Acutely Unhealthy";
+            return "Slightly Unhealthy";
         } elseif ($value > 0.085 && $value <= 0.105) {
             return "Unhealthy";
         } elseif ($value > 0.105 && $value <= 0.200) {
-            return "Very Unhealthy";
+            return "Acutely Unhealthy";
         } elseif ($value > 0.200) {
             return "Hazardous";
         } else {
@@ -277,11 +277,11 @@ class PdfController extends Controller
                 return [111, 241, 117];
             case "Moderate":
                 return [255, 255, 77];
-            case "Acutely Unhealthy":
+            case "Slightly Unhealthy":
                 return [250, 123, 91];
             case "Unhealthy":
                 return [253, 93, 114];
-            case "Very Unhealthy":
+            case "Acutely Unhealthy":
                 return [127, 88, 151];
             case "Hazardous":
                 return [128, 0, 0];
