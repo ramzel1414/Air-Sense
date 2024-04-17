@@ -60,7 +60,7 @@
           </li>
         </ul>
         {{-- End of Tabs --}}
-
+        <br>
         {{-- Tab contents --}}
         <div class="tab-content" id="lineTabContent">
 
@@ -72,109 +72,99 @@
             {{-- Cards Container --}}
             <div class="row flex-grow-1">
               {{-- Card 1 --}}
-              <div class="col-sm-15 grid-margin stretch-card">
-                <div class="card">
-                  <div class="card-body"  style="border-top: 1rem solid #6571ff;">
-                    <div class="d-flex justify-content-between align-items-baseline">
-                      <h6 class="card-title mb-0">PM2.5</h6>
+                <div class="col-sm-15 grid-margin stretch-card">
+                    <div class="card">
+                        <div class="card-body" style="border-top: 1rem solid #6571ff;">
+                            <div class="d-flex justify-content-between align-items-baseline">
+                                <h6 class="card-title mb-0">PM2.5 (ug/m3)</h6>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 col-md-12 text-center">
+                                    <h3 id="pm25-value" class="mb-2">Loading...</h3>
+                                    <p id="pm25-classification" class="mb-2">
+                                        <span>Loading...</span>
+                                    </p>
+                                    <p id="pm25-date" style="font-style: italic; font-size: 80%">Loading...</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="row">
-                      <div class="col-12 col-md-12 text-center">
-                        <h3 class="mb-2">14.14</h3>
-                        <p class="text-success mb-2">
-                          <span>Good</span>
-                        </p>
-                        <p style="font-style:italic; font-size: 80%">
-                          April 15, 2024 - 7:45 PM
-                        </p>
-                      </div>
-                    </div>
-                  </div>
                 </div>
-              </div>
               {{-- Card 2 --}}
-              <div class="col-sm-15 grid-margin stretch-card">
-                <div class="card">
-                  <div class="card-body"  style="border-top: 1rem solid #6571ff;">
-                    <div class="d-flex justify-content-between align-items-baseline">
-                      <h6 class="card-title mb-0">PM10</h6>
+                <div class="col-sm-15 grid-margin stretch-card">
+                    <div class="card">
+                        <div class="card-body" style="border-top: 1rem solid #6571ff;">
+                            <div class="d-flex justify-content-between align-items-baseline">
+                                <h6 class="card-title mb-0">PM10 (ug/m3)</h6>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 col-md-12 text-center">
+                                    <h3 id="pm10-value" class="mb-2">Loading...</h3>
+                                    <p id="pm10-classification" class="mb-2">
+                                        <span>Loading...</span>
+                                    </p>
+                                    <p id="pm10-date" style="font-style: italic; font-size: 80%">Loading...</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="row">
-                      <div class="col-12 col-md-12 text-center">
-                        <h3 class="mb-2">14.14</h3>
-                        <p class="text-success mb-2">
-                          <span>Good</span>
-                        </p>
-                        <p style="font-style:italic; font-size: 80%">
-                          April 15, 2024 - 7:45 PM
-                        </p>
-                      </div>
-                    </div>
-                  </div>
                 </div>
-              </div>
               {{-- Card 3 --}}
               <div class="col-sm-15 grid-margin stretch-card">
-                <div class="card">
-                  <div class="card-body"  style="border-top: 1rem solid #6571ff;">
-                    <div class="d-flex justify-content-between align-items-baseline">
-                      <h6 class="card-title mb-0">CO</h6>
+                    <div class="card">
+                        <div class="card-body" style="border-top: 1rem solid #6571ff;">
+                            <div class="d-flex justify-content-between align-items-baseline">
+                                <h6 class="card-title mb-0">CO (ppm)</h6>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 col-md-12 text-center">
+                                    <h3 id="co-value" class="mb-2">Loading...</h3>
+                                    <p id="co-classification" class="mb-2">
+                                        <span>Loading...</span>
+                                    </p>
+                                    <p id="co-date" style="font-style: italic; font-size: 80%">Loading...</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="row">
-                      <div class="col-12 col-md-12 text-center">
-                        <h3 class="mb-2">14.14</h3>
-                        <p class="text-danger mb-2">
-                          <span>Unhealthy</span>
-                        </p>
-                        <p style="font-style:italic; font-size: 80%">
-                          April 15, 2024 - 7:45 PM
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
               </div>
               {{-- Card 4 --}}
               <div class="col-sm-15 grid-margin stretch-card">
-                <div class="card">
-                  <div class="card-body"  style="border-top: 1rem solid #6571ff;">
-                    <div class="d-flex justify-content-between align-items-baseline">
-                      <h6 class="card-title mb-0">NO2</h6>
+                    <div class="card">
+                        <div class="card-body" style="border-top: 1rem solid #6571ff;">
+                            <div class="d-flex justify-content-between align-items-baseline">
+                                <h6 class="card-title mb-0">NO2 (ppm)</h6>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 col-md-12 text-center">
+                                    <h3 id="no2-value" class="mb-2">Loading...</h3>
+                                    <p id="no2-classification" class="mb-2">
+                                        <span>Loading...</span>
+                                    </p>
+                                    <p id="no2-date" style="font-style: italic; font-size: 80%">Loading...</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="row">
-                      <div class="col-12 col-md-12 text-center">
-                        <h3 class="mb-2">14.14</h3>
-                        <p class="text-warning mb-2">
-                          <span>Fair</span>
-                        </p>
-                        <p style="font-style:italic; font-size: 80%">
-                          April 15, 2024 - 7:45 PM
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
               </div>
               {{-- Card 5 --}}
               <div class="col-sm-15 grid-margin stretch-card">
-                <div class="card">
-                  <div class="card-body"  style="border-top: 1rem solid #6571ff;">
-                    <div class="d-flex justify-content-between align-items-baseline">
-                      <h6 class="card-title mb-0">O3</h6>
+                    <div class="card">
+                        <div class="card-body" style="border-top: 1rem solid #6571ff;">
+                            <div class="d-flex justify-content-between align-items-baseline">
+                                <h6 class="card-title mb-0">O3 (ppm)</h6>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 col-md-12 text-center">
+                                    <h3 id="ozone-value" class="mb-2">Loading...</h3>
+                                    <p id="ozone-classification" class="mb-2">
+                                        <span>Loading...</span>
+                                    </p>
+                                    <p id="ozone-date" style="font-style: italic; font-size: 80%">Loading...</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="row">
-                      <div class="col-12 col-md-12 text-center">
-                        <h3 class="mb-2">14.14</h3>
-                        <p class="text-info mb-2">
-                          <span>Nice</span>
-                        </p>
-                        <p style="font-style:italic; font-size: 80%">
-                          April 15, 2024 - 7:45 PM
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
               </div>
             </div>
 
@@ -205,7 +195,167 @@
           {{-- End of forecasting content --}}
         </div>
 
-
-
 	</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+    startPolling('pm25');
+    startPolling('pm10');
+    startPolling('co');
+    startPolling('no2');
+    startPolling('ozone');
+    });
+
+    function startPolling(pollutant) {
+        setInterval(() => {
+            fetchDataAndUpdate(pollutant);
+        }, 1000);
+    }
+
+    function fetchDataAndUpdate(pollutant) {
+        fetch(`/${pollutant}-data`)
+            .then(response => response.json())
+            .then(data => {
+                const latestData = data[data.length - 1];
+                const valueElement = document.getElementById(`${pollutant}-value`);
+                const classificationElement = document.getElementById(`${pollutant}-classification`);
+                const dateElement = document.getElementById(`${pollutant}-date`);
+
+                if (latestData) {
+                    const value = parseFloat(latestData[pollutant]).toFixed(2);
+                    valueElement.textContent = value;
+
+                    const classification = getClassification(value, pollutant);
+                    classificationElement.textContent = classification;
+                    classificationElement.style.color = getColorForClassification(classification);
+
+                    const formattedDate = formatDate(latestData.dateTime);
+                    dateElement.textContent = formattedDate;
+                }
+            })
+            .catch(error => {
+                console.error(`Error fetching ${pollutant} data:`, error);
+            });
+    }
+
+    function getClassification(value, pollutant) {
+        switch (pollutant) {
+            case 'pm25':
+                if (value >= 0 && value <= 12) {
+                    return "Good";
+                } else if (value > 12 && value <= 35.4) {
+                    return "Moderate";
+                } else if (value > 35.4 && value <= 55.4) {
+                    return "Unhealthy for Sensitive Groups";
+                } else if (value > 55.4 && value <= 150.4) {
+                    return "Unhealthy";
+                } else if (value > 150.4 && value <= 250.4) {
+                    return "Very Unhealthy";
+                } else if (value > 250.4) {
+                    return "Hazardous";
+                } else {
+                    return "Unknown Classification";
+                }
+
+            case 'pm10':
+                if (value >= 0 && value <= 54) {
+                    return "Good";
+                } else if (value > 54 && value <= 154) {
+                    return "Moderate";
+                } else if (value > 154 && value <= 254) {
+                    return "Unhealthy for Sensitive Groups";
+                } else if (value > 254 && value <= 354) {
+                    return "Unhealthy";
+                } else if (value > 354 && value <= 424) {
+                    return "Very Unhealthy";
+                } else if (value > 424) {
+                    return "Hazardous";
+                } else {
+                    return "Unknown Classification";
+                }
+
+            case 'co':
+                if (value >= 0 && value <= 25) {
+                    return "Good";
+                } else if (value > 25 && value <= 50) {
+                    return "Moderate";
+                } else if (value > 50 && value <= 69) {
+                    return "Unhealthy for Sensitive Groups";
+                } else if (value > 69 && value <= 150) {
+                    return "Unhealthy";
+                } else if (value > 150 && value <= 400) {
+                    return "Very Unhealthy";
+                } else if (value > 400) {
+                    return "Hazardous";
+                } else {
+                    return "Unknown Classification";
+                }
+
+            case 'no2':
+                if (value >= 0 && value <= 0.05 + Number.EPSILON) {
+                    return "Good";
+                } else if (value > 0.05 + Number.EPSILON && value <= 0.10 + Number.EPSILON) {
+                    return "Moderate";
+                } else if (value > 0.10 + Number.EPSILON && value <= 0.36 + Number.EPSILON) {
+                    return "Unhealthy for Sensitive Groups";
+                } else if (value > 0.36 + Number.EPSILON && value <= 0.65 + Number.EPSILON) {
+                    return "Unhealthy";
+                } else if (value > 0.65 + Number.EPSILON && value <= 1.24 + Number.EPSILON) {
+                    return "Very Unhealthy";
+                } else if (value > 1.24 + Number.EPSILON) {
+                    return "Hazardous";
+                } else {
+                    return "Unknown Classification";
+                }
+
+            case 'ozone':
+                if (value >= 0 && value <= 12) {
+                    return "Good";
+                } else if (value > 12 && value <= 35) {
+                    return "Moderate";
+                } else if (value > 35 && value <= 55) {
+                    return "Unhealthy for Sensitive Groups";
+                } else if (value > 55 && value <= 150) {
+                    return "Unhealthy";
+                } else if (value > 150 && value <= 250) {
+                    return "Very Unhealthy";
+                } else if (value > 250 && value <= 500) {
+                    return "Hazardous";
+                } else {
+                    return "Over values";
+                }
+
+            default:
+                return "Unknown Classification";
+        }
+    }
+
+
+    function getColorForClassification(classification) {
+        // Define color mappings for each classification
+        // Modify this function to return appropriate colors based on classification
+        switch (classification) {
+            case "Good":
+                return "#00B050"; // Green
+            case "Moderate":
+                return "#FFFF00"; // Yellow
+            case "Unhealthy for Sensitive Groups":
+                return "#FF6600"; // Orange
+            case "Unhealthy":
+                return "#FF0000"; // Red
+            case "Very Unhealthy":
+                return "#7030A0"; // Purple
+            case "Hazardous":
+                return "#990033"; // Maroon
+            default:
+                return "#000000"; // Default color
+        }
+    }
+
+    function formatDate(dateTime) {
+        const date = new Date(dateTime);
+        return date.toLocaleString('en-US', { month: 'long', day: 'numeric', year: 'numeric', hour: 'numeric', minute: 'numeric', hour12: true });
+    }
+</script>
+
 @endsection

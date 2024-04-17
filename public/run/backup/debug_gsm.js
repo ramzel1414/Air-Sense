@@ -31,16 +31,31 @@ modem.on('open', data => {
         console.log("Modem is initialized");
 
         // Get SMS filtered
-        modem.getSimInbox((messages) => {
-            const filteredMessages = messages.data.filter(message => message.sender === sender);
-            const messageContents = filteredMessages.map(message => message);
-            console.log(messageContents);
-        });
+        // modem.getSimInbox((messages) => {
+        //     const filteredMessages = messages.data.filter(message => message.sender === sender);
+        //     const messageContents = filteredMessages.map(message => message);
+        //     console.log(messageContents);
+        // });
 
         // Get SMS all
-        // modem.getSimInbox((data => {
-        //     console.log(data);
-        // }))
+        modem.getSimInbox((data => {
+            console.log(data);
+        }))
+
+        // Get SIM number
+        modem.getOwnNumber((data) => {
+            console.log(data);
+        });
+
+        // Get SIM signal
+        modem.getNetworkSignal((data) => {
+            console.log(data);
+        });
+
+        modem.deleteAllSimMessages((data) => {
+            console.log("Deleted All Messages")
+            console.log(data);
+        })
 
     });
 });
