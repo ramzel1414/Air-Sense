@@ -12,6 +12,7 @@ class PdfController extends Controller
 {
     public function index() {
 
+
         // Get daily averages for PM2.5 and PM10
         $dailyAverages = AirQualityData::select(
             DB::raw('DATE(dateTime) as date'),
@@ -19,7 +20,7 @@ class PdfController extends Controller
             DB::raw('ROUND(AVG(pm10), 2) as pm10_average'),
             DB::raw('ROUND(AVG(co), 2) as co_average'),
             DB::raw('ROUND(AVG(no2), 2) as no2_average'),
-            DB::raw('ROUND(AVG(ozone), 2) as ozone_average')
+            DB::raw('ROUND(AVG(ozone), 3) as ozone_average')
 
         )
         ->groupBy('date')
@@ -50,8 +51,9 @@ class PdfController extends Controller
         $fpdf->Rect($boxX, $boxY, $boxWidth, $boxHeight, 'F'); // 'F' indicates to fill the rectangle
 
         // Add the description inside the white box
-        $description = "CY 2023\nANNUAL ASSESSMENT REPORT OF CAGAYAN DE ORO CITY-PAGULANGAN\nMANUAL AIR QUALITY MONITORING STATION\n(PM2.5, PM10, CO, NO2, AND O3)";
-        $fpdf->SetFont('Arial', '', 15);
+        $today = date('Y'); // Get current year only (YYYY format)
+        $description = "CY $today\nMONTHLY ASSESSMENT REPORT OF BUKIDNON STATE UNIVERSITY- (MAIN CAMPUS)\nIoT AIR QUALITY MONITORING STATION\n(PM2.5, PM10, CO, NO2, AND O3)";
+        $fpdf->SetFont('Arial', '', 13);
         $fpdf->SetXY($boxX + 5, $boxY + 5); // Adjust the position for the description
         $fpdf->MultiCell($boxWidth - 10, 8, $description, 0, 'C');
 
@@ -160,15 +162,12 @@ class PdfController extends Controller
             $fpdf->CellFitScale(27, 10, $NO2Classification, 1, 0, 'C', true); // Display NO2 with two decimal places
 
             $fpdf->SetFillColor($OzoneColor[0], $OzoneColor[1], $OzoneColor[2]);
-            $fpdf->Cell(25, 10, number_format($ozoneAverage, 2), 1, 0, 'C', false, '', $OzoneColor); // Display Ozone with two decimal places
+            $fpdf->Cell(25, 10, number_format($ozoneAverage, 3), 1, 0, 'C', false, '', $OzoneColor); // Display Ozone with three decimal places
             $fpdf->CellFitScale(27, 10, $OzoneClassification, 1, 1, 'C', true);
         }
 
-
-    // Get today's date
-    $today = date('Y'); // Get current year only (YYYY format)
     // $nextYear = $today + 1; // Add 1 to get next year
-    $fpdf->Output('I', "AirSense $today Daily_Assessment.pdf");
+    $fpdf->Output('I', "AirSense $today Monthly_Assessment.pdf");
     exit;
     }
 
@@ -254,15 +253,15 @@ class PdfController extends Controller
         // Define Ozone classification rules
         if ($value >= 0 && $value <= 0.064) {
             return "Good";
-        } elseif ($value > 0.065 && $value <= 0.084) {
+        } elseif ($value > 0.064 && $value <= 0.084) {
             return "Moderate";
-        } elseif ($value > 0.085 && $value <= 0.104) {
+        } elseif ($value > 0.084 && $value <= 0.104) {
             return "Slightly Unhealthy";
-        } elseif ($value > 0.105 && $value <= 0.124) {
+        } elseif ($value > 0.104 && $value <= 0.124) {
             return "Unhealthy";
-        } elseif ($value > 0.125 && $value <= 0.374) {
+        } elseif ($value > 0.124 && $value <= 0.374) {
             return "Acutely Unhealthy";
-        } elseif ($value > 0.375) {
+        } elseif ($value > 0.374) {
             return "Hazardous";
         } else {
             return "Unknown Classification";

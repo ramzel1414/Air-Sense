@@ -181,7 +181,7 @@ $(function () {
                     var classification = getClassification(item.avgO3);
                     var healthImpact = getHealthImpact(classification);
 
-                    var avgO3Formatted = item.avgO3.toFixed(2);
+                    var avgO3Formatted = item.avgO3.toFixed(3);
 
                     csvContent += item.dateTime + "," + avgO3Formatted + "," + classification + "," + healthImpact + "\n";
 
@@ -234,13 +234,13 @@ $(function () {
     function getClassification(ozone) {
         if (ozone >= 0 && ozone <= 0.064) {
             return "Good (Green)";
-        } else if (ozone > 0.065 && ozone <= 0.084) {
+        } else if (ozone > 0.064 && ozone <= 0.084) {
             return "Moderate (Yellow)";
-        } else if (ozone > 0.085 && ozone <= 0.104) {
+        } else if (ozone > 0.084 && ozone <= 0.104) {
             return "Unhealthy for Sensitive Groups (Orange)";
-        } else if (ozone > 0.105 && ozone <= 0.124) {
+        } else if (ozone > 0.104 && ozone <= 0.124) {
             return "Unhealthy (Red)";
-        } else if (ozone > 0.125 && ozone <= 0.374) {
+        } else if (ozone > 0.124 && ozone <= 0.374) {
             return "Very Unhealthy (Purple)";
         } else if (ozone > 0.375) {
             return "Hazardous (Maroon)";

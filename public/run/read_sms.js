@@ -35,12 +35,13 @@ modem.on('open', data => {
                 const filteredMessages = messages.data.filter(message => message.sender === sender);
 
                 filteredMessages.forEach(message => {
+
                     // Extract air quality data from the message
                     const regex = /PM2.5: ([\d.]+)ug\/m3\nPM10: ([\d.]+) ug\/m3\nCO: ([\d.]+) ppm\nNO2: ([\d.]+) ppm\nOzone: ([\d.]+)/;
                     const matches = message.message.match(regex);
 
                     if (matches) {
-                        // Send air quality data to Laravel application
+                        // Parse extracted values as floats with proper precision
                         axios.post('http://127.0.0.1:8000/air-quality-data', {
                             sender: message.sender,
                             message: message.message,
@@ -48,7 +49,7 @@ modem.on('open', data => {
                             pm25: parseFloat(matches[1]),
                             co: parseFloat(matches[3]),
                             no2: parseFloat(matches[4]),
-                            ozone: parseFloat(matches[5]),
+                            ozone: parseFloat(matches[5]).toFixed(3), // Ensure ozone is formatted to 3 decimal places
                             dateTime: message.dateTimeSent,
                         })
                             .then(response => {

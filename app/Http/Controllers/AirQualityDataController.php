@@ -43,7 +43,7 @@ class AirQualityDataController extends Controller
     }
 
     // Function to store new air quality data
-    public function store(Request $request){
+        public function store(Request $request){
         $data = $request->validate([
             'sender' => 'required|string',
             'message' => 'required|string',
@@ -54,13 +54,17 @@ class AirQualityDataController extends Controller
         preg_match('/PM2.5: ([\d.]+)ug\/m3\nPM10: ([\d.]+) ug\/m3\nCO: ([\d.]+) ppm\nNO2: ([\d.]+) ppm\nOzone: ([\d.]+)/', $message, $matches);
         $dateTime = date('Y-m-d H:i:s', strtotime($data['dateTime']));
 
+        // Ensure ozone value is stored as a float with three decimal places
+        $ozone = number_format((float) $matches[5], 3, '.', '');
+
+        // Create a new record in the AirQualityData model
         AirQualityData::create([
             'sender' => $data['sender'],
             'pm10' => $matches[2],
             'pm25' => $matches[1],
             'co' => $matches[3],
             'no2' => $matches[4],
-            'ozone' => $matches[5],
+            'ozone' => $ozone, // Store the formatted ozone value
             'dateTime' => $dateTime,
         ]);
     }
