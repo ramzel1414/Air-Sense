@@ -252,17 +252,17 @@ class PdfController extends Controller
 
     private function getClassificationOzone($value) {
         // Define Ozone classification rules
-        if ($value >= 0 && $value <= 0.054) {
+        if ($value >= 0 && $value <= 0.064) {
             return "Good";
-        } elseif ($value > 0.054 && $value <= 0.070) {
+        } elseif ($value > 0.065 && $value <= 0.084) {
             return "Moderate";
-        } elseif ($value > 0.070 && $value <= 0.085) {
+        } elseif ($value > 0.085 && $value <= 0.104) {
             return "Slightly Unhealthy";
-        } elseif ($value > 0.085 && $value <= 0.105) {
+        } elseif ($value > 0.105 && $value <= 0.124) {
             return "Unhealthy";
-        } elseif ($value > 0.105 && $value <= 0.200) {
+        } elseif ($value > 0.125 && $value <= 0.374) {
             return "Acutely Unhealthy";
-        } elseif ($value > 0.200) {
+        } elseif ($value > 0.375) {
             return "Hazardous";
         } else {
             return "Unknown Classification";
