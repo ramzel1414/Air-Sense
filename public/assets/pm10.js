@@ -226,13 +226,13 @@ $(function () {
             return "Good (Green)";
         } else if (pm10 > 55 && pm10 <= 154) {
             return "Moderate (Yellow)";
-        } else if (pm10 > 155 && pm10 <= 254) {
+        } else if (pm10 > 154 && pm10 <= 254) {
             return "Unhealthy for Sensitive Groups (Orange)";
-        } else if (pm10 > 255 && pm10 <= 354) {
+        } else if (pm10 > 254 && pm10 <= 354) {
             return "Unhealthy (Red)";
-        } else if (pm10 > 355 && pm10 <= 424) {
+        } else if (pm10 > 354 && pm10 <= 424) {
             return "Very Unhealthy (Purple)";
-        } else if (pm10 > 425 && pm10 <= 504) {
+        } else if (pm10 > 424 && pm10 <= 504) {
             return "Hazardous (Maroon)";
         } else {
             return "Unknown Classification";

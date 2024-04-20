@@ -226,13 +226,13 @@ $(function () {
             return "Good (Green)";
         } else if (co > 25 && co <= 50) {
             return "Moderate (Yellow)";
-        } else if (co > 51 && co <= 69) {
+        } else if (co > 50 && co <= 69) {
             return "Unhealthy for Sensitive Groups (Orange)";
-        } else if (co > 70 && co <= 150) {
+        } else if (co > 69 && co <= 150) {
             return "Unhealthy (Red)";
-        } else if (co > 151 && co <= 400) {
+        } else if (co > 150 && co <= 400) {
             return "Very Unhealthy (Purple)";
-        } else if (co > 401) {
+        } else if (co > 400) {
             return "Hazardous (Maroon)";
         } else {
             return "Unknown Classification";

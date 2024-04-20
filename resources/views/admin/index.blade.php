@@ -222,7 +222,13 @@
                 const dateElement = document.getElementById(`${pollutant}-date`);
 
                 if (latestData) {
-                    const value = parseFloat(latestData[pollutant]).toFixed(2);
+                    let value = latestData[pollutant];
+
+                    // Format ozone value to three decimal places
+                    if (pollutant === 'ozone') {
+                        value = parseFloat(value).toFixed(3);
+                    }
+
                     valueElement.textContent = value;
 
                     const classification = getClassification(value, pollutant);
@@ -309,17 +315,17 @@
                 }
 
             case 'ozone':
-                if (value >= 0 && value <= 12) {
+                if (value >= 0 && value <= 0.064) {
                     return "Good";
-                } else if (value > 12 && value <= 35) {
+                } else if (value > 0.065 && value <= 0.084) {
                     return "Moderate";
-                } else if (value > 35 && value <= 55) {
+                } else if (value > 0.085 && value <= 0.104) {
                     return "Unhealthy for Sensitive Groups";
-                } else if (value > 55 && value <= 150) {
+                } else if (value > 0.105 && value <= 0.124) {
                     return "Unhealthy";
-                } else if (value > 150 && value <= 250) {
+                } else if (value > 0.125 && value <= 0.374) {
                     return "Very Unhealthy";
-                } else if (value > 250 && value <= 500) {
+                } else if (value > 0.375 ) {
                     return "Hazardous";
                 } else {
                     return "Over values";

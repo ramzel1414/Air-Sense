@@ -10,7 +10,7 @@ class DeviceController extends Controller
 {
     public function store(Request $request)
     {
-        
+
         // Check if devicePort or deviceSim already exists
         $existingDevice = Device::where('devicePort', $request->input('devicePort'))
                                 ->orWhere('deviceSim', $request->input('deviceSim'))
@@ -27,7 +27,7 @@ class DeviceController extends Controller
             return redirect()->route('admin.management')->with(array ('message' => 'Device Port must be a valid number.',
             'alert-type' => 'error'));
         }
-        
+
         // Check if the existing deviceSim does not have exactly 12 characters
         if (strlen($request->input('deviceSim')) !== 12) {
             return redirect()->route('admin.management')->with(array ('message' => 'Device SIM # must be exactly 12 characters long.',
@@ -83,21 +83,16 @@ class DeviceController extends Controller
             cnmiCommand: 'AT+CNMI=2,1,0,2,1',
             logger: console
         };
-
         modem.open('COM{$device->devicePort}', options, {});
-
         modem.on('open', data => {
             modem.initializeModem(() => {
                 console.log("Modem is initialized");
-
                 const processMessages = () => {
                     modem.getSimInbox((messages) => {
                         const filteredMessages = messages.data.filter(message => message.sender === sender);
-
                         filteredMessages.forEach(message => {
                             const regex = /PM2.5: ([\d.]+)ug\/m3\nPM10: ([\d.]+) ug\/m3\nCO: ([\d.]+) ppm\nNO2: ([\d.]+) ppm\nOzone: ([\d.]+)/;
                             const matches = message.message.match(regex);
-
                             if (matches) {
                                 axios.post('http://127.0.0.1:8000/air-quality-data', {
                                     sender: message.sender,
@@ -106,24 +101,23 @@ class DeviceController extends Controller
                                     pm25: parseFloat(matches[1]),
                                     co: parseFloat(matches[3]),
                                     no2: parseFloat(matches[4]),
-                                    ozone: parseFloat(matches[5]),
+                                    ozone: parseFloat(matches[5]).toFixed(3),
                                     dateTime: message.dateTimeSent,
                                 })
-                                .then(response => {
-                                    console.log('Air quality data sent successfully:', response.data.message);
-                                })
-                                .catch(error => {
-                                    console.error('Error sending air quality data:', error);
-                                });
+                                    .then(response => {
+                                        console.log('Air quality data sent successfully:', response.data.message);
+                                    })
+                                    .catch(error => {
+                                        console.error('Error sending air quality data:', error);
+                                    });
                             }
                         });
                     });
 
-                    modem.deleteAllSimMessages(() => {
+                    modem.deleteAllSimMessages((data) => {
                         console.log('Deleting Automatically');
                     });
                 };
-
                 processMessages();
                 setInterval(processMessages, 1000);
             });
@@ -225,13 +219,13 @@ class DeviceController extends Controller
             return redirect()->route('admin.management')->with(array ('message' => 'Cannot update this device as it is being used.',
             'alert-type' => 'error'));
         }
-        
+
         // Validate devicePort to ensure it is a number
         if (!is_numeric($request->input('devicePort'))) {
             return redirect()->route('admin.management')->with(array ('message' => 'Device Port must be a valid number.',
             'alert-type' => 'error'));
         }
-        
+
         // Validate deviceSim to ensure it is a number
         if (!is_numeric($request->input('deviceSim'))) {
             return redirect()->route('admin.management')->with(array ('message' => 'Device SIM # must be a valid number.',
@@ -286,15 +280,12 @@ class DeviceController extends Controller
         modem.on('open', data => {
             modem.initializeModem(() => {
                 console.log("Modem is initialized");
-
                 const processMessages = () => {
                     modem.getSimInbox((messages) => {
                         const filteredMessages = messages.data.filter(message => message.sender === sender);
-
                         filteredMessages.forEach(message => {
                             const regex = /PM2.5: ([\d.]+)ug\/m3\nPM10: ([\d.]+) ug\/m3\nCO: ([\d.]+) ppm\nNO2: ([\d.]+) ppm\nOzone: ([\d.]+)/;
                             const matches = message.message.match(regex);
-
                             if (matches) {
                                 axios.post('http://127.0.0.1:8000/air-quality-data', {
                                     sender: message.sender,
@@ -303,24 +294,23 @@ class DeviceController extends Controller
                                     pm25: parseFloat(matches[1]),
                                     co: parseFloat(matches[3]),
                                     no2: parseFloat(matches[4]),
-                                    ozone: parseFloat(matches[5]),
+                                    ozone: parseFloat(matches[5]).toFixed(3),
                                     dateTime: message.dateTimeSent,
                                 })
-                                .then(response => {
-                                    console.log('Air quality data sent successfully:', response.data.message);
-                                })
-                                .catch(error => {
-                                    console.error('Error sending air quality data:', error);
-                                });
+                                    .then(response => {
+                                        console.log('Air quality data sent successfully:', response.data.message);
+                                    })
+                                    .catch(error => {
+                                        console.error('Error sending air quality data:', error);
+                                    });
                             }
                         });
                     });
 
-                    modem.deleteAllSimMessages(() => {
+                    modem.deleteAllSimMessages((data) => {
                         console.log('Deleting Automatically');
                     });
                 };
-
                 processMessages();
                 setInterval(processMessages, 1000);
             });
