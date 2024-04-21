@@ -71,7 +71,7 @@
             </div>
             {{-- Cards Container --}}
             <div class="row flex-grow-1">
-              {{-- Card 1 --}}
+                {{-- Card 1 --}}
                 <div class="col-sm-15 grid-margin stretch-card">
                     <div class="card">
                         <div class="card-body" style="border-top: 1rem solid #6571ff;">
@@ -80,17 +80,23 @@
                             </div>
                             <div class="row">
                                 <div class="col-12 col-md-12 text-center">
-                                    <h3 id="pm25-value" class="mb-2">Loading...</h3>
+                                    <h3 id="pm25-value" class="mb-2">
+                                        <div class="spinner-grow text-primary" role="status">
+                                            <span class="visually-hidden">Loading...</span>
+                                        </div>
+                                    </h3>
                                     <p id="pm25-classification" class="mb-2">
-                                        <span>Loading...</span>
+                                        <span class="visually-hidden">Loading...</span>
                                     </p>
-                                    <p id="pm25-date" style="font-style: italic; font-size: 80%">Loading...</p>
+                                    <p id="pm25-date" style="font-style: italic; font-size: 80%">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-              {{-- Card 2 --}}
+                {{-- Card 2 --}}
                 <div class="col-sm-15 grid-margin stretch-card">
                     <div class="card">
                         <div class="card-body" style="border-top: 1rem solid #6571ff;">
@@ -99,18 +105,24 @@
                             </div>
                             <div class="row">
                                 <div class="col-12 col-md-12 text-center">
-                                    <h3 id="pm10-value" class="mb-2">Loading...</h3>
+                                    <h3 id="pm10-value" class="mb-2">
+                                        <div class="spinner-grow text-primary" role="status">
+                                            <span class="visually-hidden">Loading...</span>
+                                        </div>
+                                    </h3>
                                     <p id="pm10-classification" class="mb-2">
-                                        <span>Loading...</span>
+                                        <span class="visually-hidden">Loading...</span>
                                     </p>
-                                    <p id="pm10-date" style="font-style: italic; font-size: 80%">Loading...</p>
+                                    <p id="pm10-date" style="font-style: italic; font-size: 80%">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-              {{-- Card 3 --}}
-              <div class="col-sm-15 grid-margin stretch-card">
+                {{-- Card 3 --}}
+                <div class="col-sm-15 grid-margin stretch-card">
                     <div class="card">
                         <div class="card-body" style="border-top: 1rem solid #6571ff;">
                             <div class="d-flex justify-content-between align-items-baseline">
@@ -118,18 +130,24 @@
                             </div>
                             <div class="row">
                                 <div class="col-12 col-md-12 text-center">
-                                    <h3 id="co-value" class="mb-2">Loading...</h3>
+                                    <h3 id="co-value" class="mb-2">
+                                        <div class="spinner-grow text-primary" role="status">
+                                            <span class="visually-hidden">Loading...</span>
+                                        </div>
+                                    </h3>
                                     <p id="co-classification" class="mb-2">
-                                        <span>Loading...</span>
+                                        <span class="visually-hidden">Loading...</span>
                                     </p>
-                                    <p id="co-date" style="font-style: italic; font-size: 80%">Loading...</p>
+                                    <p id="co-date" style="font-style: italic; font-size: 80%">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </p>
                                 </div>
                             </div>
                         </div>
                     </div>
-              </div>
-              {{-- Card 4 --}}
-              <div class="col-sm-15 grid-margin stretch-card">
+                </div>
+                {{-- Card 4 --}}
+                <div class="col-sm-15 grid-margin stretch-card">
                     <div class="card">
                         <div class="card-body" style="border-top: 1rem solid #6571ff;">
                             <div class="d-flex justify-content-between align-items-baseline">
@@ -137,18 +155,24 @@
                             </div>
                             <div class="row">
                                 <div class="col-12 col-md-12 text-center">
-                                    <h3 id="no2-value" class="mb-2">Loading...</h3>
+                                    <h3 id="no2-value" class="mb-2">
+                                        <div class="spinner-grow text-primary" role="status">
+                                            <span class="visually-hidden">Loading...</span>
+                                        </div>
+                                    </h3>
                                     <p id="no2-classification" class="mb-2">
-                                        <span>Loading...</span>
+                                        <span class="visually-hidden">Loading...</span>
                                     </p>
-                                    <p id="no2-date" style="font-style: italic; font-size: 80%">Loading...</p>
+                                    <p id="no2-date" style="font-style: italic; font-size: 80%">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </p>
                                 </div>
                             </div>
                         </div>
                     </div>
-              </div>
-              {{-- Card 5 --}}
-              <div class="col-sm-15 grid-margin stretch-card">
+                </div>
+                {{-- Card 5 --}}
+                <div class="col-sm-15 grid-margin stretch-card">
                     <div class="card">
                         <div class="card-body" style="border-top: 1rem solid #6571ff;">
                             <div class="d-flex justify-content-between align-items-baseline">
@@ -156,44 +180,50 @@
                             </div>
                             <div class="row">
                                 <div class="col-12 col-md-12 text-center">
-                                    <h3 id="ozone-value" class="mb-2">Loading...</h3>
+                                    <h3 id="ozone-value" class="mb-2">
+                                        <div class="spinner-grow text-primary" role="status">
+                                            <span class="visually-hidden">Loading...</span>
+                                        </div>
+                                    </h3>
                                     <p id="ozone-classification" class="mb-2">
-                                        <span>Loading...</span>
+                                        <span class="visually-hidden">Loading...</span>
                                     </p>
-                                    <p id="ozone-date" style="font-style: italic; font-size: 80%">Loading...</p>
+                                    <p id="ozone-date" style="font-style: italic; font-size: 80%">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </p>
                                 </div>
                             </div>
                         </div>
                     </div>
-              </div>
-            </div>
-
-            {{-- Monitoring Graphs --}}
-            <div class="row">
-              <div class="col-12 col-xl-12 stretch-card ">
-                <div class="row flex-grow-1" >
-                  @include('charts.monitoring.pm25')
-                  @include('charts.monitoring.pm10')
-                  @include('charts.monitoring.co')
-                  @include('charts.monitoring.no2')
-                  @include('charts.monitoring.o3')
                 </div>
-              </div>
             </div>
-          </div>
-          {{-- End of Monitoring content --}}
 
-          {{-- Start of Forecasting content --}}
-          <div class="tab-pane fade p-3 for-light-mode-bg" id="forecasting" role="tabpanel" aria-labelledby="forecasting-line-tab">
-            <div class="mb-3">
-              <h5>AIR QUALITY FORECASTING</h5">
+                {{-- Monitoring Graphs --}}
+                <div class="row">
+                <div class="col-12 col-xl-12 stretch-card ">
+                    <div class="row flex-grow-1" >
+                    @include('charts.monitoring.pm25')
+                    @include('charts.monitoring.pm10')
+                    @include('charts.monitoring.co')
+                    @include('charts.monitoring.no2')
+                    @include('charts.monitoring.o3')
+                    </div>
+                </div>
+                </div>
             </div>
-              {{-- Forecasting Graphs --}}
-              @include('charts.forecastingpm25')
-              @include('charts.forecastingpm10')
-          </div>
-          {{-- End of forecasting content --}}
-        </div>
+            {{-- End of Monitoring content --}}
+
+            {{-- Start of Forecasting content --}}
+            <div class="tab-pane fade p-3 for-light-mode-bg" id="forecasting" role="tabpanel" aria-labelledby="forecasting-line-tab">
+                <div class="mb-3">
+                <h5>AIR QUALITY FORECASTING</h5">
+                </div>
+                {{-- Forecasting Graphs --}}
+                @include('charts.forecastingpm25')
+                @include('charts.forecastingpm10')
+            </div>
+            {{-- End of forecasting content --}}
+            </div>
 
 	</div>
 
