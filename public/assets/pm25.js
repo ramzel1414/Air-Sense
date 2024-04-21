@@ -231,15 +231,15 @@ $(function () {
     function getClassification(pm25) {
         if (pm25 >= 0 && pm25 <= 25) {
             return "Good (Green)";
-        } else if (pm25 > 25.1 && pm25 <= 35) {
+        } else if (pm25 > 25 && pm25 <= 35) {
             return "Moderate (Yellow)";
-        } else if (pm25 > 35.1 && pm25 <= 45) {
+        } else if (pm25 > 35 && pm25 <= 45) {
             return "Unhealthy for Sensitive Groups (Orange)";
-        } else if (pm25 > 45.1 && pm25 <= 55) {
+        } else if (pm25 > 45 && pm25 <= 55) {
             return "Unhealthy (Red)";
-        } else if (pm25 > 55.1 && pm25 <= 90) {
+        } else if (pm25 > 55 && pm25 <= 90) {
             return "Very Unhealthy (Purple)";
-        } else if (pm25 > 91) {
+        } else if (pm25 > 90) {
             return "Hazardous (Maroon)";
         } else {
             return "Unknown Classification";

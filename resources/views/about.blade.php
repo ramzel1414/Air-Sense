@@ -141,14 +141,14 @@
                 <div class="card">
                     <div class="card-body">
                         <h6 class="card-title">Air Quality Concentration Classification</h6>
-                        <div class="table-responsive">
-                            <table class="table classification">
+                    <div class="table-responsive">
+                        <table class="table classification">
                                 <thead>
                                     <tr>
-                                        <th rowspan="4">CATEGORY</th>
-                                        <th rowspan="4">COLOR</th>
-                                        <th colspan="4">BREAKPOINTS</th>
-                                        <th rowspan="4">CAUTIONARY STATEMENTS</th>
+                                        <th rowspan="5">CATEGORY</th>
+                                        <th rowspan="5">COLOR</th>
+                                        <th colspan="5">BREAKPOINTS</th>
+                                        <th rowspan="5">CAUTIONARY STATEMENTS</th>
 
                                     </tr>
                                     <tr>
@@ -156,6 +156,7 @@
                                         <th>PM<sub>2.5</sub> (ug/m<sup>3</sup>)</th>
                                         <th>CO (ppm)</th>
                                         <th>NO2 (ppm)</th>
+                                        <th>O3 (ppm)</th>
 
                                     </tr>
                                 </thead>
@@ -167,6 +168,7 @@
                                         <td>0 - 25</td>
                                         <td>0 - 25</td>
                                         <td>0 - 0.05</td>
+                                        <td>0 - 0.064</td>
                                         <td>No</td>
                                     </tr>
                                     <tr>
@@ -176,6 +178,7 @@
                                         <td>25.1 - 35.0</td>
                                         <td>25 - 50</td>
                                         <td>0.06 - 0.10</td>
+                                        <td>0.065 - 0.084</td>
                                         <td>No</td>
                                     </tr>
                                     <tr>
@@ -185,6 +188,7 @@
                                         <td>35.1 - 45.0</td>
                                         <td>51 - 69</td>
                                         <td>0.11 - 0.36</td>
+                                        <td>0.085 - 0.104</td>
                                         <td class="text-wrap text-center">People with respiratory disease, such as asthma, should limit their outdoor exertion.</td>
                                     </tr>
                                     <tr>
@@ -194,6 +198,7 @@
                                         <td>45.1 - 55</td>
                                         <td>70 - 150</td>
                                         <td>0.37 - 0.65</td>
+                                        <td>0.105 - 0.124</td>
                                         <td class="text-wrap text-center">Pedestrians should avoid heavy traffic areas. People with respiratory disease such as asthma should stay indoors and rest as much as possible. Unnecessary trips should be postponed. People should voluntarily restrict the use of vehicles</td>
                                     </tr>
                                     <tr>
@@ -203,7 +208,7 @@
                                         <td>55.1 - 90</td>
                                         <td>151 - 400</td>
                                         <td>0.66 - 1.24</td>
-
+                                        <td>0.125 - 0.374</td>
                                         <td class="text-wrap text-center">Pedestrians should avoid heavy traffic areas. People with respiratory disease such as asthma should stay indoors and rest as much as possible. Unnecessary trips should be postponed. Motor vehicles use may be restricted. Industrial activities may be curtailed.</td>
                                     </tr>
                                     <tr>
@@ -213,12 +218,12 @@
                                         <td>Above 91</td>
                                         <td>Above 401</td>
                                         <td>Above 1.24</td>
-
+                                        <td>Above 0.374</td>
                                         <td class="text-wrap text-center">Everyone should remain indoors. (keeping windows and doors closed unless heat stress is possible). Motor vehicles should be prohibited except for emergency situations. Industrial activities, except that which is vital for public safety should and health should be curtailed.</td>
                                     </tr>
                                 </tbody>
                             </table>
-                        </div>
+                    </div>
                     </div>
                 </div>
             </div>
