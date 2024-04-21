@@ -86,16 +86,16 @@
                         });
 
                         // Draw a circle around the marker to represent the sensor range (30 meters)
-                        const circle = new google.maps.Circle({
-                            strokeColor: "#FF0000",
-                            strokeOpacity: 0.8,
-                            strokeWeight: 2,
-                            fillColor: "#FF0000",
-                            fillOpacity: 0.35,
-                            map: map,
-                            center: marker.getPosition(),
-                            radius: 20, // 20 meters radius
-                        });
+                        // const circle = new google.maps.Circle({
+                        //     strokeColor: "#FF0000",
+                        //     strokeOpacity: 0.8,
+                        //     strokeWeight: 2,
+                        //     fillColor: "#FF0000",
+                        //     fillOpacity: 0.35,
+                        //     map: map,
+                        //     center: marker.getPosition(),
+                        //     radius: 20, // 20 meters radius
+                        // });
                     });
                 })
                 .catch(error => {
