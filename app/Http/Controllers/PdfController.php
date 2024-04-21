@@ -52,8 +52,8 @@ class PdfController extends Controller
         $today = date('Y'); // Get current year only (YYYY format)
         $description = "CY $today\nMONTHLY ASSESSMENT REPORT OF BUKIDNON STATE UNIVERSITY- (MAIN CAMPUS)\nIoT AIR QUALITY MONITORING STATION\n(PM2.5, PM10, CO, NO2, AND O3)";
         $fpdf->SetFont('Arial', '', 13);
-        $fpdf->SetXY($boxX + 5, $boxY + 5); // Adjust the position for the description
-        $fpdf->MultiCell($boxWidth - 10, 8, $description, 0, 'C');
+        $fpdf->SetXY(40 + 5, 210 + 5); // Adjust the position for the description
+        $fpdf->MultiCell(130 - 10, 8, $description, 0, 'C');
 
 
         $fpdf->SetFont('Arial', 'B', 10);
