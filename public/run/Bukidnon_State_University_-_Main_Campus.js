@@ -29,11 +29,7 @@ modem.on('open', data => {
             modem.getSimInbox((messages) => {
                 const filteredMessages = messages.data.filter(message => message.sender === sender);
                 filteredMessages.forEach(message => {
-                    const regex = /PM2.5: ([\d.]+)ug\/m3
-PM10: ([\d.]+) ug\/m3
-CO: ([\d.]+) ppm
-NO2: ([\d.]+) ppm
-Ozone: ([\d.]+)/;
+                    const regex = /PM2.5: ([\d.]+)ug\/m3 PM10: ([\d.]+) ug\/m3 CO: ([\d.]+) ppm NO2: ([\d.]+) ppm Ozone: ([\d.]+)/;
                     const matches = message.message.match(regex);
                     if (matches) {
                         axios.post('http://127.0.0.1:8000/air-quality-data', {
