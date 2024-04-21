@@ -103,11 +103,17 @@
                             </div>
                             <div class="row">
                                 <div class="col-12 col-md-12 text-center">
-                                    <h3 id="pm25-value" class="mb-2">Loading...</h3>
+                                    <h3 id="pm25-value" class="mb-2">
+                                        <div class="spinner-grow text-primary" role="status">
+                                            <span class="visually-hidden">Loading...</span>
+                                        </div>
+                                    </h3>
                                     <p id="pm25-classification" class="mb-2">
-                                        <span>Loading...</span>
+                                        <span class="visually-hidden">Loading...</span>
                                     </p>
-                                    <p id="pm25-date" style="font-style: italic; font-size: 80%">Loading...</p>
+                                    <p id="pm25-date" style="font-style: italic; font-size: 80%">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -122,11 +128,17 @@
                             </div>
                             <div class="row">
                                 <div class="col-12 col-md-12 text-center">
-                                    <h3 id="pm10-value" class="mb-2">Loading...</h3>
+                                    <h3 id="pm10-value" class="mb-2">
+                                        <div class="spinner-grow text-primary" role="status">
+                                            <span class="visually-hidden">Loading...</span>
+                                        </div>
+                                    </h3>
                                     <p id="pm10-classification" class="mb-2">
-                                        <span>Loading...</span>
+                                        <span class="visually-hidden">Loading...</span>
                                     </p>
-                                    <p id="pm10-date" style="font-style: italic; font-size: 80%">Loading...</p>
+                                    <p id="pm10-date" style="font-style: italic; font-size: 80%">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -141,11 +153,17 @@
                             </div>
                             <div class="row">
                                 <div class="col-12 col-md-12 text-center">
-                                    <h3 id="co-value" class="mb-2">Loading...</h3>
+                                    <h3 id="co-value" class="mb-2">
+                                        <div class="spinner-grow text-primary" role="status">
+                                            <span class="visually-hidden">Loading...</span>
+                                        </div>
+                                    </h3>
                                     <p id="co-classification" class="mb-2">
-                                        <span>Loading...</span>
+                                        <span class="visually-hidden">Loading...</span>
                                     </p>
-                                    <p id="co-date" style="font-style: italic; font-size: 80%">Loading...</p>
+                                    <p id="co-date" style="font-style: italic; font-size: 80%">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -160,11 +178,17 @@
                             </div>
                             <div class="row">
                                 <div class="col-12 col-md-12 text-center">
-                                    <h3 id="no2-value" class="mb-2">Loading...</h3>
+                                    <h3 id="no2-value" class="mb-2">
+                                        <div class="spinner-grow text-primary" role="status">
+                                            <span class="visually-hidden">Loading...</span>
+                                        </div>
+                                    </h3>
                                     <p id="no2-classification" class="mb-2">
-                                        <span>Loading...</span>
+                                        <span class="visually-hidden">Loading...</span>
                                     </p>
-                                    <p id="no2-date" style="font-style: italic; font-size: 80%">Loading...</p>
+                                    <p id="no2-date" style="font-style: italic; font-size: 80%">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -179,11 +203,17 @@
                             </div>
                             <div class="row">
                                 <div class="col-12 col-md-12 text-center">
-                                    <h3 id="ozone-value" class="mb-2">Loading...</h3>
+                                    <h3 id="ozone-value" class="mb-2">
+                                        <div class="spinner-grow text-primary" role="status">
+                                            <span class="visually-hidden">Loading...</span>
+                                        </div>
+                                    </h3>
                                     <p id="ozone-classification" class="mb-2">
-                                        <span>Loading...</span>
+                                        <span class="visually-hidden">Loading...</span>
                                     </p>
-                                    <p id="ozone-date" style="font-style: italic; font-size: 80%">Loading...</p>
+                                    <p id="ozone-date" style="font-style: italic; font-size: 80%">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </p>
                                 </div>
                             </div>
                         </div>

@@ -42,13 +42,15 @@
 
     <div class="page-content mx-4">
         <h3 class="mb-2">Device Location</h3>
-        <div class="card">
-            <div class="card-body">
-                <div class="col-12 rounded-2">
-                    <div class="d-flex justify-content-center">
-                        <p class="mb-3" id="locationTitle">Device Locations</p>
+        <div class="p-3 for-light-mode-bg rounded-1">
+            <div class="card rounded-1">
+                <div class="card-body rounded-2">
+                    <div class="col-12 rounded-3">
+                        <div class="d-flex justify-content-center">
+                            {{-- <p class="mb-3" id="locationTitle">Device Locations</p> --}}
+                        </div>
+                        <div id="map" class="rounded-3" style="height: 700px"></div>
                     </div>
-                    <div id="map" class="rounded-3" style="height: 700px"></div>
                 </div>
             </div>
         </div>
