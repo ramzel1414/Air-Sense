@@ -306,17 +306,17 @@
     function getClassification(value, pollutant) {
         switch (pollutant) {
             case 'pm25':
-                if (value >= 0 && value <= 12) {
+                if (value >= 0 && value <= 25) {
                     return "Good";
-                } else if (value > 12 && value <= 35.4) {
+                } else if (value > 25 && value <= 35) {
                     return "Moderate";
-                } else if (value > 35.4 && value <= 55.4) {
+                } else if (value > 35 && value <= 45) {
                     return "Unhealthy for Sensitive Groups";
-                } else if (value > 55.4 && value <= 150.4) {
+                } else if (value > 45 && value <= 55) {
                     return "Unhealthy";
-                } else if (value > 150.4 && value <= 250.4) {
+                } else if (value > 55 && value <= 90) {
                     return "Very Unhealthy";
-                } else if (value > 250.4) {
+                } else if (value > 90) {
                     return "Hazardous";
                 } else {
                     return "Unknown Classification";
@@ -376,7 +376,7 @@
             case 'ozone':
                 if (value >= 0 && value <= 0.064) {
                     return "Good";
-                } else if (value > 0.065 && value <= 0.084) {
+                } else if (value > 0.064 && value <= 0.084) {
                     return "Moderate";
                 } else if (value > 0.085 && value <= 0.104) {
                     return "Unhealthy for Sensitive Groups";
