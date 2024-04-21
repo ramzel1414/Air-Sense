@@ -21,92 +21,83 @@
 <div class="page-content">
 
     <h3 class="mb-4">About Us</h3>
-    {{-- 1st row --}}
-    <div class="row">
-        <div class="col-md-12 grid-margin stretch-card">
-            <div class="card">
-                <div class="card-body">
-                    <h6 class="card-title mb-3 d-flex justify-content-start">About AirSense</h6>
-                    <p class="text-right mb-1">
-                        Welcome to AirSense, where innovation meets environmental stewardship. At AirSense, our mission is to revolutionize air quality monitoring and management through advanced technology, data-driven solutions, and <strong>Random Forest</strong> forecasting method.                    </p>
-                    <p class="text-right mb-1">
-                        <br>
-                        Driven by a passion for sustainability and public health, AirSense provides real-time monitoring of key pollutants such as PM2.5, PM10, CO, NO2, and O3. Our cutting-edge system combines state-of-the-art sensors with machine learning algorithms, empowering individuals, governments, and industries to make informed decisions and take proactive measures to improve air quality.
-                    </p>
-                    <p class="text-right mb-1">
-                        <br>
-                        At AirSense, we are committed to reducing our carbon footprint and operating sustainably. That's why we harness the power of IoT and solar panels to fuel our monitoring station, ensuring reliability while minimizing environmental impact.
-                    </p>
-                    <p class="text-right mb-1">
-                        <br>
-                        With AirSense, we aim to raise awareness about air pollution and inspire collective action towards cleaner, healthier air for all. Join us in our journey towards a sustainable and pollution-free future with AirSense.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-    {{-- 2nd row orig --}}
-    <div class="d-flex" >
-        <div class="col-5 col-md-3 pe-0 grid-margin">
-            <div class="card rounded">
-                <div class="card-body">
-                    <h6 class="card-title mb-3 d-flex justify-content-start">Pollutant Description</h6>
-                    <div class="nav nav-tabs nav-tabs-vertical" id="v-tab" role="tablist" aria-orientation="vertical">
-                        <a class="nav-link active" id="v-home-tab" data-bs-toggle="pill" href="#v-home" role="tab" aria-controls="v-home" aria-selected="true">PM2.5</a>
-                        <a class="nav-link" id="v-profile-tab" data-bs-toggle="pill" href="#v-profile" role="tab" aria-controls="v-profile" aria-selected="false">PM10</a>
-                        <a class="nav-link" id="v-messages-tab" data-bs-toggle="pill" href="#v-messages" role="tab" aria-controls="v-messages" aria-selected="false">CO</a>
-                        <a class="nav-link" id="v-no2-tab" data-bs-toggle="pill" href="#v-no2" role="tab" aria-controls="v-no2" aria-selected="false">NO2</a>
-                        <a class="nav-link" id="v-settings-tab" data-bs-toggle="pill" href="#v-settings" role="tab" aria-controls="v-settings" aria-selected="false">O3</a>
+        {{-- 1sd row --}}
+        <div class="row">
+            <div class="col-md-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h6 class="card-title mb-3 d-flex justify-content-start">About AirSense</h6>
+                        <p class="text-right mb-1">
+                            Welcome to AirSense, where innovation meets environmental stewardship. At AirSense, our mission is to revolutionize air quality monitoring and management through advanced technology, data-driven solutions, and <strong>Random Forest</strong> forecasting method.                    </p>
+                        <p class="text-right mb-1">
+                            <br>
+                            Driven by a passion for sustainability and public health, AirSense provides real-time monitoring of key pollutants such as PM2.5, PM10, CO, NO2, and O3. Our cutting-edge system combines state-of-the-art sensors with machine learning algorithms, empowering individuals, governments, and industries to make informed decisions and take proactive measures to improve air quality.
+                        </p>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-7 col-md-9 ps-0 grid-margin pol-desc">
-          <div class="tab-content tab-content-vertical border p-3" id="v-tabContent">
-            <div class="tab-pane fade show active mt-4" id="v-home" role="tabpanel" aria-labelledby="v-home-tab">
-              <h6 class="mb-3">PM2.5</h6>
-              <p>
-                  PM2.5, or fine particulate matter, refers to tiny airborne particles with diameters of 2.5 micrometers or smaller. These particles, often from sources like vehicle emissions and industrial processes, can penetrate deep into the lungs and pose health risks, making monitoring essential for safeguarding air quality and public health.
-              </p>
-
-
-            </div>
-            <div class="tab-pane fade mt-4" id="v-profile" role="tabpanel" aria-labelledby="v-profile-tab">
-                <h6 class="mb-3">PM10</h6>
-                <p>
-                    PM10, known as coarse particulate matter, encompasses airborne particles with diameters of 10 micrometers or smaller. These particles, originating from sources like road dust, construction activities, and agricultural practices, can irritate the respiratory system upon inhalation, posing health concerns and necessitating monitoring to safeguard public well-being.
-               </p>
-
-            </div>
-            <div class="tab-pane fade mt-4" id="v-messages" role="tabpanel" aria-labelledby="v-messages-tab">
-                <h6 class="mb-3">CO</h6>
-                <p>
-                    CO, or carbon monoxide, is a colorless and odorless gas produced by incomplete combustion of fossil fuels in vehicles, industrial processes, and residential heating systems. Due to its high affinity for hemoglobin, CO can impair the blood's ability to carry oxygen, leading to symptoms such as headaches, dizziness, and even death in high concentrations. Monitoring CO levels is crucial for detecting potential sources of indoor and outdoor pollution and implementing measures to protect public health and safety.              </p>
+        {{-- 2nt row --}}
+        <div class="d-flex">
+            <div class="col-5 col-md-3 pe-0 grid-margin">
+                <div class="card">
+                    <div class="card-body">
+                        <h6 class="card-title mb-3 d-flex justify-content-start">Pollutant Description</h6>
+                        <div class="nav nav-tabs nav-tabs-vertical" id="v-tab" role="tablist" aria-orientation="vertical">
+                            <a class="nav-link active" id="v-home-tab" data-bs-toggle="pill" href="#v-home" role="tab" aria-controls="v-home" aria-selected="true">PM2.5</a>
+                            <a class="nav-link" id="v-profile-tab" data-bs-toggle="pill" href="#v-profile" role="tab" aria-controls="v-profile" aria-selected="false">PM10</a>
+                            <a class="nav-link" id="v-messages-tab" data-bs-toggle="pill" href="#v-messages" role="tab" aria-controls="v-messages" aria-selected="false">CO</a>
+                            <a class="nav-link" id="v-no2-tab" data-bs-toggle="pill" href="#v-no2" role="tab" aria-controls="v-no2" aria-selected="false">NO2</a>
+                            <a class="nav-link" id="v-settings-tab" data-bs-toggle="pill" href="#v-settings" role="tab" aria-controls="v-settings" aria-selected="false">O3</a>
+                        </div>
+                    </div>
                 </div>
-            <div class="tab-pane fade mt-4" id="v-no2" role="tabpanel" aria-labelledby="v-no2-tab">
-                <h6 class="mb-3">NO2</h6>
-                <p>
-                    NO2, or nitrogen dioxide, is a reddish-brown gas primarily emitted from combustion processes in vehicles, power plants, and industrial facilities. Exposure to NO2 can exacerbate respiratory conditions such as asthma and increase susceptibility to respiratory infections. Monitoring NO2 levels is essential for assessing air quality and implementing pollution control measures to reduce health risks and protect vulnerable populations.
-                </p>
-              </div>
-            <div class="tab-pane fade mt-4" id="v-settings" role="tabpanel" aria-labelledby="v-settings-tab">
-                <h6 class="mb-3">03</h6>
-                <p>
-                    O3, or ozone, is a reactive gas composed of three oxygen atoms formed through complex chemical reactions involving pollutants such as nitrogen oxides and volatile organic compounds in the presence of sunlight. While beneficial in the stratosphere for blocking harmful UV radiation, ground-level ozone can irritate the respiratory system, trigger asthma attacks, and cause lung inflammation. Monitoring O3 levels aids in understanding air pollution dynamics and implementing strategies to reduce emissions, ultimately promoting healthier environments and mitigating the adverse effects of ozone pollution on human health.
-                </p>
             </div>
-          </div>
-        </div>
-      </div>
+            <div class="col-7 col-md-9 ps-0 grid-margin pol-desc">
+              <div class="tab-content tab-content-vertical border p-3" id="v-tabContent">
+                <div class="tab-pane fade show active mt-4" id="v-home" role="tabpanel" aria-labelledby="v-home-tab">
+                  <h6 class="mb-3">PM2.5</h6>
+                  <p>
+                      PM2.5, or fine particulate matter, refers to tiny airborne particles with diameters of 2.5 micrometers or smaller. These particles, often from sources like vehicle emissions and industrial processes, can penetrate deep into the lungs and pose health risks, making monitoring essential for safeguarding air quality and public health.
+                  </p>
 
-    {{-- 3rd row --}}
-    <div class="row">
-        <div class="col-md-12 grid-margin stretch-card">
-            <div class="card">
-                <div class="card-body">
-                    <h6 class="card-title">Air Quality Index Classification</h6>
-                    <div class="table-responsive">
-                        <table class="table classification">
+
+                </div>
+                <div class="tab-pane fade mt-4" id="v-profile" role="tabpanel" aria-labelledby="v-profile-tab">
+                    <h6 class="mb-3">PM10</h6>
+                    <p>
+                        PM10, known as coarse particulate matter, encompasses airborne particles with diameters of 10 micrometers or smaller. These particles, originating from sources like road dust, construction activities, and agricultural practices, can irritate the respiratory system upon inhalation, posing health concerns and necessitating monitoring to safeguard public well-being.
+                   </p>
+
+                </div>
+                <div class="tab-pane fade mt-4" id="v-messages" role="tabpanel" aria-labelledby="v-messages-tab">
+                    <h6 class="mb-3">CO</h6>
+                    <p>
+                        CO, or carbon monoxide, is a colorless and odorless gas produced by incomplete combustion of fossil fuels in vehicles, industrial processes, and residential heating systems. Due to its high affinity for hemoglobin, CO can impair the blood's ability to carry oxygen, leading to symptoms such as headaches, dizziness, and even death in high concentrations. Monitoring CO levels is crucial for detecting potential sources of indoor and outdoor pollution and implementing measures to protect public health and safety.              </p>
+                    </div>
+                <div class="tab-pane fade mt-4" id="v-no2" role="tabpanel" aria-labelledby="v-no2-tab">
+                    <h6 class="mb-3">NO2</h6>
+                    <p>
+                        NO2, or nitrogen dioxide, is a reddish-brown gas primarily emitted from combustion processes in vehicles, power plants, and industrial facilities. Exposure to NO2 can exacerbate respiratory conditions such as asthma and increase susceptibility to respiratory infections. Monitoring NO2 levels is essential for assessing air quality and implementing pollution control measures to reduce health risks and protect vulnerable populations.
+                    </p>
+                  </div>
+                <div class="tab-pane fade mt-4" id="v-settings" role="tabpanel" aria-labelledby="v-settings-tab">
+                    <h6 class="mb-3">03</h6>
+                    <p>
+                        O3, or ozone, is a reactive gas composed of three oxygen atoms formed through complex chemical reactions involving pollutants such as nitrogen oxides and volatile organic compounds in the presence of sunlight. While beneficial in the stratosphere for blocking harmful UV radiation, ground-level ozone can irritate the respiratory system, trigger asthma attacks, and cause lung inflammation. Monitoring O3 levels aids in understanding air pollution dynamics and implementing strategies to reduce emissions, ultimately promoting healthier environments and mitigating the adverse effects of ozone pollution on human health.
+                    </p>
+                </div>
+              </div>
+            </div>
+        </div>
+        {{-- 3rd row --}}
+        <div class="row">
+            <div class="col-md-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h6 class="card-title">Air Quality Concentration Classification</h6>
+                        <div class="table-responsive">
+                            <table class="table classification">
                                 <thead>
                                     <tr>
                                         <th rowspan="4">CATEGORY</th>
@@ -167,6 +158,7 @@
                                         <td>55.1 - 90</td>
                                         <td>151 - 400</td>
                                         <td>0.66 - 1.24</td>
+
                                         <td class="text-wrap text-center">Pedestrians should avoid heavy traffic areas. People with respiratory disease such as asthma should stay indoors and rest as much as possible. Unnecessary trips should be postponed. Motor vehicles use may be restricted. Industrial activities may be curtailed.</td>
                                     </tr>
                                     <tr>
@@ -176,17 +168,18 @@
                                         <td>Above 91</td>
                                         <td>Above 401</td>
                                         <td>Above 1.24</td>
+
                                         <td class="text-wrap text-center">Everyone should remain indoors. (keeping windows and doors closed unless heat stress is possible). Motor vehicles should be prohibited except for emergency situations. Industrial activities, except that which is vital for public safety should and health should be curtailed.</td>
                                     </tr>
                                 </tbody>
                             </table>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    {{-- 3rd row --}}
-    <div class="row">
+        {{-- 4rt row --}}
+        <div class="row">
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">

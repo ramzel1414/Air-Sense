@@ -66,7 +66,7 @@
     <div class="page-content mx-4">
 
         <h3 class="mb-2">About Us</h3>
-        {{-- 1st row --}}
+        {{-- 1sd row --}}
         <div class="row">
             <div class="col-md-12 grid-margin stretch-card">
                 <div class="card">
@@ -78,19 +78,10 @@
                             <br>
                             Driven by a passion for sustainability and public health, AirSense provides real-time monitoring of key pollutants such as PM2.5, PM10, CO, NO2, and O3. Our cutting-edge system combines state-of-the-art sensors with machine learning algorithms, empowering individuals, governments, and industries to make informed decisions and take proactive measures to improve air quality.
                         </p>
-                        <p class="text-right mb-1">
-                            <br>
-                            At AirSense, we are committed to reducing our carbon footprint and operating sustainably. That's why we harness the power of IoT and solar panels to fuel our monitoring station, ensuring reliability while minimizing environmental impact.
-                        </p>
-                        <p class="text-right mb-1">
-                            <br>
-                            With AirSense, we aim to raise awareness about air pollution and inspire collective action towards cleaner, healthier air for all. Join us in our journey towards a sustainable and pollution-free future with AirSense.
-                        </p>
                     </div>
                 </div>
             </div>
         </div>
-
         {{-- 2nd row --}}
         <div class="d-flex">
             <div class="col-5 col-md-3 pe-0 grid-margin">
@@ -143,8 +134,7 @@
                 </div>
               </div>
             </div>
-          </div>
-
+        </div>
         {{-- 3rd row --}}
         <div class="row">
             <div class="col-md-12 grid-margin stretch-card">
@@ -233,6 +223,8 @@
                 </div>
             </div>
         </div>
+
+
         {{-- 4th row --}}
         <div class="row">
             <div class="col-md-12">
