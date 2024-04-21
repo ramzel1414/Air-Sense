@@ -13,17 +13,6 @@ use App\Http\Controllers\PdfController;
 
 
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
-
 Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
@@ -102,6 +91,7 @@ Route::middleware(['auth', 'role:admin'])->group(function() {
     Route::get('/co-data', [AirQualityDataController::class, 'getCOData']);
     Route::get('/no2-data', [AirQualityDataController::class, 'getNO2Data']);
     Route::get('/o3-data', [AirQualityDataController::class, 'getO3Data']);
+    Route::get('/ozone-data', [AirQualityDataController::class, 'getOzoneData']);
 
     //Forecasting
     Route::get('/pm25-data-forecast', [AirQualityDataController::class, 'getPM25FCSV']);

@@ -12,6 +12,7 @@ class PdfController extends Controller
 {
     public function index() {
 
+
         // Get daily averages for PM2.5 and PM10
         $dailyAverages = AirQualityData::select(
             DB::raw('DATE(dateTime) as date'),
@@ -19,7 +20,7 @@ class PdfController extends Controller
             DB::raw('ROUND(AVG(pm10), 2) as pm10_average'),
             DB::raw('ROUND(AVG(co), 2) as co_average'),
             DB::raw('ROUND(AVG(no2), 2) as no2_average'),
-            DB::raw('ROUND(AVG(ozone), 2) as ozone_average')
+            DB::raw('ROUND(AVG(ozone), 3) as ozone_average')
 
         )
         ->groupBy('date')
@@ -32,7 +33,7 @@ class PdfController extends Controller
         $formattedMinDate = Carbon::parse($minDate)->format('F d, Y');
 
 
-                
+
 
         $fpdf = new PdfReport('P','mm','A4');
         $fpdf->AddPage();
@@ -41,19 +42,23 @@ class PdfController extends Controller
         // First Page
         $fpdf->Image('airsense-prot.png', 15, 50, 180);          //x, y, size
 
+
         // Draw a white box inside the image
         $fpdf->SetFillColor(255, 255, 255, 127); // White color
         $fpdf->Rect(40, 210, 130, 50, 'F'); // x, y, w, h, 'F' indicates to fill the rectangle
 
 
         // Add the description inside the white box
-        $description = "CALENDAR YEAR 2024\nASSESSMENT REPORT OF\nBUKIDNON STATE UNIVERSITY\nAIR QUALITY MONITORING STATION\n(PM2.5, PM10, CO, NO2, AND O3)";
-        $fpdf->SetFont('Arial', '', 15);
-        $fpdf->SetXY(45, 215); // Adjust the position for the description
-        $fpdf->MultiCell(120, 8, $description, 0, 'C');
+        $today = date('Y'); // Get current year only (YYYY format)
+        $description = "CY $today\nMONTHLY ASSESSMENT REPORT OF BUKIDNON STATE UNIVERSITY- (MAIN CAMPUS)\nIoT AIR QUALITY MONITORING STATION\n(PM2.5, PM10, CO, NO2, AND O3)";
+        $fpdf->SetFont('Arial', '', 13);
+        $fpdf->SetXY($boxX + 5, $boxY + 5); // Adjust the position for the description
+        $fpdf->MultiCell($boxWidth - 10, 8, $description, 0, 'C');
 
 
         $fpdf->SetFont('Arial', 'B', 10);
+        // second page
+        $fpdf->Ln(240);
         // Second Page
         $fpdf->Ln(240); // because the image is not part of the text, we need this to jump to the second page
         $fpdf->Ln(10);
@@ -163,7 +168,7 @@ class PdfController extends Controller
             $fpdf->CellFitScale(27, 10, $NO2Classification, 1, 0, 'C', true); // Display NO2 with two decimal places
 
             $fpdf->SetFillColor($OzoneColor[0], $OzoneColor[1], $OzoneColor[2]);
-            $fpdf->Cell(25, 10, number_format($ozoneAverage, 2), 1, 0, 'C', false, '', $OzoneColor); // Display Ozone with two decimal places
+            $fpdf->Cell(25, 10, number_format($ozoneAverage, 3), 1, 0, 'C', false, '', $OzoneColor); // Display Ozone with three decimal places
             $fpdf->CellFitScale(27, 10, $OzoneClassification, 1, 1, 'C', true);
         }
 
@@ -265,7 +270,7 @@ class PdfController extends Controller
     // Get today's date
     $today = date('Y'); // Get current year only (YYYY format)
     // $nextYear = $today + 1; // Add 1 to get next year
-    $fpdf->Output('I', "AirSense $today Daily_Assessment.pdf");
+    $fpdf->Output('I', "AirSense $today Monthly_Assessment.pdf");
     exit;
     }
 
@@ -277,11 +282,11 @@ class PdfController extends Controller
         } elseif ($value > 25 && $value <= 35) {
             return "Moderate";
         } elseif ($value > 35 && $value <= 45) {
-            return "Acutely Unhealthy";
+            return "Slightly Unhealthy";
         } elseif ($value > 45 && $value <= 55) {
             return "Unhealthy";
         } elseif ($value > 55 && $value <= 90) {
-            return "Very Unhealthy";
+            return "Acutely Unhealthy";
         } elseif ($value > 90) {
             return "Hazardous";
         } else {
@@ -297,11 +302,11 @@ class PdfController extends Controller
         } elseif ($value > 54 && $value <= 154) {
             return "Moderate";
         } elseif ($value > 154 && $value <= 254) {
-            return "Acutely Unhealthy";
+            return "Slightly Unhealthy";
         } elseif ($value > 254 && $value <= 354) {
             return "Unhealthy";
         } elseif ($value > 354 && $value <= 424) {
-            return "Very Unhealthy";
+            return "Acutely Unhealthy";
         } elseif ($value > 424) {
             return "Hazardous";
         } else {
@@ -316,11 +321,11 @@ class PdfController extends Controller
         } elseif ($value > 25 && $value <= 50) {
             return "Moderate";
         } elseif ($value > 50 && $value <= 69) {
-            return "Acutely Unhealthy";
+            return "Slightly Unhealthy";
         } elseif ($value > 69 && $value <= 150) {
             return "Unhealthy";
         } elseif ($value > 150 && $value <= 400) {
-            return "Very Unhealthy";
+            return "Acutely Unhealthy";
         } elseif ($value > 400) {
             return "Hazardous";
         } else {
@@ -335,11 +340,11 @@ class PdfController extends Controller
         } elseif ($value > 0.05 && $value <= 0.10) {
             return "Moderate";
         } elseif ($value > 0.10 && $value <= 0.36) {
-            return "Acutely Unhealthy";
+            return "Slightly Unhealthy";
         } elseif ($value > 0.36 && $value <= 0.65) {
             return "Unhealthy";
         } elseif ($value > 0.65 && $value <= 1.24) {
-            return "Very Unhealthy";
+            return "Acutely Unhealthy";
         } elseif ($value > 1.24) {
             return "Hazardous";
         } else {
@@ -349,17 +354,17 @@ class PdfController extends Controller
 
     private function getClassificationOzone($value) {
         // Define Ozone classification rules
-        if ($value >= 0 && $value <= 0.054) {
+        if ($value >= 0 && $value <= 0.064) {
             return "Good";
-        } elseif ($value > 0.054 && $value <= 0.070) {
+        } elseif ($value > 0.064 && $value <= 0.084) {
             return "Moderate";
-        } elseif ($value > 0.070 && $value <= 0.085) {
-            return "Acutely Unhealthy";
-        } elseif ($value > 0.085 && $value <= 0.105) {
+        } elseif ($value > 0.084 && $value <= 0.104) {
+            return "Slightly Unhealthy";
+        } elseif ($value > 0.104 && $value <= 0.124) {
             return "Unhealthy";
-        } elseif ($value > 0.105 && $value <= 0.200) {
-            return "Very Unhealthy";
-        } elseif ($value > 0.200) {
+        } elseif ($value > 0.124 && $value <= 0.374) {
+            return "Acutely Unhealthy";
+        } elseif ($value > 0.374) {
             return "Hazardous";
         } else {
             return "Unknown Classification";
@@ -374,11 +379,11 @@ class PdfController extends Controller
                 return [111, 241, 117];
             case "Moderate":
                 return [255, 255, 77];
-            case "Acutely Unhealthy":
+            case "Slightly Unhealthy":
                 return [250, 123, 91];
             case "Unhealthy":
                 return [253, 93, 114];
-            case "Very Unhealthy":
+            case "Acutely Unhealthy":
                 return [127, 88, 151];
             case "Hazardous":
                 return [128, 0, 0];
