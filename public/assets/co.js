@@ -204,24 +204,21 @@ $(function () {
             var time = dateTimeParts[1];
             var hour = time.split(':')[0];
 
-            var dateTime = date + ' ' + time;
-
-            if (!hourlyAverages[hour]) {
-                hourlyAverages[hour] = { dateTime: dateTime, sumCO: 0, count: 0 };
+            var hourDateTime = date + ' ' + hour + ':00:00';
+            if (!hourlyAverages[hourDateTime]) {
+                hourlyAverages[hourDateTime] = { sumCO: 0, count: 0 };
             }
-            hourlyAverages[hour].sumCO += item.co;
-            hourlyAverages[hour].count++;
+            hourlyAverages[hourDateTime].sumCO += item.co;
+            hourlyAverages[hourDateTime].count++;
         });
 
         var result = [];
-        Object.keys(hourlyAverages).forEach(function (hour) {
-            var avgCO = hourlyAverages[hour].sumCO / hourlyAverages[hour].count;
-            result.push({ dateTime: hourlyAverages[hour].dateTime, avgCO: avgCO });
+        Object.keys(hourlyAverages).forEach(function (hourDateTime) {
+            var avgCO = hourlyAverages[hourDateTime].sumCO / hourlyAverages[hourDateTime].count;
+            result.push({ dateTime: hourDateTime, avgCO: avgCO });
         });
-
         return result;
     }
-
 
     // Function to determine classification based on PM10 value
     function getClassification(co) {
@@ -229,13 +226,13 @@ $(function () {
             return "Good (Green)";
         } else if (co > 25 && co <= 50) {
             return "Moderate (Yellow)";
-        } else if (co > 51 && co <= 69) {
+        } else if (co > 50 && co <= 69) {
             return "Unhealthy for Sensitive Groups (Orange)";
-        } else if (co > 70 && co <= 150) {
+        } else if (co > 69 && co <= 150) {
             return "Unhealthy (Red)";
-        } else if (co > 151 && co <= 400) {
+        } else if (co > 150 && co <= 400) {
             return "Very Unhealthy (Purple)";
-        } else if (co > 401) {
+        } else if (co > 400) {
             return "Hazardous (Maroon)";
         } else {
             return "Unknown Classification";

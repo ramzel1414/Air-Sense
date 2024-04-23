@@ -42,6 +42,21 @@ modem.on('open', data => {
         //     console.log(data);
         // }))
 
+        // Get SIM number
+        // modem.getOwnNumber((data) => {
+        //     console.log(data);
+        // });
+
+        // Get SIM signal
+        // modem.getNetworkSignal((data) => {
+        //     console.log(data);
+        // });
+
+        // modem.deleteAllSimMessages((data) => {
+        //     console.log("Deleted All Messages")
+        //     console.log(data);
+        // })
+
     });
 });
 

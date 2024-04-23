@@ -18,22 +18,26 @@ class DeviceController extends Controller
 
         if ($existingDevice) {
             // Redirect back with error message if devicePort or deviceSim already exists
-            return redirect()->route('admin.management')->with('error', 'Device Port or SIM # already exists.');
+            return redirect()->route('admin.management')->with(array ('message' => 'Device port or sim # already exist',
+             'alert-type' => 'error'));
         }
 
         // Check if devicePort is numeric
         if (!is_numeric($request->input('devicePort'))) {
-            return redirect()->route('admin.management')->with('error', 'Device Port must be a valid number.');
+            return redirect()->route('admin.management')->with(array ('message' => 'Device Port must be a valid number.',
+            'alert-type' => 'error'));
         }
 
         // Check if the existing deviceSim does not have exactly 12 characters
         if (strlen($request->input('deviceSim')) !== 12) {
-            return redirect()->route('admin.management')->with('error', 'Device SIM # must be exactly 12 characters long.');
+            return redirect()->route('admin.management')->with(array ('message' => 'Device SIM # must be exactly 12 characters long.',
+            'alert-type' => 'error'));
         }
 
         // Check if deviceSim is numeric
         if (!is_numeric($request->input('deviceSim'))) {
-            return redirect()->route('admin.management')->with('error', 'Device SIM # must be a valid number.');
+            return redirect()->route('admin.management')->with(array ('message' => 'Device SIM # must be a valid number.',
+            'alert-type' => 'error'));
         }
 
         // Validate the incoming request data
@@ -79,21 +83,16 @@ class DeviceController extends Controller
             cnmiCommand: 'AT+CNMI=2,1,0,2,1',
             logger: console
         };
-
         modem.open('COM{$device->devicePort}', options, {});
-
         modem.on('open', data => {
             modem.initializeModem(() => {
                 console.log("Modem is initialized");
-
                 const processMessages = () => {
                     modem.getSimInbox((messages) => {
                         const filteredMessages = messages.data.filter(message => message.sender === sender);
-
                         filteredMessages.forEach(message => {
                             const regex = /PM2.5: ([\d.]+)ug\/m3\nPM10: ([\d.]+) ug\/m3\nCO: ([\d.]+) ppm\nNO2: ([\d.]+) ppm\nOzone: ([\d.]+)/;
                             const matches = message.message.match(regex);
-
                             if (matches) {
                                 axios.post('http://127.0.0.1:8000/air-quality-data', {
                                     sender: message.sender,
@@ -102,24 +101,23 @@ class DeviceController extends Controller
                                     pm25: parseFloat(matches[1]),
                                     co: parseFloat(matches[3]),
                                     no2: parseFloat(matches[4]),
-                                    ozone: parseFloat(matches[5]),
+                                    ozone: parseFloat(matches[5]).toFixed(3),
                                     dateTime: message.dateTimeSent,
                                 })
-                                .then(response => {
-                                    console.log('Air quality data sent successfully:', response.data.message);
-                                })
-                                .catch(error => {
-                                    console.error('Error sending air quality data:', error);
-                                });
+                                    .then(response => {
+                                        console.log('Air quality data sent successfully:', response.data.message);
+                                    })
+                                    .catch(error => {
+                                        console.error('Error sending air quality data:', error);
+                                    });
                             }
                         });
                     });
 
-                    modem.deleteAllSimMessages(() => {
+                    modem.deleteAllSimMessages((data) => {
                         console.log('Deleting Automatically');
                     });
                 };
-
                 processMessages();
                 setInterval(processMessages, 1000);
             });
@@ -141,7 +139,9 @@ class DeviceController extends Controller
         file_put_contents($jsFilePath, $jsContent);
 
         // Redirect back to admin management page with success message
-        return redirect()->route('admin.management')->with('success', 'Device created successfully!');
+        return redirect()->route('admin.management')->with(array ('message' => 'Device Created Successfully!',
+            'alert-type' => 'success',
+        ));
     }
 
 
@@ -162,13 +162,15 @@ class DeviceController extends Controller
 
         // Check if the deviceSim matches the restricted value
         if ($device->deviceSim === '639537399626') {
-            return redirect()->route('admin.management')->with('error', 'Cannot delete this device as it is being used.');
+            return redirect()->route('admin.management')->with(array ('message' => 'Cannot delete this device, as it is being used',
+            'alert-type' => 'error'));
         }
 
         // Check if any other device is using the same devicePort
         $existingDevice = Device::where('devicePort', $device->devicePort)->where('id', '!=', $device->id)->first();
         if ($existingDevice) {
-            return redirect()->route('admin.management')->with('error', 'Cannot delete this device. Another device is using the same COMPORT.');
+            return redirect()->route('admin.management')->with(array ('message' => 'Cannot delete this device. Another device is using the same COMPORT.',
+            'alert-type' => 'error'));
         }
 
         // Delete the associated JavaScript file
@@ -182,7 +184,8 @@ class DeviceController extends Controller
         // Proceed with deleting the device
         $device->delete();
 
-        return redirect()->route('admin.management')->with('success', 'Device deleted successfully!');
+        return redirect()->route('admin.management')->with(array ('message' => 'Device deleted Successfully!',
+        'alert-type' => 'success'));
     }
 
     public function update(Request $request, $id)
@@ -200,28 +203,33 @@ class DeviceController extends Controller
 
         if ($existingDevice) {
             // Redirect back with error message if devicePort or deviceSim already exists for another device
-            return redirect()->route('admin.management')->with('error', 'Device Port or SIM # already exists for another device.');
+            return redirect()->route('admin.management')->with(array ('message' => 'Device Port or SIM # already exists for another device.',
+            'alert-type' => 'error'));
         }
 
         // Check if the existing deviceSim does not have exactly 12 characters
         if (strlen($request->input('deviceSim')) !== 12) {
-            return redirect()->route('admin.management')->with('error', 'Device SIM # must be exactly 12 characters long.');
+            return redirect()->route('admin.management')->with(array ('message' => 'Device SIM # must be exactly 12 characters long.',
+            'alert-type' => 'error'));
         }
 
         // Check if the existing deviceSim matches the restricted value
         if ($device->deviceSim === '639537399626') {
             // If the deviceSim matches the restricted value, prevent updating deviceSim
-            return redirect()->route('admin.management')->with('error', 'Cannot update this device as it is being used.');
+            return redirect()->route('admin.management')->with(array ('message' => 'Cannot update this device as it is being used.',
+            'alert-type' => 'error'));
         }
 
         // Validate devicePort to ensure it is a number
         if (!is_numeric($request->input('devicePort'))) {
-            return redirect()->route('admin.management')->with('error', 'Device Port must be a valid number.');
+            return redirect()->route('admin.management')->with(array ('message' => 'Device Port must be a valid number.',
+            'alert-type' => 'error'));
         }
 
         // Validate deviceSim to ensure it is a number
         if (!is_numeric($request->input('deviceSim'))) {
-            return redirect()->route('admin.management')->with('error', 'Device SIM # must be a valid number.');
+            return redirect()->route('admin.management')->with(array ('message' => 'Device SIM # must be a valid number.',
+            'alert-type' => 'error'));
         }
 
 
@@ -272,15 +280,12 @@ class DeviceController extends Controller
         modem.on('open', data => {
             modem.initializeModem(() => {
                 console.log("Modem is initialized");
-
                 const processMessages = () => {
                     modem.getSimInbox((messages) => {
                         const filteredMessages = messages.data.filter(message => message.sender === sender);
-
                         filteredMessages.forEach(message => {
                             const regex = /PM2.5: ([\d.]+)ug\/m3\nPM10: ([\d.]+) ug\/m3\nCO: ([\d.]+) ppm\nNO2: ([\d.]+) ppm\nOzone: ([\d.]+)/;
                             const matches = message.message.match(regex);
-
                             if (matches) {
                                 axios.post('http://127.0.0.1:8000/air-quality-data', {
                                     sender: message.sender,
@@ -289,24 +294,23 @@ class DeviceController extends Controller
                                     pm25: parseFloat(matches[1]),
                                     co: parseFloat(matches[3]),
                                     no2: parseFloat(matches[4]),
-                                    ozone: parseFloat(matches[5]),
+                                    ozone: parseFloat(matches[5]).toFixed(3),
                                     dateTime: message.dateTimeSent,
                                 })
-                                .then(response => {
-                                    console.log('Air quality data sent successfully:', response.data.message);
-                                })
-                                .catch(error => {
-                                    console.error('Error sending air quality data:', error);
-                                });
+                                    .then(response => {
+                                        console.log('Air quality data sent successfully:', response.data.message);
+                                    })
+                                    .catch(error => {
+                                        console.error('Error sending air quality data:', error);
+                                    });
                             }
                         });
                     });
 
-                    modem.deleteAllSimMessages(() => {
+                    modem.deleteAllSimMessages((data) => {
                         console.log('Deleting Automatically');
                     });
                 };
-
                 processMessages();
                 setInterval(processMessages, 1000);
             });
@@ -318,10 +322,9 @@ class DeviceController extends Controller
         File::put($newJsFilePath, $newJsContent);
 
         // Redirect back to admin management page with success message
-        return redirect()->route('admin.management')->with('success', 'Device updated successfully!');
+        return redirect()->route('admin.management')->with(array ('message' => 'Device updated successfully!',
+        'alert-type' => 'success'));
     }
-
-
 
     public function getDeviceCount()
     {
@@ -329,5 +332,32 @@ class DeviceController extends Controller
         return response()->json($deviceCount); // Return the count as JSON response
     }
 
+    public function getDeviceLocation()
+    {
+        $deviceLocations = Device::all(['deviceName', 'latitude', 'longitude']);
+        return response()->json($deviceLocations); // Return the count as JSON response
+    }
+
+    public function storeLocation(Request $request)
+    {
+        // Validate the incoming request data
+        $request->validate([
+            'deviceId' => 'required|exists:devices,id',
+            'latitude' => 'required',
+            'longitude' => 'required',
+        ]);
+
+        // Find the device by ID
+        $device = Device::findOrFail($request->input('deviceId'));
+
+        // Update latitude and longitude of the device
+        $device->update([
+            'latitude' => $request->input('latitude'),
+            'longitude' => $request->input('longitude'),
+        ]);
+
+        return redirect()->route('admin.management')->with(array ('message' => 'Location added successfully!',
+        'alert-type' => 'success'));
+    }
 
 }

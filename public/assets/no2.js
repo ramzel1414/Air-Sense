@@ -92,6 +92,15 @@ $(function () {
             markers: {
                 size: 4
             },
+
+            tooltip: {
+                x: {
+                    show: false,
+                },
+                marker: {
+                    show: false,
+                },
+            }
         };
 
         var chart = new ApexCharts(document.querySelector("#no2"), options);
@@ -165,16 +174,14 @@ $(function () {
                 var averageData = calculateAverageByHour(data);
 
                 // Generate CSV content with classification
-                // var csvContent = "DateTime,NO2 (ppm),Classification,Health Impact\n";
-                var csvContent = "DateTime,NO2 (ppm)\n";
+                var csvContent = "DateTime,NO2 (ppm),Classification,Health Impact\n";
                 averageData.forEach(function (item) {
-                    // var classification = getClassification(item.avgNO2);
-                    // var healthImpact = getHealthImpact(classification);
+                    var classification = getClassification(item.avgNO2);
+                    var healthImpact = getHealthImpact(classification);
 
-                    var avgNO2Formatted = item.avgNO2.toFixed(1);
+                    var avgNO2Formatted = item.avgNO2.toFixed(2);
 
-                    // csvContent += item.dateTime + "," + avgNO2Formatted + "," + classification + "," + healthImpact + "\n";
-                    csvContent += item.dateTime + "," + avgNO2Formatted + "\n";
+                    csvContent += item.dateTime + "," + avgNO2Formatted + "," + classification + "," + healthImpact + "\n";
 
                 });
 
@@ -204,37 +211,35 @@ $(function () {
             var time = dateTimeParts[1];
             var hour = time.split(':')[0];
 
-            var dateTime = date + ' ' + time;
-
-            if (!hourlyAverages[hour]) {
-                hourlyAverages[hour] = { dateTime: dateTime, sumNO2: 0, count: 0 };
+            var hourDateTime = date + ' ' + hour + ':00:00';
+            if (!hourlyAverages[hourDateTime]) {
+                hourlyAverages[hourDateTime] = { sumNO2: 0, count: 0 };
             }
-            hourlyAverages[hour].sumNO2 += item.no2;
-            hourlyAverages[hour].count++;
+            hourlyAverages[hourDateTime].sumNO2 += item.no2;
+            hourlyAverages[hourDateTime].count++;
         });
 
         var result = [];
-        Object.keys(hourlyAverages).forEach(function (hour) {
-            var avgNO2 = hourlyAverages[hour].sumNO2 / hourlyAverages[hour].count;
-            result.push({ dateTime: hourlyAverages[hour].dateTime, avgNO2: avgNO2 });
+        Object.keys(hourlyAverages).forEach(function (hourDateTime) {
+            var avgNO2 = hourlyAverages[hourDateTime].sumNO2 / hourlyAverages[hourDateTime].count;
+            result.push({ dateTime: hourDateTime, avgNO2: avgNO2 });
         });
-
         return result;
     }
 
     // Function to determine classification based on PM10 value
     function getClassification(no2) {
-        if (no2 >= 0 && no2 <= 0.01) {
+        if (no2 >= 0 && no2 <= 0.05 + Number.EPSILON) {
             return "Good (Green)";
-        } else if (no2 > 12 && no2 <= 35) {
+        } else if (no2 > 0.05 + Number.EPSILON && no2 <= 0.10 + Number.EPSILON) {
             return "Moderate (Yellow)";
-        } else if (no2 > 35 && no2 <= 55) {
+        } else if (no2 > 0.10 + Number.EPSILON && no2 <= 0.36 + Number.EPSILON) {
             return "Unhealthy for Sensitive Groups (Orange)";
-        } else if (no2 > 55 && no2 <= 150) {
+        } else if (no2 > 0.36 + Number.EPSILON && no2 <= 0.65 + Number.EPSILON) {
             return "Unhealthy (Red)";
-        } else if (no2 > 150 && no2 <= 250) {
+        } else if (no2 > 0.65 + Number.EPSILON && no2 <= 1.24 + Number.EPSILON) {
             return "Very Unhealthy (Purple)";
-        } else if (no2 > 250 && no2 <= 500) {
+        } else if (no2 > 1.24 + Number.EPSILON) {
             return "Hazardous (Maroon)";
         } else {
             return "Unknown classification";
