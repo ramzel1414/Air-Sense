@@ -10,12 +10,11 @@
     <h3 class="mb-4">Location</h3>
       
     <!-- wrapper start -->
-    <div class="d-flex justify-content-evenly">
-      
+    <div class="d-flex justify-content-evenly p-3 for-light-mode-bg">
 
-        <div class="col-12 mb-4 card p-2 rounded-2">
+        <div class="col-12 mb-4 card p-3 rounded-2">
             <div class="d-flex justify-content-center">
-                {{-- <p class="mb-3" id="locationTitle">Device Locations</p> --}}
+                <h5 class="mb-3" id="locationTitle">Device Locations</h5>
             </div>
             <div id="map" class="rounded-3" style="height: 700px"></div>
         </div>
@@ -49,18 +48,6 @@
                             // Show deviceName in info window when marker is clicked
                             marker.addListener("click", () => {
                                 infoWindow.open(map, marker);
-                            });
-    
-                            // Draw a circle around the marker to represent the sensor range (30 meters)
-                            const circle = new google.maps.Circle({
-                                strokeColor: "#FF0000",
-                                strokeOpacity: 0.8,
-                                strokeWeight: 2,
-                                fillColor: "#FF0000",
-                                fillOpacity: 0.35,
-                                map: map,
-                                center: marker.getPosition(),
-                                radius: 20, // 30 meters radius
                             });
                         });
                     })

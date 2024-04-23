@@ -67,7 +67,7 @@
           {{-- Start of Monitoring content --}}
           <div class="tab-pane fade show active p-3 for-light-mode-bg" id="monitoring" role="tabpanel" aria-labelledby="monitoring-line-tab">
             <div class="mb-3">
-              <h5>REAL-TIME AIR QUALITY MONITORING</h5">
+                <h5>REAL-TIME AIR QUALITY MONITORING - <span class="text-success">ACTIVE</span></h5">
             </div>
             {{-- Cards Container --}}
             <div class="row flex-grow-1">
