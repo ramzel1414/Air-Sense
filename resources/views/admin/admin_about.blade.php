@@ -21,6 +21,7 @@
 <div class="page-content">
 
     <h3 class="mb-4">About Us</h3>
+    <div class="p-3 for-light-mode-bg">
         {{-- 1sd row --}}
         <div class="row">
             <div class="col-md-12 grid-margin stretch-card">
@@ -144,7 +145,7 @@
                                         <td>51 - 69</td>
                                         <td>0.11 - 0.36</td>
                                         <td>0.085 - 0.104</td>
-                                        <td class="text-wrap text-center">People with respiratory disease, such as asthma, should limit their outdoor exertion.</td>
+                                        <td class="text-wrap text-left">People with respiratory disease, such as asthma, should limit their outdoor exertion.</td>
                                     </tr>
                                     <tr>
                                         <td>Unhealthy</td>
@@ -154,7 +155,7 @@
                                         <td>70 - 150</td>
                                         <td>0.37 - 0.65</td>
                                         <td>0.105 - 0.124</td>
-                                        <td class="text-wrap text-center">Pedestrians should avoid heavy traffic areas. People with respiratory disease such as asthma should stay indoors and rest as much as possible. Unnecessary trips should be postponed. People should voluntarily restrict the use of vehicles</td>
+                                        <td class="text-wrap text-left">Pedestrians should avoid heavy traffic areas. People with respiratory disease such as asthma should stay indoors and rest as much as possible. Unnecessary trips should be postponed. People should voluntarily restrict the use of vehicles</td>
                                     </tr>
                                     <tr>
                                         <td>Very Unhealthy</td>
@@ -164,7 +165,7 @@
                                         <td>151 - 400</td>
                                         <td>0.66 - 1.24</td>
                                         <td>0.125 - 0.374</td>
-                                        <td class="text-wrap text-center">Pedestrians should avoid heavy traffic areas. People with respiratory disease such as asthma should stay indoors and rest as much as possible. Unnecessary trips should be postponed. Motor vehicles use may be restricted. Industrial activities may be curtailed.</td>
+                                        <td class="text-wrap text-left">Pedestrians should avoid heavy traffic areas. People with respiratory disease such as asthma should stay indoors and rest as much as possible. Unnecessary trips should be postponed. Motor vehicles use may be restricted. Industrial activities may be curtailed.</td>
                                     </tr>
                                     <tr>
                                         <td>Hazardous</td>
@@ -174,7 +175,7 @@
                                         <td>Above 401</td>
                                         <td>Above 1.24</td>
                                         <td>Above 0.374</td>
-                                        <td class="text-wrap text-center">Everyone should remain indoors. (keeping windows and doors closed unless heat stress is possible). Motor vehicles should be prohibited except for emergency situations. Industrial activities, except that which is vital for public safety should and health should be curtailed.</td>
+                                        <td class="text-wrap text-left">Everyone should remain indoors. (keeping windows and doors closed unless heat stress is possible). Motor vehicles should be prohibited except for emergency situations. Industrial activities, except that which is vital for public safety should and health should be curtailed.</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -185,7 +186,7 @@
         </div>
         {{-- 4rt row --}}
         <div class="row">
-        <div class="col-md-12">
+            <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
                     <h6 class="card-title">Frequently Asked Questions</h6>
@@ -262,6 +263,7 @@
                         </div>
                     </div>
                 </div>
+            </div>
             </div>
         </div>
     </div>
