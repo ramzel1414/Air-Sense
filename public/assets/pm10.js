@@ -204,21 +204,19 @@ $(function () {
             var time = dateTimeParts[1];
             var hour = time.split(':')[0];
 
-            var dateTime = date + ' ' + time;
-
-            if (!hourlyAverages[hour]) {
-                hourlyAverages[hour] = { dateTime: dateTime, sumPM10: 0, count: 0 };
+            var hourDateTime = date + ' ' + hour + ':00:00';
+            if (!hourlyAverages[hourDateTime]) {
+                hourlyAverages[hourDateTime] = { sumPM10: 0, count: 0 };
             }
-            hourlyAverages[hour].sumPM10 += item.pm10;
-            hourlyAverages[hour].count++;
+            hourlyAverages[hourDateTime].sumPM10 += item.pm10;
+            hourlyAverages[hourDateTime].count++;
         });
 
         var result = [];
-        Object.keys(hourlyAverages).forEach(function (hour) {
-            var avgPM10 = hourlyAverages[hour].sumPM10 / hourlyAverages[hour].count;
-            result.push({ dateTime: hourlyAverages[hour].dateTime, avgPM10: avgPM10 });
+        Object.keys(hourlyAverages).forEach(function (hourDateTime) {
+            var avgPM10 = hourlyAverages[hourDateTime].sumPM10 / hourlyAverages[hourDateTime].count;
+            result.push({ dateTime: hourDateTime, avgPM10: avgPM10 });
         });
-
         return result;
     }
 
@@ -228,13 +226,13 @@ $(function () {
             return "Good (Green)";
         } else if (pm10 > 55 && pm10 <= 154) {
             return "Moderate (Yellow)";
-        } else if (pm10 > 155 && pm10 <= 254) {
+        } else if (pm10 > 154 && pm10 <= 254) {
             return "Unhealthy for Sensitive Groups (Orange)";
-        } else if (pm10 > 255 && pm10 <= 354) {
+        } else if (pm10 > 254 && pm10 <= 354) {
             return "Unhealthy (Red)";
-        } else if (pm10 > 355 && pm10 <= 424) {
+        } else if (pm10 > 354 && pm10 <= 424) {
             return "Very Unhealthy (Purple)";
-        } else if (pm10 > 425 && pm10 <= 504) {
+        } else if (pm10 > 424 && pm10 <= 504) {
             return "Hazardous (Maroon)";
         } else {
             return "Unknown Classification";

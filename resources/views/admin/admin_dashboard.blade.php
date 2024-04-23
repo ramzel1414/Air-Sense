@@ -120,5 +120,7 @@ License: For each use you must have a valid license purchased only from above li
 </script>
 {{-- end of toaster for update notif --}}
 
+<script async defer src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAP_API') }}&callback=initMap"></script>
+
 </body>
 </html>

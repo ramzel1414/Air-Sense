@@ -22,9 +22,9 @@
           </li>
 
           <li class="nav-item">
-            <a href="{{ route ('admin.management') }}" class="nav-link">
-              <i class="link-icon" data-feather="briefcase"></i>
-              <span class="link-title">Management</span>
+            <a href="{{ route ('admin.about') }}" class="nav-link">
+              <i class="link-icon" data-feather="help-circle"></i>
+              <span class="link-title">About</span>
             </a>
           </li>
           
@@ -36,9 +36,9 @@
           </li>
 
           <li class="nav-item">
-            <a href="{{ route ('admin.about') }}" class="nav-link">
-              <i class="link-icon" data-feather="help-circle"></i>
-              <span class="link-title">About</span>
+            <a href="{{ route ('admin.management') }}" class="nav-link">
+              <i class="link-icon" data-feather="briefcase"></i>
+              <span class="link-title">Management</span>
             </a>
           </li>
 
