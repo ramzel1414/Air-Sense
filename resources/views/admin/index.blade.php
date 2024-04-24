@@ -64,154 +64,165 @@
         {{-- Tab contents --}}
         <div class="tab-content" id="lineTabContent">
 
-          {{-- Start of Monitoring content --}}
-          <div class="tab-pane fade show active p-3 for-light-mode-bg" id="monitoring" role="tabpanel" aria-labelledby="monitoring-line-tab">
-            <div class="mb-3">
-                <h5>REAL-TIME AIR QUALITY MONITORING - <span class="text-success">ACTIVE</span></h5">
-            </div>
-            {{-- Cards Container --}}
-            <div class="row flex-grow-1">
+      {{-- Start of Monitoring content --}}
+        <div class="tab-pane fade show active" id="monitoring" role="tabpanel" aria-labelledby="monitoring-line-tab">
+        <h5 class="mb-2">REAL-TIME AIR QUALITY MONITORING </h5>
+
+            <div class="p-3 for-light-mode-bg">
+                <div class="mb-3 d-flex justify-content-between align-items-center">
+                    <h5>Bukidnon State University</h5>
+                    <div class="text-status d-flex gap-2 align-items-center">
+                        <div>STATUS:</div>
+                        <div class="device-status">
+                            <div class="active-circle"></div>
+                            <div class="">ACTIVE</div>
+                        </div>
+                    </div>
+                </div>
+                {{-- Cards Container --}}
+                <div class="row flex-grow-1">
                 {{-- Card 1 --}}
-                <div class="col-sm-15 grid-margin stretch-card">
-                    <div class="card">
-                        <div class="card-body" style="border-top: 1rem solid #6571ff;">
-                            <div class="d-flex justify-content-between align-items-baseline">
-                                <h6 class="card-title mb-0">PM2.5 (ug/m3)</h6>
-                            </div>
-                            <div class="row">
-                                <div class="col-12 col-md-12 text-center">
-                                    <h3 id="pm25-value" class="mb-2">
-                                        <div class="spinner-grow text-primary" role="status">
+                    <div class="col-sm-15 grid-margin stretch-card">
+                        <div class="card">
+                            <div class="card-body" style="border-top: 1rem solid #6571ff;">
+                                <div class="d-flex justify-content-between align-items-baseline">
+                                    <h6 class="card-title mb-0">PM2.5 (ug/m3)</h6>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12 col-md-12 text-center">
+                                        <h3 id="pm25-value" class="mb-2">
+                                            <div class="spinner-grow text-primary" role="status">
+                                                <span class="visually-hidden">Loading...</span>
+                                            </div>
+                                        </h3>
+                                        <p id="pm25-classification" class="mb-2">
                                             <span class="visually-hidden">Loading...</span>
-                                        </div>
-                                    </h3>
-                                    <p id="pm25-classification" class="mb-2">
-                                        <span class="visually-hidden">Loading...</span>
-                                    </p>
-                                    <p id="pm25-date" style="font-style: italic; font-size: 80%">
-                                        <span class="visually-hidden">Loading...</span>
-                                    </p>
+                                        </p>
+                                        <p id="pm25-date" style="font-style: italic; font-size: 80%">
+                                            <span class="visually-hidden">Loading...</span>
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
                 {{-- Card 2 --}}
-                <div class="col-sm-15 grid-margin stretch-card">
-                    <div class="card">
-                        <div class="card-body" style="border-top: 1rem solid #6571ff;">
-                            <div class="d-flex justify-content-between align-items-baseline">
-                                <h6 class="card-title mb-0">PM10 (ug/m3)</h6>
-                            </div>
-                            <div class="row">
-                                <div class="col-12 col-md-12 text-center">
-                                    <h3 id="pm10-value" class="mb-2">
-                                        <div class="spinner-grow text-primary" role="status">
+                    <div class="col-sm-15 grid-margin stretch-card">
+                        <div class="card">
+                            <div class="card-body" style="border-top: 1rem solid #6571ff;">
+                                <div class="d-flex justify-content-between align-items-baseline">
+                                    <h6 class="card-title mb-0">PM10 (ug/m3)</h6>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12 col-md-12 text-center">
+                                        <h3 id="pm10-value" class="mb-2">
+                                            <div class="spinner-grow text-primary" role="status">
+                                                <span class="visually-hidden">Loading...</span>
+                                            </div>
+                                        </h3>
+                                        <p id="pm10-classification" class="mb-2">
                                             <span class="visually-hidden">Loading...</span>
-                                        </div>
-                                    </h3>
-                                    <p id="pm10-classification" class="mb-2">
-                                        <span class="visually-hidden">Loading...</span>
-                                    </p>
-                                    <p id="pm10-date" style="font-style: italic; font-size: 80%">
-                                        <span class="visually-hidden">Loading...</span>
-                                    </p>
+                                        </p>
+                                        <p id="pm10-date" style="font-style: italic; font-size: 80%">
+                                            <span class="visually-hidden">Loading...</span>
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
                 {{-- Card 3 --}}
                 <div class="col-sm-15 grid-margin stretch-card">
-                    <div class="card">
-                        <div class="card-body" style="border-top: 1rem solid #6571ff;">
-                            <div class="d-flex justify-content-between align-items-baseline">
-                                <h6 class="card-title mb-0">CO (ppm)</h6>
-                            </div>
-                            <div class="row">
-                                <div class="col-12 col-md-12 text-center">
-                                    <h3 id="co-value" class="mb-2">
-                                        <div class="spinner-grow text-primary" role="status">
+                        <div class="card">
+                            <div class="card-body" style="border-top: 1rem solid #6571ff;">
+                                <div class="d-flex justify-content-between align-items-baseline">
+                                    <h6 class="card-title mb-0">CO (ppm)</h6>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12 col-md-12 text-center">
+                                        <h3 id="co-value" class="mb-2">
+                                            <div class="spinner-grow text-primary" role="status">
+                                                <span class="visually-hidden">Loading...</span>
+                                            </div>
+                                        </h3>
+                                        <p id="co-classification" class="mb-2">
                                             <span class="visually-hidden">Loading...</span>
-                                        </div>
-                                    </h3>
-                                    <p id="co-classification" class="mb-2">
-                                        <span class="visually-hidden">Loading...</span>
-                                    </p>
-                                    <p id="co-date" style="font-style: italic; font-size: 80%">
-                                        <span class="visually-hidden">Loading...</span>
-                                    </p>
+                                        </p>
+                                        <p id="co-date" style="font-style: italic; font-size: 80%">
+                                            <span class="visually-hidden">Loading...</span>
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
                 </div>
                 {{-- Card 4 --}}
                 <div class="col-sm-15 grid-margin stretch-card">
-                    <div class="card">
-                        <div class="card-body" style="border-top: 1rem solid #6571ff;">
-                            <div class="d-flex justify-content-between align-items-baseline">
-                                <h6 class="card-title mb-0">NO2 (ppm)</h6>
-                            </div>
-                            <div class="row">
-                                <div class="col-12 col-md-12 text-center">
-                                    <h3 id="no2-value" class="mb-2">
-                                        <div class="spinner-grow text-primary" role="status">
+                        <div class="card">
+                            <div class="card-body" style="border-top: 1rem solid #6571ff;">
+                                <div class="d-flex justify-content-between align-items-baseline">
+                                    <h6 class="card-title mb-0">NO2 (ppm)</h6>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12 col-md-12 text-center">
+                                        <h3 id="no2-value" class="mb-2">
+                                            <div class="spinner-grow text-primary" role="status">
+                                                <span class="visually-hidden">Loading...</span>
+                                            </div>
+                                        </h3>
+                                        <p id="no2-classification" class="mb-2">
                                             <span class="visually-hidden">Loading...</span>
-                                        </div>
-                                    </h3>
-                                    <p id="no2-classification" class="mb-2">
-                                        <span class="visually-hidden">Loading...</span>
-                                    </p>
-                                    <p id="no2-date" style="font-style: italic; font-size: 80%">
-                                        <span class="visually-hidden">Loading...</span>
-                                    </p>
+                                        </p>
+                                        <p id="no2-date" style="font-style: italic; font-size: 80%">
+                                            <span class="visually-hidden">Loading...</span>
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
                 </div>
                 {{-- Card 5 --}}
                 <div class="col-sm-15 grid-margin stretch-card">
-                    <div class="card">
-                        <div class="card-body" style="border-top: 1rem solid #6571ff;">
-                            <div class="d-flex justify-content-between align-items-baseline">
-                                <h6 class="card-title mb-0">O3 (ppm)</h6>
-                            </div>
-                            <div class="row">
-                                <div class="col-12 col-md-12 text-center">
-                                    <h3 id="ozone-value" class="mb-2">
-                                        <div class="spinner-grow text-primary" role="status">
+                        <div class="card">
+                            <div class="card-body" style="border-top: 1rem solid #6571ff;">
+                                <div class="d-flex justify-content-between align-items-baseline">
+                                    <h6 class="card-title mb-0">O3 (ppm)</h6>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12 col-md-12 text-center">
+                                        <h3 id="ozone-value" class="mb-2">
+                                            <div class="spinner-grow text-primary" role="status">
+                                                <span class="visually-hidden">Loading...</span>
+                                            </div>
+                                        </h3>
+                                        <p id="ozone-classification" class="mb-2">
                                             <span class="visually-hidden">Loading...</span>
-                                        </div>
-                                    </h3>
-                                    <p id="ozone-classification" class="mb-2">
-                                        <span class="visually-hidden">Loading...</span>
-                                    </p>
-                                    <p id="ozone-date" style="font-style: italic; font-size: 80%">
-                                        <span class="visually-hidden">Loading...</span>
-                                    </p>
+                                        </p>
+                                        <p id="ozone-date" style="font-style: italic; font-size: 80%">
+                                            <span class="visually-hidden">Loading...</span>
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
+                        </div>
+                </div>
+                </div>
+
+        {{-- Monitoring Graphs --}}
+                <div class="row">
+                    <div class="col-12 col-xl-12 stretch-card ">
+                        <div class="row flex-grow-1" >
+                        @include('charts.monitoring.pm25')
+                        @include('charts.monitoring.pm10')
+                        @include('charts.monitoring.co')
+                        @include('charts.monitoring.no2')
+                        @include('charts.monitoring.o3')
                         </div>
                     </div>
                 </div>
             </div>
-
-                {{-- Monitoring Graphs --}}
-                <div class="row">
-                <div class="col-12 col-xl-12 stretch-card ">
-                    <div class="row flex-grow-1" >
-                    @include('charts.monitoring.pm25')
-                    @include('charts.monitoring.pm10')
-                    @include('charts.monitoring.co')
-                    @include('charts.monitoring.no2')
-                    @include('charts.monitoring.o3')
-                    </div>
-                </div>
-                </div>
-            </div>
-            {{-- End of Monitoring content --}}
+        </div>
+      {{-- End of Monitoring content --}}
 
             {{-- Start of Forecasting content --}}
             <div class="tab-pane fade p-3 for-light-mode-bg" id="forecasting" role="tabpanel" aria-labelledby="forecasting-line-tab">

@@ -2,9 +2,8 @@
     <div class="card">
       <div class="card-body">
         <div class="row">
-          <h5 class="d-flex align-items-center">Bukidnon State University</h5>
           <div class="col-2 d-flex justify-content-between w-100">
-            <h6 class="d-flex align-items-center">CO</h6>
+            <h5 class="d-flex align-items-center">CO</h5>
             <div class="btns">
 
               @auth

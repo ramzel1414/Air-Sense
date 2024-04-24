@@ -71,29 +71,39 @@
 
     <div class="page-content mx-4">
 
-    <h3 class="mb-2">AirSense</h3>
 
-    {{-- Tabs for Monitoring and Forecasting--}}
-    <ul class="nav nav-tabs nav-tabs-line" id="lineTab" role="tablist">
-      <li class="nav-item">
-        <a class="nav-link active" id="monitoring-line-tab" data-bs-toggle="tab" href="#monitoring" role="tab" aria-controls="monitoring" aria-selected="true">Monitoring</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" id="forecasting-line-tab" data-bs-toggle="tab" href="#forecasting" role="tab" aria-controls="forecasting" aria-selected="false">Forecasting</a>
-      </li>
-    </ul>
+        <h2>AirSense</h2>
+        
+        {{-- Tabs for Monitoring and Forecasting--}}
+        <ul class="nav nav-tabs nav-tabs-line" id="lineTab" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" id="monitoring-line-tab" data-bs-toggle="tab" href="#monitoring" role="tab" aria-controls="monitoring" aria-selected="true">Monitoring</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="forecasting-line-tab" data-bs-toggle="tab" href="#forecasting" role="tab" aria-controls="forecasting" aria-selected="false">Forecasting</a>
+            </li>
+        </ul>
     {{-- End of Tabs --}}
     <br>
     {{-- Tab contents --}}
     <div class="tab-content" id="lineTabContent">
 
       {{-- Start of Monitoring content --}}
-      <div class="tab-pane fade show active p-3 for-light-mode-bg" id="monitoring" role="tabpanel" aria-labelledby="monitoring-line-tab">
-        <div class="mb-3">
-          <h5>REAL-TIME AIR QUALITY MONITORING - <span class="text-success">ACTIVE</span></h5">
+    <div class="tab-pane fade show active" id="monitoring" role="tabpanel" aria-labelledby="monitoring-line-tab">
+        <h5 class="mb-2">REAL-TIME AIR QUALITY MONITORING </h5>
 
-        </div>
-        {{-- Cards Container --}}
+        <div class="p-3 for-light-mode-bg">
+            <div class="mb-3 d-flex justify-content-between align-items-center">
+                <h5>Bukidnon State University</h5>
+                <div class="text-status d-flex gap-2 align-items-center">
+                    <div>STATUS:</div>
+                    <div class="device-status">
+                        <div class="active-circle"></div>
+                        <div class="">ACTIVE</div>
+                    </div>
+                </div>
+            </div>
+            {{-- Cards Container --}}
             <div class="row flex-grow-1">
               {{-- Card 1 --}}
                 <div class="col-sm-15 grid-margin stretch-card">
@@ -222,19 +232,20 @@
               </div>
             </div>
 
-        {{-- Monitoring Graphs --}}
-        <div class="row">
-          <div class="col-12 col-xl-12 stretch-card ">
-            <div class="row flex-grow-1" >
-              @include('charts.monitoring.pm25')
-              @include('charts.monitoring.pm10')
-              @include('charts.monitoring.co')
-              @include('charts.monitoring.no2')
-              @include('charts.monitoring.o3')
+            {{-- Monitoring Graphs --}}
+            <div class="row">
+            <div class="col-12 col-xl-12 stretch-card ">
+                <div class="row flex-grow-1" >
+                @include('charts.monitoring.pm25')
+                @include('charts.monitoring.pm10')
+                @include('charts.monitoring.co')
+                @include('charts.monitoring.no2')
+                @include('charts.monitoring.o3')
+                </div>
             </div>
-          </div>
+            </div>
         </div>
-      </div>
+    </div>
       {{-- End of Monitoring content --}}
 
       {{-- Start of Forecasting content --}}
