@@ -73,9 +73,9 @@
                     <h5>Bukidnon State University</h5>
                     <div class="text-status d-flex gap-2 align-items-center">
                         <div>STATUS:</div>
-                        <div class="device-status">
-                            <div class="active-circle"></div>
-                            <div class="">ACTIVE</div>
+                        <div class="device-status-offline">
+                            <div class="status-circle"></div>
+                            <div>OFFLINE</div>
                         </div>
                     </div>
                 </div>
