@@ -65,7 +65,7 @@ class PdfController extends Controller
         $fpdf->Cell(0, 10, 'CY 2024-2025 Assessment Report from AirSense IoT Monitoring Device', 0, 1, 'C');
         $fpdf->Cell(0, 0, 'PM2.5, PM10, O3, CO & NO2 Ambient Air Quality Monitoring Station', 0, 1, 'C');
         $fpdf->Ln(10);
-        
+
         $fpdf->SetFont('Arial', '', 10);
         $fpdf->Cell(20);    //serves as margin (actually a width of invisible cell)
         $fpdf->Cell(0, 10, 'Station: ', 0, 0, 'L');
@@ -120,55 +120,49 @@ class PdfController extends Controller
             $fpdf->Cell(40, 10, number_format($pm25Average, 0), 1, 0, 'C', false, '', $pm25Color); // Display PM2.5 without decimal places
             $fpdf->CellFitScale(35, 10, $pm25Classification, 1, 0, 'C', true);
 
-            $fpdf->SetFillColor($pm10Color[0], $pm10Color[1], $pm10Color[2]); // Use PM10 color
-            $fpdf->Cell(40, 10, number_format($pm10Average, 0), 1, 0, 'C', false, '', $pm10Color); // Display PM10 without decimal places
+            $fpdf->SetFillColor($pm10Color[0], $pm10Color[1], $pm10Color[2]);
+            $fpdf->Cell(40, 10, number_format($pm10Average, 0), 1, 0, 'C', false, '', $pm10Color);
             $fpdf->CellFitScale(35, 10, $pm10Classification, 1, 1, 'C', true);
         }
 
-        // Second batch table header
         $fpdf->Ln(10);
         $fpdf->SetFont('Arial', 'B', 10);
-        $fpdf->SetFillColor(173, 216, 230); // Light blue color
+        $fpdf->SetFillColor(173, 216, 230);
         $fpdf->Cell(35, 10, 'Date of Sampling', 1, 0, 'C', true);
         $fpdf->Cell(25, 10, 'CO (ppm)', 1, 0, 'C', true);
         $fpdf->Cell(27, 10, 'Classification', 1, 0, 'C', true);
         $fpdf->Cell(25, 10, 'NO2 (ppm)', 1, 0, 'C', true);
         $fpdf->Cell(27, 10, 'Classification', 1, 0, 'C', true);
-        $fpdf->Cell(25, 10, 'Ozone (ppm)', 1, 0, 'C', true); // Added "Ozone" column
-        $fpdf->Cell(27, 10, 'Classification', 1, 1, 'C', true); // Added "Classification" for Ozone
+        $fpdf->Cell(25, 10, 'Ozone (ppm)', 1, 0, 'C', true);
+        $fpdf->Cell(27, 10, 'Classification', 1, 1, 'C', true);
 
         $fpdf->SetFont('Arial', '', 10);
-        // Populate table with daily average data
         foreach ($dailyAverages as $average2) {
             $date = $average2->date;
             $coAverage = $average2->co_average;
             $no2Average = $average2->no2_average;
             $ozoneAverage = $average2->ozone_average;
 
-            // Get classification and color for CO
             $COClassification = $this->getClassificationCO($coAverage);
             $COColor = $this->getColor($COClassification);
 
-            // Get classification and color for NO2
             $NO2Classification = $this->getClassificationNO2($no2Average);
             $NO2Color = $this->getColor($NO2Classification);
 
-            // Get classification and color for Ozone
             $OzoneClassification = $this->getClassificationOzone($ozoneAverage);
             $OzoneColor = $this->getColor($OzoneClassification);
 
-            // Add row to table with colored cells
             $fpdf->Cell(35, 10, $date, 1, 0, 'C', false);
             $fpdf->SetFillColor($COColor[0], $COColor[1], $COColor[2]);
-            $fpdf->Cell(25, 10, number_format($coAverage, 0), 1, 0, 'C', false, '', $COColor); // Display CO without decimal places
+            $fpdf->Cell(25, 10, number_format($coAverage, 0), 1, 0, 'C', false, '', $COColor);
             $fpdf->CellFitScale(27, 10, $COClassification, 1, 0, 'C', true);
 
             $fpdf->SetFillColor($NO2Color[0], $NO2Color[1], $NO2Color[2]);
             $fpdf->Cell(25, 10, number_format($no2Average, 2), 1, 0, 'C', false, '', $NO2Color);
-            $fpdf->CellFitScale(27, 10, $NO2Classification, 1, 0, 'C', true); // Display NO2 with two decimal places
+            $fpdf->CellFitScale(27, 10, $NO2Classification, 1, 0, 'C', true);
 
             $fpdf->SetFillColor($OzoneColor[0], $OzoneColor[1], $OzoneColor[2]);
-            $fpdf->Cell(25, 10, number_format($ozoneAverage, 3), 1, 0, 'C', false, '', $OzoneColor); // Display Ozone with three decimal places
+            $fpdf->Cell(25, 10, number_format($ozoneAverage, 3), 1, 0, 'C', false, '', $OzoneColor);
             $fpdf->CellFitScale(27, 10, $OzoneClassification, 1, 1, 'C', true);
         }
 
@@ -213,7 +207,7 @@ class PdfController extends Controller
         // Good
         $fpdf->Cell(32, 10, 'Good', 1, 0, 'C');
         $fpdf->SetFillColor(111, 241, 117); // Light green color
-        $fpdf->Cell(32, 10, 'Green', 1, 0, 'C', true); 
+        $fpdf->Cell(32, 10, 'Green', 1, 0, 'C', true);
         $fpdf->Cell(32, 10, '0 - 54', 1, 0, 'C');
         $fpdf->Cell(32, 10, '0 - 25', 1, 0, 'C');
         $fpdf->Cell(32, 10, '0 - 25', 1, 0, 'C');
@@ -222,14 +216,14 @@ class PdfController extends Controller
         // Fair
         $fpdf->Cell(32, 10, 'Moderate', 1, 0, 'C');
         $fpdf->SetFillColor(255, 255, 77); // Light yellow color
-        $fpdf->Cell(32, 10, 'Yellow', 1, 0, 'C', true); 
+        $fpdf->Cell(32, 10, 'Yellow', 1, 0, 'C', true);
         $fpdf->Cell(32, 10, '55 - 154', 1, 0, 'C');
         $fpdf->Cell(32, 10, '25.1 - 35.0', 1, 0, 'C');
         $fpdf->Cell(32, 10, '25 - 50', 1, 0, 'C');
         $fpdf->Cell(32, 10, '0.06 - 0.10', 1, 1, 'C');
 
         // Orange
-        $fpdf->Cell(32, 10, 'Acutely Unhealthy', 1, 0, 'C'); 
+        $fpdf->Cell(32, 10, 'Acutely Unhealthy', 1, 0, 'C');
         $fpdf->SetFillColor(250, 123, 91); // Light orange color
         $fpdf->Cell(32, 10, 'Orange', 1, 0, 'C', true);
         $fpdf->Cell(32, 10, '155 - 254', 1, 0, 'C');
@@ -240,7 +234,7 @@ class PdfController extends Controller
         // Unhealthy
         $fpdf->Cell(32, 10, 'Unhealthy', 1, 0, 'C');
         $fpdf->SetFillColor(253, 93, 114); // Light red color
-        $fpdf->Cell(32, 10, 'Red', 1, 0, 'C', true); 
+        $fpdf->Cell(32, 10, 'Red', 1, 0, 'C', true);
         $fpdf->Cell(32, 10, '255 - 354', 1, 0, 'C');
         $fpdf->Cell(32, 10, '45.1 - 55', 1, 0, 'C');
         $fpdf->Cell(32, 10, '70 - 150', 1, 0, 'C');
@@ -249,7 +243,7 @@ class PdfController extends Controller
         // Very Unhealthy
         $fpdf->Cell(32, 10, 'Very Unhealthy', 1, 0, 'C');
         $fpdf->SetFillColor(127, 88, 151); // Light purple color
-        $fpdf->Cell(32, 10, 'Purple', 1, 0, 'C', true); 
+        $fpdf->Cell(32, 10, 'Purple', 1, 0, 'C', true);
         $fpdf->Cell(32, 10, '355 - 424', 1, 0, 'C');
         $fpdf->Cell(32, 10, '55.1 - 90', 1, 0, 'C');
         $fpdf->Cell(32, 10, '151 - 400', 1, 0, 'C');
@@ -259,7 +253,7 @@ class PdfController extends Controller
         $fpdf->Cell(32, 10, 'Hazardous', 1, 0, 'C');
         $fpdf->SetTextColor(255, 255, 255); // Set text color to white
         $fpdf->SetFillColor(128, 0, 0); // maroon color
-        $fpdf->Cell(32, 10, 'Maroon', 1, 0, 'C', true); 
+        $fpdf->Cell(32, 10, 'Maroon', 1, 0, 'C', true);
         $fpdf->SetTextColor(0, 0, 0); // Reset text color to black
         $fpdf->Cell(32, 10, '425 - 504', 1, 0, 'C');
         $fpdf->Cell(32, 10, 'Above 91', 1, 0, 'C');
