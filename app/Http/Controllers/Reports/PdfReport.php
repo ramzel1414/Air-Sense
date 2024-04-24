@@ -9,7 +9,7 @@ class PdfReport extends FPDF
     function Header()
     {
         //Logo
-        $this->Image('airsense.png', 40, 10, 20);
+        $this->Image('airsense.png', 40, 10, 20,);
         $this->Image('buksu.png', 150, 10, 20);
 
         // Select Arial bold 15
