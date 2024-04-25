@@ -1,4 +1,5 @@
-<!-- Management Modal -->
+<!-- Management Modals -->
+
 {{-- Modal for adding a device --}}
 <div class="modal fade" id="addDevice" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -32,6 +33,43 @@
         </div>
     </div>
 </div>
+
+<!-- Update Device Modals (inside the loop) -->
+@foreach ($devices as $device)
+<div class="modal fade" id="updateDevice{{ $device->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Update Device</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Form for updating Device -->
+                <form action="{{ route('admin.update', $device->id) }}" method="POST">
+                    @csrf
+                    @method('PUT')
+                    <div class="mb-3">
+                        <label for="updateName" class="form-label">Device Name:</label>
+                        <input type="text" class="form-control" id="updateName" name="deviceName" value="{{ $device->deviceName }}" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="updateCom" class="form-label">Device COM:</label>
+                        <input type="number" class="form-control" id="updateCom" name="devicePort" value="{{ $device->devicePort }}" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="updateSim" class="form-label">Device Sim#:</label>
+                        <input type="number" class="form-control" id="updateSim" name="deviceSim" value="{{ $device->deviceSim }}" required>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@endforeach
 
 <!-- Modal for adding a location -->
 <div class="modal fade" id="addLocation" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
