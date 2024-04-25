@@ -12,13 +12,14 @@ class DeviceController extends Controller
     {
 
         // Check if devicePort or deviceSim already exists
-        $existingDevice = Device::where('devicePort', $request->input('devicePort'))
+        $existingDevice = Device::where('deviceSerial', $request->input('deviceSerial'))
+                                ->orWhere('devicePort', $request->input('devicePort'))
                                 ->orWhere('deviceSim', $request->input('deviceSim'))
                                 ->first();
 
         if ($existingDevice) {
             // Redirect back with error message if devicePort or deviceSim already exists
-            return redirect()->route('admin.management')->with(array ('message' => 'Device port or sim # already exist',
+            return redirect()->route('admin.management')->with(array ('message' => 'Device Serial, Port or Sim # already exist',
              'alert-type' => 'error'));
         }
 
@@ -43,6 +44,7 @@ class DeviceController extends Controller
         // Validate the incoming request data
         $request->validate([
             'deviceName' => 'required|string',
+            'deviceSerial' => 'required|string|unique:devices,deviceSerial',
             'devicePort' => 'required|integer|unique:devices,devicePort',
             'deviceSim' => 'required|integer|unique:devices,deviceSim',
             'latitude' => 'nullable|numeric',
@@ -53,7 +55,9 @@ class DeviceController extends Controller
         // Create a new Device record
         $device = Device::create([
             'deviceName' => $request->input('deviceName'),
+            'deviceSerial' => $request->input('deviceSerial'),
             'devicePort' => $request->input('devicePort'),
+            'deviceStatus' => "ACTIVE",
             'deviceSim' => $request->input('deviceSim'),
         ]);
 
@@ -196,14 +200,15 @@ class DeviceController extends Controller
         // Check if devicePort or deviceSim already exists for other devices
         $existingDevice = Device::where('id', '!=', $id)
                                 ->where(function ($query) use ($request) {
-                                    $query->where('devicePort', $request->input('devicePort'))
-                                        ->orWhere('deviceSim', $request->input('deviceSim'));
+                                    $query->where('deviceSerial', $request->input('deviceSerial'))
+                                        ->orWhere('deviceSim', $request->input('deviceSim'))
+                                        ->orWhere('devicePort', $request->input('devicePort'));
                                 })
                                 ->first();
 
         if ($existingDevice) {
             // Redirect back with error message if devicePort or deviceSim already exists for another device
-            return redirect()->route('admin.management')->with(array ('message' => 'Device Port or SIM # already exists for another device.',
+            return redirect()->route('admin.management')->with(array ('message' => 'Device Serial, Port or SIM # already exists for another device.',
             'alert-type' => 'error'));
         }
 
@@ -214,11 +219,11 @@ class DeviceController extends Controller
         }
 
         // Check if the existing deviceSim matches the restricted value
-        if ($device->deviceSim === '639537399626') {
-            // If the deviceSim matches the restricted value, prevent updating deviceSim
-            return redirect()->route('admin.management')->with(array ('message' => 'Cannot update this device as it is being used.',
-            'alert-type' => 'error'));
-        }
+        // if ($device->deviceSim === '639537399626') {
+        //     // If the deviceSim matches the restricted value, prevent updating deviceSim
+        //     return redirect()->route('admin.management')->with(array ('message' => 'Cannot update this device as it is being used.',
+        //     'alert-type' => 'error'));
+        // }
 
         // Validate devicePort to ensure it is a number
         if (!is_numeric($request->input('devicePort'))) {
@@ -229,6 +234,12 @@ class DeviceController extends Controller
         // Validate deviceSim to ensure it is a number
         if (!is_numeric($request->input('deviceSim'))) {
             return redirect()->route('admin.management')->with(array ('message' => 'Device SIM # must be a valid number.',
+            'alert-type' => 'error'));
+        }
+
+        if ($device->deviceStatus === 'ACTIVE') {
+            // If the deviceSim matches the restricted value, prevent updating deviceSim
+            return redirect()->route('admin.management')->with(array ('message' => 'Cannot update this device as it is being used.',
             'alert-type' => 'error'));
         }
 
@@ -244,6 +255,7 @@ class DeviceController extends Controller
         // Update the device with allowed fields (deviceName, devicePort, latitude, longitude)
         $device->update([
             'deviceName' => $request->input('deviceName'),
+            'deviceSerial' => $request->input('deviceSerial'),
             'devicePort' => $request->input('devicePort'),
             'deviceSim' => $request->input('deviceSim'),
         ]);
@@ -324,6 +336,23 @@ class DeviceController extends Controller
         // Redirect back to admin management page with success message
         return redirect()->route('admin.management')->with(array ('message' => 'Device updated successfully!',
         'alert-type' => 'success'));
+    }
+
+    public function toggleStatus(Request $request, $id)
+    {
+        // Retrieve the device by ID
+        $device = Device::findOrFail($id);
+
+        // Toggle the device status
+        $newStatus = ($device->deviceStatus === 'ACTIVE') ? 'INACTIVE' : 'ACTIVE';
+        $device->deviceStatus = $newStatus;
+        $device->save();
+
+        // Redirect back to the management page with a success message
+        return redirect()->route('admin.management')->with([
+            'message' => 'Device status updated successfully!',
+            'alert-type' => 'success'
+        ]);
     }
 
     public function getDeviceCount()
