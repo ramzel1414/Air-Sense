@@ -9,6 +9,6 @@ class Device extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['deviceName', 'devicePort', 'deviceSim', 'latitude', 'longitude'];
+    protected $fillable = ['deviceName', 'deviceSerial', 'devicePort', 'deviceSim', 'deviceStatus', 'latitude', 'longitude'];
 
 }
