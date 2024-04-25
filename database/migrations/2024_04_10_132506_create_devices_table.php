@@ -11,8 +11,10 @@ class CreateDevicesTable extends Migration
         Schema::create('devices', function (Blueprint $table) {
             $table->id();
             $table->string('deviceName');
+            $table->string('deviceSerial')->unique();
             $table->integer('devicePort')->unique();
             $table->string('deviceSim')->unique();
+            $table->string('deviceStatus')->nullable();
             $table->string('latitude')->nullable();
             $table->string('longitude')->nullable();
             $table->timestamps();

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import serialportgsm from 'serialport-gsm';
 
-const sender = '639537399626';
+const sender = '639537399611';
 let modem = serialportgsm.Modem();
 let options = {
     baudRate: 9600,
@@ -21,9 +21,7 @@ let options = {
     cnmiCommand: 'AT+CNMI=2,1,0,2,1',
     logger: console
 };
-
-modem.open('COM8', options, {});
-
+modem.open('COM1', options, {});
 modem.on('open', data => {
     modem.initializeModem(() => {
         console.log("Modem is initialized");

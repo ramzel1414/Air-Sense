@@ -63,6 +63,8 @@ Route::middleware(['auth', 'role:admin'])->group(function() {
     Route::get('/admin/pollutants', [PollutantController::class, 'showPollutant'])->name('admin.pollutants');
 
     Route::get('/admin/location_tab', [LocationController::class, 'index'])->name('admin.location_tab');
+    Route::put('/admin/devices/{id}/toggle-status', [DeviceController::class, 'toggleStatus'])->name('admin.toggleStatus');
+
 
     //Devices
     Route::get('/admin/management', [DeviceController::class, 'AdminManagement'])->name('admin.management');
