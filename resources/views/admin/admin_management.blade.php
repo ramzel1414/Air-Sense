@@ -38,17 +38,36 @@
         <div class="col-12 col-sm-5 my-5">
             <div class="card rounded mb-2">
                 <div class="card-body">
+                    <div class="mb-2">
+
+                    @if ($device->deviceStatus === 'ACTIVE')
+                        <form action="{{ route('admin.toggleStatus', $device->id) }}" method="POST">
+                            @csrf
+                            @method('PUT')
+                            <button type="submit" class="btn btn-success w-100 card-title">Active</button>
+                        </form>
+                    @else
+                        <form action="{{ route('admin.toggleStatus', $device->id) }}" method="POST">
+                            @csrf
+                            @method('PUT')
+                            <button type="submit" class="btn btn-secondary w-100 card-title">Inactive</button>
+                        </form>
+                    @endif
+
+
+                    </div>
+                    <div class="mb-2">
                     <div class="rect-status-active">
                         <div class="status-circle"></div>
                         <div>ACTIVE</div>
                     </div>
                     <div>
                         <p class="card-title mb-0">Device Name: <span>{{ $device->deviceName }}</span></p>
+                        <p class="card-title mb-0">Device Serial: <span>{{ $device->deviceSerial }}</span></p>
                         <p class="card-title mb-0">Device COM: <span>{{ $device->devicePort }}</span></p>
                         <p class="card-title mb-0">Device Sim #: <span>{{ $device->deviceSim }}</span></p>
                         <p class="card-title mb-0">Device Latitude: <span>{{ $device->latitude }}</span></p>
                         <p class="card-title mb-0">Device Longitude: <span>{{ $device->longitude }}</span></p>
-                        <p class="card-title mb-0">Device Status: <span>Active</span></p>
                         <p class="card-title mb-0">Pollutant Data:</p>
                     </div>
                     <div class="mx-4">
