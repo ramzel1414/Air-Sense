@@ -38,29 +38,22 @@
 
 
     <!-- Display Devices -->
-    <div class="d-flex justify-content-evenly p-3 for-light-mode-bg">
+    <div class="d-flex flex-wrap justify-content-evenly p-3 for-light-mode-bg">
         @foreach ($devices as $device)
-        <div class="col-12 col-sm-5 mb-4">
+        <div class="col-12 col-sm-5 mb-5">
             <div class="card rounded mb-2">
                 <div class="card-body">
-                    <div class="mb-2">
 
-                    @if ($device->deviceStatus === 'ACTIVE')
-                        <form action="{{ route('admin.toggleStatus', $device->id) }}" method="POST">
-                            @csrf
-                            @method('PUT')
-                            <button type="submit" class="btn btn-success w-100 card-title">Active</button>
-                        </form>
-                    @else
-                        <form action="{{ route('admin.toggleStatus', $device->id) }}" method="POST">
-                            @csrf
-                            @method('PUT')
-                            <button type="submit" class="btn btn-secondary w-100 card-title">Inactive</button>
-                        </form>
-                    @endif
+                    
+
+                    <!-- Location Button trigger modal -->
+                    {{-- <button type="button" class="btn btn-success w-100 rounded-3" data-bs-toggle="modal" data-bs-target="#addLocation">
+                        Add Location
+                    </button> --}}
 
 
-                    </div>
+
+
                     <div class="mb-2">
                         <p class="card-title mb-0">Device Name: <span>{{ $device->deviceName }}</span></p>
                         <p class="card-title mb-0">Device Serial: <span>{{ $device->deviceSerial }}</span></p>
@@ -84,10 +77,19 @@
                 <div class="card-body">
                     {{-- <div class="row">
                         <div class="col-12 rounded mb-3">
-                            <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-success w-100 rounded-3" data-bs-toggle="modal" data-bs-target="#addLocation">
-                                Add Location
-                            </button>
+                            @if ($device->deviceStatus === 'ACTIVE')
+                                <form action="{{ route('admin.toggleStatus', $device->id) }}" method="POST">
+                                    @csrf
+                                    @method('PUT')
+                                    <button type="submit" class="btn btn-success w-100 card-title">Active</button>
+                                </form>
+                            @else
+                                <form action="{{ route('admin.toggleStatus', $device->id) }}" method="POST">
+                                    @csrf
+                                    @method('PUT')
+                                    <button type="submit" class="btn btn-secondary w-100 card-title">Inactive</button>
+                                </form>
+                            @endif
                         </div>
                     </div> --}}
                     <div class="row">
