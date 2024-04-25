@@ -33,13 +33,16 @@
 
 
     <!-- Display Devices -->
-    <div class="d-flex justify-content-evenly p-3 for-light-mode-bg">
+    <div class="d-flex flex-wrap justify-content-evenly p-3 for-light-mode-bg">
         @foreach ($devices as $device)
-        <div class="col-12 col-sm-5 mb-4">
+        <div class="col-12 col-sm-5 my-5">
             <div class="card rounded mb-2">
                 <div class="card-body">
-                    <div class="mb-2">
-                        <p class="card-title mb-0">Device ID: <span>{{ $device->id }}</span></p>
+                    <div class="rect-status-active">
+                        <div class="status-circle"></div>
+                        <div>ACTIVE</div>
+                    </div>
+                    <div>
                         <p class="card-title mb-0">Device Name: <span>{{ $device->deviceName }}</span></p>
                         <p class="card-title mb-0">Device COM: <span>{{ $device->devicePort }}</span></p>
                         <p class="card-title mb-0">Device Sim #: <span>{{ $device->deviceSim }}</span></p>
