@@ -65,11 +65,14 @@ Route::middleware(['auth', 'role:admin'])->group(function() {
     Route::get('/admin/location_tab', [LocationController::class, 'index'])->name('admin.location_tab');
     Route::put('/admin/devices/{id}/toggle-status', [DeviceController::class, 'toggleStatus'])->name('admin.toggleStatus');
 
-
     //Devices
     Route::get('/admin/management', [DeviceController::class, 'AdminManagement'])->name('admin.management');
     Route::put('/admin/management/{id}', [DeviceController::class, 'update'])->name('admin.update');
     Route::delete('/admin/management/{id}', [DeviceController::class, 'delete'])->name('admin.delete');
+
+
+    Route::post('/devices', [DeviceController::class, 'store'])->name('data.store');
+    Route::post('/admin/location/store', [DeviceController::class, 'storeLocation'])->name('admin.location.store');
 
 
 
@@ -103,7 +106,6 @@ Route::middleware(['auth', 'role:admin'])->group(function() {
     //Devices
     Route::get('/device-count', [DeviceController::class, 'getDeviceCount'])->name('device.count');
     Route::get('/device-locations', [DeviceController::class, 'getDeviceLocation'])->name('device.locations');
-    Route::post('/devices', [DeviceController::class, 'store'])->name('data.store');
-    Route::post('/admin/location/store', [DeviceController::class, 'storeLocation'])->name('admin.location.store');
+
 
 

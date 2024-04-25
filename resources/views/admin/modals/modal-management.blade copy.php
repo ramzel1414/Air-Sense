@@ -91,7 +91,6 @@
 </div>
 @endforeach
 
-@foreach ($devices as $device)
 <!-- Modal for adding a location -->
 <div class="modal fade modal-lg" id="addLocation" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -104,24 +103,9 @@
                 <!-- Form for adding Location -->
                 <form method="POST" action="{{ route('admin.location.store') }}">
                     @csrf
-
-                    <div class="mb-3">
-                        <label for="deviceId" class="form-label">Device Serial:</label>
-                        <select class="form-select" id="deviceId" name="deviceId" required>
-                            <option value="">Select Device Serial</option>
-                            @foreach ($devices as $device)
-                                <option value="{{ $device->id }}">{{ $device->deviceSerial }} - {{ $device->deviceName }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-
                     <div id="map" style="height: 500px;"></div>
-                    <br>
-                    <div class="mb-3">
-                        <input hidden type="number" class="form-control" id="latitude" name="latitude" placeholder="Enter Latitude (e.g., 37.7749)"  step="any" required>
-                    </div>
-                    <div class="mb-3">
-                        <input hidden type="number" class="form-control" id="longitude" name="longitude" placeholder="Enter Longitude (e.g., -122.4194)"  step="any" required>
+                    <div class="row">
+
                     </div>
 
                     <div class="modal-footer">
@@ -133,89 +117,43 @@
         </div>
     </div>
 </div>
-@endforeach
 
 <script>
     let map;
-    let markers = [];
     let marker;
 
     function initMap() {
         // Initialize map centered at a specific location
         map = new google.maps.Map(document.getElementById("map"), {
             center: { lat: 8.157408, lng: 125.124856 },
-            zoom: 17, // Adjust the zoom level as needed
+            zoom: 18, // Adjust the zoom level as needed
         });
 
-        // Fetch device locations via AJAX request and display markers
-        fetchDeviceLocations();
-
-        // Add click event listener to the map to set a marker on click
+        // Add click event listener to the map
         map.addListener("click", (event) => {
+            // Get latitude and longitude of clicked location
             const lat = event.latLng.lat();
             const lng = event.latLng.lng();
-            addMarker({ lat, lng });
-        });
-    }
 
-    function fetchDeviceLocations() {
-        fetch('{{ route("device.locations") }}')
-            .then(response => response.json())
-            .then(data => {
-                data.forEach(device => {
-                    const { deviceName, latitude, longitude } = device;
-                    if (latitude && longitude) {
-                        // Create marker for device location
-                        const deviceMarker = new google.maps.Marker({
-                            position: { lat: parseFloat(latitude), lng: parseFloat(longitude) },
-                            map: map,
-                            title: deviceName,
-                            icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png' // Blue marker icon for device
-                        });
-                        markers.push(deviceMarker);
-                    }
-                });
+            // Log the coordinates (you can use these values for further processing)
+            console.log(`Clicked at: ${lat}, ${lng}`);
 
-                // Adjust map bounds to fit all markers
-                fitMapBounds();
-            })
-            .catch(error => {
-                console.error('Error fetching device locations:', error);
+            // Remove previous marker if it exists
+            if (marker) {
+                marker.setMap(null); // Remove marker from map
+            }
+
+            // Create a new marker at the clicked location
+            marker = new google.maps.Marker({
+                position: event.latLng,
+                map: map,
+                title: `Location: ${lat}, ${lng}`,
             });
-    }
 
-    function addMarker(position) {
-        // Remove previous marker if it exists
-        if (marker) {
-            marker.setMap(null); // Remove marker from map
-        }
-
-        // Create a new marker at the clicked location
-        marker = new google.maps.Marker({
-            position: position,
-            map: map,
-            title: `Custom Marker: ${position.lat}, ${position.lng}`,
+            // You can also update form fields with the selected location's coordinates
+            document.getElementById("latitude").value = lat;
+            document.getElementById("longitude").value = lng;
         });
-
-        // Add the marker to the markers array
-        markers.push(marker);
-
-        // Fit map bounds to include all markers
-        fitMapBounds();
-
-        // Update form fields with the selected location's coordinates
-        document.getElementById("latitude").value = position.lat;
-        document.getElementById("longitude").value = position.lng;
-    }
-
-    function fitMapBounds() {
-        // Adjust map bounds to fit all markers
-        const bounds = new google.maps.LatLngBounds();
-        markers.forEach(marker => {
-            bounds.extend(marker.getPosition());
-        });
-        map.fitBounds(bounds);
     }
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=GOOGLE_MAP_API&callback=initMap" async defer></script>
-

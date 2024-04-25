@@ -379,6 +379,12 @@ class DeviceController extends Controller
         // Find the device by ID
         $device = Device::findOrFail($request->input('deviceId'));
 
+        if ($device->deviceStatus === 'ACTIVE') {
+            // If the deviceSim matches the restricted value, prevent updating deviceSim
+            return redirect()->route('admin.management')->with(array ('message' => 'Cannot update this device as it is being used.',
+            'alert-type' => 'error'));
+        }
+
         // Update latitude and longitude of the device
         $device->update([
             'latitude' => $request->input('latitude'),
@@ -388,5 +394,5 @@ class DeviceController extends Controller
         return redirect()->route('admin.management')->with(array ('message' => 'Location added successfully!',
         'alert-type' => 'success'));
     }
-
 }
+
