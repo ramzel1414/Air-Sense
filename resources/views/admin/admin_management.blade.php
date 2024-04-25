@@ -7,12 +7,17 @@
 <div class="page-content">
 
     <div class="row grid-margin">
-
-        <div class="d-flex justify-content-between rounded-3 mb-4">
+        <div class="d-flex justify-content-start rounded-3 mb-4">
             <h3 class="">System Management</h3>
+
+        </div>
+    <div class="d-flex justify-content-between  rounded-3 mb-4">
                 <!-- Button trigger modal -->
-            <button type="button" class="btn btn-success col-3" data-bs-toggle="modal" data-bs-target="#addDevice">
+            <button type="button" class="btn btn-primary col-3" data-bs-toggle="modal" data-bs-target="#addDevice">
                 Add Device
+            </button>
+            <button type="button" class="btn btn-primary col-3" data-bs-toggle="modal" data-bs-target="#addLocation">
+                Add Location
             </button>
         </div>
     </div>
@@ -77,14 +82,14 @@
 
             <div class="card">
                 <div class="card-body">
-                    <div class="row">
+                    {{-- <div class="row">
                         <div class="col-12 rounded mb-3">
                             <!-- Button trigger modal -->
                             <button type="button" class="btn btn-success w-100 rounded-3" data-bs-toggle="modal" data-bs-target="#addLocation">
                                 Add Location
                             </button>
                         </div>
-                    </div>
+                    </div> --}}
                     <div class="row">
                         <!-- Update Device Button -->
                         <div class="col-6 rounded">
