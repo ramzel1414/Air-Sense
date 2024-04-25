@@ -97,9 +97,9 @@
                 <h5>Bukidnon State University</h5>
                 <div class="text-status d-flex gap-2 align-items-center">
                     <div>STATUS:</div>
-                    <div class="device-status-online">
+                    <div id="device-status" class="device-status-online">
                         <div class="status-circle"></div>
-                        <div class="">ONLINE</div>
+                        <div>ONLINE</div>
                     </div>
                 </div>
             </div>
@@ -305,44 +305,103 @@
     startPolling('co');
     startPolling('no2');
     startPolling('ozone');
-    });
+});
 
-    function startPolling(pollutant) {
-        setInterval(() => {
-            fetchDataAndUpdate(pollutant);
-        }, 1000);
+// Track the last fetched time for each pollutant
+const lastFetchTime = {
+    pm25: null,
+    pm10: null,
+    co: null,
+    no2: null,
+    ozone: null
+};
+
+function startPolling(pollutant) {
+    fetchDataAndUpdate(pollutant); // Initial fetch
+
+    setInterval(() => {
+        fetchDataAndUpdate(pollutant);
+    }, 1000); // Poll every second (adjust this interval based on your needs)
+}
+
+function fetchDataAndUpdate(pollutant) {
+    fetch(`/${pollutant}-data`)
+        .then(response => response.json())
+        .then(data => {
+            const latestData = data[data.length - 1];
+
+            if (latestData) {
+                const currentTime = new Date();
+                const dataTime = new Date(latestData.dateTime);
+
+                // Update last fetched time for this pollutant
+                lastFetchTime[pollutant] = dataTime;
+
+                // Update status based on last fetched time
+                updateDeviceStatus(currentTime, dataTime);
+
+                // Update the UI with latest data
+                updateUI(pollutant, latestData);
+            }
+        })
+        .catch(error => {
+            console.error(`Error fetching ${pollutant} data:`, error);
+        });
     }
 
-    function fetchDataAndUpdate(pollutant) {
-        fetch(`/${pollutant}-data`)
-            .then(response => response.json())
-            .then(data => {
-                const latestData = data[data.length - 1];
-                const valueElement = document.getElementById(`${pollutant}-value`);
-                const classificationElement = document.getElementById(`${pollutant}-classification`);
-                const dateElement = document.getElementById(`${pollutant}-date`);
+    function updateDeviceStatus(currentTime, dataTime) {
+    const thresholdMinutes = 2;
+    const thresholdTime = new Date(currentTime.getTime() - thresholdMinutes * 60000);
 
-                if (latestData) {
-                    let value = latestData[pollutant];
+    const statusElement = document.getElementById('device-status');
+        if (dataTime > thresholdTime) {
+            // Device is ONLINE
+            statusElement.textContent = 'ONLINE';
+            statusElement.classList.remove('device-status-offline');
+            statusElement.classList.add('device-status-online');
 
-                    // Format ozone value to three decimal places
-                    if (pollutant === 'ozone') {
-                        value = parseFloat(value).toFixed(3);
-                    }
+            if (!statusElement.querySelector('.status-circle')) {
+                statusElement.innerHTML = '<div class="status-circle"></div>' + statusElement.textContent;
+            }
+        } else {
+            // Device is OFFLINE
+            statusElement.textContent = 'OFFLINE';
+            statusElement.classList.remove('device-status-online');
+            statusElement.classList.add('device-status-offline');
 
-                    valueElement.textContent = value;
+            if (!statusElement.querySelector('.status-circle')) {
+                statusElement.innerHTML = '<div class="status-circle"></div>' + statusElement.textContent;
+            }
+        }
+    }
 
-                    const classification = getClassification(value, pollutant);
-                    classificationElement.textContent = classification;
-                    classificationElement.style.color = getColorForClassification(classification);
+    function updateUI(pollutant, data) {
+        const valueElement = document.getElementById(`${pollutant}-value`);
+        const classificationElement = document.getElementById(`${pollutant}-classification`);
+        const dateElement = document.getElementById(`${pollutant}-date`);
 
-                    const formattedDate = formatDate(latestData.dateTime);
-                    dateElement.textContent = formattedDate;
-                }
-            })
-            .catch(error => {
-                console.error(`Error fetching ${pollutant} data:`, error);
-            });
+        if (data) {
+            let value = data[pollutant];
+
+            // Format ozone value to three decimal places
+            if (pollutant === 'ozone') {
+                value = parseFloat(value).toFixed(3);
+            }
+
+            valueElement.textContent = value;
+
+            const classification = getClassification(value, pollutant);
+            classificationElement.textContent = classification;
+            classificationElement.style.color = getColorForClassification(classification);
+
+            const formattedDate = formatDate(data.dateTime);
+            dateElement.textContent = formattedDate;
+        }
+    }
+
+    function formatDate(dateTime) {
+        const date = new Date(dateTime);
+        return date.toLocaleString('en-US', { month: 'long', day: 'numeric', year: 'numeric', hour: 'numeric', minute: 'numeric', hour12: true });
     }
 
     function getClassification(value, pollutant) {
