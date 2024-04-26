@@ -8,10 +8,10 @@
 
     <div class="row grid-margin">
         <div class="d-flex justify-content-start rounded-3 mb-4">
-            <h3 class="">System Management</h3>
+            <h3>System Management</h3>
 
         </div>
-    <div class="d-flex justify-content-between  rounded-3 mb-4">
+        <div class="grid-margin d-flex justify-content-evenly py-3 rounded-3 custom-background gap-5">
                 <!-- Button trigger modal -->
             <button type="button" class="btn btn-primary col-3" data-bs-toggle="modal" data-bs-target="#addDevice">
                 Add Device
@@ -44,16 +44,6 @@
             <div class="card rounded mb-2">
                 <div class="card-body">
 
-                    
-
-                    <!-- Location Button trigger modal -->
-                    {{-- <button type="button" class="btn btn-success w-100 rounded-3" data-bs-toggle="modal" data-bs-target="#addLocation">
-                        Add Location
-                    </button> --}}
-
-
-
-
                     <div class="mb-2">
                         <p class="card-title mb-0">Device Name: <span>{{ $device->deviceName }}</span></p>
                         <p class="card-title mb-0">Device Serial: <span>{{ $device->deviceSerial }}</span></p>
@@ -75,23 +65,23 @@
 
             <div class="card">
                 <div class="card-body">
-                    {{-- <div class="row">
+                    <div class="row">
                         <div class="col-12 rounded mb-3">
                             @if ($device->deviceStatus === 'ACTIVE')
                                 <form action="{{ route('admin.toggleStatus', $device->id) }}" method="POST">
                                     @csrf
                                     @method('PUT')
-                                    <button type="submit" class="btn btn-success w-100 card-title">Active</button>
+                                    <button type="submit" class="btn btn-success w-100">Active</button>
                                 </form>
                             @else
                                 <form action="{{ route('admin.toggleStatus', $device->id) }}" method="POST">
                                     @csrf
                                     @method('PUT')
-                                    <button type="submit" class="btn btn-secondary w-100 card-title">Inactive</button>
+                                    <button type="submit" class="btn btn-secondary w-100">Inactive</button>
                                 </form>
                             @endif
                         </div>
-                    </div> --}}
+                    </div>
                     <div class="row">
                         <!-- Update Device Button -->
                         <div class="col-6 rounded">
@@ -99,12 +89,31 @@
                                 Update
                             </button>
                         </div>
-                        <!-- Delete Form -->
-                        <form action="{{ route('admin.delete', $device->id) }}" method="POST" class="col-6 rounded">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-secondary rounded-3 w-100">Delete</button>
-                        </form>
+                        <!-- Delete Button trigger modal -->
+                        <div class="col-6 rounded">
+
+                            <button type="button" class="btn btn-secondary rounded-3 w-100" data-bs-toggle="modal" data-bs-target="#deleteDeviceModal">
+                                Delete
+                            </button>
+                        </div>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="deleteDeviceModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <h5 class="modal-title text-center my-4"  id="exampleModalLabel">Are you sure you want to delete this device?</h5>
+                                    <div class="modal-footer" style="justify-content: space-evenly;">
+                                        @csrf
+                                        <button type="button" class="btn btn-primary rounded-3 " data-bs-dismiss="modal">Cancel</button>
+                                        <!-- Delete Form -->
+                                        <form action="{{ route('admin.delete', $device->id) }}" method="POST" class="rounded">
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-secondary rounded-3">Delete</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
