@@ -10,7 +10,7 @@
             </div>
             <div class="modal-body">
                 <!-- Form for adding Device -->
-                <form action="{{ route('data.store') }}" method="POST">
+                <form action="{{ route('admin.data.store') }}" method="POST">
                     @csrf
                     <div class="row">
                         <div class="col-md-12">

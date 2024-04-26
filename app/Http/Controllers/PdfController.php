@@ -33,10 +33,8 @@ class PdfController extends Controller
         $formattedMinDate = Carbon::parse($minDate)->format('F d, Y');
 
 
-
-
         $fpdf = new PdfReport('P','mm','A4');
-        $fpdf->AddPage('L');
+        $fpdf->AddPage();
 
 
         // First Page
@@ -45,14 +43,14 @@ class PdfController extends Controller
 
         // Draw a white box inside the image
         $fpdf->SetFillColor(255, 255, 255, 127); // White color
-        $fpdf->Rect(40, 140, 130, 50, 'F'); // x, y, w, h, 'F' indicates to fill the rectangle
+        $fpdf->Rect(40, 210, 130, 50, 'F'); // x, y, w, h, 'F' indicates to fill the rectangle
 
 
         // Add the description inside the white box
         $today = date('Y'); // Get current year only (YYYY format)
         $description = "CY $today\nMONTHLY ASSESSMENT REPORT OF BUKIDNON STATE UNIVERSITY- (MAIN CAMPUS)\nIoT AIR QUALITY MONITORING STATION\n(PM2.5, PM10, CO, NO2, AND O3)";
         $fpdf->SetFont('Arial', '', 13);
-        $fpdf->SetXY(40 + 5, 140 + 5); // Adjust the position for the description
+        $fpdf->SetXY(40 + 5, 210 + 5); // Adjust the position for the description
         $fpdf->MultiCell(130 - 10, 8, $description, 0, 'C');
 
 
@@ -62,32 +60,36 @@ class PdfController extends Controller
         // Second Page
         $fpdf->Ln(240); // because the image is not part of the text, we need this to jump to the second page
 
+
         $fpdf->Cell(0, 10, 'CY 2024-2025 Assessment Report from AirSense IoT Monitoring Device', 0, 1, 'C');
         $fpdf->Cell(0, 0, 'PM2.5, PM10, O3, CO & NO2 Ambient Air Quality Monitoring Station', 0, 1, 'C');
         $fpdf->Ln(10);
 
         $fpdf->SetFont('Arial', '', 10);
         $fpdf->Cell(20);    //serves as margin (actually a width of invisible cell)
-        $fpdf->Cell(115, 10, 'Station: ', 0, 0, 'C');
-        $fpdf->Cell(0, 10, 'Bukidnon State University - Main Campus                                                                                    ', 0, 1, 'R');
+        $fpdf->Cell(0, 10, 'Station: ', 0, 0, 'L');
+        $fpdf->Cell(0, 10, 'Bukidnon State University - Main Campus                                                             ', 0, 1, 'R');
         $fpdf->Cell(20);
-        $fpdf->Cell(117, 0, 'Latitude: ', 0, 0, 'C');
-        $fpdf->Cell(0, 0, 'Latitude: 8.157408, Longitude: 125.124856                                                                                  ', 0, 1, 'R');
+        $fpdf->Cell(0, 0, 'Latitude: ', 0, 0, 'L');
+        $fpdf->Cell(0, 0, 'Latitude: 8.157408, Longitude: 125.124856                                                           ', 0, 1, 'R');
+
         $fpdf->Cell(20);
-        $fpdf->Cell(120, 10, 'Area Type: ', 0, 0, 'C');
-        $fpdf->Cell(0, 10,'General Ambient                                                                                                                           ', 0, 1, 'R');
+        $fpdf->Cell(0, 10, 'Area Type: ', 0, 0, 'L');
+        $fpdf->Cell(0, 10,'General Ambient                                                                                                     ', 0, 1, 'R');
+
         $fpdf->Cell(20);
-        $fpdf->Cell(123, 0, 'Station Type:', 0, 0, 'C');
-        $fpdf->Cell(0, 0, 'PM5003, MiCS6814 & MQ131 Sampler (Solar Paneled Sensor)                                                 ', 0, 1, 'R');
+        $fpdf->Cell(0, 0, 'Station Type:', 0, 0, 'L');
+        $fpdf->Cell(0, 0, 'PM5003, MiCS6814 & MQ131 Sampler (Solar Paneled Sensor)                          ', 0, 1, 'R');
+
         $fpdf->Cell(20);
-        $fpdf->Cell(127, 10, 'Inception Date: ', 0, 0, 'C');
-        $fpdf->Cell(0, 10, $formattedMinDate .'                                                                                                                                ', 0, 1, 'R');
+        $fpdf->Cell(0, 10, 'Inception Date: ', 0, 0, 'L');
+        $fpdf->Cell(0, 10, $formattedMinDate . '                                                                                                         ', 0, 1, 'R');
         $fpdf->Cell(20);
-        $fpdf->Cell(138, 0, 'Monitoring Objectives: ', 0, 0, 'C');
-        $fpdf->Cell(0, 0, 'To determine the concentration level of PM2.5, PM10, O3, CO & NO2                                        ', 0, 1, 'R');
+        $fpdf->Cell(0, 0, 'Monitoring Objectives: ', 0, 0, 'L');
+        $fpdf->Cell(0, 0, 'To determine the concentration level of PM2.5, PM10, O3, CO & NO2                 ', 0, 1, 'R');
         $fpdf->Cell(20);
-        $fpdf->Cell(140, 10, 'Measures Air Pollutant: ', 0, 0, 'C');
-        $fpdf->Cell(0, 10, 'Micrograms per cubic meter (ug/m3), Parts per million (ppm),                                                     ', 0, 1, 'R');
+        $fpdf->Cell(0, 10, 'Measures Air Pollutant: ', 0, 0, 'L');
+        $fpdf->Cell(0, 10, 'Micrograms per cubic meter (ug/m3), Parts per million (ppm),                              ', 0, 1, 'R');
         $fpdf->LN(5);
 
 
@@ -102,7 +104,7 @@ class PdfController extends Controller
         // Table Header
         $fpdf->SetFont('Arial', 'B', 10);
         $fpdf->Ln(12);
-        $fpdf->Cell(40, 10, '', 0, 0, 'C'); // An Empty cell to push the table to center
+        $fpdf->Cell(1); // An Empty cell to push the table(row) to center
         $fpdf->SetFillColor(197, 206, 209); // Light grey color
         $fpdf->Cell(32, 10, 'CATEGORY', 1, 0, 'C', true);
         $fpdf->Cell(32, 10, 'COLOR', 1, 0, 'C', true);
@@ -114,7 +116,7 @@ class PdfController extends Controller
         // Table Body
         $fpdf->SetFont('Arial', '', 10);
 
-        $fpdf->Cell(40, 10, '', 0, 0, 'C'); // An Empty cell to push the table(row) to center
+        $fpdf->Cell(1); // An Empty cell to push the table(row) to center
         // Good
         $fpdf->Cell(32, 10, 'Good', 1, 0, 'C');
         $fpdf->SetFillColor(111, 241, 117); // Light green color
@@ -125,7 +127,7 @@ class PdfController extends Controller
         $fpdf->Cell(32, 10, '0 - 0.05', 1, 1, 'C');
 
         
-        $fpdf->Cell(40, 10, '', 0, 0, 'C'); // An Empty cell to push the table(row) to center
+        $fpdf->Cell(1); // An Empty cell to push the table(row) to center
         // Fair
         $fpdf->Cell(32, 10, 'Moderate', 1, 0, 'C');
         $fpdf->SetFillColor(255, 255, 77); // Light yellow color
@@ -135,7 +137,7 @@ class PdfController extends Controller
         $fpdf->Cell(32, 10, '25 - 50', 1, 0, 'C');
         $fpdf->Cell(32, 10, '0.06 - 0.10', 1, 1, 'C');
 
-        $fpdf->Cell(40, 10, '', 0, 0, 'C'); // An Empty cell to push the table(row) to center
+        $fpdf->Cell(1); // An Empty cell to push the table(row) to center
         // Orange
         $fpdf->Cell(32, 10, 'Acutely Unhealthy', 1, 0, 'C');
         $fpdf->SetFillColor(250, 123, 91); // Light orange color
@@ -145,7 +147,7 @@ class PdfController extends Controller
         $fpdf->Cell(32, 10, '51 - 69', 1, 0, 'C');
         $fpdf->Cell(32, 10, '0.11 - 0.36', 1, 1, 'C');
 
-        $fpdf->Cell(40, 10, '', 0, 0, 'C'); // An Empty cell to push the table(row) to center
+        $fpdf->Cell(1); // An Empty cell to push the table(row) to center
         // Unhealthy
         $fpdf->Cell(32, 10, 'Unhealthy', 1, 0, 'C');
         $fpdf->SetFillColor(253, 93, 114); // Light red color
@@ -155,7 +157,7 @@ class PdfController extends Controller
         $fpdf->Cell(32, 10, '70 - 150', 1, 0, 'C');
         $fpdf->Cell(32, 10, '0.37 - 0.65', 1, 1, 'C');
 
-        $fpdf->Cell(40, 10, '', 0, 0, 'C'); // An Empty cell to push the table(row) to center
+        $fpdf->Cell(1); // An Empty cell to push the table(row) to center
         // Very Unhealthy
         $fpdf->Cell(32, 10, 'Very Unhealthy', 1, 0, 'C');
         $fpdf->SetFillColor(127, 88, 151); // Light purple color
@@ -165,7 +167,7 @@ class PdfController extends Controller
         $fpdf->Cell(32, 10, '151 - 400', 1, 0, 'C');
         $fpdf->Cell(32, 10, '0.66 - 1.24', 1, 1, 'C');
 
-        $fpdf->Cell(40, 10, '', 0, 0, 'C'); // An Empty cell to push the table(row) to center
+        $fpdf->Cell(1); // An Empty cell to push the table(row) to center
         // Hazardous
         $fpdf->Cell(32, 10, 'Hazardous', 1, 0, 'C');
         $fpdf->SetTextColor(255, 255, 255); // Set text color to white
@@ -178,9 +180,11 @@ class PdfController extends Controller
         $fpdf->Cell(32, 10, 'Above 1.24', 1, 1, 'C');
 
 
+
         // POLLUTANT TABLE START
         // First batch table header
-        $fpdf->Ln(10);
+        $fpdf->Ln(100);
+        $fpdf->AddPage('L');
         $fpdf->SetFont('Arial', 'B', 12);
         $fpdf->Cell(0, 5, '', 0, 1, 'C');
 
@@ -189,11 +193,11 @@ class PdfController extends Controller
 
         $fpdf->SetFont('Arial', 'B', 10);
         $fpdf->SetFillColor(173, 216, 230); // Light blue color
-        $fpdf->Cell(40, 10, 'Date of Sampling', 1, 0, 'C', true);
-        $fpdf->Cell(40, 10, 'PM2.5 (ug/m^3)', 1, 0, 'C', true);
-        $fpdf->Cell(35, 10, 'Classification', 1, 0, 'C', true);
-        $fpdf->Cell(40, 10, 'PM10 (ug/m^3)', 1, 0, 'C', true);
-        $fpdf->Cell(35, 10, 'Classification', 1, 1, 'C', true);
+        $fpdf->Cell(30, 10, 'Date of Sampling', 1, 0, 'C', true);
+        $fpdf->Cell(30, 10, 'PM2.5 (ug/m^3)', 1, 0, 'C', true);
+        $fpdf->Cell(25, 10, 'Classification', 1, 0, 'C', true);
+        $fpdf->Cell(30, 10, 'PM10 (ug/m^3)', 1, 0, 'C', true);
+        $fpdf->Cell(25, 10, 'Classification', 1, 1, 'C', true);
 
         $fpdf->SetFont('Arial','', 10);
         // Populate table with daily average data
@@ -211,14 +215,14 @@ class PdfController extends Controller
             $pm10Color = $this->getColor($pm10Classification); // Get PM10 color
 
             // Add row to table with colored cells
-            $fpdf->Cell(40, 10, $date, 1, 0, 'C');
+            $fpdf->Cell(30, 10, $date, 1, 0, 'C');
             $fpdf->SetFillColor($pm25Color[0], $pm25Color[1], $pm25Color[2]);
-            $fpdf->Cell(40, 10, number_format($pm25Average, 0), 1, 0, 'C', false, '', $pm25Color); // Display PM2.5 without decimal places
-            $fpdf->CellFitScale(35, 10, $pm25Classification, 1, 0, 'C', true);
+            $fpdf->Cell(30, 10, number_format($pm25Average, 0), 1, 0, 'C', false, '', $pm25Color); // Display PM2.5 without decimal places
+            $fpdf->CellFitScale(25, 10, $pm25Classification, 1, 0, 'C', true);
 
             $fpdf->SetFillColor($pm10Color[0], $pm10Color[1], $pm10Color[2]);
-            $fpdf->Cell(40, 10, number_format($pm10Average, 0), 1, 0, 'C', false, '', $pm10Color);
-            $fpdf->CellFitScale(35, 10, $pm10Classification, 1, 1, 'C', true);
+            $fpdf->Cell(30, 10, number_format($pm10Average, 0), 1, 0, 'C', false, '', $pm10Color);
+            $fpdf->CellFitScale(25, 10, $pm10Classification, 1, 1, 'C', true);
         }
 
         $fpdf->Ln(10);

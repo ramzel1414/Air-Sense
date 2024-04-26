@@ -71,7 +71,7 @@ Route::middleware(['auth', 'role:admin'])->group(function() {
     Route::delete('/admin/management/{id}', [DeviceController::class, 'delete'])->name('admin.delete');
 
 
-    Route::post('/devices', [DeviceController::class, 'store'])->name('data.store');
+    Route::post('/devices', [DeviceController::class, 'store'])->name('admin.data.store');
     Route::post('/admin/location/store', [DeviceController::class, 'storeLocation'])->name('admin.location.store');
 
 

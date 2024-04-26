@@ -8,9 +8,16 @@ class PdfReport extends FPDF
 {
     function Header()
     {
-        //Logo
-        $this->Image('airsense.png', 76, 10, 20,);
-        $this->Image('buksu.png', 200, 10, 20);
+        //Logo's
+        $imageWidth = 20; // Width of the image
+        $pageWidth = $this->GetPageWidth();
+        
+        // Calculate the x-coordinate to center the image
+        $x = ($pageWidth - $imageWidth) / 2;
+        
+        // Placement of image
+        $this->Image('airsense.png', $x-60, 10, $imageWidth);
+        $this->Image('buksu.png',  $x+60, 10, $imageWidth);
 
         // Select Arial bold 15
         $this->SetFont('Arial', 'B', 12);
