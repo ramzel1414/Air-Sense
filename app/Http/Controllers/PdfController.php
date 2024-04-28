@@ -48,7 +48,7 @@ class PdfController extends Controller
 
         // Add the description inside the white box
         $today = date('Y'); // Get current year only (YYYY format)
-        $description = "CY $today\nMONTHLY ASSESSMENT REPORT OF BUKIDNON STATE UNIVERSITY- (MAIN CAMPUS)\nIoT AIR QUALITY MONITORING STATION\n(PM2.5, PM10, CO, NO2, AND O3)";
+        $description = "CY $today\nOVERALL ASSESSMENT REPORT OF BUKIDNON STATE UNIVERSITY- (MAIN CAMPUS)\nIoT AIR QUALITY MONITORING STATION\n(PM2.5, PM10, CO, NO2, AND O3)";
         $fpdf->SetFont('Arial', '', 13);
         $fpdf->SetXY(40 + 5, 210 + 5); // Adjust the position for the description
         $fpdf->MultiCell(130 - 10, 8, $description, 0, 'C');
@@ -180,8 +180,706 @@ class PdfController extends Controller
         $fpdf->Cell(32, 10, 'Above 1.24', 1, 1, 'C');
 
 
+        // POLLUTANT INFORMATION
+        $fpdf->Ln(10);
+        $fpdf->SetFont('Arial', 'B', 12);
+        $fpdf->Cell(0, 10, 'Pollutant Information', 0, 0, 'C');
 
-        // POLLUTANT TABLE START
+        $fpdf->SetFont('Arial', 'B', 10);
+        $fpdf->Ln(12);
+        $fpdf->Cell(2); // An Empty cell to push the table(row) to center
+        $fpdf->SetFillColor(197, 206, 209); // Light grey color
+        $fpdf->Cell(40, 10, 'POLLUTANT', 1, 0, 'C', true);
+        $fpdf->Cell(150, 10, 'INFORMATION', 1, 1, 'C', true);
+
+        // Table Body
+        $fpdf->SetFont('Arial', '', 10);
+
+        $fpdf->Cell(2); // An Empty cell to push the table(row) to center
+        // PM10
+        $fpdf->Cell(40, 10, 'Particulate Matter 2.5', 1, 0, 'C');
+        $fpdf->Cell(150, 10, 'These particles can include dust, pollen, mold spores, and other airborne pollutants.', 1, 1, 'L');
+        $fpdf->Cell(2); // An Empty cell to push the table(row) to center
+        // PM2.5
+        $fpdf->Cell(40, 10, 'Particulate Matter 10', 1, 0, 'C');
+        $fpdf->Cell(150, 10, 'These particles can penetrate deep into the lungs and even enter the bloodstream.', 1, 1, 'L');
+        $fpdf->Cell(2); // An Empty cell to push the table(row) to center
+        // PM2.5
+        $fpdf->Cell(40, 10, 'Carbon Monoxide', 1, 0, 'C');
+        $fpdf->Cell(150, 10, 'A colorless, odorless, toxic gas produced by incomplete combustion of carbon-containing fuels.', 1, 1, 'L');
+        $fpdf->Cell(2); // An Empty cell to push the table(row) to center
+        // PM2.5
+        $fpdf->Cell(40, 10, 'Nitrogen Dioxide', 1, 0, 'C');
+        $fpdf->Cell(150, 10, 'Formed primarily from combustion processes, particularly from vehicles and industrial activities.', 1, 1, 'L');
+        $fpdf->Cell(2); // An Empty cell to push the table(row) to center
+        // PM2.5
+        $fpdf->Cell(40, 10, 'Ozone', 1, 0, 'C');
+        $fpdf->Cell(150, 10, 'A pollutant that negatively impacting respiratory health and worsening lung conditions', 1, 1, 'L');
+
+
+
+        // POLLUTANT TABLE (NEW)
+        $fpdf->SetFont('Arial', 'B', 12);
+        $fpdf->ln(5);
+        $fpdf->Cell(0, 5, '', 0, 1, 'C');
+        $fpdf->Cell(0, 10, 'PM2.5 Pollutant Table', 0, 1, 'C');
+        $fpdf->ln(5);
+
+        // PM2.5 START
+        // Table Header
+        $fpdf->SetFont('Arial', 'B', 10);
+        $fpdf->SetFillColor(173, 216, 230); // Light blue color
+        $fpdf->Cell(5); // An Empty cell to push the row to right
+        $fpdf->Cell(40, 20, 'Date of Sampling', 1, 0, 'C', true);
+        $fpdf->Cell(60, 10, 'PM2.5 Concentration in (ug/m^3)', 1, 0, 'C', true);
+        $fpdf->Cell(40, 20, 'Remarks', 1, 0, 'C', true);
+        $fpdf->Cell(40, 20, 'Classification', 1, 0, 'C', true);
+        $fpdf->Ln(10); // Move to the next line for sub-headers
+        $fpdf->Cell(45); // An Empty cell to push the 3 subheaders just below the main header
+        $fpdf->Cell(20, 10, 'Daily', 1, 0, 'C', true);
+        $fpdf->Cell(20, 10, 'Weekly', 1, 0, 'C', true);
+        $fpdf->Cell(20, 10, 'Monthly', 1, 1, 'C', true);
+
+        //Table Body
+        // 1ST WEEK
+        $fpdf->SetFillColor(111, 241, 117);     //green background, just add a 7th parameter (true)
+
+        $fpdf->SetFont('Arial', '', 10);
+        $fpdf->Cell(5); // An Empty cell to push the row to right
+        $fpdf->Cell(40, 10, '2024-04-26', 1, 0, 'C');
+        $fpdf->Cell(20, 10, '14', 1, 0, 'C');
+        $fpdf->Cell(20, 70, '14', 1, 0, 'C');       //weekly here
+        $fpdf->Cell(20, 140, '14', 1, 0, 'C');      //monthly here
+        $fpdf->Cell(40, 10, 'Within Guideline Value', 1, 0, 'C');
+        $fpdf->Cell(40, 10, 'Good', 1, 1, 'C', true);
+
+        $fpdf->Cell(5); // An Empty cell to push the row to right
+        $fpdf->Cell(40, 10, '2024-04-26', 1, 0, 'C');
+        $fpdf->Cell(20, 10, '14', 1, 0, 'C');
+        $fpdf->Cell(20); // An Empty cell to fill up the space
+        $fpdf->Cell(20); // An Empty cell to fill up the space
+        $fpdf->Cell(40, 10, 'Within Guideline Value', 1, 0, 'C');
+        $fpdf->Cell(40, 10, 'Good', 1, 1, 'C', true);
+
+        $fpdf->Cell(5); // An Empty cell to push the row to right
+        $fpdf->Cell(40, 10, '2024-04-26', 1, 0, 'C');
+        $fpdf->Cell(20, 10, '14', 1, 0, 'C');
+        $fpdf->Cell(20); // An Empty cell to fill up the space
+        $fpdf->Cell(20); // An Empty cell to fill up the space
+        $fpdf->Cell(40, 10, 'Within Guideline Value', 1, 0, 'C');
+        $fpdf->Cell(40, 10, 'Good', 1, 1, 'C', true);
+
+        $fpdf->Cell(5); // An Empty cell to push the row to right
+        $fpdf->Cell(40, 10, '2024-04-26', 1, 0, 'C');
+        $fpdf->Cell(20, 10, '14', 1, 0, 'C');
+        $fpdf->Cell(20); // An Empty cell to fill up the space
+        $fpdf->Cell(20); // An Empty cell to fill up the space
+        $fpdf->Cell(40, 10, 'Within Guideline Value', 1, 0, 'C');
+        $fpdf->Cell(40, 10, 'Good', 1, 1, 'C', true);
+
+        $fpdf->Cell(5); // An Empty cell to push the row to right
+        $fpdf->Cell(40, 10, '2024-04-26', 1, 0, 'C');
+        $fpdf->Cell(20, 10, '14', 1, 0, 'C');
+        $fpdf->Cell(20); // An Empty cell to fill up the space
+        $fpdf->Cell(20); // An Empty cell to fill up the space
+        $fpdf->Cell(40, 10, 'Within Guideline Value', 1, 0, 'C');
+        $fpdf->Cell(40, 10, 'Good', 1, 1, 'C', true);
+
+        $fpdf->Cell(5); // An Empty cell to push the row to right
+        $fpdf->Cell(40, 10, '2024-04-26', 1, 0, 'C');
+        $fpdf->Cell(20, 10, '14', 1, 0, 'C');
+        $fpdf->Cell(20); // An Empty cell to fill up the space
+        $fpdf->Cell(20); // An Empty cell to fill up the space
+        $fpdf->Cell(40, 10, 'Within Guideline Value', 1, 0, 'C');
+        $fpdf->Cell(40, 10, 'Good', 1, 1, 'C', true);
+
+        $fpdf->Cell(5); // An Empty cell to push the row to right
+        $fpdf->Cell(40, 10, '2024-04-26', 1, 0, 'C');
+        $fpdf->Cell(20, 10, '14', 1, 0, 'C');
+        $fpdf->Cell(20); // An Empty cell to fill up the space
+        $fpdf->Cell(20); // An Empty cell to fill up the space
+        $fpdf->Cell(40, 10, 'Within Guideline Value', 1, 0, 'C');
+        $fpdf->Cell(40, 10, 'Good', 1, 1, 'C', true);
+
+        $fpdf->Cell(5); // An Empty cell to push the row to right
+        $fpdf->Cell(40, 10, '2024-04-26', 1, 0, 'C');
+        $fpdf->Cell(20, 10, '14', 1, 0, 'C');
+        $fpdf->Cell(20, 70, '14', 1, 0, 'C');       //weekly here
+        $fpdf->Cell(20); // An Empty cell to fill up the space
+        $fpdf->Cell(40, 10, 'Within Guideline Value', 1, 0, 'C');
+        $fpdf->Cell(40, 10, 'Good', 1, 1, 'C', true);
+
+        $fpdf->Cell(5); // An Empty cell to push the row to right
+        $fpdf->Cell(40, 10, '2024-04-26', 1, 0, 'C');
+        $fpdf->Cell(20, 10, '14', 1, 0, 'C');
+        $fpdf->Cell(20); // An Empty cell to fill up the space
+        $fpdf->Cell(20); // An Empty cell to fill up the space
+        $fpdf->Cell(40, 10, 'Within Guideline Value', 1, 0, 'C');
+        $fpdf->Cell(40, 10, 'Good', 1, 1, 'C', true);
+
+        $fpdf->Cell(5); // An Empty cell to push the row to right
+        $fpdf->Cell(40, 10, '2024-04-26', 1, 0, 'C');
+        $fpdf->Cell(20, 10, '14', 1, 0, 'C');
+        $fpdf->Cell(20); // An Empty cell to fill up the space
+        $fpdf->Cell(20); // An Empty cell to fill up the space
+        $fpdf->Cell(40, 10, 'Within Guideline Value', 1, 0, 'C');
+        $fpdf->Cell(40, 10, 'Good', 1, 1, 'C', true);
+
+        $fpdf->Cell(5); // An Empty cell to push the row to right
+        $fpdf->Cell(40, 10, '2024-04-26', 1, 0, 'C');
+        $fpdf->Cell(20, 10, '14', 1, 0, 'C');
+        $fpdf->Cell(20); // An Empty cell to fill up the space
+        $fpdf->Cell(20); // An Empty cell to fill up the space
+        $fpdf->Cell(40, 10, 'Within Guideline Value', 1, 0, 'C');
+        $fpdf->Cell(40, 10, 'Good', 1, 1, 'C', true);
+
+        $fpdf->Cell(5); // An Empty cell to push the row to right
+        $fpdf->Cell(40, 10, '2024-04-26', 1, 0, 'C');
+        $fpdf->Cell(20, 10, '14', 1, 0, 'C');
+        $fpdf->Cell(20); // An Empty cell to fill up the space
+        $fpdf->Cell(20); // An Empty cell to fill up the space
+        $fpdf->Cell(40, 10, 'Within Guideline Value', 1, 0, 'C');
+        $fpdf->Cell(40, 10, 'Good', 1, 1, 'C', true);
+
+        $fpdf->Cell(5); // An Empty cell to push the row to right
+        $fpdf->Cell(40, 10, '2024-04-26', 1, 0, 'C');
+        $fpdf->Cell(20, 10, '14', 1, 0, 'C');
+        $fpdf->Cell(20); // An Empty cell to fill up the space
+        $fpdf->Cell(20); // An Empty cell to fill up the space
+        $fpdf->Cell(40, 10, 'Within Guideline Value', 1, 0, 'C');
+        $fpdf->Cell(40, 10, 'Good', 1, 1, 'C', true);
+
+        $fpdf->Cell(5); // An Empty cell to push the row to right
+        $fpdf->Cell(40, 10, '2024-04-26', 1, 0, 'C');
+        $fpdf->Cell(20, 10, '14', 1, 0, 'C');
+        $fpdf->Cell(20); // An Empty cell to fill up the space
+        $fpdf->Cell(20); // An Empty cell to fill up the space
+        $fpdf->Cell(40, 10, 'Within Guideline Value', 1, 0, 'C');
+        $fpdf->Cell(40, 10, 'Good', 1, 1, 'C', true);
+
+        // PM2.5 CONTINUATION
+        //3rd week
+        $fpdf->ln(100);     //force next page after two weeks or 14 days (14 rows)
+        $fpdf->SetFont('Arial', 'B', 12);
+        $fpdf->ln(5);
+        $fpdf->Cell(0, 5, '', 0, 1, 'C');
+        $fpdf->Cell(0, 10, 'PM2.5 Pollutant Table Cont.', 0, 1, 'C');
+        $fpdf->ln(5);
+
+        $fpdf->SetFont('Arial', '', 10);
+        $fpdf->Cell(5); // An Empty cell to push the row to right
+        $fpdf->Cell(40, 10, '2024-04-26', 1, 0, 'C');
+        $fpdf->Cell(20, 10, '14', 1, 0, 'C');
+        $fpdf->Cell(20, 70, '14', 1, 0, 'C');       //weekly here
+        $fpdf->Cell(20, 160, '14', 1, 0, 'C');       //monthly here continuation
+        $fpdf->Cell(40, 10, 'Within Guideline Value', 1, 0, 'C');
+        $fpdf->Cell(40, 10, 'Good', 1, 1, 'C', true);
+
+        $fpdf->Cell(5); // An Empty cell to push the row to right
+        $fpdf->Cell(40, 10, '2024-04-26', 1, 0, 'C');
+        $fpdf->Cell(20, 10, '14', 1, 0, 'C');
+        $fpdf->Cell(20); // An Empty cell to fill up the space
+        $fpdf->Cell(20); // An Empty cell to fill up the space
+        $fpdf->Cell(40, 10, 'Within Guideline Value', 1, 0, 'C');
+        $fpdf->Cell(40, 10, 'Good', 1, 1, 'C', true);
+
+        $fpdf->Cell(5); // An Empty cell to push the row to right
+        $fpdf->Cell(40, 10, '2024-04-26', 1, 0, 'C');
+        $fpdf->Cell(20, 10, '14', 1, 0, 'C');
+        $fpdf->Cell(20); // An Empty cell to fill up the space
+        $fpdf->Cell(20); // An Empty cell to fill up the space
+        $fpdf->Cell(40, 10, 'Within Guideline Value', 1, 0, 'C');
+        $fpdf->Cell(40, 10, 'Good', 1, 1, 'C', true);
+
+        $fpdf->Cell(5); // An Empty cell to push the row to right
+        $fpdf->Cell(40, 10, '2024-04-26', 1, 0, 'C');
+        $fpdf->Cell(20, 10, '14', 1, 0, 'C');
+        $fpdf->Cell(20); // An Empty cell to fill up the space
+        $fpdf->Cell(20); // An Empty cell to fill up the space
+        $fpdf->Cell(40, 10, 'Within Guideline Value', 1, 0, 'C');
+        $fpdf->Cell(40, 10, 'Good', 1, 1, 'C', true);
+
+        $fpdf->Cell(5); // An Empty cell to push the row to right
+        $fpdf->Cell(40, 10, '2024-04-26', 1, 0, 'C');
+        $fpdf->Cell(20, 10, '14', 1, 0, 'C');
+        $fpdf->Cell(20); // An Empty cell to fill up the space
+        $fpdf->Cell(20); // An Empty cell to fill up the space
+        $fpdf->Cell(40, 10, 'Within Guideline Value', 1, 0, 'C');
+        $fpdf->Cell(40, 10, 'Good', 1, 1, 'C', true);
+
+        $fpdf->Cell(5); // An Empty cell to push the row to right
+        $fpdf->Cell(40, 10, '2024-04-26', 1, 0, 'C');
+        $fpdf->Cell(20, 10, '14', 1, 0, 'C');
+        $fpdf->Cell(20); // An Empty cell to fill up the space
+        $fpdf->Cell(20); // An Empty cell to fill up the space
+        $fpdf->Cell(40, 10, 'Within Guideline Value', 1, 0, 'C');
+        $fpdf->Cell(40, 10, 'Good', 1, 1, 'C', true);
+
+        $fpdf->Cell(5); // An Empty cell to push the row to right
+        $fpdf->Cell(40, 10, '2024-04-26', 1, 0, 'C');
+        $fpdf->Cell(20, 10, '14', 1, 0, 'C');
+        $fpdf->Cell(20); // An Empty cell to fill up the space
+        $fpdf->Cell(20); // An Empty cell to fill up the space
+        $fpdf->Cell(40, 10, 'Within Guideline Value', 1, 0, 'C');
+        $fpdf->Cell(40, 10, 'Good', 1, 1, 'C', true);
+
+        $fpdf->Cell(5); // An Empty cell to push the row to right
+        $fpdf->Cell(40, 10, '2024-04-26', 1, 0, 'C');
+        $fpdf->Cell(20, 10, '14', 1, 0, 'C');
+        $fpdf->Cell(20, 70, '14', 1, 0, 'C');       //weekly here
+        $fpdf->Cell(20); // An Empty cell to fill up the space
+        $fpdf->Cell(40, 10, 'Within Guideline Value', 1, 0, 'C');
+        $fpdf->Cell(40, 10, 'Good', 1, 1, 'C', true);
+
+        $fpdf->Cell(5); // An Empty cell to push the row to right
+        $fpdf->Cell(40, 10, '2024-04-26', 1, 0, 'C');
+        $fpdf->Cell(20, 10, '14', 1, 0, 'C');
+        $fpdf->Cell(20); // An Empty cell to fill up the space
+        $fpdf->Cell(20); // An Empty cell to fill up the space
+        $fpdf->Cell(40, 10, 'Within Guideline Value', 1, 0, 'C');
+        $fpdf->Cell(40, 10, 'Good', 1, 1, 'C', true);
+
+        $fpdf->Cell(5); // An Empty cell to push the row to right
+        $fpdf->Cell(40, 10, '2024-04-26', 1, 0, 'C');
+        $fpdf->Cell(20, 10, '14', 1, 0, 'C');
+        $fpdf->Cell(20); // An Empty cell to fill up the space
+        $fpdf->Cell(20); // An Empty cell to fill up the space
+        $fpdf->Cell(40, 10, 'Within Guideline Value', 1, 0, 'C');
+        $fpdf->Cell(40, 10, 'Good', 1, 1, 'C', true);
+
+        $fpdf->Cell(5); // An Empty cell to push the row to right
+        $fpdf->Cell(40, 10, '2024-04-26', 1, 0, 'C');
+        $fpdf->Cell(20, 10, '14', 1, 0, 'C');
+        $fpdf->Cell(20); // An Empty cell to fill up the space
+        $fpdf->Cell(20); // An Empty cell to fill up the space
+        $fpdf->Cell(40, 10, 'Within Guideline Value', 1, 0, 'C');
+        $fpdf->Cell(40, 10, 'Good', 1, 1, 'C', true);
+
+        $fpdf->Cell(5); // An Empty cell to push the row to right
+        $fpdf->Cell(40, 10, '2024-04-26', 1, 0, 'C');
+        $fpdf->Cell(20, 10, '14', 1, 0, 'C');
+        $fpdf->Cell(20); // An Empty cell to fill up the space
+        $fpdf->Cell(20); // An Empty cell to fill up the space
+        $fpdf->Cell(40, 10, 'Within Guideline Value', 1, 0, 'C');
+        $fpdf->Cell(40, 10, 'Good', 1, 1, 'C', true);
+
+        $fpdf->Cell(5); // An Empty cell to push the row to right
+        $fpdf->Cell(40, 10, '2024-04-26', 1, 0, 'C');
+        $fpdf->Cell(20, 10, '14', 1, 0, 'C');
+        $fpdf->Cell(20); // An Empty cell to fill up the space
+        $fpdf->Cell(20); // An Empty cell to fill up the space
+        $fpdf->Cell(40, 10, 'Within Guideline Value', 1, 0, 'C');
+        $fpdf->Cell(40, 10, 'Good', 1, 1, 'C', true);
+
+        $fpdf->Cell(5); // An Empty cell to push the row to right
+        $fpdf->Cell(40, 10, '2024-04-26', 1, 0, 'C');
+        $fpdf->Cell(20, 10, '14', 1, 0, 'C');
+        $fpdf->Cell(20); // An Empty cell to fill up the space
+        $fpdf->Cell(20); // An Empty cell to fill up the space
+        $fpdf->Cell(40, 10, 'Within Guideline Value', 1, 0, 'C');
+        $fpdf->Cell(40, 10, 'Good', 1, 1, 'C', true);
+
+        $fpdf->Cell(5); // An Empty cell to push the row to right
+        $fpdf->Cell(40, 10, '2024-04-26', 1, 0, 'C');
+        $fpdf->Cell(20, 10, '14', 1, 0, 'C');
+        $fpdf->Cell(20, 10, '', 1, 0, 'C');
+        $fpdf->Cell(20); // An Empty cell to fill up the space
+        $fpdf->Cell(40, 10, 'Within Guideline Value', 1, 0, 'C');
+        $fpdf->Cell(40, 10, 'Good', 1, 1, 'C', true);
+
+        $fpdf->Cell(5); // An Empty cell to push the row to right
+        $fpdf->Cell(40, 10, '2024-04-26', 1, 0, 'C');
+        $fpdf->Cell(20, 10, '14', 1, 0, 'C');
+        $fpdf->Cell(20, 10, '', 1, 0, 'C');
+        $fpdf->Cell(20); // An Empty cell to fill up the space
+        $fpdf->Cell(40, 10, 'Within Guideline Value', 1, 0, 'C');
+        $fpdf->Cell(40, 10, 'Good', 1, 1, 'C', true);
+
+        // PM2.5 END
+
+
+        // PM10 START
+
+        $fpdf->ln(100); //force next page
+        $fpdf->SetFont('Arial', 'B', 12);
+        $fpdf->ln(5);
+        $fpdf->Cell(0, 5, '', 0, 1, 'C');
+        $fpdf->Cell(0, 10, 'PM10 Pollutant Table', 0, 1, 'C');
+        $fpdf->ln(5);
+
+        // Table Header
+        $fpdf->SetFont('Arial', 'B', 10);
+        $fpdf->SetFillColor(173, 216, 230); // Light blue color for the header
+        $fpdf->Cell(5); // An Empty cell to push the row to right
+        $fpdf->Cell(40, 20, 'Date of Sampling', 1, 0, 'C', true);
+        $fpdf->Cell(60, 10, 'PM10 Concentration in (ug/m^3)', 1, 0, 'C', true);
+        $fpdf->Cell(40, 20, 'Remarks', 1, 0, 'C', true);
+        $fpdf->Cell(40, 20, 'Classification', 1, 0, 'C', true);
+        $fpdf->Ln(10); // Move to the next line for sub-headers
+        $fpdf->Cell(45); // An Empty cell to push the 3 subheaders just below the main header
+        $fpdf->Cell(20, 10, 'Daily', 1, 0, 'C', true);
+        $fpdf->Cell(20, 10, 'Weekly', 1, 0, 'C', true);
+        $fpdf->Cell(20, 10, 'Monthly', 1, 1, 'C', true);
+
+        //Table Body
+        $fpdf->SetFillColor(111, 241, 117);     //green background, just add a 7th parameter (true)
+
+        $fpdf->SetFont('Arial', '', 10);
+        $fpdf->Cell(5); // An Empty cell to push the row to right
+        $fpdf->Cell(40, 10, '2024-04-26', 1, 0, 'C');
+        $fpdf->Cell(20, 10, '14', 1, 0, 'C');
+        $fpdf->Cell(20, 70, '14', 1, 0, 'C');       //weekly here
+        $fpdf->Cell(20, 70, '14', 1, 0, 'C');       //monthly here      (70 = 7 rows temp)
+        $fpdf->Cell(40, 10, 'Within Guideline Value', 1, 0, 'C');
+        $fpdf->Cell(40, 10, 'Good', 1, 1, 'C', true);
+
+        $fpdf->Cell(5); // An Empty cell to push the row to right
+        $fpdf->Cell(40, 10, '2024-04-26', 1, 0, 'C');
+        $fpdf->Cell(20, 10, '14', 1, 0, 'C');
+        $fpdf->Cell(20);                          //an empty cell to fill up the space
+        $fpdf->Cell(20);                          //an empty cell to fill up the space
+        $fpdf->Cell(40, 10, 'Within Guideline Value', 1, 0, 'C');
+        $fpdf->Cell(40, 10, 'Good', 1, 1, 'C', true);
+
+        $fpdf->Cell(5); // An Empty cell to push the row to right
+        $fpdf->Cell(40, 10, '2024-04-26', 1, 0, 'C');
+        $fpdf->Cell(20, 10, '14', 1, 0, 'C');
+        $fpdf->Cell(20);                          //an empty cell to fill up the space
+        $fpdf->Cell(20);                          //an empty cell to fill up the space
+        $fpdf->Cell(40, 10, 'Within Guideline Value', 1, 0, 'C');
+        $fpdf->Cell(40, 10, 'Good', 1, 1, 'C', true);
+
+        $fpdf->Cell(5); // An Empty cell to push the row to right
+        $fpdf->Cell(40, 10, '2024-04-26', 1, 0, 'C');
+        $fpdf->Cell(20, 10, '14', 1, 0, 'C');
+        $fpdf->Cell(20);                          //an empty cell to fill up the space
+        $fpdf->Cell(20);                          //an empty cell to fill up the space
+        $fpdf->Cell(40, 10, 'Within Guideline Value', 1, 0, 'C');
+        $fpdf->Cell(40, 10, 'Good', 1, 1, 'C', true);
+
+        $fpdf->Cell(5); // An Empty cell to push the row to right
+        $fpdf->Cell(40, 10, '2024-04-26', 1, 0, 'C');
+        $fpdf->Cell(20, 10, '14', 1, 0, 'C');
+        $fpdf->Cell(20);                          //an empty cell to fill up the space
+        $fpdf->Cell(20);                          //an empty cell to fill up the space
+        $fpdf->Cell(40, 10, 'Within Guideline Value', 1, 0, 'C');
+        $fpdf->Cell(40, 10, 'Good', 1, 1, 'C', true);
+
+        $fpdf->Cell(5); // An Empty cell to push the row to right
+        $fpdf->Cell(40, 10, '2024-04-26', 1, 0, 'C');
+        $fpdf->Cell(20, 10, '14', 1, 0, 'C');
+        $fpdf->Cell(20);                          //an empty cell to fill up the space
+        $fpdf->Cell(20);                          //an empty cell to fill up the space
+        $fpdf->Cell(40, 10, 'Within Guideline Value', 1, 0, 'C');
+        $fpdf->Cell(40, 10, 'Good', 1, 1, 'C', true);
+
+        $fpdf->Cell(5); // An Empty cell to push the row to right
+        $fpdf->Cell(40, 10, '2024-04-26', 1, 0, 'C');
+        $fpdf->Cell(20, 10, '14', 1, 0, 'C');
+        $fpdf->Cell(20);                          //an empty cell to fill up the space
+        $fpdf->Cell(20);                          //an empty cell to fill up the space
+        $fpdf->Cell(40, 10, 'Within Guideline Value', 1, 0, 'C');
+        $fpdf->Cell(40, 10, 'Good', 1, 1, 'C', true);
+
+        $fpdf->ln(200); //force next page
+
+        // CO START
+
+        $fpdf->ln(100); //force next page
+        $fpdf->SetFont('Arial', 'B', 12);
+        $fpdf->ln(5);
+        $fpdf->Cell(0, 5, '', 0, 1, 'C');
+        $fpdf->Cell(0, 10, 'CO Pollutant Table', 0, 1, 'C');
+        $fpdf->ln(5);
+
+        // Table Header
+        $fpdf->SetFont('Arial', 'B', 10);
+        $fpdf->SetFillColor(173, 216, 230); // Light blue color for the header
+        $fpdf->Cell(5); // An Empty cell to push the row to right
+        $fpdf->Cell(40, 20, 'Date of Sampling', 1, 0, 'C', true);
+        $fpdf->Cell(60, 10, 'CO Concentration in (ppm)', 1, 0, 'C', true);
+        $fpdf->Cell(40, 20, 'Remarks', 1, 0, 'C', true);
+        $fpdf->Cell(40, 20, 'Classification', 1, 0, 'C', true);
+        $fpdf->Ln(10); // Move to the next line for sub-headers
+        $fpdf->Cell(45); // An Empty cell to push the 3 subheaders just below the main header
+        $fpdf->Cell(20, 10, 'Daily', 1, 0, 'C', true);
+        $fpdf->Cell(20, 10, 'Weekly', 1, 0, 'C', true);
+        $fpdf->Cell(20, 10, 'Monthly', 1, 1, 'C', true);
+
+        //Table Body
+        $fpdf->SetFillColor(111, 241, 117);     //green background, just add a 7th parameter (true)
+
+        $fpdf->SetFont('Arial', '', 10);
+        $fpdf->Cell(5); // An Empty cell to push the row to right
+        $fpdf->Cell(40, 10, '2024-04-26', 1, 0, 'C');
+        $fpdf->Cell(20, 10, '14', 1, 0, 'C');
+        $fpdf->Cell(20, 70, '14', 1, 0, 'C');       //weekly here
+        $fpdf->Cell(20, 70, '14', 1, 0, 'C');       //monthly here      (70 = 7 rows temp)
+        $fpdf->Cell(40, 10, 'Within Guideline Value', 1, 0, 'C');
+        $fpdf->Cell(40, 10, 'Good', 1, 1, 'C', true);
+
+        $fpdf->Cell(5); // An Empty cell to push the row to right
+        $fpdf->Cell(40, 10, '2024-04-26', 1, 0, 'C');
+        $fpdf->Cell(20, 10, '14', 1, 0, 'C');
+        $fpdf->Cell(20);                          //an empty cell to fill up the space
+        $fpdf->Cell(20);                          //an empty cell to fill up the space
+        $fpdf->Cell(40, 10, 'Within Guideline Value', 1, 0, 'C');
+        $fpdf->Cell(40, 10, 'Good', 1, 1, 'C', true);
+
+        $fpdf->Cell(5); // An Empty cell to push the row to right
+        $fpdf->Cell(40, 10, '2024-04-26', 1, 0, 'C');
+        $fpdf->Cell(20, 10, '14', 1, 0, 'C');
+        $fpdf->Cell(20);                          //an empty cell to fill up the space
+        $fpdf->Cell(20);                          //an empty cell to fill up the space
+        $fpdf->Cell(40, 10, 'Within Guideline Value', 1, 0, 'C');
+        $fpdf->Cell(40, 10, 'Good', 1, 1, 'C', true);
+
+        $fpdf->Cell(5); // An Empty cell to push the row to right
+        $fpdf->Cell(40, 10, '2024-04-26', 1, 0, 'C');
+        $fpdf->Cell(20, 10, '14', 1, 0, 'C');
+        $fpdf->Cell(20);                          //an empty cell to fill up the space
+        $fpdf->Cell(20);                          //an empty cell to fill up the space
+        $fpdf->Cell(40, 10, 'Within Guideline Value', 1, 0, 'C');
+        $fpdf->Cell(40, 10, 'Good', 1, 1, 'C', true);
+
+        $fpdf->Cell(5); // An Empty cell to push the row to right
+        $fpdf->Cell(40, 10, '2024-04-26', 1, 0, 'C');
+        $fpdf->Cell(20, 10, '14', 1, 0, 'C');
+        $fpdf->Cell(20);                          //an empty cell to fill up the space
+        $fpdf->Cell(20);                          //an empty cell to fill up the space
+        $fpdf->Cell(40, 10, 'Within Guideline Value', 1, 0, 'C');
+        $fpdf->Cell(40, 10, 'Good', 1, 1, 'C', true);
+
+        $fpdf->Cell(5); // An Empty cell to push the row to right
+        $fpdf->Cell(40, 10, '2024-04-26', 1, 0, 'C');
+        $fpdf->Cell(20, 10, '14', 1, 0, 'C');
+        $fpdf->Cell(20);                          //an empty cell to fill up the space
+        $fpdf->Cell(20);                          //an empty cell to fill up the space
+        $fpdf->Cell(40, 10, 'Within Guideline Value', 1, 0, 'C');
+        $fpdf->Cell(40, 10, 'Good', 1, 1, 'C', true);
+
+        $fpdf->Cell(5); // An Empty cell to push the row to right
+        $fpdf->Cell(40, 10, '2024-04-26', 1, 0, 'C');
+        $fpdf->Cell(20, 10, '14', 1, 0, 'C');
+        $fpdf->Cell(20);                          //an empty cell to fill up the space
+        $fpdf->Cell(20);                          //an empty cell to fill up the space
+        $fpdf->Cell(40, 10, 'Within Guideline Value', 1, 0, 'C');
+        $fpdf->Cell(40, 10, 'Good', 1, 1, 'C', true);
+
+        $fpdf->ln(200); //force next page
+
+        // NO2 START
+
+        $fpdf->ln(100); //force next page
+        $fpdf->SetFont('Arial', 'B', 12);
+        $fpdf->ln(5);
+        $fpdf->Cell(0, 5, '', 0, 1, 'C');
+        $fpdf->Cell(0, 10, 'NO2 Pollutant Table', 0, 1, 'C');
+        $fpdf->ln(5);
+
+        // Table Header
+        $fpdf->SetFont('Arial', 'B', 10);
+        $fpdf->SetFillColor(173, 216, 230); // Light blue color for header
+        $fpdf->Cell(5); // An Empty cell to push the row to right
+        $fpdf->Cell(40, 20, 'Date of Sampling', 1, 0, 'C', true);
+        $fpdf->Cell(60, 10, 'NO2 Concentration in (ppm)', 1, 0, 'C', true);
+        $fpdf->Cell(40, 20, 'Remarks', 1, 0, 'C', true);
+        $fpdf->Cell(40, 20, 'Classification', 1, 0, 'C', true);
+        $fpdf->Ln(10); // Move to the next line for sub-headers
+        $fpdf->Cell(45); // An Empty cell to push the 3 subheaders just below the main header
+        $fpdf->Cell(20, 10, 'Daily', 1, 0, 'C', true);
+        $fpdf->Cell(20, 10, 'Weekly', 1, 0, 'C', true);
+        $fpdf->Cell(20, 10, 'Monthly', 1, 1, 'C', true);
+
+        //Table Body
+        $fpdf->SetFillColor(111, 241, 117);     //green background, just add a 7th parameter (true)
+
+        $fpdf->SetFont('Arial', '', 10);
+        $fpdf->Cell(5); // An Empty cell to push the row to right
+        $fpdf->Cell(40, 10, '2024-04-26', 1, 0, 'C');
+        $fpdf->Cell(20, 10, '14', 1, 0, 'C');
+        $fpdf->Cell(20, 70, '14', 1, 0, 'C');       //weekly here
+        $fpdf->Cell(20, 70, '14', 1, 0, 'C');       //monthly here      (70 = 7 rows temp)
+        $fpdf->Cell(40, 10, 'Within Guideline Value', 1, 0, 'C');
+        $fpdf->Cell(40, 10, 'Good', 1, 1, 'C', true);
+
+        $fpdf->Cell(5); // An Empty cell to push the row to right
+        $fpdf->Cell(40, 10, '2024-04-26', 1, 0, 'C');
+        $fpdf->Cell(20, 10, '14', 1, 0, 'C');
+        $fpdf->Cell(20);                          //an empty cell to fill up the space
+        $fpdf->Cell(20);                          //an empty cell to fill up the space
+        $fpdf->Cell(40, 10, 'Within Guideline Value', 1, 0, 'C');
+        $fpdf->Cell(40, 10, 'Good', 1, 1, 'C', true);
+
+        $fpdf->Cell(5); // An Empty cell to push the row to right
+        $fpdf->Cell(40, 10, '2024-04-26', 1, 0, 'C');
+        $fpdf->Cell(20, 10, '14', 1, 0, 'C');
+        $fpdf->Cell(20);                          //an empty cell to fill up the space
+        $fpdf->Cell(20);                          //an empty cell to fill up the space
+        $fpdf->Cell(40, 10, 'Within Guideline Value', 1, 0, 'C');
+        $fpdf->Cell(40, 10, 'Good', 1, 1, 'C', true);
+
+        $fpdf->Cell(5); // An Empty cell to push the row to right
+        $fpdf->Cell(40, 10, '2024-04-26', 1, 0, 'C');
+        $fpdf->Cell(20, 10, '14', 1, 0, 'C');
+        $fpdf->Cell(20);                          //an empty cell to fill up the space
+        $fpdf->Cell(20);                          //an empty cell to fill up the space
+        $fpdf->Cell(40, 10, 'Within Guideline Value', 1, 0, 'C');
+        $fpdf->Cell(40, 10, 'Good', 1, 1, 'C', true);
+
+        $fpdf->Cell(5); // An Empty cell to push the row to right
+        $fpdf->Cell(40, 10, '2024-04-26', 1, 0, 'C');
+        $fpdf->Cell(20, 10, '14', 1, 0, 'C');
+        $fpdf->Cell(20);                          //an empty cell to fill up the space
+        $fpdf->Cell(20);                          //an empty cell to fill up the space
+        $fpdf->Cell(40, 10, 'Within Guideline Value', 1, 0, 'C');
+        $fpdf->Cell(40, 10, 'Good', 1, 1, 'C', true);
+
+        $fpdf->Cell(5); // An Empty cell to push the row to right
+        $fpdf->Cell(40, 10, '2024-04-26', 1, 0, 'C');
+        $fpdf->Cell(20, 10, '14', 1, 0, 'C');
+        $fpdf->Cell(20);                          //an empty cell to fill up the space
+        $fpdf->Cell(20);                          //an empty cell to fill up the space
+        $fpdf->Cell(40, 10, 'Within Guideline Value', 1, 0, 'C');
+        $fpdf->Cell(40, 10, 'Good', 1, 1, 'C', true);
+
+        $fpdf->Cell(5); // An Empty cell to push the row to right
+        $fpdf->Cell(40, 10, '2024-04-26', 1, 0, 'C');
+        $fpdf->Cell(20, 10, '14', 1, 0, 'C');
+        $fpdf->Cell(20);                          //an empty cell to fill up the space
+        $fpdf->Cell(20);                          //an empty cell to fill up the space
+        $fpdf->Cell(40, 10, 'Within Guideline Value', 1, 0, 'C');
+        $fpdf->Cell(40, 10, 'Good', 1, 1, 'C', true);
+
+        $fpdf->ln(200); //force next page
+
+        // O3 START
+
+        $fpdf->ln(100); //force next page
+        $fpdf->SetFont('Arial', 'B', 12);
+        $fpdf->ln(5);
+        $fpdf->Cell(0, 5, '', 0, 1, 'C');
+        $fpdf->Cell(0, 10, 'O3 Pollutant Table', 0, 1, 'C');
+        $fpdf->ln(5);
+
+        // Table Header
+        $fpdf->SetFont('Arial', 'B', 10);
+        $fpdf->SetFillColor(173, 216, 230); // Light blue color for the header
+        $fpdf->Cell(5); // An Empty cell to push the row to right
+        $fpdf->Cell(40, 20, 'Date of Sampling', 1, 0, 'C', true);
+        $fpdf->Cell(60, 10, 'O3 Concentration in (ppm)', 1, 0, 'C', true);
+        $fpdf->Cell(40, 20, 'Remarks', 1, 0, 'C', true);
+        $fpdf->Cell(40, 20, 'Classification', 1, 0, 'C', true);
+        $fpdf->Ln(10); // Move to the next line for sub-headers
+        $fpdf->Cell(45); // An Empty cell to push the 3 subheaders just below the main header
+        $fpdf->Cell(20, 10, 'Daily', 1, 0, 'C', true);
+        $fpdf->Cell(20, 10, 'Weekly', 1, 0, 'C', true);
+        $fpdf->Cell(20, 10, 'Monthly', 1, 1, 'C', true);
+
+        //Table Body
+        $fpdf->SetFillColor(111, 241, 117);     //green background, just add a 7th parameter (true)
+
+        $fpdf->SetFont('Arial', '', 10);
+        $fpdf->Cell(5); // An Empty cell to push the row to right
+        $fpdf->Cell(40, 10, '2024-04-26', 1, 0, 'C');
+        $fpdf->Cell(20, 10, '14', 1, 0, 'C');
+        $fpdf->Cell(20, 70, '14', 1, 0, 'C');       //weekly here
+        $fpdf->Cell(20, 70, '14', 1, 0, 'C');       //monthly here      (70 = 7 rows temp)
+        $fpdf->Cell(40, 10, 'Within Guideline Value', 1, 0, 'C');
+        $fpdf->Cell(40, 10, 'Good', 1, 1, 'C', true);
+
+        $fpdf->Cell(5); // An Empty cell to push the row to right
+        $fpdf->Cell(40, 10, '2024-04-26', 1, 0, 'C');
+        $fpdf->Cell(20, 10, '14', 1, 0, 'C');
+        $fpdf->Cell(20);                          //an empty cell to fill up the space
+        $fpdf->Cell(20);                          //an empty cell to fill up the space
+        $fpdf->Cell(40, 10, 'Within Guideline Value', 1, 0, 'C');
+        $fpdf->Cell(40, 10, 'Good', 1, 1, 'C', true);
+
+        $fpdf->Cell(5); // An Empty cell to push the row to right
+        $fpdf->Cell(40, 10, '2024-04-26', 1, 0, 'C');
+        $fpdf->Cell(20, 10, '14', 1, 0, 'C');
+        $fpdf->Cell(20);                          //an empty cell to fill up the space
+        $fpdf->Cell(20);                          //an empty cell to fill up the space
+        $fpdf->Cell(40, 10, 'Within Guideline Value', 1, 0, 'C');
+        $fpdf->Cell(40, 10, 'Good', 1, 1, 'C', true);
+
+        $fpdf->Cell(5); // An Empty cell to push the row to right
+        $fpdf->Cell(40, 10, '2024-04-26', 1, 0, 'C');
+        $fpdf->Cell(20, 10, '14', 1, 0, 'C');
+        $fpdf->Cell(20);                          //an empty cell to fill up the space
+        $fpdf->Cell(20);                          //an empty cell to fill up the space
+        $fpdf->Cell(40, 10, 'Within Guideline Value', 1, 0, 'C');
+        $fpdf->Cell(40, 10, 'Good', 1, 1, 'C', true);
+
+        $fpdf->Cell(5); // An Empty cell to push the row to right
+        $fpdf->Cell(40, 10, '2024-04-26', 1, 0, 'C');
+        $fpdf->Cell(20, 10, '14', 1, 0, 'C');
+        $fpdf->Cell(20);                          //an empty cell to fill up the space
+        $fpdf->Cell(20);                          //an empty cell to fill up the space
+        $fpdf->Cell(40, 10, 'Within Guideline Value', 1, 0, 'C');
+        $fpdf->Cell(40, 10, 'Good', 1, 1, 'C', true);
+
+        $fpdf->Cell(5); // An Empty cell to push the row to right
+        $fpdf->Cell(40, 10, '2024-04-26', 1, 0, 'C');
+        $fpdf->Cell(20, 10, '14', 1, 0, 'C');
+        $fpdf->Cell(20);                          //an empty cell to fill up the space
+        $fpdf->Cell(20);                          //an empty cell to fill up the space
+        $fpdf->Cell(40, 10, 'Within Guideline Value', 1, 0, 'C');
+        $fpdf->Cell(40, 10, 'Good', 1, 1, 'C', true);
+
+        $fpdf->Cell(5); // An Empty cell to push the row to right
+        $fpdf->Cell(40, 10, '2024-04-26', 1, 0, 'C');
+        $fpdf->Cell(20, 10, '14', 1, 0, 'C');
+        $fpdf->Cell(20);                          //an empty cell to fill up the space
+        $fpdf->Cell(20);                          //an empty cell to fill up the space
+        $fpdf->Cell(40, 10, 'Within Guideline Value', 1, 0, 'C');
+        $fpdf->Cell(40, 10, 'Good', 1, 1, 'C', true);
+
+        
+        //NAMES AND SIGNATURE
+        $fpdf->ln(15); //gap or margin top (new line)
+        $fpdf->SetFont('Arial', '', 10);
+        $fpdf->Cell(5);
+        $fpdf->Cell(100, 10, 'Prepared by:', 0, 0, 'L');
+        $fpdf->Cell(20, 10, 'Reviewed by:', 0, 1, 'L');
+        $fpdf->ln(20);
+
+        $fpdf->SetFont('Arial', 'B', 12);
+        $fpdf->Cell(5);
+        $fpdf->Cell(100, 5, 'ENGR. RAMON PAULO A. CAUMBAN', 0, 0, 'L');
+        $fpdf->Cell(0, 5, 'ENGR. RAYGIE ARVY B. GANTE', 0, 1, 'L');
+
+        $fpdf->SetFont('Arial', '', 10);
+        $fpdf->Cell(5);
+        $fpdf->Cell(100, 5, 'Project Document Specialist', 0, 0, 'L');
+        $fpdf->Cell(0, 5, 'Senior Environmental Specialist', 0, 1, 'L');
+
+        $fpdf->ln(5);
+        $fpdf->Cell(5);
+        $fpdf->Cell(100, 10, 'Checked by:', 0, 0, 'L');
+        $fpdf->Cell(0, 10, 'Recommended by:', 0, 1, 'L');
+        $fpdf->ln(20);
+
+        $fpdf->SetFont('Arial', 'B', 12);
+        $fpdf->Cell(5);
+        $fpdf->Cell(100, 5, 'ENGR. DJEIKUJE NICKOLAI C. GACUS', 0, 0, 'L');
+        $fpdf->Cell(0, 5, 'ENGR. BRIGITTE A. DEEHAY', 0, 1, 'L');
+
+        $fpdf->SetFont('Arial', '', 10);
+        $fpdf->Cell(5);
+        $fpdf->Cell(100, 5, 'Chief, Ambient Monitoring and Forcasting Section', 0, 0, 'L');
+        $fpdf->Cell(0, 5, 'Chief, Environmental Documentation Station', 0, 1, 'L');
+
+
+
+
+
+
+
+
+
+        // POLLUTANT TABLE BEFORE CAPSTONE DEFENSE
         // First batch table header
         $fpdf->Ln(100);
         $fpdf->AddPage('L');
