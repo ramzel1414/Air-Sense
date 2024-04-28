@@ -123,9 +123,6 @@ Route::middleware(['auth', 'role:admin'])->group(function() {
 
 
 
-
-
-
     //Air Quality
 
     //Monitoring

@@ -21,9 +21,7 @@ let options = {
     cnmiCommand: 'AT+CNMI=2,1,0,2,1',
     logger: console
 };
-
 modem.open('COM8', options, {});
-
 modem.on('open', data => {
     modem.initializeModem(() => {
         console.log("Modem is initialized");

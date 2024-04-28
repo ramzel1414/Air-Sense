@@ -11,10 +11,10 @@ class PdfReport extends FPDF
         //Logo's
         $imageWidth = 20; // Width of the image
         $pageWidth = $this->GetPageWidth();
-        
+
         // Calculate the x-coordinate to center the image
         $x = ($pageWidth - $imageWidth) / 2;
-        
+
         // Placement of image
         $this->Image('airsense.png', $x-60, 10, $imageWidth);
         $this->Image('buksu.png',  $x+60, 10, $imageWidth);
@@ -39,7 +39,7 @@ class PdfReport extends FPDF
         // Select Arial italic 8
         $this->SetFont('Arial', 'I', 8);
         // Print centered page number
-        $this->Cell(0, 10, 'Electronic Generated Report. Released on: ' . date('m/d/Y (l) h:i:sa'), 0, 0, 'L');
+        $this->Cell(0, 10, 'Annual Assessment Report of MC-EMBX - Ambient Air Quality Monitoring Station. Released on: ' . date('m/d/Y (l) h:i:sa'), 0, 0, 'L');
         $this->Cell(0, 10, 'Page '.$this->PageNo(), 0, 0, 'R');
     }
 

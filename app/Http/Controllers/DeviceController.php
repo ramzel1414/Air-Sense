@@ -165,15 +165,21 @@ class DeviceController extends Controller
         $device = Device::findOrFail($id);
 
         // Check if the deviceSim matches the restricted value
-        if ($device->deviceSim === '639537399626') {
-            return redirect()->route('admin.management')->with(array ('message' => 'Cannot delete this device, as it is being used',
-            'alert-type' => 'error'));
-        }
+        // if ($device->deviceSim === '639537399626') {
+        //     return redirect()->route('admin.management')->with(array ('message' => 'Cannot delete this device, as it is being used',
+        //     'alert-type' => 'error'));
+        // }
 
-        // Check if any other device is using the same devicePort
-        $existingDevice = Device::where('devicePort', $device->devicePort)->where('id', '!=', $device->id)->first();
-        if ($existingDevice) {
-            return redirect()->route('admin.management')->with(array ('message' => 'Cannot delete this device. Another device is using the same COMPORT.',
+        // // Check if any other device is using the same devicePort
+        // $existingDevice = Device::where('devicePort', $device->devicePort)->where('id', '!=', $device->id)->first();
+        // if ($existingDevice) {
+        //     return redirect()->route('admin.management')->with(array ('message' => 'Cannot delete this device. Another device is using the same COMPORT.',
+        //     'alert-type' => 'error'));
+        // }
+
+        if ($device->deviceStatus === 'ACTIVE') {
+            // If the deviceSim matches the restricted value, prevent updating deviceSim
+            return redirect()->route('admin.management')->with(array ('message' => 'Cannot update this device as it is being used.',
             'alert-type' => 'error'));
         }
 
