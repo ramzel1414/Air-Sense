@@ -1,198 +1,124 @@
-
-
 @extends('admin.admin_dashboard')
 @section('content')
 
+@include('admin.modals.modal-management')
 
 
 <div class="page-content">
 
-    <h3 class="mb-4">System Management</h3>
-      
-    <div class="row">
-            
-        <div class="grid-margin d-flex justify-content-evenly py-3 rounded-3 custom-background">
+    <div class="row grid-margin">
+        <div class="d-flex justify-content-start rounded-3 mb-4">
+            <h3>System Management</h3>
 
-            <!-- Button trigger modal -->
-            <button type="button" class="btn btn-primary col-4" data-bs-toggle="modal" data-bs-target="#addLocation">
-                Add Location
-            </button>
-
-            <!-- Modal -->
-            <div class="modal fade" id="addLocation" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Add a Location</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="btn-close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <!-- Form for adding Location -->
-                            <form>
-                                @csrf
-                                <div class="mb-3">
-                                    <label for="locationId" class="form-label">Location ID:</label>
-                                    <input type="text" class="form-control" id="locationId" name="locationId" placeholder="Enter Location ID" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="location" class="form-label">Location:</label>
-                                    <input type="text" class="form-control" id="location" name="location" placeholder="Enter Location Name" required>
-                                </div>
-
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary">Save changes</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-            <!-- Button trigger modal -->
-            <button type="button" class="btn btn-primary col-4" data-bs-toggle="modal" data-bs-target="#addDevice">
+        </div>
+        <div class="grid-margin d-flex justify-content-evenly py-3 rounded-3 custom-background gap-5">
+                <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary col-3" data-bs-toggle="modal" data-bs-target="#addDevice">
                 Add Device
             </button>
-            <!-- Modal -->
-            <div class="modal fade" id="addDevice" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Add a Sensor</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="btn-close"></button>
+            <button type="button" class="btn btn-primary col-3" data-bs-toggle="modal" data-bs-target="#addLocation">
+                Add Location
+            </button>
+        </div>
+    </div>
+
+    <!-- Display Flash Messages -->
+    @if(session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+    @endif
+
+    @if(session('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+    @endif
+
+
+
+    <!-- Display Devices -->
+    <div class="d-flex flex-wrap justify-content-evenly p-3 for-light-mode-bg">
+        @foreach ($devices as $device)
+        <div class="col-12 col-sm-5 mb-5">
+            <div class="card rounded mb-2">
+                <div class="card-body">
+
+                    <div class="mb-2">
+                        <p class="card-title mb-0">Device Name: <span>{{ $device->deviceName }}</span></p>
+                        <p class="card-title mb-0">Device Serial: <span>{{ $device->deviceSerial }}</span></p>
+                        <p class="card-title mb-0">Device COM: <span>{{ $device->devicePort }}</span></p>
+                        <p class="card-title mb-0">Device Sim #: <span>{{ $device->deviceSim }}</span></p>
+                        <p class="card-title mb-0">Device Latitude: <span>{{ $device->latitude }}</span></p>
+                        <p class="card-title mb-0">Device Longitude: <span>{{ $device->longitude }}</span></p>
+                        <p class="card-title mb-0">Pollutant Data:</p>
                     </div>
-                        <div class="modal-body">
-                            <!-- Form for adding Location -->
-                            <form>
-                                @csrf
-                                <div class="mb-3">
-                                    <label for="locationId" class="form-label">Sensor ID:</label>
-                                    <input type="text" class="form-control" id="locationId" name="locationId" placeholder="Enter Sensor ID" required>
+                    <div class="mx-4">
+                        <p>Particulate Matter 2.5</p>
+                        <p>Particulate Matter 10</p>
+                        <p>Carbon Monoxide</p>
+                        <p>Ozone</p>
+                        <p>Nitrogen Dioxide</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12 rounded mb-3">
+                            @if ($device->deviceStatus === 'ACTIVE')
+                                <form action="{{ route('admin.toggleStatus', $device->id) }}" method="POST">
+                                    @csrf
+                                    @method('PUT')
+                                    <button type="submit" class="btn btn-success w-100">Active</button>
+                                </form>
+                            @else
+                                <form action="{{ route('admin.toggleStatus', $device->id) }}" method="POST">
+                                    @csrf
+                                    @method('PUT')
+                                    <button type="submit" class="btn btn-secondary w-100">Inactive</button>
+                                </form>
+                            @endif
+                        </div>
+                    </div>
+                    <div class="row">
+                        <!-- Update Device Button -->
+                        <div class="col-6 rounded">
+                            <button type="button" class="btn btn-primary rounded-3 w-100" data-bs-toggle="modal" data-bs-target="#updateDevice{{ $device->id }}">
+                                Update
+                            </button>
+                        </div>
+                        <!-- Delete Button trigger modal -->
+                        <div class="col-6 rounded">
+
+                            <button type="button" class="btn btn-secondary rounded-3 w-100" data-bs-toggle="modal" data-bs-target="#deleteDeviceModal">
+                                Delete
+                            </button>
+                        </div>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="deleteDeviceModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <h5 class="modal-title text-center my-4"  id="exampleModalLabel">Are you sure you want to delete this device?</h5>
+                                    <div class="modal-footer" style="justify-content: space-evenly;">
+                                        @csrf
+                                        <button type="button" class="btn btn-primary rounded-3 " data-bs-dismiss="modal">Cancel</button>
+                                        <!-- Delete Form -->
+                                        <form action="{{ route('admin.delete', $device->id) }}" method="POST" class="rounded">
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-secondary rounded-3">Delete</button>
+                                        </form>
+                                    </div>
                                 </div>
-                                <div class="mb-3">
-                                    <label for="location" class="form-label">Sensor Name:</label>
-                                    <input type="text" class="form-control" id="location" name="location" placeholder="Enter Sensor Name" required>
-                                </div>
-                                
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary">Save changes</button>
-                                </div>
-                            </form>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
-
+        @endforeach
     </div>
-
-    <h5 class="mb-3">Recently Added!</h5>
-
-    <!-- wrapper start -->
-    <div class="row d-flex justify-content-evenly">
-        <div class="col-12 col-sm-5 mb-4">
-            <div class="card rounded mb-1">
-                <div class="card-body">
-                    <div class="mb-2 lh-3">
-                        <p class="card-title mb-0">Location: <span>Gaisano Malaybalay</span></p>
-                        <p class="card-title mb-0">Location ID: <span>126421</span></p>
-                        <p class="card-title mb-0">Sensor Name: <span>Sensor 1</span></p>
-                        <p class="card-title mb-0">Sensor ID: <span>8080</span></p>
-                    </div>
-                    <div class="mx-4">
-                        <p>Particulate Matter 2.5: <span> 12 ug/m3</span></p>
-                        <p>Particulate Matter 10: <span>12 ug/m</span></p>
-                        <p>Carbon Monoxide: <span>30ppm</span></p>
-                        <p>Ozone: <span>220 DU</span></p>
-                        <p>Nitrogen Dioxide: <span>200 ug/m3</span></p>
-
-                    </div>
-                </div>
-            </div>
-            <div class="card rounded p-3">
-                <a href="{{ route('admin.pollutants') }}" class="btn btn-secondary col-6 mx-auto rounded-3">View Details</a>
-            </div>
-        </div>
-        
-        <div class="col-12 col-sm-5 mb-4">
-            <div class="card rounded mb-1">
-                <div class="card-body">
-                    <div class="mb-2 lh-3">
-                        <p class="card-title mb-0">Location: <span>Gaisano Malaybalay</span></p>
-                        <p class="card-title mb-0">Location ID: <span>126421</span></p>
-                        <p class="card-title mb-0">Sensor Name: <span>Sensor 1</span></p>
-                        <p class="card-title mb-0">Sensor ID: <span>8080</span></p>
-                    </div>
-                    <div class="mx-4">
-                        <p>Particulate Matter 2.5: <span> 12 ug/m3</span></p>
-                        <p>Particulate Matter 10: <span>12 ug/m</span></p>
-                        <p>Carbon Monoxide: <span>30ppm</span></p>
-                        <p>Ozone: <span>220 DU</span></p>
-                        <p>Nitrogen Dioxide: <span>200 ug/m3</span></p>
-
-                    </div>
-                </div>
-            </div>
-            <div class="card rounded p-3">
-                <a href="{{route('admin.location_tab')}}" class="btn btn-secondary col-6 mx-auto rounded-3">View Details</a>
-            </div>
-        </div>
-        
-        <div class="col-12 col-sm-5 mb-4">
-            <div class="card rounded mb-1">
-                <div class="card-body">
-                    <div class="mb-2 lh-3">
-                        <p class="card-title mb-0">Location: <span>Gaisano Malaybalay</span></p>
-                        <p class="card-title mb-0">Location ID: <span>126421</span></p>
-                        <p class="card-title mb-0">Sensor Name: <span>Sensor 1</span></p>
-                        <p class="card-title mb-0">Sensor ID: <span>8080</span></p>
-                    </div>
-                    <div class="mx-4">
-                        <p>Particulate Matter 2.5: <span> 12 ug/m3</span></p>
-                        <p>Particulate Matter 10: <span>12 ug/m</span></p>
-                        <p>Carbon Monoxide: <span>30ppm</span></p>
-                        <p>Ozone: <span>220 DU</span></p>
-                        <p>Nitrogen Dioxide: <span>200 ug/m3</span></p>
-
-                    </div>
-                </div>
-            </div>
-            <div class="card rounded p-3">
-                <a href="#" class="btn btn-secondary col-6 mx-auto rounded-3">View Details</a>
-            </div>
-        </div>
-        
-        <div class="col-12 col-sm-5 mb-4">
-            <div class="card rounded mb-1">
-                <div class="card-body">
-                    <div class="mb-2 lh-3">
-                        <p class="card-title mb-0">Location: <span>Gaisano Malaybalay</span></p>
-                        <p class="card-title mb-0">Location ID: <span>126421</span></p>
-                        <p class="card-title mb-0">Sensor Name: <span>Sensor 1</span></p>
-                        <p class="card-title mb-0">Sensor ID: <span>8080</span></p>
-                    </div>
-                    <div class="mx-4">
-                        <p>Particulate Matter 2.5: <span> 12 ug/m3</span></p>
-                        <p>Particulate Matter 10: <span>12 ug/m</span></p>
-                        <p>Carbon Monoxide: <span>30ppm</span></p>
-                        <p>Ozone: <span>220 DU</span></p>
-                        <p>Nitrogen Dioxide: <span>200 ug/m3</span></p>
-
-                    </div>
-                </div>
-            </div>
-            <div class="card rounded p-3">
-                <a href="#" class="btn btn-secondary col-6 mx-auto rounded-3">View Details</a>
-            </div>
-        </div>
-
-    </div>
-
-    <!-- wrapper end -->
-
 </div>
-
 @endsection

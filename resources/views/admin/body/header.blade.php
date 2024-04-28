@@ -3,21 +3,11 @@
         <i data-feather="menu"></i>
     </a>
     <div class="navbar-content">
-        <form class="search-form">
-            <div class="input-group">
-                <div class="input-group-text bg-transparent">
-                    <i data-feather="search"></i>
-                </div>
-                <input type="text" class="form-control bg-transparent" id="navbarForm" placeholder="Search here...">
-            </div>
-        </form>
         <ul class="navbar-nav">
-
 
             <li class="nav-item">
                 <div id="toggle-btn" class="fas fa-sun"></div>
             </li>
-
 
             @php
 
@@ -25,8 +15,6 @@
                 $profileData = App\Models\User::find($id);
 
             @endphp
-
-
 
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -43,24 +31,24 @@
                         </div>
                     </div>
                 <ul class="list-unstyled p-1">
-                    <li class="dropdown-item py-2">
-                        <a href="{{ route ('admin.profile')}}" class="text-body ms-0">
+                    <a href="{{ route ('admin.profile')}}" class="text-body ms-0">
+                        <li class="dropdown-item py-2">
                             <i class="me-2 icon-md" data-feather="user"></i>
                             <span class="custom-dd-color">Profile</span>
-                        </a>
-                    </li>
-                    <li class="dropdown-item py-2">
-                        <a href="{{ route ('admin.change.password')}}" class="text-body ms-0">
+                        </li>
+                    </a>
+                    <a href="{{ route ('admin.change.password')}}" class="text-body ms-0">
+                        <li class="dropdown-item py-2">
                             <i class="me-2 icon-md" data-feather="edit"></i>
                             <span class="custom-dd-color">Change Password</span>
-                        </a>
-                    </li>
-                    <li class="dropdown-item py-2">
-                        <a href="{{ route ('admin.logout')}}" class="text-body ms-0">
+                        </li>
+                    </a>
+                    <a href="{{ route ('admin.logout')}}" class="text-body ms-0">
+                        <li class="dropdown-item py-2">
                             <i class="me-2 icon-md" data-feather="log-out"></i>
                             <span class="custom-dd-color">Log Out</span>
-                        </a>
-                    </li>
+                        </li>
+                    </a>
                 </ul>
                 </div>
             </li>
