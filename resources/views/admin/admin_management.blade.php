@@ -92,27 +92,9 @@
                         <!-- Delete Button trigger modal -->
                         <div class="col-6 rounded">
 
-                            <button type="button" class="btn btn-secondary rounded-3 w-100" data-bs-toggle="modal" data-bs-target="#deleteDeviceModal">
+                            <button type="button" class="btn btn-secondary rounded-3 w-100" data-bs-toggle="modal" data-bs-target="#deleteDeviceModal{{ $device->id }}">
                                 Delete
                             </button>
-                        </div>
-
-                        <!-- Modal -->
-                        <div class="modal fade" id="deleteDeviceModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered">
-                                <div class="modal-content">
-                                    <h5 class="modal-title text-center my-4"  id="exampleModalLabel">Are you sure you want to delete this device?</h5>
-                                    <div class="modal-footer" style="justify-content: space-evenly;">
-                                        @csrf
-                                        <button type="button" class="btn btn-primary rounded-3 " data-bs-dismiss="modal">Cancel</button>
-                                        <!-- Delete Form -->
-                                        <form action="{{ route('admin.delete', $device->id) }}" method="POST" class="rounded">
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-secondary rounded-3">Delete</button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
