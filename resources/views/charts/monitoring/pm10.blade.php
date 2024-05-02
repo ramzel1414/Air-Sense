@@ -6,13 +6,19 @@
             <h5 class="d-flex align-items-center">PM10</h5>
             <div class="btns">
 
-              @auth
-              <a href="{{route('admin.location')}}" class="btn btn-outline-secondary btn-icon-text me-2 mb-2 mb-md-0">View Location</a>
-              @else
-              <a href="{{route('location')}}" class="btn btn-outline-secondary btn-icon-text me-2 mb-2 mb-md-0">View Location</a>
-              @endauth
+              {{-- <button id="expPM10" class="btn btn-outline-secondary btn-icon-text me-2 mb-2 mb-md-0">Download CSV</button> --}}
 
-              <button id="expPM10" class="btn btn-outline-secondary btn-icon-text me-2 mb-2 mb-md-0">Download CSV</button>
+              <button type="button" class="btn btn-outline-secondary">Download PDF</button>
+
+              <div class="btn-group">
+                <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Download CSV</button>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="#">Hourly</a>
+                  <a class="dropdown-item" href="#">Daily</a>
+                  <a class="dropdown-item" href="#">Monthly</a>
+                </div>
+              </div>
+
             </div>
           </div>
         <div id="pm10" class="mt-md-3 mt-xl-0 order-last"></div>

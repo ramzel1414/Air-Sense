@@ -136,6 +136,7 @@
 @endforeach
 
 @foreach ($devices as $device)
+<!-- Modal for deleting a device -->
 <div class="modal fade" id="deleteDeviceModal{{ $device->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
