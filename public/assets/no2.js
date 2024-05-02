@@ -227,6 +227,140 @@ $(function () {
         return result;
     }
 
+
+    // DAILY
+    $('#expNO2Daily').on('click', function () {
+        $.ajax({
+            url: '/no2-data',
+            method: 'GET',
+            success: function (data) {
+                // Calculate daily average NO2 values
+                var dailyAverageData = calculateAverageByDay(data);
+
+                // Sort dailyAverageData array by dateTime (ascending order)
+                dailyAverageData.sort((a, b) => {
+                    return new Date(a.dateTime) - new Date(b.dateTime);
+                });
+
+                // Generate CSV content with classification
+                var csvContent = "Date,NO2,Classification,Health Impact\n";
+                dailyAverageData.forEach(function (item) {
+                    var classification = getClassification(item.avgNO2);
+                    var healthImpact = getHealthImpact(classification);
+                    var avgNO2Formatted = item.avgNO2.toFixed(2);
+
+                    csvContent += item.dateTime + "," + avgNO2Formatted + "," + classification + "," + healthImpact + "\n";
+                });
+
+                // Download CSV file
+                var blob = new Blob([csvContent], { type: 'text/csv' });
+                var url = window.URL.createObjectURL(blob);
+                var a = document.createElement('a');
+                a.href = url;
+                a.download = 'no2-average-per-day.csv';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                window.URL.revokeObjectURL(url);
+            },
+            error: function (error) {
+                console.log('Error fetching data:', error);
+            }
+        });
+    });
+
+    function calculateAverageByDay(data) {
+        var dailyAverages = {};
+
+        data.forEach(function (item) {
+            var date = item.dateTime.split(' ')[0];
+
+            if (!dailyAverages[date]) {
+                dailyAverages[date] = { sumNO2: 0, count: 0 };
+            }
+
+            dailyAverages[date].sumNO2 += item.no2;
+            dailyAverages[date].count++;
+        });
+
+        var result = [];
+        Object.keys(dailyAverages).forEach(function (date) {
+            var avgNO2 = dailyAverages[date].sumNO2 / dailyAverages[date].count;
+            result.push({ dateTime: date, avgNO2: avgNO2 });
+        });
+
+        return result;
+    }
+
+
+    // MONTHLY
+    $('#expNO2Monthly').on('click', function () {
+        $.ajax({
+            url: '/no2-data',
+            method: 'GET',
+            success: function (data) {
+                // Calculate monthly average NO2 values
+                var monthlyAverageData = calculateAverageByMonth(data);
+
+                // Sort monthlyAverageData array by dateTime (ascending order)
+                monthlyAverageData.sort((a, b) => {
+                    return new Date(a.dateTime) - new Date(b.dateTime);
+                });
+
+                // Generate CSV content with classification
+                var csvContent = "Month,NO2,Classification,Health Impact\n";
+                monthlyAverageData.forEach(function (item) {
+                    var classification = getClassification(item.avgNO2);
+                    var healthImpact = getHealthImpact(classification);
+                    var avgNO2Formatted = item.avgNO2.toFixed(2);
+
+                    csvContent += item.dateTime + "," + avgNO2Formatted + "," + classification + "," + healthImpact + "\n";
+                });
+
+                // Download CSV file
+                var blob = new Blob([csvContent], { type: 'text/csv' });
+                var url = window.URL.createObjectURL(blob);
+                var a = document.createElement('a');
+                a.href = url;
+                a.download = 'no2-average-per-month.csv';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                window.URL.revokeObjectURL(url);
+            },
+            error: function (error) {
+                console.log('Error fetching data:', error);
+            }
+        });
+    });
+
+    function calculateAverageByMonth(data) {
+        var monthlyAverages = {};
+
+        data.forEach(function (item) {
+            var date = new Date(item.dateTime);
+            var monthYearKey = date.getFullYear() + '-' + (date.getMonth() + 1);
+
+            if (!monthlyAverages[monthYearKey]) {
+                monthlyAverages[monthYearKey] = { sumNO2: 0, count: 0 };
+            }
+
+            monthlyAverages[monthYearKey].sumNO2 += item.no2;
+            monthlyAverages[monthYearKey].count++;
+        });
+
+        var result = [];
+        Object.keys(monthlyAverages).forEach(function (monthYearKey) {
+            var avgNO2 = monthlyAverages[monthYearKey].sumNO2 / monthlyAverages[monthYearKey].count;
+            var [year, month] = monthYearKey.split('-');
+            var monthYear = `${year}-${month}`;
+
+            result.push({ dateTime: monthYear, avgNO2: avgNO2 });
+        });
+
+        return result;
+    }
+
     // Function to determine classification based on PM10 value
     function getClassification(no2) {
         if (no2 >= 0 && no2 <= 0.05 + Number.EPSILON) {

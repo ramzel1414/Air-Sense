@@ -41,12 +41,28 @@
         <div class="d-flex justify-content-between align-items-center flex-wrap grid-margin">
 
           <h3 class="mb-3">Overview</h3>
-
+              <div class="btn-group">
           <div class="d-flex align-items-center flex-wrap text-nowrap">
-            <a href="{{ route('pdf.download') }}" class="btn btn-primary btn-icon-text mb-2 mb-md-0">
+            <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="btn-icon-prepend" data-feather="download-cloud"></i>
+              Report
+            </a></button>
+
+                <div class="dropdown-menu">
+                <a class="dropdown-item" href="{{ route('pdf.download') }}">All Pollutants Report</a>
+                <a class="dropdown-item" href="{{ route('pdf.download.pm25') }}">PM 2.5 Report</a>
+                <a class="dropdown-item" href="{{ route('pdf.download.pm10') }}">PM 10 Report</a>
+                <a class="dropdown-item" href="{{ route('pdf.download.co') }}">CO Report</a>
+                <a class="dropdown-item" href="{{ route('pdf.download.no2') }}">NO2 Report</a>
+                <a class="dropdown-item" >O3 Report</a>
+                </div>
+            </div>
+
+
+            {{-- <a href="{{ route('pdf.download') }}" class="btn btn-primary btn-icon-text mb-2 mb-md-0">
             <i class="btn-icon-prepend" data-feather="download-cloud"></i>
               Report
-            </a>
+            </a> --}}
           </div>
         </div>
 

@@ -7,15 +7,12 @@
             <div class="btns">
 
               {{-- <button id="expNO2" class="btn btn-outline-secondary btn-icon-text me-2 mb-2 mb-md-0">Download CSV</button> --}}
-
-              <button type="button" class="btn btn-outline-secondary">Download PDF</button>
-
               <div class="btn-group">
                 <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Download CSV</button>
                 <div class="dropdown-menu">
-                  <a class="dropdown-item" href="#">Hourly</a>
-                  <a class="dropdown-item" href="#">Daily</a>
-                  <a class="dropdown-item" href="#">Monthly</a>
+                  <a class="dropdown-item" id="expNO2">Hourly</a>
+                  <a class="dropdown-item" id="expNO2Daily">Daily</a>
+                  <a class="dropdown-item" id="expNO2Monthly">Monthly</a>
                 </div>
               </div>
 

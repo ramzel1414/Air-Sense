@@ -7,7 +7,7 @@ use App\Models\AirQualityData;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 
-class PdfController extends Controller
+class PdfControllerPM25 extends Controller
 {
     public function index()
     {
