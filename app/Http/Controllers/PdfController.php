@@ -77,35 +77,39 @@ class PdfController extends Controller
 
         $fpdf->SetFont('Arial', 'B', 10);
 
-        $fpdf->Cell(0, 10, 'CY 2024-2025 Assessment Report from AirSense IoT Monitoring Device', 0, 1, 'C');
-        $fpdf->Cell(0, 0, 'PM2.5, PM10, O3, CO & NO2 Ambient Air Quality Monitoring Station', 0, 1, 'C');
+        $fpdf->Cell(0, 10, 'CY 2024-2025 Daily Assessment Report from AirSense IoT Monitoring Device', 0, 1, 'C');
+        $fpdf->Cell(0, 0, 'CO Ambient Air Quality Monitoring Station', 0, 1, 'C');
         $fpdf->Ln(10);
 
-        $fpdf->SetFont('Arial', '', 10);
-        $fpdf->Cell(20);    //serves as margin (actually a width of invisible cell)
-        $fpdf->Cell(0, 10, 'Station: ', 0, 0, 'L');
-        $fpdf->Cell(0, 10, 'Bukidnon State University - Main Campus                                                             ', 0, 1, 'R');
-        $fpdf->Cell(20);
-        $fpdf->Cell(0, 0, 'Latitude: ', 0, 0, 'L');
-        $fpdf->Cell(0, 0, 'Latitude: 8.157408, Longitude: 125.124856                                                           ', 0, 1, 'R');
+        $fpdf->SetFont('Arial', '', 10);                                        // REMOVING THE BOLD STYLE
+        $fpdf->Cell(25);                                                        // ACT AS A MARGIN-LEFT BUT ACTUALLY AN INVISIBLE CELL WITH A WIDTH OF 25pt
+        $fpdf->Cell(40, 5, 'Station: ', 0, 0, 'L');                             // 40pt THE WIDTH I DECIDED FOR EVERY VISIBLE 2ND LEFT CELL
+        $fpdf->Cell(100, 5, 'Bukidnon State University - Main Campus', 'B', 1); // JUST GOES ALONG WITH THE 1ST AND 2ND CELL       
 
-        $fpdf->Cell(20);
-        $fpdf->Cell(0, 10, 'Area Type: ', 0, 0, 'L');
-        $fpdf->Cell(0, 10,'General Ambient                                                                                                     ', 0, 1, 'R');
+        $fpdf->Cell(25);
+        $fpdf->Cell(40, 5, 'Latitude: ', 0, 0, 'L');
+        $fpdf->Cell(100, 5, 'Latitude: 8.157408, Longitude: 125.124856', 'B', 1);
 
-        $fpdf->Cell(20);
-        $fpdf->Cell(0, 0, 'Station Type:', 0, 0, 'L');
-        $fpdf->Cell(0, 0, 'PM5003, MiCS6814 & MQ131 Sampler (Solar Paneled Sensor)                          ', 0, 1, 'R');
+        $fpdf->Cell(25);
+        $fpdf->Cell(40, 5, 'Area Type: ', 0, 0, 'L');
+        $fpdf->Cell(100, 5,'General Ambient', 'B', 1);
 
-        $fpdf->Cell(20);
-        $fpdf->Cell(0, 10, 'Inception Date: ', 0, 0, 'L');
-        $fpdf->Cell(0, 10, $formattedMinDate . '                                                                                                         ', 0, 1, 'R');
-        $fpdf->Cell(20);
-        $fpdf->Cell(0, 0, 'Monitoring Objectives: ', 0, 0, 'L');
-        $fpdf->Cell(0, 0, 'To determine the concentration level of PM2.5, PM10, O3, CO & NO2                 ', 0, 1, 'R');
-        $fpdf->Cell(20);
-        $fpdf->Cell(0, 10, 'Measures Air Pollutant: ', 0, 0, 'L');
-        $fpdf->Cell(0, 10, 'Micrograms per cubic meter (ug/m3), Parts per million (ppm),                              ', 0, 1, 'R');
+        $fpdf->Cell(25);
+        $fpdf->Cell(40, 5, 'Station Type: ', 0, 0, 'L');
+        $fpdf->Cell(100, 5, 'PM5003, MiCS6814 & MQ131 Sampler (Solar Paneled Sensor)', 'B', 1);
+
+        $fpdf->Cell(25);
+        $fpdf->Cell(40, 5, 'Inception Date: ', 0, 0, 'L');
+        $fpdf->Cell(100, 5, $formattedMinDate, 'B', 1);
+
+        $fpdf->Cell(25);
+        $fpdf->Cell(40, 5, 'Monitoring Objectives: ', 0, 0, 'L');
+        $fpdf->Cell(100, 5, 'To determine the concentration level of CO', 'B', 1);
+
+        $fpdf->Cell(25);    //INVISIBLE LEFT CELL WITH A WIDTH OF 25 AS A MARGIN
+        $fpdf->Cell(40, 5, 'Measures Air Pollutant: ', 0, 0, 'L');      //42pt THE WIDTH I DECIDED FOR EVERY VISIBLE 2ND LEFT CELL
+        $fpdf->Cell(100, 5, 'Parts per million (ppm),', 'B', 1,);    //JUST GOES ALONG WITH THE 1ST AND 2ND CELL       
+
 
         // POLLUTANT INFORMATION
         $fpdf->Ln(5);
