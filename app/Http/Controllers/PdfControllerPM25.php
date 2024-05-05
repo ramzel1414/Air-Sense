@@ -78,7 +78,7 @@ class PdfControllerPM25 extends Controller
 
         $fpdf->Cell(25);    //INVISIBLE LEFT CELL WITH A WIDTH OF 25 AS A MARGIN
         $fpdf->Cell(40, 5, 'Measures Air Pollutant: ', 0, 0, 'L');      //42pt THE WIDTH I DECIDED FOR EVERY VISIBLE 2ND LEFT CELL
-        $fpdf->Cell(100, 5, 'Parts per million (ppm),', 'B', 1,);    //JUST GOES ALONG WITH THE 1ST AND 2ND CELL
+        $fpdf->Cell(100, 5, 'Micrograms per cubic meter (ug/m3)', 'B', 1,);    //JUST GOES ALONG WITH THE 1ST AND 2ND CELL
 
 
         // POLLUTANT INFORMATION

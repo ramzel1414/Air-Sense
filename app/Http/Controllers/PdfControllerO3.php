@@ -78,7 +78,7 @@ class PdfControllerO3 extends Controller
 
         $fpdf->Cell(25);    //INVISIBLE LEFT CELL WITH A WIDTH OF 25 AS A MARGIN
         $fpdf->Cell(40, 5, 'Measures Air Pollutant: ', 0, 0, 'L');      //42pt THE WIDTH I DECIDED FOR EVERY VISIBLE 2ND LEFT CELL
-        $fpdf->Cell(100, 5, 'Parts per million (ppm),', 'B', 1,);    //JUST GOES ALONG WITH THE 1ST AND 2ND CELL
+        $fpdf->Cell(100, 5, 'Parts per million (ppm)', 'B', 1,);    //JUST GOES ALONG WITH THE 1ST AND 2ND CELL
 
 
         // POLLUTANT INFORMATION
@@ -210,7 +210,7 @@ class PdfControllerO3 extends Controller
         $fpdf->SetFont('Arial', 'B', 12);
         $fpdf->ln(5);
         $fpdf->Cell(0, 5, '', 0, 1, 'C');
-        $fpdf->Cell(0, 10, 'CO Pollutant Table', 0, 1, 'C');
+        $fpdf->Cell(0, 10, 'O3 Pollutant Table', 0, 1, 'C');
         $fpdf->ln(5);
 
         // Table Header
