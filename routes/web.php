@@ -31,6 +31,7 @@ use App\Http\Controllers\MonthlyNO2Controller;
 use App\Http\Controllers\MonthlyO3Controller;
 use App\Http\Controllers\PdfControllerCO;
 use App\Http\Controllers\PdfControllerNO2;
+use App\Http\Controllers\PdfControllerO3;
 use App\Http\Controllers\PdfControllerPM10;
 use App\Http\Controllers\PdfControllerPM25;
 
@@ -110,6 +111,8 @@ Route::middleware(['auth', 'role:admin'])->group(function() {
     Route::get('/pdf/pm10', [ PdfControllerPM10::class, 'index' ])->name('pdf.download.pm10');
     Route::get('/pdf/co', [ PdfControllerCO::class, 'index' ])->name('pdf.download.co');
     Route::get('/pdf/no2', [ PdfControllerNO2::class, 'index' ])->name('pdf.download.no2');
+    Route::get('/pdf/o3', [ PdfControllerO3::class, 'index' ])->name('pdf.download.o3');
+
 
 
     Route::get('/dailypm25', [ DailyPM25Controller::class, 'index' ])->name('daily.pm25');

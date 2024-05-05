@@ -479,13 +479,13 @@ function fetchDataAndUpdate(pollutant) {
                     return "Good";
                 } else if (value > 0.064 && value <= 0.084) {
                     return "Moderate";
-                } else if (value > 0.085 && value <= 0.104) {
+                } else if (value > 0.084 && value <= 0.104) {
                     return "Unhealthy for Sensitive Groups";
-                } else if (value > 0.105 && value <= 0.124) {
+                } else if (value > 0.104 && value <= 0.124) {
                     return "Unhealthy";
-                } else if (value > 0.125 && value <= 0.374) {
+                } else if (value > 0.124 && value <= 0.374) {
                     return "Very Unhealthy";
-                } else if (value > 0.375 ) {
+                } else if (value > 0.374 ) {
                     return "Hazardous";
                 } else {
                     return "Over values";
