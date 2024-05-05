@@ -7,11 +7,11 @@ use App\Models\AirQualityData;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 
-class PdfControllerNO2 extends Controller
+class PdfControllerO3 extends Controller
 {
     public function index()
     {
-        // Get daily averages for NO2
+        // Get daily averages for O3
         $dailyAverages = AirQualityData::select(
             DB::raw('DATE(dateTime) as date'),
             DB::raw('ROUND(AVG(ozone), 2) as o3_average'),
