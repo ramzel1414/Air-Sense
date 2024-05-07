@@ -116,14 +116,14 @@
                                 <div class="col-12 col-md-12 text-center">
                                     <h3 id="pm25-value" class="mb-2">
                                         <div class="spinner-grow text-primary" role="status">
-                                            <span class="visually-hidden">Loading...</span>
+
                                         </div>
                                     </h3>
-                                    <p id="pm25-classification" class="mb-2">
-                                        <span class="visually-hidden">Loading...</span>
+                                    <p id="pm25-classification" class="mb-2" style="font-weight: bold; letter-spacing: 1.25px;">
+
                                     </p>
                                     <p id="pm25-date" style="font-style: italic; font-size: 80%">
-                                        <span class="visually-hidden">Loading...</span>
+
                                     </p>
                                 </div>
                             </div>
@@ -141,14 +141,14 @@
                                 <div class="col-12 col-md-12 text-center">
                                     <h3 id="pm10-value" class="mb-2">
                                         <div class="spinner-grow text-primary" role="status">
-                                            <span class="visually-hidden">Loading...</span>
+
                                         </div>
                                     </h3>
-                                    <p id="pm10-classification" class="mb-2">
-                                        <span class="visually-hidden">Loading...</span>
+                                    <p id="pm10-classification" class="mb-2" style="font-weight: bold; letter-spacing: 1.25px;">
+
                                     </p>
                                     <p id="pm10-date" style="font-style: italic; font-size: 80%">
-                                        <span class="visually-hidden">Loading...</span>
+
                                     </p>
                                 </div>
                             </div>
@@ -166,14 +166,14 @@
                                 <div class="col-12 col-md-12 text-center">
                                     <h3 id="co-value" class="mb-2">
                                         <div class="spinner-grow text-primary" role="status">
-                                            <span class="visually-hidden">Loading...</span>
+
                                         </div>
                                     </h3>
-                                    <p id="co-classification" class="mb-2">
-                                        <span class="visually-hidden">Loading...</span>
+                                    <p id="co-classification" class="mb-2" style="font-weight: bold; letter-spacing: 1.25px;">
+
                                     </p>
                                     <p id="co-date" style="font-style: italic; font-size: 80%">
-                                        <span class="visually-hidden">Loading...</span>
+
                                     </p>
                                 </div>
                             </div>
@@ -191,14 +191,14 @@
                                 <div class="col-12 col-md-12 text-center">
                                     <h3 id="no2-value" class="mb-2">
                                         <div class="spinner-grow text-primary" role="status">
-                                            <span class="visually-hidden">Loading...</span>
+
                                         </div>
                                     </h3>
-                                    <p id="no2-classification" class="mb-2">
-                                        <span class="visually-hidden">Loading...</span>
+                                    <p id="no2-classification" class="mb-2" style="font-weight: bold; letter-spacing: 1.25px;">
+
                                     </p>
                                     <p id="no2-date" style="font-style: italic; font-size: 80%">
-                                        <span class="visually-hidden">Loading...</span>
+
                                     </p>
                                 </div>
                             </div>
@@ -216,14 +216,11 @@
                                 <div class="col-12 col-md-12 text-center">
                                     <h3 id="ozone-value" class="mb-2">
                                         <div class="spinner-grow text-primary" role="status">
-                                            <span class="visually-hidden">Loading...</span>
                                         </div>
                                     </h3>
-                                    <p id="ozone-classification" class="mb-2">
-                                        <span class="visually-hidden">Loading...</span>
+                                    <p id="ozone-classification" class="mb-2" style="font-weight: bold; letter-spacing: 1.25px;">
                                     </p>
                                     <p id="ozone-date" style="font-style: italic; font-size: 80%">
-                                        <span class="visually-hidden">Loading...</span>
                                     </p>
                                 </div>
                             </div>
@@ -350,7 +347,7 @@ function fetchDataAndUpdate(pollutant) {
     }
 
     function updateDeviceStatus(currentTime, dataTime) {
-    const thresholdMinutes = 2;
+    const thresholdMinutes = 1;
     const thresholdTime = new Date(currentTime.getTime() - thresholdMinutes * 60000);
 
     const statusElement = document.getElementById('device-status');
@@ -504,7 +501,7 @@ function fetchDataAndUpdate(pollutant) {
             case "Good":
                 return "#00B050"; // Green
             case "Moderate":
-                return "#FFFF00"; // Yellow
+                return "#B5B303"; // Yellow
             case "Unhealthy for Sensitive Groups":
                 return "#FF6600"; // Orange
             case "Unhealthy":

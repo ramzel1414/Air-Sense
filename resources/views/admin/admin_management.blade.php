@@ -1,3 +1,6 @@
+//admin management
+
+
 @extends('admin.admin_dashboard')
 @section('content')
 
@@ -40,9 +43,14 @@
     <!-- Display Devices -->
     <div class="d-flex flex-wrap justify-content-evenly p-3 for-light-mode-bg">
         @foreach ($devices as $device)
-        <div class="col-12 col-sm-5 mb-5">
+        <div class="col-12 col-sm-5 my-5">
             <div class="card rounded mb-2">
                 <div class="card-body">
+
+                    <div id="#" class="management-status-active">
+                        <div class="status-circle"></div>
+                        <div>ACTIVE</div>
+                    </div>
 
                     <div class="mb-2">
                         <p class="card-title mb-0">Device Name: <span>{{ $device->deviceName }}</span></p>
@@ -65,23 +73,23 @@
 
             <div class="card">
                 <div class="card-body">
-                    <div class="row">
+                    {{-- <div class="row">
                         <div class="col-12 rounded mb-3">
                             @if ($device->deviceStatus === 'ACTIVE')
                                 <form action="{{ route('admin.toggleStatus', $device->id) }}" method="POST">
                                     @csrf
                                     @method('PUT')
-                                    <button type="submit" class="btn btn-success w-100">Active</button>
+                                    <button type="submit" class="btn btn-secondary w-100">Active</button>
                                 </form>
                             @else
                                 <form action="{{ route('admin.toggleStatus', $device->id) }}" method="POST">
                                     @csrf
                                     @method('PUT')
-                                    <button type="submit" class="btn btn-secondary w-100">Inactive</button>
+                                    <button type="submit" class="btn btn-success w-100">Inactive</button>
                                 </form>
                             @endif
                         </div>
-                    </div>
+                    </div> --}}
                     <div class="row">
                         <!-- Update Device Button -->
                         <div class="col-6 rounded">

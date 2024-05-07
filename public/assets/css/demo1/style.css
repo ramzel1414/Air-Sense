@@ -22640,7 +22640,7 @@ div.tox .tox-dialog__body {
   border-radius: .4rem;
 }
 
-.rect-status-active {
+.management-status-active {
   width: 6rem; 
   height: 10%; 
   background: var(--bs-green); 
@@ -22654,18 +22654,27 @@ div.tox .tox-dialog__body {
   align-items: center;
 }
 
-.rect-status-inactive {
+.management-status-inactive {
   width: 6rem; 
   height: 10%; 
   background: var(--bs-gray); 
   position: absolute; 
-  top: -10%; left: 0%; 
+  top: -10%; right: 0%; 
   text-align: center;
   padding: .4rem 1rem;
   color: var(--bs-white);
   display: flex;
   gap: .5rem;
   align-items: center;
+}
+
+.drop-shadow {
+  text-shadow: 
+        -0.25px -0.25px 0 black,  
+         0.25px -0.25px 0 black,
+        -0.25px  0.25px 0 black,
+         0.25px  0.25px 0 black; 
+  letter-spacing: 2px;
 }
 
 /* 
