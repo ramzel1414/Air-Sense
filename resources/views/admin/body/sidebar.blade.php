@@ -2,7 +2,7 @@
   <nav class="sidebar">
       <div class="sidebar-header">
         <a href="{{ route ('admin.dashboard') }}" class="sidebar-brand d-flex">
-          <img class="airsense" src="{{ asset('../assets/images/airsense.png') }}" alt="">
+          <img src="{{ asset('airsense2.png') }}" alt="Air Sense Logo" class="custom-radius">
           Air<span>Sense</span>
         </a>
         <div class="sidebar-toggler not-active">

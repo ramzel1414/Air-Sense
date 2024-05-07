@@ -17,7 +17,7 @@
 
     <div class="right d-flex align-items-center">
       <a href="{{route('welcome')}}" class="d-flex align-items-center text-gray-600 hover:text-gray-900 focus:outline-gray-500 p-1 focus:outline focus:outline-2 focus:rounded-sm">
-        <img src="{{ asset('airsense.png') }}" alt="Air Sense Logo" class="custom-radius">
+        <img src="{{ asset('airsense2.png') }}" alt="Air Sense Logo" class="custom-radius">
       </a>
       <ul class="nav">
         <li class="nav-item">
