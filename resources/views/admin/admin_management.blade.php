@@ -1,5 +1,3 @@
-//admin management
-
 
 @extends('admin.admin_dashboard')
 @section('content')
@@ -46,12 +44,27 @@
         <div class="col-12 col-sm-5 my-5">
             <div class="card rounded mb-2">
                 <div class="card-body">
-
-                    <div id="#" class="management-status-active">
-                        <div class="status-circle"></div>
-                        <div>ACTIVE</div>
-                    </div>
-
+                    
+                    @if ($device->deviceStatus === 'ACTIVE')
+                        <form action="{{ route('admin.toggleStatus', $device->id) }}" method="POST">
+                            @csrf
+                            @method('PUT')
+                            <div id="#" class="management-status-active">
+                                <div class="status-circle"></div>
+                                <div>ACTIVE</div>
+                            </div>
+                        </form>
+                    @else
+                        <form action="{{ route('admin.toggleStatus', $device->id) }}" method="POST">
+                            @csrf
+                            @method('PUT')
+                            <div id="#" class="management-status-inactive">
+                                <div class="status-circle"></div>
+                                <div>INACTIVE</div>
+                            </div>
+                        </form>
+                    @endif
+                        
                     <div class="mb-2">
                         <p class="card-title mb-0">Device Name: <span>{{ $device->deviceName }}</span></p>
                         <p class="card-title mb-0">Device Serial: <span>{{ $device->deviceSerial }}</span></p>
@@ -73,23 +86,23 @@
 
             <div class="card">
                 <div class="card-body">
-                    {{-- <div class="row">
+                    <div class="row">
                         <div class="col-12 rounded mb-3">
                             @if ($device->deviceStatus === 'ACTIVE')
                                 <form action="{{ route('admin.toggleStatus', $device->id) }}" method="POST">
                                     @csrf
                                     @method('PUT')
-                                    <button type="submit" class="btn btn-secondary w-100">Active</button>
+                                    <button type="submit" class="btn btn-warning w-100">INACTIVATE</button>
                                 </form>
                             @else
                                 <form action="{{ route('admin.toggleStatus', $device->id) }}" method="POST">
                                     @csrf
                                     @method('PUT')
-                                    <button type="submit" class="btn btn-success w-100">Inactive</button>
+                                    <button type="submit" class="btn btn-primary w-100">ACTIVATE</button>
                                 </form>
                             @endif
                         </div>
-                    </div> --}}
+                    </div>
                     <div class="row">
                         <!-- Update Device Button -->
                         <div class="col-6 rounded">
