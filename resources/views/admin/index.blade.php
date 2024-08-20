@@ -453,7 +453,7 @@
         // Modify this function to return appropriate colors based on classification
         switch (classification) {
             case "Good":
-                return "#B5B303"; // Green
+                return "#00B050"; // Green
             case "Moderate":
                 return "#B5B303"; // Yellow
             case "Unhealthy for Sensitive Groups":

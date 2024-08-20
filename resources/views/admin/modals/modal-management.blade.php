@@ -143,11 +143,11 @@
             <h5 class="modal-title text-center my-4"  id="exampleModalLabel">Are you sure you want to delete this device?</h5>
             <div class="modal-footer" style="justify-content: space-evenly;">
                 @csrf
-                <button type="button" class="btn btn-primary rounded-3 " data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary rounded-3 " data-bs-dismiss="modal">No, I'm not</button>
                                         <!-- Delete Form -->
                 <form action="{{ route('admin.delete', $device->id) }}" method="POST" class="rounded">
                 @method('DELETE')
-                <button type="submit" class="btn btn-secondary rounded-3">Delete</button>
+                <button type="submit" class="btn btn-secondary rounded-3">Yes, I'm sure</button>
                 </form>
             </div>
         </div>
