@@ -160,6 +160,8 @@ $(function () {
 
     // Attach click event listener to export CO data
     $('#expCO').on('click', function () {
+        $('#processing-co').show();  
+        $('#download-csv-co').hide();
         $.ajax({
             url: '/co-data',
             method: 'GET',
@@ -191,6 +193,10 @@ $(function () {
             },
             error: function (error) {
                 console.log('Error fetching CO data:', error);
+            },
+            complete: function () {
+                $('#processing-co').hide();  
+                $('#download-csv-co').show();
             }
         });
     });
@@ -222,6 +228,8 @@ $(function () {
 
     // DAILY
     $('#expCODaily').on('click', function () {
+        $('#processing-co').show();  
+        $('#download-csv-co').hide();
         $.ajax({
             url: '/co-data',
             method: 'GET',
@@ -257,6 +265,10 @@ $(function () {
             },
             error: function (error) {
                 console.log('Error fetching data:', error);
+            },
+            complete: function () {
+                $('#processing-co').hide();  
+                $('#download-csv-co').show();
             }
         });
     });
@@ -287,6 +299,8 @@ $(function () {
 
     // MONTHLY
     $('#expCOMonthly').on('click', function () {
+        $('#processing-co').show();  
+        $('#download-csv-co').hide();
         $.ajax({
             url: '/co-data',
             method: 'GET',
@@ -322,6 +336,10 @@ $(function () {
             },
             error: function (error) {
                 console.log('Error fetching data:', error);
+            },
+            complete: function () {
+                $('#processing-co').hide();  
+                $('#download-csv-co').show();
             }
         });
     });

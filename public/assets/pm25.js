@@ -160,6 +160,9 @@ $(function () {
 
     // Attach click event listener to the button for exporting PM2.5 data
     $('#expPM25').on('click', function () {
+        $('#processing-pm25').show();  
+        $('#download-csv-pm25').hide();
+
         $.ajax({
             url: '/pm25-data',
             method: 'GET',
@@ -197,6 +200,10 @@ $(function () {
             },
             error: function (error) {
                 console.log('Error fetching data:', error);
+            },
+            complete: function () {
+                $('#processing-pm25').hide();  
+                $('#download-csv-pm25').show();
             }
         });
     });
@@ -228,6 +235,9 @@ $(function () {
 
     // DAILY
     $('#expPM25Daily').on('click', function () {
+        $('#processing-pm25').show();  
+        $('#download-csv-pm25').hide();
+
         $.ajax({
             url: '/pm25-data',
             method: 'GET',
@@ -263,6 +273,10 @@ $(function () {
             },
             error: function (error) {
                 console.log('Error fetching data:', error);
+            },
+            complete: function () {
+                $('#processing-pm25').hide();  
+                $('#download-csv-pm25').show();
             }
         });
     });
@@ -292,6 +306,9 @@ $(function () {
 
     // MONTHLY
     $('#expPM25Monthly').on('click', function () {
+        $('#processing-pm25').show();  
+        $('#download-csv-pm25').hide();
+
         $.ajax({
             url: '/pm25-data',
             method: 'GET',
@@ -327,6 +344,10 @@ $(function () {
             },
             error: function (error) {
                 console.log('Error fetching data:', error);
+            },
+            complete: function () {
+                $('#processing-pm25').hide();  
+                $('#download-csv-pm25').show();
             }
         });
     });

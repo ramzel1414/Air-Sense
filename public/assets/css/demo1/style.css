@@ -22677,6 +22677,44 @@ div.tox .tox-dialog__body {
   letter-spacing: 2px;
 }
 
+.pointer {
+  cursor: pointer;
+}
+
+.css-processing {
+  display: none;
+  padding: 8px 12px;
+}
+
+.css-processing span {
+  display: inline-block;
+  animation: bounce 3s infinite;
+  margin-right: 2.2px;
+}
+
+@keyframes bounce {
+  0%, 100% {
+      transform: translateY(0);
+  }
+
+  50% {
+      transform: translateY(-5px);
+  }
+}
+
+.css-processing span:nth-child(1) { animation-delay: 0s; }
+.css-processing span:nth-child(2) { animation-delay: 0.1s; }
+.css-processing span:nth-child(3) { animation-delay: 0.2s; }
+.css-processing span:nth-child(4) { animation-delay: 0.3s; }
+.css-processing span:nth-child(5) { animation-delay: 0.4s; }
+.css-processing span:nth-child(6) { animation-delay: 0.5s; }
+.css-processing span:nth-child(7) { animation-delay: 0.6s; }
+.css-processing span:nth-child(8) { animation-delay: 0.7s; }
+.css-processing span:nth-child(9) { animation-delay: 0.8s; }
+.css-processing span:nth-child(10) { animation-delay: 0.9s; }
+.css-processing span:nth-child(11) { animation-delay: 1.0s; }
+.css-processing span:nth-child(12) { animation-delay: 1.1s; }
+.css-processing span:nth-child(13) { animation-delay: 1.2s; }
 /* 
 --custom-card-bg: #0c1427;
 --bs-gray-100: #060c17;
@@ -22684,3 +22722,37 @@ div.tox .tox-dialog__body {
 --bs-body-bg: #f9fafb;
 --bs-border-color: #172340; */
 
+
+/* Container for the loading bar */
+.loading-container {
+  width: 100%;
+  height: 20px; /* Height of the loading bar */
+  background-color: #f3f3f3; /* Background color of the container */
+  border: 1px solid #ddd; /* Optional: border around the container */
+  position: relative; /* Required for positioning the inner bar */
+  overflow: hidden; /* Hide overflowing content */
+}
+
+/* The actual loading bar */
+.loading-bar {
+  width: 0; /* Initial width (0%) */
+  height: 100%;
+  background-color: #4caf50; /* Color of the loading bar */
+  position: absolute;
+  top: 0;
+  left: 0;
+  animation: loading 2s infinite; /* Apply the animation */
+}
+
+/* Keyframes for the loading animation */
+@keyframes loading {
+  0% {
+      width: 0;
+  }
+  30% {
+      width: 70%;
+  }
+  100% {
+      width: 100%;
+  }
+}
