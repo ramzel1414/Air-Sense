@@ -166,6 +166,8 @@ $(function () {
 
     // Attach click event listener to export NO2 data
     $('#expNO2').on('click', function () {
+        $('#processing-no2').show();  
+        $('#download-csv-no2').hide();
         $.ajax({
             url: '/no2-data',
             method: 'GET',
@@ -198,6 +200,10 @@ $(function () {
             },
             error: function (error) {
                 console.log('Error fetching NO2 data:', error);
+            },
+            complete: function () {
+                $('#processing-no2').hide();  
+                $('#download-csv-no2').show();
             }
         });
     });
@@ -230,6 +236,8 @@ $(function () {
 
     // DAILY
     $('#expNO2Daily').on('click', function () {
+        $('#processing-no2').show();  
+        $('#download-csv-no2').hide();
         $.ajax({
             url: '/no2-data',
             method: 'GET',
@@ -265,6 +273,10 @@ $(function () {
             },
             error: function (error) {
                 console.log('Error fetching data:', error);
+            },
+            complete: function () {
+                $('#processing-no2').hide();  
+                $('#download-csv-no2').show();
             }
         });
     });
@@ -295,6 +307,8 @@ $(function () {
 
     // MONTHLY
     $('#expNO2Monthly').on('click', function () {
+        $('#processing-no2').show();  
+        $('#download-csv-no2').hide();
         $.ajax({
             url: '/no2-data',
             method: 'GET',
@@ -330,6 +344,10 @@ $(function () {
             },
             error: function (error) {
                 console.log('Error fetching data:', error);
+            },
+            complete: function () {
+                $('#processing-no2').hide();  
+                $('#download-csv-no2').show();
             }
         });
     });

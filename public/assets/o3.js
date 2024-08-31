@@ -168,6 +168,8 @@ $(function () {
     });
 
     $('#expO3').on('click', function () {
+        $('#processing-o3').show();  
+        $('#download-csv-o3').hide();
         $.ajax({
             url: '/o3-data',
             method: 'GET',
@@ -200,6 +202,10 @@ $(function () {
             },
             error: function (error) {
                 console.log('Error fetching O3 data:', error);
+            },
+            complete: function () {
+                $('#processing-o3').hide();  
+                $('#download-csv-o3').show();
             }
         });
     });
@@ -233,6 +239,8 @@ $(function () {
 
     // DAILY
     $('#expO3Daily').on('click', function () {
+        $('#processing-o3').show();  
+        $('#download-csv-o3').hide();
         $.ajax({
             url: '/o3-data',
             method: 'GET',
@@ -268,6 +276,10 @@ $(function () {
             },
             error: function (error) {
                 console.log('Error fetching data:', error);
+            },
+            complete: function () {
+                $('#processing-o3').hide();  
+                $('#download-csv-o3').show();
             }
         });
     });
@@ -297,6 +309,8 @@ $(function () {
 
     // MONTHLY
     $('#expO3Monthly').on('click', function () {
+        $('#processing-o3').show();  
+        $('#download-csv-o3').hide();
         $.ajax({
             url: '/o3-data',
             method: 'GET',
@@ -332,6 +346,10 @@ $(function () {
             },
             error: function (error) {
                 console.log('Error fetching data:', error);
+            },
+            complete: function () {
+                $('#processing-o3').hide();  
+                $('#download-csv-o3').show();
             }
         });
     });

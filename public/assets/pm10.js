@@ -138,7 +138,7 @@ $(function () {
                 },
                 error: function (error) {
                     console.log('Error fetching data:', error);
-                }
+                },
             });
         }
         // Update chart every second
@@ -159,6 +159,9 @@ $(function () {
 
     // Attach click event listener to the button for exporting PM10 data
     $('#expPM10').on('click', function () {
+        $('#processing-pm10').show();  
+        $('#download-csv-pm10').hide();
+
         $.ajax({
             url: '/pm10-data',
             method: 'GET',
@@ -191,6 +194,10 @@ $(function () {
             },
             error: function (error) {
                 console.log('Error fetching data:', error);
+            },
+            complete: function () {
+                $('#processing-pm10').hide();  
+                $('#download-csv-pm10').show();
             }
         });
     });
@@ -222,6 +229,9 @@ $(function () {
 
     // DAILY
     $('#expPM10Daily').on('click', function () {
+        $('#processing-pm10').show();  
+        $('#download-csv-pm10').hide();
+        
         $.ajax({
             url: '/pm10-data',
             method: 'GET',
@@ -257,6 +267,10 @@ $(function () {
             },
             error: function (error) {
                 console.log('Error fetching data:', error);
+            },
+            complete: function () {
+                $('#processing-pm10').hide();  
+                $('#download-csv-pm10').show();
             }
         });
     });
@@ -286,6 +300,9 @@ $(function () {
 
     // MONTHLY
     $('#expPM10Monthly').on('click', function () {
+        $('#processing-pm10').show();  
+        $('#download-csv-pm10').hide();
+        
         $.ajax({
             url: '/pm10-data',
             method: 'GET',
@@ -321,6 +338,10 @@ $(function () {
             },
             error: function (error) {
                 console.log('Error fetching data:', error);
+            },
+            complete: function () {
+                $('#processing-pm10').hide();  
+                $('#download-csv-pm10').show();
             }
         });
     });
