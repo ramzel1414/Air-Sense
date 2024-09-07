@@ -83,4 +83,5 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 todo:
 - hide download csv element while processing download
 - put focus input login/register page
-
+- notification (days with missing data)
+- put input for air quality data interval (graph)
