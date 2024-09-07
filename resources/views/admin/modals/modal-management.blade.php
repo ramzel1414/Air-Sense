@@ -59,9 +59,17 @@
                     @csrf
                     @method('PUT')
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-8">
                             <label for="updateName" class="form-label">Device Name:</label>
                             <input type="text" class="form-control" id="updateName" name="deviceName" value="{{ $device->deviceName }}" required>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label" for="deviceInterval">Device Data Interval:</label>
+                            <select class="form-control" id="deviceInterval" style="cursor:pointer;">
+                                <option value="30">30 seconds</option>
+                                <option value="20">20 seconds</option>
+                                <option value="10">10 seconds</option>
+                            </select>
                         </div>
                     </div>
                     <br>
