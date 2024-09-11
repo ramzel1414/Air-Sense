@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Reports\PdfReport;
 use App\Models\AirQualityData;
+use App\Models\Signatory;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 
@@ -289,6 +290,22 @@ class PdfControllerPM10 extends Controller
             $fpdf->Cell(40, 10, $classification, 1, 1, 'C', true); // Add classification with background color
         }
 
+        // Fetch signatory data
+        $signatories = Signatory::all()->keyBy('position'); // Assuming 'position' is unique for each signatory
+
+        // Define a helper function to format signatory names
+        $formatSignatoryName = function ($signatory) {
+            $profTitle = $signatory->profTitles ? strtoupper($signatory->profTitles) . ' ' : '';
+            $middleInitial = $signatory->middleName ? strtoupper($signatory->middleName[0]) . '.' : '';
+            return strtoupper($profTitle . $signatory->firstName . ' ' . $middleInitial . ' ' . $signatory->lastName);
+        };
+
+        // Use signatory data for names and positions
+        $preparedBy = $signatories->get('Project Document Specialist');
+        $reviewedBy = $signatories->get('Senior Environmental Management Specialist');
+        $checkedBy = $signatories->get('Chief, Ambient Monitoring and Forcasting Section Services');
+        $recommendedBy = $signatories->get('Chief, Environmental Documentation Station Enforcement Division');
+
         // LastPage
         $fpdf->AddPage();
         //NAMES AND SIGNATURE
@@ -301,13 +318,18 @@ class PdfControllerPM10 extends Controller
 
         $fpdf->SetFont('Arial', 'B', 12);
         $fpdf->Cell(5);
-        $fpdf->Cell(100, 5, 'ENGR. JOHARA JANE G. PECSON', 0, 0, 'L');
-        $fpdf->Cell(0, 5, 'JESSIE JAMES B. OSIN', 0, 1, 'L');
+        // $fpdf->Cell(100, 5, 'ENGR. JOHARA JANE G. PECSON', 0, 0, 'L');
+        $fpdf->Cell(100, 5, $preparedBy ? $formatSignatoryName($preparedBy) : '', 0, 0, 'L');
+        // $fpdf->Cell(0, 5, 'JESSIE JAMES B. OSIN', 0, 1, 'L');
+        $fpdf->Cell(0, 5, $reviewedBy ? $formatSignatoryName($reviewedBy) : '', 0, 1, 'L');
+
 
         $fpdf->SetFont('Arial', '', 10);
         $fpdf->Cell(5);
-        $fpdf->Cell(100, 5, 'Project Document Specialist', 0, 0, 'L');
-        $fpdf->Cell(0, 5, 'Senior Environmental Management Specialist', 0, 1, 'L');
+        // $fpdf->Cell(100, 5, 'Project Document Specialist', 0, 0, 'L');
+        $fpdf->Cell(100, 5, $preparedBy ? $preparedBy->position : '', 0, 0, 'L');
+        // $fpdf->Cell(0, 5, 'Senior Environmental Management Specialist', 0, 1, 'L');
+        $fpdf->Cell(0, 5, $reviewedBy ? $reviewedBy->position : '', 0, 1, 'L');
 
         $fpdf->ln(5);
         $fpdf->Cell(5);
@@ -317,21 +339,27 @@ class PdfControllerPM10 extends Controller
 
         $fpdf->SetFont('Arial', 'B', 12);
         $fpdf->Cell(5);
-        $fpdf->Cell(100, 5, 'ENGR. ROSALINDA L. ILOGON', 0, 0, 'L');
-        $fpdf->Cell(0, 5, 'ENGR. DOVEE CHERRY I. GEOLLEGUE', 0, 1, 'L');
+        // $fpdf->Cell(100, 5, 'ENGR. ROSALINDA L. ILOGON', 0, 0, 'L');
+        $fpdf->Cell(100, 5, $checkedBy ? $formatSignatoryName($checkedBy) : '', 0, 0, 'L');
+        // $fpdf->Cell(0, 5, 'ENGR. DOVEE CHERRY I. GEOLLEGUE', 0, 1, 'L');
+        $fpdf->Cell(0, 5, $recommendedBy ? $formatSignatoryName($recommendedBy) : '', 0, 1, 'L');
+
 
         $fpdf->SetFont('Arial', '', 10);
         $fpdf->Cell(5);
         $fpdf->Cell(100, 5, 'Chief, Ambient Monitoring and Forcasting Section', 0, 0, 'L');
+        // $fpdf->Cell(100, 5, $checkedBy ? $checkedBy->position : '', 0, 0, 'L');
         $fpdf->Cell(0, 5, 'Chief, Environmental Documentation Station', 0, 1, 'L');
+        // $fpdf->Cell(0, 5, $recommendedBy ? $recommendedBy->position : '', 0, 1, 'L');
 
         $fpdf->Cell(5);
         $fpdf->Cell(100, 5, 'Services Section', 0, 0, 'L');
         $fpdf->Cell(0, 5, 'Enforcement Division', 0, 1, 'L');
 
+
         // Output PDF with a unique filename
         $today = date('Y'); // Get current year only (YYYY format)
-        $fpdf->Output('D', "AirSense $today Annual PM10 Assessment.pdf");
+        $fpdf->Output('I', "AirSense $today Annual CO Assessment.pdf");
         exit;
     }
 
