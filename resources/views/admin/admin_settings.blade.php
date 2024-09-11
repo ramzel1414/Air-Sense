@@ -66,7 +66,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="mb-3">
-                                    <h6 class="card-title">Update PDF Report Logo</h6>
+                                    <h6 class="card-title">Report Logo</h6>
                                     <div class="row">
                                         <input id="inputLogo" type="file" class="form-control" autocomplete="off"
                                             name="photo" accept="image/*">
@@ -82,7 +82,7 @@
                                 {{-- CHANGED THIS <br> AND ADD SPACING --}}
                                 <br><br>
                                 <div class="mt-4">
-                                    <h6 class="card-title mb-3">Update PDF Report Signatory</h6>
+                                    <h6 class="card-title mb-3">Report Signatory</h6>
                                     <div class="row">
                                         @foreach ($signatories as $signatory)
                                             <div class="col-md-6 mb-3">
