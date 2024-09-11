@@ -43,6 +43,13 @@
           </li>
 
           <li class="nav-item">
+            <a href="{{ route ('admin.settings') }}" class="nav-link">
+              <i class="link-icon" data-feather="settings"></i>
+              <span class="link-title">Settings</span>
+            </a>
+          </li>
+
+          <li class="nav-item">
             <a href="{{ route ('admin.logout')}}" class="nav-link">
               <i class="link-icon" data-feather="log-out"></i>
               <span class="link-title">Logout</span>
