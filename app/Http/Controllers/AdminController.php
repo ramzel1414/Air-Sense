@@ -35,6 +35,12 @@ class AdminController extends Controller
         return view('admin.admin_about');   
 
     } 
+    
+    public function AdminSettings() {    
+
+        return view('admin.admin_settings');   
+
+    } 
 
     public function AdminLogout(Request $request): RedirectResponse
     {
