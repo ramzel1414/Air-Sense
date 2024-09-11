@@ -79,30 +79,217 @@
                                 <div class="row">
                                     <!-- Signatory 1 -->
                                     <div class="col-md-6 mb-3">
-                                        <input id="signatory1" type="text" class="form-control" autocomplete="off" placeholder="input name here...">
-                                        <label class="form-label mt-2">Project Document Specialist</label>
+                                        <p class="">ENGR. JOHARA JANE G. PECSON</p>
+                                        <label class="form-label text-muted mt-2">Project Document Specialist</label>
+                                        <button type="button" class="btn btn-primary d-block" data-bs-toggle="modal" data-bs-target="#signatory1">
+                                            Edit
+                                        </button>
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="signatory1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Edit Signatory Details</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <form id="signatoryForm1">
+                                                            <!-- Professional Title -->
+                                                            <div class="mb-3">
+                                                                <label for="professionalTitle1" class="form-label">Professional Title</label>
+                                                                <select id="professionalTitle1" class="form-select">
+                                                                    <option value="Engr">Engr</option>
+                                                                    <option value="Doc">Doc</option>
+                                                                    <option value="Prof">Prof</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <label for="firstname1" class="form-label">Firstname</label>
+                                                                <input type="text" id="firstname1" class="form-control" placeholder="John" required>
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <label for="middlename1" class="form-label">Middlename</label>
+                                                                <input type="text" id="middlename1" class="form-control" placeholder="A." >
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <label for="lastname1" class="form-label">Lastname</label>
+                                                                <input type="text" id="lastname1" class="form-control" placeholder="Doe" required>
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <label for="position1" class="form-label">Position</label>
+                                                                <input type="text" id="position1" class="form-control" placeholder="Project Document Specialist" required>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                        <button type="button" class="btn btn-primary" id="saveChangesButton">Save changes</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                     <!-- Signatory 2 -->
                                     <div class="col-md-6 mb-3">
-                                        <input id="signatory2" type="text" class="form-control" autocomplete="off" placeholder="input name here...">
-                                        <label class="form-label mt-2">Senior Environmental Management Specialist</label>
+                                        <p class="">DR. MARK ELWOOD</p>
+                                        <label class="form-label text-muted mt-2">Senior Research Scientist</label>
+                                        <button type="button" class="btn btn-primary d-block" data-bs-toggle="modal" data-bs-target="#signatory2">
+                                            Edit
+                                        </button>
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="signatory2" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel2">Edit Signatory Details</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <form id="signatoryForm2">
+                                                            <!-- Professional Title -->
+                                                            <div class="mb-3">
+                                                                <label for="professionalTitle2" class="form-label">Professional Title</label>
+                                                                <select id="professionalTitle2" class="form-select">
+                                                                    <option value="Engr">Engr</option>
+                                                                    <option value="Doc">Doc</option>
+                                                                    <option value="Prof">Prof</option>
+                                                                </select>
+                                                            </div>
+                                                            <!-- Firstname -->
+                                                            <div class="mb-3">
+                                                                <label for="firstname2" class="form-label">Firstname</label>
+                                                                <input type="text" id="firstname2" class="form-control" placeholder="Mark" required>
+                                                            </div>
+                                                            <!-- Middlename -->
+                                                            <div class="mb-3">
+                                                                <label for="middlename2" class="form-label">Middlename</label>
+                                                                <input type="text" id="middlename2" class="form-control" placeholder="Elwood">
+                                                            </div>
+                                                            <!-- Lastname -->
+                                                            <div class="mb-3">
+                                                                <label for="lastname2" class="form-label">Lastname</label>
+                                                                <input type="text" id="lastname2" class="form-control" placeholder="Elwood" required>
+                                                            </div>
+                                                            <!-- Position -->
+                                                            <div class="mb-3">
+                                                                <label for="position2" class="form-label">Position</label>
+                                                                <input type="text" id="position2" class="form-control" placeholder="Senior Research Scientist" required>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                        <button type="button" class="btn btn-primary" id="saveChangesButton2">Save changes</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
                                 <div class="row">
                                     <!-- Signatory 3 -->
                                     <div class="col-md-6 mb-3">
-                                        <input id="signatory3" type="text" class="form-control" autocomplete="off" placeholder="input name here...">
-                                        <label class="form-label mt-2">Chief, Ambient Monitoring and Forcasting Section
-                                            Services Section</label>
+                                        <p for="" class="">ENGR. DIVINE GRACE LEGION</p>
+                                        <label class="form-label text-muted mt-2">Chief, Ambient Monitoiring and Forecasting Section Services</label>
+                                        <button type="button" class="btn btn-primary d-block" data-bs-toggle="modal" data-bs-target="#signatory3">
+                                            Edit
+                                        </button>
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="signatory3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Edit Signatory Details</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="btn-close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <form>
+                                                            <div class="mb-3">
+                                                                <label for="professionalTitle" class="form-label">Professional Title</label>
+                                                                <select id="" class="form-select">
+                                                                    <option value="Engr">Engr</option>
+                                                                    <option value="Doc">Doc</option>
+                                                                    <option value="Prof">Prof</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <label for="firstname" class="form-label">Firstname</label>
+                                                                <input type="text" id="" class="form-control" required placeholder="hello3">
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <label for="middlename" class="form-label">Middlename</label>
+                                                                <input type="text" id="" class="form-control">
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <label for="lastname" class="form-label">Lastname</label>
+                                                                <input type="text" id="" class="form-control" required>
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <label for="position" class="form-label">Position</label>
+                                                                <input type="text" id="" class="form-control" required>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                     <!-- Signatory 4 -->
                                     <div class="col-md-6 mb-3">
-                                        <input id="signatory4" type="text" class="form-control" autocomplete="off" placeholder="input name here...">
-                                        <label class="form-label mt-2">Chief, Environmental Documentation Station
-                                            Enforcement Division</label>
+                                        <p for="" class="">ENGR. DOVEE CHERRY I. GEOLLEGUE</p>
+                                        <label class="form-label text-muted mt-2">Chief, Environmental Documentation Station Enforcement Division</label>
+                                        <button type="button" class="btn btn-primary d-block" data-bs-toggle="modal" data-bs-target="#signatory4">
+                                            Edit
+                                        </button>
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="signatory4" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Edit Signatory Details</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="btn-close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <form>
+                                                            <div class="mb-3">
+                                                                <label for="professionalTitle" class="form-label">Professional Title</label>
+                                                                <select id="" class="form-select">
+                                                                    <option value="Engr">Engr</option>
+                                                                    <option value="Doc">Doc</option>
+                                                                    <option value="Prof">Prof</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <label for="firstname" class="form-label">Firstname</label>
+                                                                <input type="text" id="" class="form-control" required placeholder="hello4">
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <label for="middlename" class="form-label">Middlename</label>
+                                                                <input type="text" id="" class="form-control">
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <label for="lastname" class="form-label">Lastname</label>
+                                                                <input type="text" id="" class="form-control" required>
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <label for="position" class="form-label">Position</label>
+                                                                <input type="text" id="" class="form-control" required>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                                <button class="btn btn-primary">Update Signatory</button>
+
                             </div>
                         </div>
                     </div>
@@ -119,10 +306,11 @@
 
 @endsection
 
-{{-- settings page preview images --}}
 <script>
+
     document.addEventListener('DOMContentLoaded', () => {
-    
+        
+        //settings page preview images 
         document.getElementById('inputLogo').addEventListener('change', function() {
             const file = this.files[0];
             if (file) {
@@ -133,6 +321,30 @@
                 reader.readAsDataURL(file);
             }
         });
+
+        //place a placeholder on signatory's inputs
+        // First Modal
+        document.getElementById('signatory1')
+            .addEventListener('show.bs.modal', function (event) {  
+
+                // Populate the modal with existing data 
+                document.getElementById('professionalTitle1').value = 'Engr'; 
+                document.getElementById('firstname1').value = 'Johara'; 
+                document.getElementById('middlename1').value = 'Jane'; 
+                document.getElementById('lastname1').value = 'Pecson'; 
+                document.getElementById('position1').value = 'Project Document Specialist'; 
+            });
+        // Second Modal
+        document.getElementById('signatory2')
+            .addEventListener('show.bs.modal', function (event) {
+                
+                document.getElementById('professionalTitle2').value = 'Doc'; 
+                document.getElementById('firstname2').value = 'Mark'; 
+                document.getElementById('middlename2').value = 'Elwood'; 
+                document.getElementById('lastname2').value = 'Elwood'; 
+                document.getElementById('position2').value = 'Senior Research Scientist'; 
+            });
+
     });
 
 
