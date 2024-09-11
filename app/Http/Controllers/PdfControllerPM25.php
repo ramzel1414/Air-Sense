@@ -331,7 +331,7 @@ class PdfControllerPM25 extends Controller
 
         // Output PDF with a unique filename
         $today = date('Y'); // Get current year only (YYYY format)
-        $fpdf->Output('I', "AirSense $today Annual PM2.5 Assessment.pdf");
+        $fpdf->Output('D', "AirSense $today Annual PM2.5 Assessment.pdf");
         exit;
     }
 
