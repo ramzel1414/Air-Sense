@@ -40,7 +40,7 @@
                             const infoWindowContent = `
                                 <div style="color:#0B1215; text-align:center;">
                                     <h5>${deviceName}</h5>
-                                    <h6 style="margin-top: 3px;">${deviceSerial}</h6>
+                                    <h6 style="margin-top: 3px;">Device Serial: ${deviceSerial}</h6>
                                 </div>
                             `;
 

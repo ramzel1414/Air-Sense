@@ -22547,9 +22547,10 @@ div.tox .tox-dialog__body {
 /*# sourceMappingURL=../maps/demo1/style.css.map */
 
 
-/* for the light and dark mode  */
+/* for the light and dark mode header */
 
-#toggle-btn {        
+#toggle-btn,
+#notif-btn {        
   cursor: pointer;
   padding: .5rem;
   border-radius: 50%;
@@ -22557,7 +22558,8 @@ div.tox .tox-dialog__body {
   transition: linear 0.2s;
 }
 
-#toggle-btn:hover {        
+#toggle-btn:hover,
+#notif-btn:hover {        
   background: var(--bs-body-color);
   color: var(--bs-gray-100);
 }
@@ -22578,6 +22580,10 @@ div.tox .tox-dialog__body {
 
 .custom-background {
   background: var(--custom-card-bg);
+}
+
+.custom-color {
+  color: var(--bs-body-color);
 }
 
 
