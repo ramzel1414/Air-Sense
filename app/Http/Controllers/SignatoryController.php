@@ -28,7 +28,7 @@ class SignatoryController extends Controller
                 'firstName' => 'required|string|regex:/^[A-Za-z.\s-]+$/', // Allows letters, dots, spaces, and hyphens
                 'middleName' => 'nullable|string|regex:/^[A-Za-z.\s-]+$/', // Allows letters, dots, spaces, and hyphens
                 'lastName' => 'required|string|regex:/^[A-Za-z.\s-]+$/', // Allows letters, dots, spaces, and hyphens
-                'position' => 'required|string|regex:/^[A-Za-z.,\s-]+$/' // Allows letters, dots, spaces, and hyphens
+                // 'position' => 'nullable|string|regex:/^[A-Za-z.,\s-]+$/' // Allows letters, dots, spaces, and hyphens
             ]);
 
             // Trim leading and trailing spaces from input fields
@@ -36,7 +36,7 @@ class SignatoryController extends Controller
             $validatedData['firstName'] = trim($validatedData['firstName']);
             $validatedData['middleName'] = trim($validatedData['middleName']);
             $validatedData['lastName'] = trim($validatedData['lastName']);
-            $validatedData['position'] = trim($validatedData['position']);
+            // $validatedData['position'] = trim($validatedData['position']);
 
             // Find the signatory and update
             $signatory = Signatory::findOrFail($id);
