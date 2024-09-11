@@ -4,11 +4,7 @@
 
 <div class="page-content">
 
-    <h3 class="mb-4">General Settings</h3>
-
-
     <div class="row">
-
 
         <!-- left wrapper start -->
         <div class="col-sm-6 col-md-4 col-xl-3 left-wrapper">
@@ -150,35 +146,49 @@
                 <div class="col-11 mx-auto mt-5">
                     <div class="card">
                         <div class="card-body">
-                            <div class="mb-4">
-                                <h6 class="card-title">Update Report Logo</h6>
-                                <div class="row mb-3">
-                                    <input id="image" type="file" class="form-control" autocomplete="off" name="photo">
+                            <div class="mb-3">
+                                <h6 class="card-title">Update PDF Report Logo</h6>
+                                <div class="row">
+                                    <input id="inputLogo" type="file" class="form-control" autocomplete="off" name="photo" accept="image/*">
                                 </div>
                             </div>
                             <div class="mb-3">
-                                <label for="exampleInputPassword1" class="form-label"></label>
-                                <img id="showImage" class="wd-80 rounded-circle" src="{{ (!empty($profileData->photo)) ? url('upload/admin_images/'.$profileData->photo) : url('/upload/no_image.png')}}" alt="profile">
+                                <label class="form-label"></label>
+                                <img id="previewLogo" class="wd-80 rounded-circle" src="{{ url('/upload/airsense2.png')}}" alt="logo">
                             </div>
-                            <div class="d-grid">
-                                <button class="btn btn-primary">Upgrade Logo</button>
-                            </div>
+                            <button class="btn btn-primary">Update Logo</button>
 
                             <div class="mt-4">
-                                <h6 class="card-title mb-3">Update Report Signatory</h6>
-                                <div class="row mb-3">
-                                    <label for="exampleInputPassword1" class="form-label">ENGR. JOHARA JANE G. PECSON</label>
-                                    <input id="image" type="file" class="form-control" autocomplete="off" name="photo">
+                                <h6 class="card-title mb-3">Update PDF Report Signatory</h6>
+                                <div class="row">
+                                    <!-- Signatory 1 -->
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">ENGR. JOHARA JANE G. PECSON</label>
+                                        <input id="signatory1" type="file" class="form-control" autocomplete="off" name="photo">
+                                        <img id="previewSignatory1" class="mt-2 wd-70 rounded-5" src="https://via.placeholder.com/80?text=Signatory" alt="logo">
+                                    </div>
+                                    <!-- Signatory 2 -->
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">JESSIE JAMES B. OSIN</label>
+                                        <input id="signatory2" type="file" class="form-control" autocomplete="off" name="photo">
+                                        <img id="previewSignatory2" class="mt-2 wd-70 rounded-5" src="https://via.placeholder.com/80?text=Signatory" alt="logo">
+                                    </div>
                                 </div>
-                                <div class="row mb-3">
-                                    <label for="exampleInputPassword1" class="form-label">ENGR. DIVINE GRACE LEGION</label>
-                                    <input id="image" type="file" class="form-control" autocomplete="off" name="photo">
+                                <div class="row">
+                                    <!-- Signatory 3 -->
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">ENGR. ROSALINDA L. ILOGON</label>
+                                        <input id="signatory3" type="file" class="form-control" autocomplete="off" name="photo">
+                                        <img id="previewSignatory3" class="mt-2 wd-70 rounded-5" src="https://via.placeholder.com/80?text=Signatory" alt="logo">
+                                    </div>
+                                    <!-- Signatory 4 -->
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">ENGR. DOVEE CHERRY I. GEOLLEGUE</label>
+                                        <input id="signatory4" type="file" class="form-control" autocomplete="off" name="photo">
+                                        <img id="previewSignatory4" class="mt-2 wd-70 rounded-5" src="https://via.placeholder.com/80?text=Signatory" alt="logo">
+                                    </div>
                                 </div>
-                            </div>
-
-
-                            <div class="d-grid">
-                                <button class="btn btn-primary">Upgrade Signatory</button>
+                                <button class="btn btn-primary">Update Signatory</button>
                             </div>
                         </div>
                     </div>
@@ -195,6 +205,49 @@
 
 @endsection
 
+{{-- settings page preview images --}}
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+    
+        document.getElementById('inputLogo').addEventListener('change', function() {
+            const file = this.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('previewLogo').src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Preview for Signatory 1
+        document.getElementById('signatory1').addEventListener('change', function() {
+            const file = this.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('previewSignatory1').src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+
+        // Preview for Signatory 2
+        document.getElementById('signatory2').addEventListener('change', function() {
+            const file = this.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('previewSignatory2').src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    });
+
+
+</script>
 
 
 <style>
@@ -249,4 +302,7 @@
    .custom-toggle input:checked + label:before {
        transform: translate(15px, -50%);
    }
+
+
    </style>
+
