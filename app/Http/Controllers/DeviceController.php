@@ -369,7 +369,7 @@ class DeviceController extends Controller
 
     public function getDeviceLocation()
     {
-        $deviceLocations = Device::all(['deviceName', 'latitude', 'longitude']);
+        $deviceLocations = Device::all(['deviceName', 'deviceSerial', 'latitude', 'longitude']);
         return response()->json($deviceLocations); // Return the count as JSON response
     }
 

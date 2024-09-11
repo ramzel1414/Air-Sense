@@ -44,7 +44,7 @@
         <div class="col-12 col-sm-5 my-5">
             <div class="card rounded mb-2">
                 <div class="card-body">
-                    
+
                     @if ($device->deviceStatus === 'ACTIVE')
                         <form action="{{ route('admin.toggleStatus', $device->id) }}" method="POST">
                             @csrf
@@ -64,7 +64,7 @@
                             </div>
                         </form>
                     @endif
-                        
+
                     <div class="mb-2">
                         <p class="card-title mb-0">Device Name: <span>{{ $device->deviceName }}</span></p>
                         <p class="card-title mb-0">Device Serial: <span>{{ $device->deviceSerial }}</span></p>
@@ -72,7 +72,7 @@
                         <p class="card-title mb-0">Device Sim #: <span>{{ $device->deviceSim }}</span></p>
                         <p class="card-title mb-0">Device Latitude: <span>{{ $device->latitude }}</span></p>
                         <p class="card-title mb-0">Device Longitude: <span>{{ $device->longitude }}</span></p>
-                        <p class="card-title mb-0">Pollutant Data:</p>
+                        <p class="card-title mb-0">Monitored Pollutant:</p>
                     </div>
                     <div class="mx-4">
                         <p>Particulate Matter 2.5</p>
@@ -92,7 +92,7 @@
                                 <form action="{{ route('admin.toggleStatus', $device->id) }}" method="POST">
                                     @csrf
                                     @method('PUT')
-                                    <button type="submit" class="btn btn-warning w-100">INACTIVATE</button>
+                                    <button type="submit" class="btn btn-warning w-100">DEACTIVATE</button>
                                 </form>
                             @else
                                 <form action="{{ route('admin.toggleStatus', $device->id) }}" method="POST">
