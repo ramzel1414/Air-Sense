@@ -16,7 +16,7 @@ class PdfReport extends FPDF
         $x = ($pageWidth - $imageWidth) / 2;
 
         // Placement of image
-        $this->Image('airsense.png', $x-60, 10, $imageWidth);
+        $this->Image('airsense2.png', $x-60, 10, $imageWidth);
         $this->Image('buksu.png',  $x+60, 10, $imageWidth);
 
         // Select Arial bold 15
