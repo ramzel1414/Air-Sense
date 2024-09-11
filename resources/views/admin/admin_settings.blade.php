@@ -4,146 +4,62 @@
 
 <div class="page-content">
 
+    <h3 class="mb-4">General Settings</h3>
+
+
     <div class="row">
 
         <!-- left wrapper start -->
         <div class="col-sm-6 col-md-4 col-xl-3 left-wrapper">
-                    <div class="card">
-                        <div class="card-body ">
 
-                            <div class="col-12 mx-auto mb-3 d-flex justify-content-between align-items-baseline">
-                                <h6 class="card-title mb-0">Language</h6>
-                                <div class="dropdown mb-2">
-                                    <a type="button" id="dropdownMenuButton6" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="icon-lg text-muted pb-3px" data-feather="more-horizontal"></i>
-                                    </a>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton6">
-                                    <a class="dropdown-item d-flex align-items-center" href="javascript:;"><i class="flag-icon flag-icon-us"></i> <span class="mx-1"> Kano</span></a>
-                                    <a class="dropdown-item d-flex align-items-center" href="javascript:;"><i class="flag-icon flag-icon-ae"></i> <span class="mx-1">Mokols</span></a>
-                                    <a class="dropdown-item d-flex align-items-center" href="javascript:;"><i class="flag-icon flag-icon-af"></i> <span class="mx-1">Ilongo</span></a>
-                                    <a class="dropdown-item d-flex align-items-center" href="javascript:;"><i class="flag-icon flag-icon-ag"></i> <span class="mx-1">Waray</span></a>
-                                    </div>
-                                </div>
-                            </div>
+            <div class="card">
+                
+                <div class="card-body">
+                    <h6 class="mb-3 d-flex justify-content-center">Notifications</h6>
 
-                            <div class="col-12 mx-auto mb-3 d-flex justify-content-between align-items-baseline">
-                                <h6 class="card-title mb-0">Theme</h6>
-                                <div class="dropdown mb-2">
-                                    <a type="button" id="dropdownMenuButton6" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="icon-lg text-muted pb-3px" data-feather="more-horizontal"></i>
-                                    </a>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton6">
-                                    <a class="dropdown-item d-flex align-items-center" href="javascript:;"><i data-feather="eye" class="icon-sm me-2"></i> <span class="">View</span></a>
-                                    <a class="dropdown-item d-flex align-items-center" href="javascript:;"><i data-feather="edit-2" class="icon-sm me-2"></i> <span class="">Edit</span></a>
-                                    <a class="dropdown-item d-flex align-items-center" href="javascript:;"><i data-feather="trash" class="icon-sm me-2"></i> <span class="">Delete</span></a>
-                                    <a class="dropdown-item d-flex align-items-center" href="javascript:;"><i data-feather="printer" class="icon-sm me-2"></i> <span class="">Print</span></a>
-                                    <a class="dropdown-item d-flex align-items-center" href="javascript:;"><i data-feather="download" class="icon-sm me-2"></i> <span class="">Download</span></a>
-                                    </div>
-                                </div>
-                            </div>
+                    {{-- each toggle container --}}
+                    <div class="col-12 mx-auto mb-3 d-flex justify-content-start align-items-baseline">
+                        <!-- Custom Toggle Switch -->
+                        <div class="custom-toggle my-auto">
 
-                            <div class="col-12 mx-auto mb-3 d-flex justify-content-between align-items-baseline">
-                                <h6 class="card-title mb-0">Date and Time</h6>
-                                <div class="dropdown mb-2">
-                                    <a type="button" id="dropdownMenuButton6" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="icon-lg text-muted pb-3px" data-feather="more-horizontal"></i>
-                                    </a>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton6">
-                                    <a class="dropdown-item d-flex align-items-center" href="javascript:;"><i data-feather="eye" class="icon-sm me-2"></i> <span class="">View</span></a>
-                                    <a class="dropdown-item d-flex align-items-center" href="javascript:;"><i data-feather="edit-2" class="icon-sm me-2"></i> <span class="">Edit</span></a>
-                                    <a class="dropdown-item d-flex align-items-center" href="javascript:;"><i data-feather="trash" class="icon-sm me-2"></i> <span class="">Delete</span></a>
-                                    <a class="dropdown-item d-flex align-items-center" href="javascript:;"><i data-feather="printer" class="icon-sm me-2"></i> <span class="">Print</span></a>
-                                    <a class="dropdown-item d-flex align-items-center" href="javascript:;"><i data-feather="download" class="icon-sm me-2"></i> <span class="">Download</span></a>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-12 mx-auto mb-3 d-flex justify-content-between align-items-baseline">
-                                <h6 class="card-title mb-0">Security</h6>
-                                <div class="dropdown mb-2">
-                                    <a type="button" id="dropdownMenuButton6" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="icon-lg text-muted pb-3px" data-feather="more-horizontal"></i>
-                                    </a>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton6">
-                                    <a class="dropdown-item d-flex align-items-center" href="javascript:;"><i data-feather="eye" class="icon-sm me-2"></i> <span class="">View</span></a>
-                                    <a class="dropdown-item d-flex align-items-center" href="javascript:;"><i data-feather="edit-2" class="icon-sm me-2"></i> <span class="">Edit</span></a>
-                                    <a class="dropdown-item d-flex align-items-center" href="javascript:;"><i data-feather="trash" class="icon-sm me-2"></i> <span class="">Delete</span></a>
-                                    <a class="dropdown-item d-flex align-items-center" href="javascript:;"><i data-feather="printer" class="icon-sm me-2"></i> <span class="">Print</span></a>
-                                    <a class="dropdown-item d-flex align-items-center" href="javascript:;"><i data-feather="download" class="icon-sm me-2"></i> <span class="">Download</span></a>
-                                    </div>
-                                </div>
-                            </div>
+                            <input type="checkbox" class="custom-control-input" id="toggleSwitch2">
+                            <label class="custom-control-label" for="toggleSwitch2"></label>
+                        </div>
+                        <!-- custom Toggle Description -->
+                        <p>Device Update Notification</p>
 
                     </div>
+
+                    {{-- each toggle container --}}
+                    <div class="col-12  mb-3 d-flex justify-content-start align-items-baseline">                            <!-- Custom Toggle Switch -->
+                        <div class="custom-toggle my-auto">
+                            
+                            <input type="checkbox" class="custom-control-input" id="toggleSwitch3">
+                            <label class="custom-control-label" for="toggleSwitch3"></label>
+                        </div>
+                        <!-- custom Toggle Description -->
+                        <p>Reminder Notification</p>
+
+                    </div>
+                
                 </div>
+            </div>
+
+            {{-- <div class="card">
+                <div class="card-body">
+                    <h6 class="d-flex mb-3 d-flex justify-content-center">About</h6>
+                    <p class="text-center">Lorem ipsum  adipisci exercitationem harum tempora eveniet repellat rem blanditiis officiis rerum quisquam molestiae omnis quasi quibusdam voluptates qui corporis amet?</p>
+                </div>
+            </div> --}}
 
         </div>
         <!-- left wrapper end -->
 
         <!-- right wrapper start -->
-        <div class="col-sm-6 col-md-8 mx-auto">
+        <div class="col-sm-6 col-md-9">
             <div class="row flex-grow-1">
-                <div class="col-5 mx-auto">
-                    <div class="card">
 
-                        <div class="card-body">
-                            <h6 class="mb-3 d-flex justify-content-center">Notifications</h6>
-                            
-
-
-                            {{-- each toggle container --}}
-                            {{-- <div class="col-12 mx-auto mb-3 d-flex justify-content-start align-items-baseline">
-                                <!-- Custom Toggle Switch -->
-                                <div class="custom-toggle my-auto">
-
-                                    <input type="checkbox" class="custom-control-input" id="toggleSwitch1">
-                                    <label class="custom-control-label" for="toggleSwitch1"></label>
-                                </div>
-                                <!-- custom Toggle Description -->
-                                <p id="description">Data Interval Update</p>
-
-                            </div> --}}
-
-                            {{-- each toggle container --}}
-                            <div class="col-12 mx-auto mb-3 d-flex justify-content-start align-items-baseline">
-                                <!-- Custom Toggle Switch -->
-                                <div class="custom-toggle my-auto">
-
-                                    <input type="checkbox" class="custom-control-input" id="toggleSwitch2">
-                                    <label class="custom-control-label" for="toggleSwitch2"></label>
-                                </div>
-                                <!-- custom Toggle Description -->
-                                <p>Device Update Notification</p>
-
-                            </div>
-
-                            {{-- each toggle container --}}
-                            <div class="col-12  mb-3 d-flex justify-content-start align-items-baseline">                            <!-- Custom Toggle Switch -->
-                                <div class="custom-toggle my-auto">
-                                    
-                                    <input type="checkbox" class="custom-control-input" id="toggleSwitch3">
-                                    <label class="custom-control-label" for="toggleSwitch3"></label>
-                                </div>
-                                <!-- custom Toggle Description -->
-                                <p>Reminder Notification</p>
-
-                            </div>
-                        
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-5 mx-auto">
-                    <div class="card">
-                        <div class="card-body">
-                            <h6 class="d-flex mb-3 d-flex justify-content-center">About</h6>
-                            <p class="text-center">Lorem ipsum  adipisci exercitationem harum tempora eveniet repellat rem blanditiis officiis rerum quisquam molestiae omnis quasi quibusdam voluptates qui corporis amet?</p>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="col-11 mx-auto mt-5">
+                <div class="col-11 mx-auto">
                     <div class="card">
                         <div class="card-body">
                             <div class="mb-3">
@@ -163,29 +79,27 @@
                                 <div class="row">
                                     <!-- Signatory 1 -->
                                     <div class="col-md-6 mb-3">
-                                        <label class="form-label">ENGR. JOHARA JANE G. PECSON</label>
-                                        <input id="signatory1" type="file" class="form-control" autocomplete="off" name="photo">
-                                        <img id="previewSignatory1" class="mt-2 wd-70 rounded-5" src="https://via.placeholder.com/80?text=Signatory" alt="logo">
+                                        <input id="signatory1" type="text" class="form-control" autocomplete="off" placeholder="input name here...">
+                                        <label class="form-label mt-2">Project Document Specialist</label>
                                     </div>
                                     <!-- Signatory 2 -->
                                     <div class="col-md-6 mb-3">
-                                        <label class="form-label">JESSIE JAMES B. OSIN</label>
-                                        <input id="signatory2" type="file" class="form-control" autocomplete="off" name="photo">
-                                        <img id="previewSignatory2" class="mt-2 wd-70 rounded-5" src="https://via.placeholder.com/80?text=Signatory" alt="logo">
+                                        <input id="signatory2" type="text" class="form-control" autocomplete="off" placeholder="input name here...">
+                                        <label class="form-label mt-2">Senior Environmental Management Specialist</label>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <!-- Signatory 3 -->
                                     <div class="col-md-6 mb-3">
-                                        <label class="form-label">ENGR. ROSALINDA L. ILOGON</label>
-                                        <input id="signatory3" type="file" class="form-control" autocomplete="off" name="photo">
-                                        <img id="previewSignatory3" class="mt-2 wd-70 rounded-5" src="https://via.placeholder.com/80?text=Signatory" alt="logo">
+                                        <input id="signatory3" type="text" class="form-control" autocomplete="off" placeholder="input name here...">
+                                        <label class="form-label mt-2">Chief, Ambient Monitoring and Forcasting Section
+                                            Services Section</label>
                                     </div>
                                     <!-- Signatory 4 -->
                                     <div class="col-md-6 mb-3">
-                                        <label class="form-label">ENGR. DOVEE CHERRY I. GEOLLEGUE</label>
-                                        <input id="signatory4" type="file" class="form-control" autocomplete="off" name="photo">
-                                        <img id="previewSignatory4" class="mt-2 wd-70 rounded-5" src="https://via.placeholder.com/80?text=Signatory" alt="logo">
+                                        <input id="signatory4" type="text" class="form-control" autocomplete="off" placeholder="input name here...">
+                                        <label class="form-label mt-2">Chief, Environmental Documentation Station
+                                            Enforcement Division</label>
                                     </div>
                                 </div>
                                 <button class="btn btn-primary">Update Signatory</button>
@@ -219,32 +133,8 @@
                 reader.readAsDataURL(file);
             }
         });
-
-        // Preview for Signatory 1
-        document.getElementById('signatory1').addEventListener('change', function() {
-            const file = this.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    document.getElementById('previewSignatory1').src = e.target.result;
-                };
-                reader.readAsDataURL(file);
-            }
-        });
-
-
-        // Preview for Signatory 2
-        document.getElementById('signatory2').addEventListener('change', function() {
-            const file = this.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    document.getElementById('previewSignatory2').src = e.target.result;
-                };
-                reader.readAsDataURL(file);
-            }
-        });
     });
+
 
 
 </script>
