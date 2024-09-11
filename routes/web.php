@@ -34,6 +34,7 @@ use App\Http\Controllers\PdfControllerNO2;
 use App\Http\Controllers\PdfControllerO3;
 use App\Http\Controllers\PdfControllerPM10;
 use App\Http\Controllers\PdfControllerPM25;
+use App\Http\Controllers\SignatoryController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -83,6 +84,10 @@ Route::middleware(['auth', 'role:admin'])->group(function() {
     Route::get('/admin/about', [AdminController::class, 'AdminAbout'])->name('admin.about');
 
     Route::get('/admin/settings', [AdminController::class, 'AdminSettings'])->name('admin.settings');
+
+    Route::get('/admin/settings', [SignatoryController::class, 'ShowSignatory'])->name('admin.settings');
+
+    Route::put('/admin/settings/{id}', [SignatoryController::class, 'UpdateSignatory'])->name('admin.signatoriesUpdate');
 
     Route::get('/admin/pollutants', [PollutantController::class, 'showPollutant'])->name('admin.pollutants');
 
