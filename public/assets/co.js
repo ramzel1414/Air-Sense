@@ -160,6 +160,8 @@ $(function () {
 
     // Attach click event listener to export CO data
     $('#expCO').on('click', function () {
+        $('#processing-co').show();  
+        $('#download-csv-co').hide();
         $.ajax({
             url: '/co-data',
             method: 'GET',
@@ -173,7 +175,7 @@ $(function () {
                     var classification = getClassification(item.avgCO);
                     var healthImpact = getHealthImpact(classification);
 
-                    var avgCOFormatted = item.avgCO.toFixed(1);
+                    var avgCOFormatted = item.avgCO.toFixed(0);
 
                     csvContent += item.dateTime + "," + avgCOFormatted + "," + classification + "," + healthImpact + "\n";
                 });
@@ -191,6 +193,10 @@ $(function () {
             },
             error: function (error) {
                 console.log('Error fetching CO data:', error);
+            },
+            complete: function () {
+                $('#processing-co').hide();  
+                $('#download-csv-co').show();
             }
         });
     });
@@ -217,6 +223,151 @@ $(function () {
             var avgCO = hourlyAverages[hourDateTime].sumCO / hourlyAverages[hourDateTime].count;
             result.push({ dateTime: hourDateTime, avgCO: avgCO });
         });
+        return result;
+    }
+
+    // DAILY
+    $('#expCODaily').on('click', function () {
+        $('#processing-co').show();  
+        $('#download-csv-co').hide();
+        $.ajax({
+            url: '/co-data',
+            method: 'GET',
+            success: function (data) {
+                // Calculate daily average CO values
+                var dailyAverageData = calculateAverageByDay(data);
+
+                // Sort dailyAverageData array by dateTime (ascending order)
+                dailyAverageData.sort((a, b) => {
+                    return new Date(a.dateTime) - new Date(b.dateTime);
+                });
+
+                // Generate CSV content with classification
+                var csvContent = "Date,CO,Classification,Health Impact\n";
+                dailyAverageData.forEach(function (item) {
+                    var classification = getClassification(item.avgCO);
+                    var healthImpact = getHealthImpact(classification);
+                    var avgCOFormatted = item.avgCO.toFixed(0);
+
+                    csvContent += item.dateTime + "," + avgCOFormatted + "," + classification + "," + healthImpact + "\n";
+                });
+
+                // Download CSV file
+                var blob = new Blob([csvContent], { type: 'text/csv' });
+                var url = window.URL.createObjectURL(blob);
+                var a = document.createElement('a');
+                a.href = url;
+                a.download = 'co-average-per-day.csv';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                window.URL.revokeObjectURL(url);
+            },
+            error: function (error) {
+                console.log('Error fetching data:', error);
+            },
+            complete: function () {
+                $('#processing-co').hide();  
+                $('#download-csv-co').show();
+            }
+        });
+    });
+
+    function calculateAverageByDay(data) {
+        var dailyAverages = {};
+
+        data.forEach(function (item) {
+            var date = item.dateTime.split(' ')[0];
+
+            if (!dailyAverages[date]) {
+                dailyAverages[date] = { sumCO: 0, count: 0 };
+            }
+
+            dailyAverages[date].sumCO += item.co;
+            dailyAverages[date].count++;
+        });
+
+        var result = [];
+        Object.keys(dailyAverages).forEach(function (date) {
+            var avgCO = dailyAverages[date].sumCO / dailyAverages[date].count;
+            result.push({ dateTime: date, avgCO: avgCO });
+        });
+
+        return result;
+    }
+
+
+    // MONTHLY
+    $('#expCOMonthly').on('click', function () {
+        $('#processing-co').show();  
+        $('#download-csv-co').hide();
+        $.ajax({
+            url: '/co-data',
+            method: 'GET',
+            success: function (data) {
+                // Calculate monthly average CO values
+                var monthlyAverageData = calculateAverageByMonth(data);
+
+                // Sort monthlyAverageData array by dateTime (ascending order)
+                monthlyAverageData.sort((a, b) => {
+                    return new Date(a.dateTime) - new Date(b.dateTime);
+                });
+
+                // Generate CSV content with classification
+                var csvContent = "Month,CO,Classification,Health Impact\n";
+                monthlyAverageData.forEach(function (item) {
+                    var classification = getClassification(item.avgCO);
+                    var healthImpact = getHealthImpact(classification);
+                    var avgCOFormatted = item.avgCO.toFixed(0);
+
+                    csvContent += item.dateTime + "," + avgCOFormatted + "," + classification + "," + healthImpact + "\n";
+                });
+
+                // Download CSV file
+                var blob = new Blob([csvContent], { type: 'text/csv' });
+                var url = window.URL.createObjectURL(blob);
+                var a = document.createElement('a');
+                a.href = url;
+                a.download = 'co-average-per-month.csv';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                window.URL.revokeObjectURL(url);
+            },
+            error: function (error) {
+                console.log('Error fetching data:', error);
+            },
+            complete: function () {
+                $('#processing-co').hide();  
+                $('#download-csv-co').show();
+            }
+        });
+    });
+
+    function calculateAverageByMonth(data) {
+        var monthlyAverages = {};
+
+        data.forEach(function (item) {
+            var date = new Date(item.dateTime);
+            var monthYearKey = date.getFullYear() + '-' + (date.getMonth() + 1);
+
+            if (!monthlyAverages[monthYearKey]) {
+                monthlyAverages[monthYearKey] = { sumCO: 0, count: 0 };
+            }
+
+            monthlyAverages[monthYearKey].sumCO += item.co;
+            monthlyAverages[monthYearKey].count++;
+        });
+
+        var result = [];
+        Object.keys(monthlyAverages).forEach(function (monthYearKey) {
+            var avgCO = monthlyAverages[monthYearKey].sumCO / monthlyAverages[monthYearKey].count;
+            var [year, month] = monthYearKey.split('-');
+            var monthYear = `${year}-${month}`;
+
+            result.push({ dateTime: monthYear, avgCO: avgCO });
+        });
+
         return result;
     }
 

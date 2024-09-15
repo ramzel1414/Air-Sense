@@ -68,18 +68,25 @@
                 .then(response => response.json())
                 .then(deviceLocations => {
                     deviceLocations.forEach(location => {
-                        const { deviceName, latitude, longitude } = location;
+                        const { deviceName, deviceSerial, latitude, longitude } = location;
 
                         // Create a new marker for each device
                         const marker = new google.maps.Marker({
                             position: { lat: parseFloat(latitude), lng: parseFloat(longitude) },
                             map: map,
-                            title: deviceName,
+                            title: deviceName, deviceSerial
                         });
+
+                        const infoWindowContent = `
+                                <div style="color:#0B1215; text-align:center;">
+                                    <h5 >${deviceName}</h5>
+                                    <h6 style="margin-top: 3px;">${deviceSerial}</h6>
+                                </div>
+                            `;
 
                         // Create an info window to display deviceName on marker click
                         const infoWindow = new google.maps.InfoWindow({
-                            content: deviceName,
+                            content: infoWindowContent,
                         });
 
                         // Show deviceName in info window when marker is clicked

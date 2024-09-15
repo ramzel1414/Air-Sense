@@ -168,6 +168,8 @@ $(function () {
     });
 
     $('#expO3').on('click', function () {
+        $('#processing-o3').show();  
+        $('#download-csv-o3').hide();
         $.ajax({
             url: '/o3-data',
             method: 'GET',
@@ -200,6 +202,10 @@ $(function () {
             },
             error: function (error) {
                 console.log('Error fetching O3 data:', error);
+            },
+            complete: function () {
+                $('#processing-o3').hide();  
+                $('#download-csv-o3').show();
             }
         });
     });
@@ -227,6 +233,151 @@ $(function () {
             var avgO3 = hourlyAverages[hourDateTime].sumO3 / hourlyAverages[hourDateTime].count;
             result.push({ dateTime: hourDateTime, avgO3: avgO3 });
         });
+        return result;
+    }
+
+
+    // DAILY
+    $('#expO3Daily').on('click', function () {
+        $('#processing-o3').show();  
+        $('#download-csv-o3').hide();
+        $.ajax({
+            url: '/o3-data',
+            method: 'GET',
+            success: function (data) {
+                // Calculate daily average O3 values
+                var dailyAverageData = calculateAverageByDay(data);
+
+                // Sort dailyAverageData array by dateTime (ascending order)
+                dailyAverageData.sort((a, b) => {
+                    return new Date(a.dateTime) - new Date(b.dateTime);
+                });
+
+                // Generate CSV content with classification
+                var csvContent = "Date,O3,Classification,Health Impact\n";
+                dailyAverageData.forEach(function (item) {
+                    var classification = getClassification(item.avgO3);
+                    var healthImpact = getHealthImpact(classification);
+                    var avgO3Formatted = item.avgO3.toFixed(3);
+
+                    csvContent += item.dateTime + "," + avgO3Formatted + "," + classification + "," + healthImpact + "\n";
+                });
+
+                // Download CSV file
+                var blob = new Blob([csvContent], { type: 'text/csv' });
+                var url = window.URL.createObjectURL(blob);
+                var a = document.createElement('a');
+                a.href = url;
+                a.download = 'o3-average-per-day.csv';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                window.URL.revokeObjectURL(url);
+            },
+            error: function (error) {
+                console.log('Error fetching data:', error);
+            },
+            complete: function () {
+                $('#processing-o3').hide();  
+                $('#download-csv-o3').show();
+            }
+        });
+    });
+
+    function calculateAverageByDay(data) {
+        var dailyAverages = {};
+
+        data.forEach(function (item) {
+            var date = item.dateTime.split(' ')[0];
+
+            if (!dailyAverages[date]) {
+                dailyAverages[date] = { sumO3: 0, count: 0 };
+            }
+
+            dailyAverages[date].sumO3 += item.ozone;
+            dailyAverages[date].count++;
+        });
+
+        var result = [];
+        Object.keys(dailyAverages).forEach(function (date) {
+            var avgO3 = dailyAverages[date].sumO3 / dailyAverages[date].count;
+            result.push({ dateTime: date, avgO3: avgO3 });
+        });
+
+        return result;
+    }
+
+    // MONTHLY
+    $('#expO3Monthly').on('click', function () {
+        $('#processing-o3').show();  
+        $('#download-csv-o3').hide();
+        $.ajax({
+            url: '/o3-data',
+            method: 'GET',
+            success: function (data) {
+                // Calculate monthly average NO2 values
+                var monthlyAverageData = calculateAverageByMonth(data);
+
+                // Sort monthlyAverageData array by dateTime (ascending order)
+                monthlyAverageData.sort((a, b) => {
+                    return new Date(a.dateTime) - new Date(b.dateTime);
+                });
+
+                // Generate CSV content with classification
+                var csvContent = "Month,O3,Classification,Health Impact\n";
+                monthlyAverageData.forEach(function (item) {
+                    var classification = getClassification(item.avgO3);
+                    var healthImpact = getHealthImpact(classification);
+                    var avgO3Formatted = item.avgO3.toFixed(3);
+
+                    csvContent += item.dateTime + "," + avgO3Formatted + "," + classification + "," + healthImpact + "\n";
+                });
+
+                // Download CSV file
+                var blob = new Blob([csvContent], { type: 'text/csv' });
+                var url = window.URL.createObjectURL(blob);
+                var a = document.createElement('a');
+                a.href = url;
+                a.download = 'o3-average-per-month.csv';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                window.URL.revokeObjectURL(url);
+            },
+            error: function (error) {
+                console.log('Error fetching data:', error);
+            },
+            complete: function () {
+                $('#processing-o3').hide();  
+                $('#download-csv-o3').show();
+            }
+        });
+    });
+
+    function calculateAverageByMonth(data) {
+        var monthlyAverages = {};
+
+        data.forEach(function (item) {
+            var date = new Date(item.dateTime);
+            var monthYearKey = date.getFullYear() + '-' + (date.getMonth() + 1);
+
+            if (!monthlyAverages[monthYearKey]) {
+                monthlyAverages[monthYearKey] = { sumO3: 0, count: 0 };
+            }
+
+            monthlyAverages[monthYearKey].sumO3 += item.ozone;
+            monthlyAverages[monthYearKey].count++;
+        });
+
+        var result = [];
+        Object.keys(monthlyAverages).forEach(function (monthYearKey) {
+            var avgO3 = monthlyAverages[monthYearKey].sumO3 / monthlyAverages[monthYearKey].count;
+            var [year, month] = monthYearKey.split('-');
+            var monthYear = `${year}-${month}`;
+
+            result.push({ dateTime: monthYear, avgO3: avgO3 });
+        });
+
         return result;
     }
 

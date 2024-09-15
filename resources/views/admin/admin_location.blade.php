@@ -1,5 +1,3 @@
-
-
 @extends('admin.admin_dashboard')
 @section('content')
 
@@ -21,7 +19,7 @@
         <script type="text/javascript">
             function initMap() {
                 const map = new google.maps.Map(document.getElementById("map"), {
-                    zoom: 19,
+                    zoom: 20,
                     center: { lat: 8.157408, lng: 125.124856 },
                 });
 
@@ -30,7 +28,7 @@
                     .then(response => response.json())
                     .then(deviceLocations => {
                         deviceLocations.forEach(location => {
-                            const { deviceName, latitude, longitude } = location;
+                            const { deviceName, deviceSerial, latitude, longitude } = location;
 
                             // Create a new marker for each device
                             const marker = new google.maps.Marker({
@@ -39,9 +37,16 @@
                                 title: deviceName,
                             });
 
+                            const infoWindowContent = `
+                                <div style="color:#0B1215; text-align:center;">
+                                    <h5>${deviceName}</h5>
+                                    <h6 style="margin-top: 3px;">Device Serial: ${deviceSerial}</h6>
+                                </div>
+                            `;
+
                             // Create an info window to display deviceName on marker click
                             const infoWindow = new google.maps.InfoWindow({
-                                content: deviceName,
+                                content: infoWindowContent,
                             });
 
                             // Show deviceName in info window when marker is clicked

@@ -59,9 +59,17 @@
                     @csrf
                     @method('PUT')
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-8">
                             <label for="updateName" class="form-label">Device Name:</label>
                             <input type="text" class="form-control" id="updateName" name="deviceName" value="{{ $device->deviceName }}" required>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label" for="deviceInterval">Device Data Interval:</label>
+                            <select class="form-control" id="deviceInterval" style="cursor:pointer;">
+                                <option value="30">30 seconds</option>
+                                <option value="20">20 seconds</option>
+                                <option value="10">10 seconds</option>
+                            </select>
                         </div>
                     </div>
                     <br>
@@ -135,6 +143,27 @@
 </div>
 @endforeach
 
+@foreach ($devices as $device)
+<!-- Modal for deleting a device -->
+<div class="modal fade" id="deleteDeviceModal{{ $device->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <h5 class="modal-title text-center my-4"  id="exampleModalLabel">Are you sure you want to delete this device?</h5>
+            <div class="modal-footer" style="justify-content: space-evenly;">
+                @csrf
+                <button type="button" class="btn btn-primary rounded-3 " data-bs-dismiss="modal">No, I'm not</button>
+                                        <!-- Delete Form -->
+                <form action="{{ route('admin.delete', $device->id) }}" method="POST" class="rounded">
+                @method('DELETE')
+                <button type="submit" class="btn btn-secondary rounded-3">Yes, I'm sure</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@endforeach
+
 <script>
     let map;
     let markers = [];
@@ -143,8 +172,8 @@
     function initMap() {
         // Initialize map centered at a specific location
         map = new google.maps.Map(document.getElementById("map"), {
-            center: { lat: 8.157408, lng: 125.124856 },
-            zoom: 17, // Adjust the zoom level as needed
+            center: { lat: 8.156804915195472, lng: 125.12483062095382},
+            zoom: 17,
         });
 
         // Fetch device locations via AJAX request and display markers

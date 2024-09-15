@@ -1,3 +1,4 @@
+
 @extends('admin.admin_dashboard')
 @section('content')
 
@@ -40,9 +41,29 @@
     <!-- Display Devices -->
     <div class="d-flex flex-wrap justify-content-evenly p-3 for-light-mode-bg">
         @foreach ($devices as $device)
-        <div class="col-12 col-sm-5 mb-5">
+        <div class="col-12 col-sm-5 my-5">
             <div class="card rounded mb-2">
                 <div class="card-body">
+
+                    @if ($device->deviceStatus === 'ACTIVE')
+                        <form action="{{ route('admin.toggleStatus', $device->id) }}" method="POST">
+                            @csrf
+                            @method('PUT')
+                            <div id="#" class="management-status-active">
+                                <div class="status-circle"></div>
+                                <div>ACTIVE</div>
+                            </div>
+                        </form>
+                    @else
+                        <form action="{{ route('admin.toggleStatus', $device->id) }}" method="POST">
+                            @csrf
+                            @method('PUT')
+                            <div id="#" class="management-status-inactive">
+                                <div class="status-circle"></div>
+                                <div>INACTIVE</div>
+                            </div>
+                        </form>
+                    @endif
 
                     <div class="mb-2">
                         <p class="card-title mb-0">Device Name: <span>{{ $device->deviceName }}</span></p>
@@ -51,7 +72,7 @@
                         <p class="card-title mb-0">Device Sim #: <span>{{ $device->deviceSim }}</span></p>
                         <p class="card-title mb-0">Device Latitude: <span>{{ $device->latitude }}</span></p>
                         <p class="card-title mb-0">Device Longitude: <span>{{ $device->longitude }}</span></p>
-                        <p class="card-title mb-0">Pollutant Data:</p>
+                        <p class="card-title mb-0">Monitored Pollutant:</p>
                     </div>
                     <div class="mx-4">
                         <p>Particulate Matter 2.5</p>
@@ -71,13 +92,13 @@
                                 <form action="{{ route('admin.toggleStatus', $device->id) }}" method="POST">
                                     @csrf
                                     @method('PUT')
-                                    <button type="submit" class="btn btn-success w-100">Active</button>
+                                    <button type="submit" class="btn btn-warning w-100">DEACTIVATE</button>
                                 </form>
                             @else
                                 <form action="{{ route('admin.toggleStatus', $device->id) }}" method="POST">
                                     @csrf
                                     @method('PUT')
-                                    <button type="submit" class="btn btn-secondary w-100">Inactive</button>
+                                    <button type="submit" class="btn btn-primary w-100">ACTIVATE</button>
                                 </form>
                             @endif
                         </div>
@@ -92,27 +113,9 @@
                         <!-- Delete Button trigger modal -->
                         <div class="col-6 rounded">
 
-                            <button type="button" class="btn btn-secondary rounded-3 w-100" data-bs-toggle="modal" data-bs-target="#deleteDeviceModal">
+                            <button type="button" class="btn btn-secondary rounded-3 w-100" data-bs-toggle="modal" data-bs-target="#deleteDeviceModal{{ $device->id }}">
                                 Delete
                             </button>
-                        </div>
-
-                        <!-- Modal -->
-                        <div class="modal fade" id="deleteDeviceModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered">
-                                <div class="modal-content">
-                                    <h5 class="modal-title text-center my-4"  id="exampleModalLabel">Are you sure you want to delete this device?</h5>
-                                    <div class="modal-footer" style="justify-content: space-evenly;">
-                                        @csrf
-                                        <button type="button" class="btn btn-primary rounded-3 " data-bs-dismiss="modal">Cancel</button>
-                                        <!-- Delete Form -->
-                                        <form action="{{ route('admin.delete', $device->id) }}" method="POST" class="rounded">
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-secondary rounded-3">Delete</button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>

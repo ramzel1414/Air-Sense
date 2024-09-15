@@ -29,6 +29,12 @@ use App\Http\Controllers\MonthlyPM10Controller;
 use App\Http\Controllers\MonthlyCOController;
 use App\Http\Controllers\MonthlyNO2Controller;
 use App\Http\Controllers\MonthlyO3Controller;
+use App\Http\Controllers\PdfControllerCO;
+use App\Http\Controllers\PdfControllerNO2;
+use App\Http\Controllers\PdfControllerO3;
+use App\Http\Controllers\PdfControllerPM10;
+use App\Http\Controllers\PdfControllerPM25;
+use App\Http\Controllers\SignatoryController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -77,6 +83,12 @@ Route::middleware(['auth', 'role:admin'])->group(function() {
 
     Route::get('/admin/about', [AdminController::class, 'AdminAbout'])->name('admin.about');
 
+    Route::get('/admin/settings', [AdminController::class, 'AdminSettings'])->name('admin.settings');
+
+    Route::get('/admin/settings', [SignatoryController::class, 'ShowSignatory'])->name('admin.settings');
+
+    Route::put('/admin/settings/{id}', [SignatoryController::class, 'UpdateSignatory'])->name('admin.signatoriesUpdate');
+
     Route::get('/admin/pollutants', [PollutantController::class, 'showPollutant'])->name('admin.pollutants');
 
     Route::get('/admin/location_tab', [LocationController::class, 'index'])->name('admin.location_tab');
@@ -102,6 +114,13 @@ Route::middleware(['auth', 'role:admin'])->group(function() {
 
 
     Route::get('/pdf', [ PdfController::class, 'index' ])->name('pdf.download');
+    Route::get('/pdf/pm25', [ PdfControllerPM25::class, 'index' ])->name('pdf.download.pm25');
+    Route::get('/pdf/pm10', [ PdfControllerPM10::class, 'index' ])->name('pdf.download.pm10');
+    Route::get('/pdf/co', [ PdfControllerCO::class, 'index' ])->name('pdf.download.co');
+    Route::get('/pdf/no2', [ PdfControllerNO2::class, 'index' ])->name('pdf.download.no2');
+    Route::get('/pdf/o3', [ PdfControllerO3::class, 'index' ])->name('pdf.download.o3');
+
+
 
     Route::get('/dailypm25', [ DailyPM25Controller::class, 'index' ])->name('daily.pm25');
     Route::get('/dailypm10', [ DailyPM10Controller::class, 'index' ])->name('daily.pm10');
@@ -120,9 +139,6 @@ Route::middleware(['auth', 'role:admin'])->group(function() {
     Route::get('/monthlyco', [ MonthlyCOController::class, 'index' ])->name('monthly.co');
     Route::get('/monthlyno2', [ MonthlyNO2Controller::class, 'index' ])->name('monthly.no2');
     Route::get('/monthlyo3', [ MonthlyO3Controller::class, 'index' ])->name('monthly.o3');
-
-
-
 
 
 
