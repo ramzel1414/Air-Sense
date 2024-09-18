@@ -46,13 +46,6 @@
                     </div>
                 </div>
 
-                {{-- <div class="card">
-                <div class="card-body">
-                    <h6 class="d-flex mb-3 d-flex justify-content-center">About</h6>
-                    <p class="text-center">Lorem ipsum  adipisci exercitationem harum tempora eveniet repellat rem blanditiis officiis rerum quisquam molestiae omnis quasi quibusdam voluptates qui corporis amet?</p>
-                </div>
-            </div> --}}
-
             </div>
             <!-- left wrapper end -->
 
