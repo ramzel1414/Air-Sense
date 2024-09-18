@@ -45,16 +45,14 @@
     <div class="left">
 
       @if (Route::has('login'))
-      <div class="">
-        
+      <div>
         @auth
-        <a href="{{ route('admin.location')}}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-700 focus:outline focus:outline-2 focus:rounded-sm focus:outline-gray-500">Back</a>
+          <a href="{{ route('admin.location')}}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-700 focus:outline focus:outline-2 focus:rounded-sm focus:outline-gray-500">Back</a>
         @else
-        <a href="{{ route('login') }}" class="p-1 nav-item">Login</a>
-        
-        @if (Route::has('register'))
-        <a href="{{ route('register') }}" class="p-1 m-l nav-item">Register</a>
-        @endif
+          <a href="{{ route('login') }}" class="p-1 nav-item">Login</a>
+          @if (Route::has('register'))
+            <a href="{{ route('register') }}" class="p-1 m-l nav-item">Register</a>
+          @endif
         @endauth
       </div>
       @endif
