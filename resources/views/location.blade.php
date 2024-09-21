@@ -35,7 +35,8 @@
 	<!-- Layout styles -->
 	<link rel="stylesheet" href="{{ asset('../assets/css/demo1/style.css') }}">
 	<!-- End layout styles -->
-  <link rel="shortcut icon" href="{{ asset('../assets/images/airsense.png') }}" />
+    <link rel="icon" href="{{ !empty($logo) && !empty($logo->logo) ? asset('upload/logo/' . $logo->logo) : asset('upload/logo/no_image.png') }}" alt="Air Sense Logo" type="image/png">
+
 </head>
 <body class="user-body">
 	@include('layouts.header');

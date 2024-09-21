@@ -11,7 +11,7 @@
 
             @php
 
-                $id = Auth::user()->id;         //access user table authenticated field
+                $id = Auth::user()->id;  //access user table authenticated field
                 $profileData = App\Models\User::find($id);
 
             @endphp
@@ -36,7 +36,7 @@
                         <div class="flex-grow-1 me-2">
                                             <p class="custom-color">New Order Recieved</p>
                                             <p class="tx-12 text-muted">30 min ago</p>
-                        </div>	
+                        </div>
                     </a>
                     <a href="javascript:;" class="dropdown-item d-flex align-items-center py-2">
                         <div class="wd-30 ht-30 d-flex align-items-center justify-content-center bg-primary rounded-circle me-3">
@@ -45,7 +45,7 @@
                         <div class="flex-grow-1 me-2">
                                             <p class="custom-color">Server Limit Reached!</p>
                                             <p class="tx-12 text-muted">1 hrs ago</p>
-                        </div>	
+                        </div>
                     </a>
                     <a href="javascript:;" class="dropdown-item d-flex align-items-center py-2">
                         <div class="wd-30 ht-30 d-flex align-items-center justify-content-center bg-primary rounded-circle me-3">
@@ -54,7 +54,7 @@
                         <div class="flex-grow-1 me-2">
                                             <p class="custom-color">New customer registered</p>
                                             <p class="tx-12 text-muted">2 sec ago</p>
-                        </div>	
+                        </div>
                     </a>
                     <a href="javascript:;" class="dropdown-item d-flex align-items-center py-2">
                         <div class="wd-30 ht-30 d-flex align-items-center justify-content-center bg-primary rounded-circle me-3">
@@ -63,7 +63,7 @@
                         <div class="flex-grow-1 me-2">
                                             <p class="custom-color">Apps are ready for update</p>
                                             <p class="tx-12 text-muted">5 hrs ago</p>
-                        </div>	
+                        </div>
                     </a>
                     <a href="javascript:;" class="dropdown-item d-flex align-items-center py-2">
                         <div class="wd-30 ht-30 d-flex align-items-center justify-content-center bg-primary rounded-circle me-3">
@@ -72,7 +72,7 @@
                         <div class="flex-grow-1 me-2">
                                             <p class="custom-color">Download completed</p>
                                             <p class="tx-12 text-muted">6 hrs ago</p>
-                        </div>	
+                        </div>
                     </a>
                     </div>
                     <div class="px-3 py-2 d-flex align-items-center justify-content-center border-top">

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Reports;
 
+use App\Models\Sitelogo;
 use Codedge\Fpdf\Fpdf\Fpdf;
 
 class PdfReport extends FPDF
@@ -15,9 +16,21 @@ class PdfReport extends FPDF
         // Calculate the x-coordinate to center the image
         $x = ($pageWidth - $imageWidth) / 2;
 
-        // Placement of image
-        $this->Image('airsense2.png', $x-60, 10, $imageWidth);
-        $this->Image('buksu.png',  $x+60, 10, $imageWidth);
+        // Retrieve both logos
+        $logos = Sitelogo::all();
+
+        // Check if there are logos available
+        if ($logos->count() > 0) {
+            // Placement of the first logo
+            $logoPath1 = !empty($logos[0]->logo) ? public_path('upload/logo/' . $logos[0]->logo) : public_path('upload/logo/no_image.png');
+            $this->Image($logoPath1, $x - 60, 10, $imageWidth); // Place first logo
+
+            // Placement of the second logo
+            if ($logos->count() > 1) { // Ensure there is a second logo
+                $logoPath2 = !empty($logos[1]->logo) ? public_path('upload/logo/' . $logos[1]->logo) : public_path('upload/logo/no_image.png');
+                $this->Image($logoPath2, $x + 60, 10, $imageWidth); // Place second logo
+            }
+        }
 
         // Select Arial bold 15
         $this->SetFont('Arial', 'B', 12);

@@ -33,6 +33,7 @@ class PdfControllerO3 extends Controller
 
         // CoverPage ====================================================================================================
         $fpdf->Image('airsense-prot.png', 15, 50, 180);
+
         $fpdf->SetFillColor(255, 255, 255, 127); // White background color
         $fpdf->Rect(40, 210, 130, 50, 'F'); // x, y, w, h, 'F' indicates to fill the rectangle
         $today = date('Y');
