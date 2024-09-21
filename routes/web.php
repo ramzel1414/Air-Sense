@@ -3,6 +3,8 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AirQualityDataController;
+use App\Http\Controllers\DailiyPM25Controller;
+use App\Http\Controllers\DeviceController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PollutantController;
@@ -10,18 +12,29 @@ use App\Http\Controllers\LocationController;
 
 use App\Http\Controllers\PdfController;
 
+use App\Http\Controllers\DailyPM25Controller;
+use App\Http\Controllers\DailyPM10Controller;
+use App\Http\Controllers\DailyCOController;
+use App\Http\Controllers\DailyNO2Controller;
+use App\Http\Controllers\DailyO3Controller;
 
+use App\Http\Controllers\WeeklyCOController;
+use App\Http\Controllers\WeeklyPM25Controller;
+use App\Http\Controllers\WeeklyPM10Controller;
+use App\Http\Controllers\WeeklyNO2Controller;
+use App\Http\Controllers\WeeklyO3Controller;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
+use App\Http\Controllers\MonthlyPM25Controller;
+use App\Http\Controllers\MonthlyPM10Controller;
+use App\Http\Controllers\MonthlyCOController;
+use App\Http\Controllers\MonthlyNO2Controller;
+use App\Http\Controllers\MonthlyO3Controller;
+use App\Http\Controllers\PdfControllerCO;
+use App\Http\Controllers\PdfControllerNO2;
+use App\Http\Controllers\PdfControllerO3;
+use App\Http\Controllers\PdfControllerPM10;
+use App\Http\Controllers\PdfControllerPM25;
+use App\Http\Controllers\SignatoryController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -70,9 +83,26 @@ Route::middleware(['auth', 'role:admin'])->group(function() {
 
     Route::get('/admin/about', [AdminController::class, 'AdminAbout'])->name('admin.about');
 
+    Route::get('/admin/settings', [AdminController::class, 'AdminSettings'])->name('admin.settings');
+
+    Route::get('/admin/settings', [SignatoryController::class, 'ShowSignatory'])->name('admin.settings');
+
+    Route::put('/admin/settings/{id}', [SignatoryController::class, 'UpdateSignatory'])->name('admin.signatoriesUpdate');
+
     Route::get('/admin/pollutants', [PollutantController::class, 'showPollutant'])->name('admin.pollutants');
 
     Route::get('/admin/location_tab', [LocationController::class, 'index'])->name('admin.location_tab');
+    Route::put('/admin/devices/{id}/toggle-status', [DeviceController::class, 'toggleStatus'])->name('admin.toggleStatus');
+
+    //Devices
+    Route::get('/admin/management', [DeviceController::class, 'AdminManagement'])->name('admin.management');
+    Route::put('/admin/management/{id}', [DeviceController::class, 'update'])->name('admin.update');
+    Route::delete('/admin/management/{id}', [DeviceController::class, 'delete'])->name('admin.delete');
+
+
+    Route::post('/devices', [DeviceController::class, 'store'])->name('admin.data.store');
+    Route::post('/admin/location/store', [DeviceController::class, 'storeLocation'])->name('admin.location.store');
+
 
 
 }); //End Group Admin middleware
@@ -83,24 +113,54 @@ Route::middleware(['auth', 'role:admin'])->group(function() {
 
 
 
-Route::get('/pdf', [ PdfController::class, 'index' ]);
-
-
-//Air Quality
-
-//Monitoring
-Route::post('/air-quality-data', [AirQualityDataController::class, 'store'])->name('data.store');
-Route::get('/pm25-data', [AirQualityDataController::class, 'getPM25Data']);
-Route::get('/pm10-data', [AirQualityDataController::class, 'getPM10Data']);
-Route::get('/co-data', [AirQualityDataController::class, 'getCOData']);
-Route::get('/no2-data', [AirQualityDataController::class, 'getNO2Data']);
-Route::get('/o3-data', [AirQualityDataController::class, 'getO3Data']);
-//Forecasting
-Route::get('/pm25-data-forecast', [AirQualityDataController::class, 'getPM25FCSV']);
-Route::get('/pm10-data-forecast', [AirQualityDataController::class, 'getPM10FCSV']);
+    Route::get('/pdf', [ PdfController::class, 'index' ])->name('pdf.download');
+    Route::get('/pdf/pm25', [ PdfControllerPM25::class, 'index' ])->name('pdf.download.pm25');
+    Route::get('/pdf/pm10', [ PdfControllerPM10::class, 'index' ])->name('pdf.download.pm10');
+    Route::get('/pdf/co', [ PdfControllerCO::class, 'index' ])->name('pdf.download.co');
+    Route::get('/pdf/no2', [ PdfControllerNO2::class, 'index' ])->name('pdf.download.no2');
+    Route::get('/pdf/o3', [ PdfControllerO3::class, 'index' ])->name('pdf.download.o3');
 
 
 
+    Route::get('/dailypm25', [ DailyPM25Controller::class, 'index' ])->name('daily.pm25');
+    Route::get('/dailypm10', [ DailyPM10Controller::class, 'index' ])->name('daily.pm10');
+    Route::get('/dailyco', [ DailyCOController::class, 'index' ])->name('daily.co');
+    Route::get('/dailyno2', [ DailyNO2Controller::class, 'index' ])->name('daily.no2');
+    Route::get('/dailyo3', [ DailyO3Controller::class, 'index' ])->name('daily.o3');
+
+    Route::get('/weeklypm25', [ WeeklyPM25Controller::class, 'index' ])->name('weekly.pm25');
+    Route::get('/weeklypm10', [ WeeklyPM10Controller::class, 'index' ])->name('weekly.pm10');
+    Route::get('/weeklyco', [ WeeklyCOController::class, 'index' ])->name('weekly.co');
+    Route::get('/weeklyno2', [ WeeklyNO2Controller::class, 'index' ])->name('weekly.no2');
+    Route::get('/weeklyo3', [ WeeklyO3Controller::class, 'index' ])->name('weekly.o3');
+
+    Route::get('/monthlypm25', [ MonthlyPM25Controller::class, 'index' ])->name('monthly.pm25');
+    Route::get('/monthlypm10', [ MonthlyPM10Controller::class, 'index' ])->name('monthly.pm10');
+    Route::get('/monthlyco', [ MonthlyCOController::class, 'index' ])->name('monthly.co');
+    Route::get('/monthlyno2', [ MonthlyNO2Controller::class, 'index' ])->name('monthly.no2');
+    Route::get('/monthlyo3', [ MonthlyO3Controller::class, 'index' ])->name('monthly.o3');
+
+
+
+    //Air Quality
+
+    //Monitoring
+    Route::post('/air-quality-data', [AirQualityDataController::class, 'store'])->name('data.store');
+    Route::get('/pm25-data', [AirQualityDataController::class, 'getPM25Data']);
+    Route::get('/pm10-data', [AirQualityDataController::class, 'getPM10Data']);
+    Route::get('/co-data', [AirQualityDataController::class, 'getCOData']);
+    Route::get('/no2-data', [AirQualityDataController::class, 'getNO2Data']);
+    Route::get('/o3-data', [AirQualityDataController::class, 'getO3Data']);
+    Route::get('/ozone-data', [AirQualityDataController::class, 'getOzoneData']);
+
+    //Forecasting
+    Route::get('/pm25-data-forecast', [AirQualityDataController::class, 'getPM25FCSV']);
+    Route::get('/pm10-data-forecast', [AirQualityDataController::class, 'getPM10FCSV']);
+
+
+    //Devices
+    Route::get('/device-count', [DeviceController::class, 'getDeviceCount'])->name('device.count');
+    Route::get('/device-locations', [DeviceController::class, 'getDeviceLocation'])->name('device.locations');
 
 
 

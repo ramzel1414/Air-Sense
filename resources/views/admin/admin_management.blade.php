@@ -1,111 +1,78 @@
 
-
 @extends('admin.admin_dashboard')
 @section('content')
 
+@include('admin.modals.modal-management')
 
 
 <div class="page-content">
 
-    <h3 class="mb-4">System Management</h3>
-      
-    <div class="row">
-            
-        <div class="grid-margin d-flex justify-content-evenly py-3 rounded-3 custom-background">
-
-            <!-- Button trigger modal -->
-            <button type="button" class="btn btn-primary col-4" data-bs-toggle="modal" data-bs-target="#addLocation">
-                Add Location
-            </button>
-
-            <!-- Modal -->
-            <div class="modal fade" id="addLocation" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Add a Location</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="btn-close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <!-- Form for adding Location -->
-                            <form>
-                                @csrf
-                                <div class="mb-3">
-                                    <label for="locationId" class="form-label">Longitude:</label>
-                                    <input type="text" class="form-control" id="addLogitude" name="longitude" placeholder="Enter Longitude (e.g., -122.4194)" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="location" class="form-label">Latitude:</label>
-                                    <input type="text" class="form-control" id="addLatitude" name="latitude" placeholder="Enter Latitude (e.g., 37.7749)" required>
-                                </div>
-
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary">Save changes</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-            <!-- Button trigger modal -->
-            <button type="button" class="btn btn-primary col-4" data-bs-toggle="modal" data-bs-target="#addDevice">
-                Add Device
-            </button>
-            <!-- Modal -->
-            <div class="modal fade" id="addDevice" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Add a Device</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="btn-close"></button>
-                    </div>
-                        <div class="modal-body">
-                            <!-- Form for adding Device -->
-                            <form>
-                                @csrf
-                                <div class="mb-3">
-                                    <label for="locationId" class="form-label">Device Name:</label>
-                                    <input type="text" class="form-control" id="addName" name="locationId" placeholder="Sensor 1" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="locationId" class="form-label">Devive COM:</label>
-                                    <input type="text" class="form-control" id="addCom" name="locationId" placeholder="COM 3" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="location" class="form-label">Device Sim #:</label>
-                                    <input type="text" class="form-control" id="addSim" name="location" placeholder="09123456789" required>
-                                </div>
-
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary">Save changes</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <div class="row grid-margin">
+        <div class="d-flex justify-content-start rounded-3 mb-4">
+            <h3>System Management</h3>
 
         </div>
-
+        <div class="grid-margin d-flex justify-content-evenly py-3 rounded-3 custom-background gap-5">
+                <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary col-3" data-bs-toggle="modal" data-bs-target="#addDevice">
+                Add Device
+            </button>
+            <button type="button" class="btn btn-primary col-3" data-bs-toggle="modal" data-bs-target="#addLocation">
+                Add Location
+            </button>
+        </div>
     </div>
 
-    <h5 class="mb-3">Recently Added!</h5>
+    <!-- Display Flash Messages -->
+    @if(session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+    @endif
 
-    <!-- wrapper start -->
-    <div class="row d-flex justify-content-evenly">
-        <div class="col-12 col-sm-5 mb-4">
-            <div class="card rounded mb-1">
+    @if(session('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+    @endif
+
+
+
+    <!-- Display Devices -->
+    <div class="d-flex flex-wrap justify-content-evenly p-3 for-light-mode-bg">
+        @foreach ($devices as $device)
+        <div class="col-12 col-sm-5 my-5">
+            <div class="card rounded mb-2">
                 <div class="card-body">
-                    <div class="mb-2 lh-3">
-                        <p class="card-title mb-0">Location: <span>Bukidnon State Uniersity</span></p>
-                        <p class="card-title mb-0">Device Name: <span>Sensor 1</span></p>
-                        <p class="card-title mb-0">Device COM: <span>COM3</span></p>
-                        <p class="card-title mb-0">Device Sim #: <span>09123456879</span></p>
-                        <p class="card-title mb-0">Pollutant Data: </p>
+
+                    @if ($device->deviceStatus === 'ACTIVE')
+                        <form action="{{ route('admin.toggleStatus', $device->id) }}" method="POST">
+                            @csrf
+                            @method('PUT')
+                            <div id="#" class="management-status-active">
+                                <div class="status-circle"></div>
+                                <div>ACTIVE</div>
+                            </div>
+                        </form>
+                    @else
+                        <form action="{{ route('admin.toggleStatus', $device->id) }}" method="POST">
+                            @csrf
+                            @method('PUT')
+                            <div id="#" class="management-status-inactive">
+                                <div class="status-circle"></div>
+                                <div>INACTIVE</div>
+                            </div>
+                        </form>
+                    @endif
+
+                    <div class="mb-2">
+                        <p class="card-title mb-0">Device Name: <span>{{ $device->deviceName }}</span></p>
+                        <p class="card-title mb-0">Device Serial: <span>{{ $device->deviceSerial }}</span></p>
+                        <p class="card-title mb-0">Device COM: <span>{{ $device->devicePort }}</span></p>
+                        <p class="card-title mb-0">Device Sim #: <span>{{ $device->deviceSim }}</span></p>
+                        <p class="card-title mb-0">Device Latitude: <span>{{ $device->latitude }}</span></p>
+                        <p class="card-title mb-0">Device Longitude: <span>{{ $device->longitude }}</span></p>
+                        <p class="card-title mb-0">Monitored Pollutant:</p>
                     </div>
                     <div class="mx-4">
                         <p>Particulate Matter 2.5</p>
@@ -113,21 +80,48 @@
                         <p>Carbon Monoxide</p>
                         <p>Ozone</p>
                         <p>Nitrogen Dioxide</p>
-
                     </div>
                 </div>
             </div>
-            <div class="card rounded p-3">
-                <a href="#" class="btn btn-secondary col-6 mx-auto rounded-3">Delete</a>
+
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12 rounded mb-3">
+                            @if ($device->deviceStatus === 'ACTIVE')
+                                <form action="{{ route('admin.toggleStatus', $device->id) }}" method="POST">
+                                    @csrf
+                                    @method('PUT')
+                                    <button type="submit" class="btn btn-warning w-100">DEACTIVATE</button>
+                                </form>
+                            @else
+                                <form action="{{ route('admin.toggleStatus', $device->id) }}" method="POST">
+                                    @csrf
+                                    @method('PUT')
+                                    <button type="submit" class="btn btn-primary w-100">ACTIVATE</button>
+                                </form>
+                            @endif
+                        </div>
+                    </div>
+                    <div class="row">
+                        <!-- Update Device Button -->
+                        <div class="col-6 rounded">
+                            <button type="button" class="btn btn-primary rounded-3 w-100" data-bs-toggle="modal" data-bs-target="#updateDevice{{ $device->id }}">
+                                Update
+                            </button>
+                        </div>
+                        <!-- Delete Button trigger modal -->
+                        <div class="col-6 rounded">
+
+                            <button type="button" class="btn btn-secondary rounded-3 w-100" data-bs-toggle="modal" data-bs-target="#deleteDeviceModal{{ $device->id }}">
+                                Delete
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-
-
-
+        @endforeach
     </div>
-
-    <!-- wrapper end -->
-
 </div>
-
 @endsection

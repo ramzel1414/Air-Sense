@@ -4,12 +4,14 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+class CreateAirQualityDataTable extends Migration
 {
     /**
      * Run the migrations.
+     *
+     * @return void
      */
-    public function up(): void
+    public function up()
     {
         Schema::create('air_quality_data', function (Blueprint $table) {
             $table->id();
@@ -18,7 +20,7 @@ return new class extends Migration
             $table->float('pm25');
             $table->float('co');
             $table->float('no2');
-            $table->float('ozone');
+            $table->float('ozone', 8, 3); // Define 'ozone' column with 3 decimal places
             $table->dateTime('dateTime');
             $table->timestamps();
         });
@@ -26,9 +28,11 @@ return new class extends Migration
 
     /**
      * Reverse the migrations.
+     *
+     * @return void
      */
-    public function down(): void
+    public function down()
     {
         Schema::dropIfExists('air_quality_data');
     }
-};
+}

@@ -2,7 +2,7 @@
   <nav class="sidebar">
       <div class="sidebar-header">
         <a href="{{ route ('admin.dashboard') }}" class="sidebar-brand d-flex">
-          <img class="airsense" src="{{ asset('../assets/images/airsense.png') }}" alt="">
+          <img src="{{ asset('airsense2.png') }}" alt="Air Sense Logo" class="custom-radius">
           Air<span>Sense</span>
         </a>
         <div class="sidebar-toggler not-active">
@@ -22,9 +22,9 @@
           </li>
 
           <li class="nav-item">
-            <a href="{{ route ('admin.management') }}" class="nav-link">
-              <i class="link-icon" data-feather="briefcase"></i>
-              <span class="link-title">Management</span>
+            <a href="{{ route ('admin.about') }}" class="nav-link">
+              <i class="link-icon" data-feather="help-circle"></i>
+              <span class="link-title">About</span>
             </a>
           </li>
           
@@ -36,9 +36,16 @@
           </li>
 
           <li class="nav-item">
-            <a href="{{ route ('admin.about') }}" class="nav-link">
-              <i class="link-icon" data-feather="help-circle"></i>
-              <span class="link-title">About</span>
+            <a href="{{ route ('admin.management') }}" class="nav-link">
+              <i class="link-icon" data-feather="briefcase"></i>
+              <span class="link-title">Management</span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="{{ route ('admin.settings') }}" class="nav-link">
+              <i class="link-icon" data-feather="settings"></i>
+              <span class="link-title">Settings</span>
             </a>
           </li>
 

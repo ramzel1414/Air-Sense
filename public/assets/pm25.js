@@ -160,6 +160,9 @@ $(function () {
 
     // Attach click event listener to the button for exporting PM2.5 data
     $('#expPM25').on('click', function () {
+        $('#processing-pm25').show();  
+        $('#download-csv-pm25').hide();
+
         $.ajax({
             url: '/pm25-data',
             method: 'GET',
@@ -179,7 +182,7 @@ $(function () {
                     var healthImpact = getHealthImpact(classification);
 
                     // Format average PM2.5 value to one decimal place
-                    var avgPM25Formatted = item.avgPM25.toFixed(1);
+                    var avgPM25Formatted = item.avgPM25.toFixed(0);
 
                     csvContent += item.dateTime + "," + avgPM25Formatted + "," + classification + "," + healthImpact + "\n";
                 });
@@ -197,10 +200,13 @@ $(function () {
             },
             error: function (error) {
                 console.log('Error fetching data:', error);
+            },
+            complete: function () {
+                $('#processing-pm25').hide();  
+                $('#download-csv-pm25').show();
             }
         });
     });
-
 
     // Function to calculate average PM2.5 values by hour
     function calculateAverageByHour(data) {
@@ -211,19 +217,163 @@ $(function () {
             var time = dateTimeParts[1];
             var hour = time.split(':')[0];
 
-            var dateTime = date + ' ' + time;
-
-            if (!hourlyAverages[hour]) {
-                hourlyAverages[hour] = { dateTime: dateTime, sumPM25: 0, count: 0 };
+            var hourDateTime = date + ' ' + hour + ':00:00';
+            if (!hourlyAverages[hourDateTime]) {
+                hourlyAverages[hourDateTime] = { sumPM25: 0, count: 0 };
             }
-            hourlyAverages[hour].sumPM25 += item.pm25;
-            hourlyAverages[hour].count++;
+            hourlyAverages[hourDateTime].sumPM25 += item.pm25;
+            hourlyAverages[hourDateTime].count++;
         });
 
         var result = [];
-        Object.keys(hourlyAverages).forEach(function (hour) {
-            var avgPM25 = hourlyAverages[hour].sumPM25 / hourlyAverages[hour].count;
-            result.push({ dateTime: hourlyAverages[hour].dateTime, avgPM25: avgPM25 });
+        Object.keys(hourlyAverages).forEach(function (hourDateTime) {
+            var avgPM25 = hourlyAverages[hourDateTime].sumPM25 / hourlyAverages[hourDateTime].count;
+            result.push({ dateTime: hourDateTime, avgPM25: avgPM25 });
+        });
+        return result;
+    }
+
+    // DAILY
+    $('#expPM25Daily').on('click', function () {
+        $('#processing-pm25').show();  
+        $('#download-csv-pm25').hide();
+
+        $.ajax({
+            url: '/pm25-data',
+            method: 'GET',
+            success: function (data) {
+                // Calculate daily average PM2.5 values
+                var dailyAverageData = calculateAverageByDay(data);
+
+                // Sort dailyAverageData array by dateTime (ascending order)
+                dailyAverageData.sort((a, b) => {
+                    return new Date(a.dateTime) - new Date(b.dateTime);
+                });
+
+                // Generate CSV content with classification
+                var csvContent = "Date,PM2.5,Classification,Health Impact\n";
+                dailyAverageData.forEach(function (item) {
+                    var classification = getClassification(item.avgPM25);
+                    var healthImpact = getHealthImpact(classification);
+                    var avgPM25Formatted = item.avgPM25.toFixed(0);
+
+                    csvContent += item.dateTime + "," + avgPM25Formatted + "," + classification + "," + healthImpact + "\n";
+                });
+
+                // Download CSV file
+                var blob = new Blob([csvContent], { type: 'text/csv' });
+                var url = window.URL.createObjectURL(blob);
+                var a = document.createElement('a');
+                a.href = url;
+                a.download = 'pm25-average-per-day.csv';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                window.URL.revokeObjectURL(url);
+            },
+            error: function (error) {
+                console.log('Error fetching data:', error);
+            },
+            complete: function () {
+                $('#processing-pm25').hide();  
+                $('#download-csv-pm25').show();
+            }
+        });
+    });
+
+    function calculateAverageByDay(data) {
+        var dailyAverages = {};
+
+        data.forEach(function (item) {
+            var date = item.dateTime.split(' ')[0];
+
+            if (!dailyAverages[date]) {
+                dailyAverages[date] = { sumPM25: 0, count: 0 };
+            }
+
+            dailyAverages[date].sumPM25 += item.pm25;
+            dailyAverages[date].count++;
+        });
+
+        var result = [];
+        Object.keys(dailyAverages).forEach(function (date) {
+            var avgPM25 = dailyAverages[date].sumPM25 / dailyAverages[date].count;
+            result.push({ dateTime: date, avgPM25: avgPM25 });
+        });
+
+        return result;
+    }
+
+    // MONTHLY
+    $('#expPM25Monthly').on('click', function () {
+        $('#processing-pm25').show();  
+        $('#download-csv-pm25').hide();
+
+        $.ajax({
+            url: '/pm25-data',
+            method: 'GET',
+            success: function (data) {
+                // Calculate monthly average PM2.5 values
+                var monthlyAverageData = calculateAverageByMonth(data);
+
+                // Sort monthlyAverageData array by dateTime (ascending order)
+                monthlyAverageData.sort((a, b) => {
+                    return new Date(a.dateTime) - new Date(b.dateTime);
+                });
+
+                // Generate CSV content with classification
+                var csvContent = "Month,PM2.5,Classification,Health Impact\n";
+                monthlyAverageData.forEach(function (item) {
+                    var classification = getClassification(item.avgPM25);
+                    var healthImpact = getHealthImpact(classification);
+                    var avgPM25Formatted = item.avgPM25.toFixed(0);
+
+                    csvContent += item.dateTime + "," + avgPM25Formatted + "," + classification + "," + healthImpact + "\n";
+                });
+
+                // Download CSV file
+                var blob = new Blob([csvContent], { type: 'text/csv' });
+                var url = window.URL.createObjectURL(blob);
+                var a = document.createElement('a');
+                a.href = url;
+                a.download = 'pm25-average-per-month.csv';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                window.URL.revokeObjectURL(url);
+            },
+            error: function (error) {
+                console.log('Error fetching data:', error);
+            },
+            complete: function () {
+                $('#processing-pm25').hide();  
+                $('#download-csv-pm25').show();
+            }
+        });
+    });
+
+    function calculateAverageByMonth(data) {
+        var monthlyAverages = {};
+
+        data.forEach(function (item) {
+            var date = new Date(item.dateTime);
+            var monthYearKey = date.getFullYear() + '-' + (date.getMonth() + 1);
+
+            if (!monthlyAverages[monthYearKey]) {
+                monthlyAverages[monthYearKey] = { sumPM25: 0, count: 0 };
+            }
+
+            monthlyAverages[monthYearKey].sumPM25 += item.pm25;
+            monthlyAverages[monthYearKey].count++;
+        });
+
+        var result = [];
+        Object.keys(monthlyAverages).forEach(function (monthYearKey) {
+            var avgPM25 = monthlyAverages[monthYearKey].sumPM25 / monthlyAverages[monthYearKey].count;
+            var [year, month] = monthYearKey.split('-');
+            var monthYear = `${year}-${month}`;
+
+            result.push({ dateTime: monthYear, avgPM25: avgPM25 });
         });
 
         return result;
@@ -233,15 +383,15 @@ $(function () {
     function getClassification(pm25) {
         if (pm25 >= 0 && pm25 <= 25) {
             return "Good (Green)";
-        } else if (pm25 > 25.1 && pm25 <= 35) {
+        } else if (pm25 > 25 && pm25 <= 35) {
             return "Moderate (Yellow)";
-        } else if (pm25 > 35.1 && pm25 <= 45) {
+        } else if (pm25 > 35 && pm25 <= 45) {
             return "Unhealthy for Sensitive Groups (Orange)";
-        } else if (pm25 > 45.1 && pm25 <= 55) {
+        } else if (pm25 > 45 && pm25 <= 55) {
             return "Unhealthy (Red)";
-        } else if (pm25 > 55.1 && pm25 <= 90) {
+        } else if (pm25 > 55 && pm25 <= 90) {
             return "Very Unhealthy (Purple)";
-        } else if (pm25 > 91) {
+        } else if (pm25 > 90) {
             return "Hazardous (Maroon)";
         } else {
             return "Unknown Classification";
