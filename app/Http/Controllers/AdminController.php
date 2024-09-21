@@ -104,8 +104,9 @@ class AdminController extends Controller
 
         $id = Auth::user()->id;         //access user table authenticated field
         $profileData = User::find($id);
+        $logo = Sitelogo::orderBy('id', 'asc')->first(); // Ensure it gets the first logo by ID
 
-        return view('admin.admin_change_password',compact('profileData')); //passing through compact method
+        return view('admin.admin_change_password',compact('profileData', 'logo')); //passing through compact method
     }
 
     public function AdminUpdatePassword(Request $request) { //Every time handling post method, (param request)
