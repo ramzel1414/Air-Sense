@@ -48,7 +48,8 @@ License: For each use you must have a valid license purchased only from above li
 	{{-- toaster for update notif --}}
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
 
-  <link rel="shortcut icon" href="{{ asset('../assets/images/airsense.png') }}" />
+    <link rel="icon" href="{{ !empty($logo) && !empty($logo->logo) ? asset('upload/logo/' . $logo->logo) : asset('upload/logo/no_image.png') }}" alt="Air Sense Logo" type="image/png">
+
 </head>
 <body>
 	<div class="main-wrapper">

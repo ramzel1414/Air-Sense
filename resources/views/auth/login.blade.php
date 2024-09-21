@@ -28,7 +28,7 @@ License: For each use you must have a valid license purchased only from above li
       .authLogin-side-wrapper {
           width: 100%;
           height: 100%;
-          background-image: url({{asset('upload/login.png')}})    
+          background-image: url({{asset('upload/login.png')}})
       }
   </style>
 
@@ -52,7 +52,7 @@ License: For each use you must have a valid license purchased only from above li
 	<link rel="stylesheet" href="{{ asset('../../../assets/vendors/flag-icon-css/css/flag-icon.min.css') }}">
 	<!-- endinject -->
 
-  <!-- Layout styles -->  
+  <!-- Layout styles -->
 	<link rel="stylesheet" href="{{ asset('../../../assets/css/demo2/style.css') }}">
   <!-- End layout styles -->
 
@@ -73,7 +73,7 @@ License: For each use you must have a valid license purchased only from above li
                   </div>
                 </div>
                 <div class="col-md-8 ps-md-0">
-                  <a href="{{route('welcome')}}" style="position: absolute; top: 2%; right: 2%;">Back</a>
+                  <a href="{{route('index')}}" style="position: absolute; top: 2%; right: 2%;">Back</a>
                   <div class="auth-form-wrapper px-4 py-5">
                     <a href="#" class="noble-ui-logo logo-light d-block mb-2">Air<span>Sense</span></a>
                     <h5 class="text-muted fw-normal mb-4">Welcome back! Log in to your account.</h5>
@@ -81,7 +81,7 @@ License: For each use you must have a valid license purchased only from above li
                     <form class="forms-sample" method="POST" action="{{ route('login') }}">
                         @csrf
                       <div class="mb-3">
-                        <label for="login" class="form-label">Email/Phone/Name</label>
+                        <label for="login" class="form-label">Email</label>
                         <input autocomplete="off" type="text" name="login" class="form-control" id="login" placeholder="Email" >
                         <x-input-error :messages="$errors->get('login')" class="mt-2" />
                       </div>
@@ -102,7 +102,7 @@ License: For each use you must have a valid license purchased only from above li
                         Login
                         </button>
                       </div>
-                      <div class="d-flex justify-content-between mt-4">                    
+                      <div class="d-flex justify-content-between mt-4">
                         @if (Route::has('password.request'))
                             <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
                                 {{ __('Forgot your password?') }}
@@ -112,7 +112,7 @@ License: For each use you must have a valid license purchased only from above li
                         <a href="{{ route('register') }}" class="text-muted ms-1">Not a user? Sign up</a>
 
                       </div>
-                    
+
                     </form>
                   </div>
                 </div>

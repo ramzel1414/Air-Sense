@@ -7,7 +7,8 @@
       <title>AirSense - Dashboard</title>
 
       <!-- Change the href attribute to the path of your icon file -->
-      <link rel="icon" href="{{ asset('airsense.png') }}" type="image/png">
+    <link rel="icon" href="{{ !empty($logo) && !empty($logo->logo) ? asset('upload/logo/' . $logo->logo) : asset('upload/logo/no_image.png') }}" alt="Air Sense Logo" type="image/png">
+
 
       <!-- core:css -->
       <link rel="stylesheet" href="{{ asset('../assets/vendors/core/core.css') }}">

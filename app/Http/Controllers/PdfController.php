@@ -73,6 +73,7 @@ class PdfController extends Controller
         $first = true;
         $fpdf->AddPage();
 
+
         // 2ndPage ====================================================================================================
 
 
@@ -236,19 +237,14 @@ class PdfController extends Controller
         $fpdf->Cell(27, 10, 'Above 0.374', 1, 1, 'C');
         $fpdf->AddPage();
 
-
-
-
         foreach ($pollutants as $pollutant) {
             if (!$first) {
                 $fpdf->AddPage(); // Add a new page before generating the report for subsequent pollutants
             } else {
                 $first = false;
             }
-
             $this->generatePollutantReport($fpdf, $pollutant);
         }
-
 
         // Fetch signatory data
         $signatories = Signatory::all()->keyBy('position'); // Assuming 'position' is unique for each signatory

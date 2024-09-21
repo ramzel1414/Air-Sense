@@ -2,7 +2,9 @@
   <nav class="sidebar">
       <div class="sidebar-header">
         <a href="{{ route ('admin.dashboard') }}" class="sidebar-brand d-flex">
-          <img src="{{ asset('airsense2.png') }}" alt="Air Sense Logo" class="custom-radius">
+          {{-- <img src="{{ asset('airsense2.png') }}" alt="Air Sense Logo" class="custom-radius"> --}}
+          <img src="{{ !empty($logo) && !empty($logo->logo) ? asset('upload/logo/' . $logo->logo) : asset('upload/logo/no_image.png') }}" alt="Air Sense Logo" class="custom-radius">
+
           Air<span>Sense</span>
         </a>
         <div class="sidebar-toggler not-active">
@@ -27,7 +29,7 @@
               <span class="link-title">About</span>
             </a>
           </li>
-          
+
           <li class="nav-item">
             <a href="{{ route ('admin.location') }}" class="nav-link">
               <i class="link-icon" data-feather="map-pin"></i>
@@ -56,7 +58,7 @@
             </a>
           </li>
 
-        
+
         </ul>
     </div>
     </nav>

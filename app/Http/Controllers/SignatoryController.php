@@ -3,20 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Models\Signatory;
+use App\Models\Sitelogo;
 use Illuminate\Http\Request;
 
 class SignatoryController extends Controller
 {
 
-    public function ShowSignatory(Signatory $signatory)
+    public function ShowSettings(Signatory $signatory)
     {
         $signatories = Signatory::all(); // Retrieve all signatories
-        return view('admin.admin_settings', compact('signatories')); // Pass signatories to the view
-    }
-
-    public function create()
-    {
-        //
+        $logo = Sitelogo::orderBy('id', 'asc')->first(); // Ensure it gets the first logo by ID
+        $updateLogos = Sitelogo::all();
+        return view('admin.admin_settings', compact('updateLogos', 'signatories', 'logo'));  // Pass signatories & logo to the view
     }
 
     public function UpdateSignatory(Request $request, $id)

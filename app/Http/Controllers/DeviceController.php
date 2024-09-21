@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Device;
+use App\Models\Sitelogo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 
@@ -153,10 +154,10 @@ class DeviceController extends Controller
     {
         // Retrieve all devices from the database
         $devices = Device::all();
-
+        $logo = Sitelogo::orderBy('id', 'asc')->first(); // Ensure it gets the first logo by ID
         // Pass devices data and device count to the admin management view
         $deviceCount = $devices->count();
-        return view('admin.admin_management', compact('devices', 'deviceCount'));
+        return view('admin.admin_management', compact('devices', 'deviceCount', 'logo'));
     }
 
 

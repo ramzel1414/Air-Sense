@@ -1,6 +1,5 @@
 @extends('admin.admin_dashboard')
 @section('content')
-
 @include('admin.modals.modal-settings')
 
     <div class="page-content">
@@ -51,29 +50,29 @@
 
                 <!-- Display Flash Messages -->
 
-
-            <!-- right wrapper start -->
             <div class="col-sm-6 col-md-9">
                 <div class="row flex-grow-1">
                     <div class="col-11 mx-auto">
                         <div class="card">
                             <div class="card-body">
+                                @foreach ($updateLogos as $updateLogo)
                                 <div class="mb-3">
-                                    <h6 class="card-title">Report Logo</h6>
-                                    <div class="row">
-                                        <input id="inputLogo" type="file" class="form-control" autocomplete="off"
-                                            name="photo" accept="image/*">
-                                    </div>
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label"></label>
-                                    <img id="previewLogo" class="wd-80 rounded-circle"
-                                        src="{{ url('/upload/airsense2.png') }}" alt="logo">
-                                </div>
-                                <button class="btn btn-primary">Update Logo</button>
+                                    <h6 class="card-title">{{ $updateLogo->id == 1 ? 'Website Logo' : 'Department Logo' }}</h6>
+                                    <form class="forms-sample" method="POST" action="{{ route('admin.update.logo', $updateLogo->id) }}" enctype="multipart/form-data">
+                                        @csrf
+                                        <input type="hidden" name="id" value="{{ $updateLogo->id }}">
+                                        <input id="inputLogo{{ $updateLogo->id }}" type="file" class="form-control" autocomplete="off" name="photo" accept="image/*">
+                                        <div class="mb-3">
+                                        <br>
+                                         <img id="previewLogo{{ $updateLogo->id }}" class="wd-80 rounded-circle" src="{{ (!empty($updateLogo->logo)) ? url('upload/logo/' . $updateLogo->logo) : url('/upload/logo/no_image.png') }}" alt="profile">
 
-                                {{-- CHANGED THIS <br> AND ADD SPACING --}}
-                                <br><br>
+                                        {{-- <img id="previewLogo" class="wd-80 rounded-circle" src="{{ (!empty($logo->logo)) ? url('upload/logo/'.$logo->logo) : url('/upload/logo/no_image.png')}}" alt="profile"> --}}
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Update Logo</button>
+                                    </form>
+                                </div>
+                                @endforeach
+                                <hr>
                                 <div class="mt-4">
                                     <h6 class="card-title mb-3">Report Signatory</h6>
                                     <div class="row">
@@ -87,9 +86,7 @@
                                                 <button type="button" class="btn btn-primary d-block"
                                                     data-bs-toggle="modal"
                                                     data-bs-target="#signatory{{ $signatory->id }}">Edit</button>
-
                                                 <!-- Modal -->
-
                                             </div>
                                         @endforeach
                                     </div>
@@ -101,7 +98,6 @@
             </div>
             <!-- right wrapper end -->
         </div>
-
     </div>
 @endsection
 
@@ -109,59 +105,28 @@
     document.addEventListener('DOMContentLoaded', () => {
 
         //settings page preview images
-        document.getElementById('inputLogo').addEventListener('change', function() {
+        document.getElementById('inputLogo1').addEventListener('change', function() {
             const file = this.files[0];
             if (file) {
                 const reader = new FileReader();
                 reader.onload = function(e) {
-                    document.getElementById('previewLogo').src = e.target.result;
+                    document.getElementById('previewLogo1').src = e.target.result;
                 };
                 reader.readAsDataURL(file);
             }
         });
 
-        // //placeholder on signatory1's inputs
-        // //Modal 1
-        // document.getElementById('signatory1')
-        //     .addEventListener('show.bs.modal', function (event) {
-
-        //         // Populate the modal with existing data (static example)
-        //         document.getElementById('professionalTitle1').value = 'Engr';
-        //         document.getElementById('firstname1').value = 'Johara Jane';
-        //         document.getElementById('middlename1').value = 'G';
-        //         document.getElementById('lastname1').value = 'Pecson';
-        //         document.getElementById('position1').value = 'Project Document Specialist';
-        //     });
-        // //Modal 2
-        // document.getElementById('signatory2')
-        //     .addEventListener('show.bs.modal', function (event) {
-
-        //         document.getElementById('professionalTitle2').value = 'Engr';
-        //         document.getElementById('firstname2').value = 'Jessie James';
-        //         document.getElementById('middlename2').value = 'B';
-        //         document.getElementById('lastname2').value = 'Osin';
-        //         document.getElementById('position2').value = 'Senior Environmental Management Specialist';
-        //     });
-        // //Modal 3
-        // document.getElementById('signatory3')
-        //     .addEventListener('show.bs.modal', function (event) {
-
-        //         document.getElementById('professionalTitle3').value = 'Engr';
-        //         document.getElementById('firstname3').value = 'Divine Grace';
-        //         document.getElementById('middlename3').value = '';
-        //         document.getElementById('lastname3').value = 'Legion';
-        //         document.getElementById('position3').value = 'Chief, Ambient Monitoiring and Forecasting Section Services';
-        //     });
-        // //Modal 4
-        // document.getElementById('signatory4')
-        //     .addEventListener('show.bs.modal', function (event) {
-
-        //         document.getElementById('professionalTitle4').value = 'Engr';
-        //         document.getElementById('firstname4').value = 'Dovee Cherry';
-        //         document.getElementById('middlename4').value = 'I';
-        //         document.getElementById('lastname4').value = 'Geollegue';
-        //         document.getElementById('position4').value = 'Chief, Environmental Documentation Station Enforcement Division';
-        //     });
+        //settings page preview images
+        document.getElementById('inputLogo2').addEventListener('change', function() {
+            const file = this.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('previewLogo2').src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
     });
 </script>
 
