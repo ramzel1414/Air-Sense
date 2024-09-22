@@ -108,14 +108,14 @@
                                   <div class="col-12 col-md-12 text-center">
                                       <h3 id="pm25-value" class="mb-2">
                                           <div class="spinner-grow text-primary" role="status">
-  
+
                                           </div>
                                       </h3>
                                       <p id="pm25-classification" class="mb-2" style="font-weight: bold; letter-spacing: 1.25px;">
-  
+
                                       </p>
                                       <p id="pm25-date" style="font-style: italic; font-size: 80%">
-  
+
                                       </p>
                                   </div>
                               </div>
@@ -133,14 +133,14 @@
                                   <div class="col-12 col-md-12 text-center">
                                       <h3 id="pm10-value" class="mb-2">
                                           <div class="spinner-grow text-primary" role="status">
-  
+
                                           </div>
                                       </h3>
                                       <p id="pm10-classification" class="mb-2" style="font-weight: bold; letter-spacing: 1.25px;">
-  
+
                                       </p>
                                       <p id="pm10-date" style="font-style: italic; font-size: 80%">
-  
+
                                       </p>
                                   </div>
                               </div>
@@ -158,14 +158,14 @@
                                   <div class="col-12 col-md-12 text-center">
                                       <h3 id="co-value" class="mb-2">
                                           <div class="spinner-grow text-primary" role="status">
-  
+
                                           </div>
                                       </h3>
                                       <p id="co-classification" class="mb-2" style="font-weight: bold; letter-spacing: 1.25px;">
-  
+
                                       </p>
                                       <p id="co-date" style="font-style: italic; font-size: 80%">
-  
+
                                       </p>
                                   </div>
                               </div>
@@ -183,14 +183,14 @@
                                   <div class="col-12 col-md-12 text-center">
                                       <h3 id="no2-value" class="mb-2">
                                           <div class="spinner-grow text-primary" role="status">
-  
+
                                           </div>
                                       </h3>
                                       <p id="no2-classification" class="mb-2" style="font-weight: bold; letter-spacing: 1.25px;">
-  
+
                                       </p>
                                       <p id="no2-date" style="font-style: italic; font-size: 80%">
-  
+
                                       </p>
                                   </div>
                               </div>
@@ -316,7 +316,7 @@
             }
         } else {
             // Device is OFFLINE
-            statusElement.textContent = 'OFFLINE';
+            statusElement.textContent = 'OFFLINE: 30mins';
             statusElement.classList.remove('device-status-online');
             statusElement.classList.add('device-status-offline');
 

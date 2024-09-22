@@ -48,7 +48,6 @@ class LoginRequest extends FormRequest
                     ->orWhere('phone', $this->login)
                     ->first();
 
-
         if ( !$user || !Hash::check($this->password, $user->password) ) {
             RateLimiter::hit($this->throttleKey());
 
