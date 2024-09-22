@@ -81,7 +81,7 @@ License: For each use you must have a valid license purchased only from above li
                     <form class="forms-sample" method="POST" action="{{ route('login') }}">
                         @csrf
                       <div class="mb-3">
-                        <label for="login" class="form-label">Email</label>
+                        <label for="login" class="form-label">Email/Username/Phone</label>
                         <input autocomplete="off" type="text" name="login" class="form-control" id="login" placeholder="Email" >
                         <x-input-error :messages="$errors->get('login')" class="mt-2" />
                       </div>
