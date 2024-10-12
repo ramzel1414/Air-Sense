@@ -20,7 +20,7 @@ License: For each use you must have a valid license purchased only from above li
 	<title>AirSense Admin Register Page</title>
 
     <!-- Change the href attribute to the path of your icon file -->
-    <link rel="icon" href="{{ asset('airsense.png') }}" type="image/png">
+    <link rel="icon" href="{{ !empty($logo) && !empty($logo->logo) ? asset('upload/logo/' . $logo->logo) : asset('upload/logo/no_image.png') }}" alt="Air Sense Logo" type="image/png">
 
     {{-- custome style for image --}}
     <style type="text/css">
@@ -28,7 +28,7 @@ License: For each use you must have a valid license purchased only from above li
         .authLogin-side-wrapper {
             width: 100%;
             height: 100%;
-            background-image: url({{asset('upload/login.png')}})    
+            background-image: url({{asset('upload/login.png')}})
         }
     </style>
 
@@ -52,11 +52,12 @@ License: For each use you must have a valid license purchased only from above li
     <link rel="stylesheet" href="{{ asset('../../../assets/vendors/flag-icon-css/css/flag-icon.min.css') }}">
     <!-- endinject -->
 
-    <!-- Layout styles -->  
+    <!-- Layout styles -->
         <link rel="stylesheet" href="{{ asset('../../../assets/css/demo2/style.css') }}">
     <!-- End layout styles -->
 
     <link rel="shortcut icon" href="{{ asset('../../../assets/images/favicon.png') }}" />
+
 </head>
 <body>
 	<div class="main-wrapper">
@@ -76,7 +77,7 @@ License: For each use you must have a valid license purchased only from above li
                   <div class="auth-form-wrapper px-4 py-4">
                     <a href="#" class="noble-ui-logo logo-light d-block mb-2">Air<span>Sense</span></a>
                     <h5 class="text-muted fw-normal mb-4">Create a free account.</h5>
-                  
+
                     <form class="forms-sample" method="POST" action="{{ route('register') }}">
                         @csrf
                         <div class="mb-3">
@@ -84,7 +85,7 @@ License: For each use you must have a valid license purchased only from above li
                             <input type="text" name="name" class="form-control" id="name" placeholder="Name" autocomplete="off" required>
                             <x-input-error :messages="$errors->get('name')" class="mt-2" />
                         </div>
-                        <div class="mb-3"> 
+                        <div class="mb-3">
                             <label for="email" class="form-label">Email</label>
                             <input type="email" name="email" class="form-control" id="email" placeholder="Email" autocomplete="off" required>
                             <x-input-error :messages="$errors->get('email')" class="mt-2" />
@@ -102,7 +103,7 @@ License: For each use you must have a valid license purchased only from above li
                             <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
                         </div>
                         <div class="d-flex justify-content-between align-items-center">
-                            
+
                             <button type="submit" class="btn btn-primary me-2 mb-2 mb-md-0 text-white">
                                 Sign up
                             </button>

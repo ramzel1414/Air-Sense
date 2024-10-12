@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Device;
+use App\Models\Sitelogo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 
@@ -12,13 +13,14 @@ class DeviceController extends Controller
     {
 
         // Check if devicePort or deviceSim already exists
-        $existingDevice = Device::where('devicePort', $request->input('devicePort'))
+        $existingDevice = Device::where('deviceSerial', $request->input('deviceSerial'))
+                                ->orWhere('devicePort', $request->input('devicePort'))
                                 ->orWhere('deviceSim', $request->input('deviceSim'))
                                 ->first();
 
         if ($existingDevice) {
             // Redirect back with error message if devicePort or deviceSim already exists
-            return redirect()->route('admin.management')->with(array ('message' => 'Device port or sim # already exist',
+            return redirect()->route('admin.management')->with(array ('message' => 'Device Serial, Port or Sim # already exist',
              'alert-type' => 'error'));
         }
 
@@ -40,11 +42,19 @@ class DeviceController extends Controller
             'alert-type' => 'error'));
         }
 
+        // Check if deviceDelay is numeric
+        if (!is_numeric($request->input('deviceDelay'))) {
+            return redirect()->route('admin.management')->with(array ('message' => 'Device Delay Interval must be a numerical.',
+            'alert-type' => 'error'));
+        }
+
         // Validate the incoming request data
         $request->validate([
             'deviceName' => 'required|string',
+            'deviceSerial' => 'required|string|unique:devices,deviceSerial',
             'devicePort' => 'required|integer|unique:devices,devicePort',
             'deviceSim' => 'required|integer|unique:devices,deviceSim',
+            'deviceDelay' => 'nullable|numeric',
             'latitude' => 'nullable|numeric',
             'longitude' => 'nullable|numeric',
         ]);
@@ -53,8 +63,11 @@ class DeviceController extends Controller
         // Create a new Device record
         $device = Device::create([
             'deviceName' => $request->input('deviceName'),
+            'deviceSerial' => $request->input('deviceSerial'),
             'devicePort' => $request->input('devicePort'),
+            'deviceStatus' => "ACTIVE",
             'deviceSim' => $request->input('deviceSim'),
+            'deviceDelay' => $request->input('deviceDelay'),
         ]);
 
         // Generate JavaScript content based on the device data
@@ -91,7 +104,7 @@ class DeviceController extends Controller
                     modem.getSimInbox((messages) => {
                         const filteredMessages = messages.data.filter(message => message.sender === sender);
                         filteredMessages.forEach(message => {
-                            const regex = /PM2.5: ([\d.]+)ug\/m3\nPM10: ([\d.]+) ug\/m3\nCO: ([\d.]+) ppm\nNO2: ([\d.]+) ppm\nOzone: ([\d.]+)/;
+                            const regex = /PM2.5: ([\\d.]+)ug\\/m3\\nPM10: ([\\d.]+) ug\\/m3\\nCO: ([\\d.]+) ppm\\nNO2: ([\\d.]+) ppm\\nOzone: ([\\d.]+)/;
                             const matches = message.message.match(regex);
                             if (matches) {
                                 axios.post('http://127.0.0.1:8000/air-quality-data', {
@@ -118,8 +131,11 @@ class DeviceController extends Controller
                         console.log('Deleting Automatically');
                     });
                 };
+                const deviceDelay = {$device->deviceDelay};
+                const baseDelay = 30000;
+                const interval = Math.max(deviceDelay - baseDelay, 1000); // Ensure minimum of 1 second
                 processMessages();
-                setInterval(processMessages, 1000);
+                setInterval(processMessages, interval);
             });
         });
         EOD;
@@ -149,10 +165,10 @@ class DeviceController extends Controller
     {
         // Retrieve all devices from the database
         $devices = Device::all();
-
+        $logo = Sitelogo::orderBy('id', 'asc')->first(); // Ensure it gets the first logo by ID
         // Pass devices data and device count to the admin management view
         $deviceCount = $devices->count();
-        return view('admin.admin_management', compact('devices', 'deviceCount'));
+        return view('admin.admin_management', compact('devices', 'deviceCount', 'logo'));
     }
 
 
@@ -160,16 +176,9 @@ class DeviceController extends Controller
     {
         $device = Device::findOrFail($id);
 
-        // Check if the deviceSim matches the restricted value
-        if ($device->deviceSim === '639537399626') {
-            return redirect()->route('admin.management')->with(array ('message' => 'Cannot delete this device, as it is being used',
-            'alert-type' => 'error'));
-        }
-
-        // Check if any other device is using the same devicePort
-        $existingDevice = Device::where('devicePort', $device->devicePort)->where('id', '!=', $device->id)->first();
-        if ($existingDevice) {
-            return redirect()->route('admin.management')->with(array ('message' => 'Cannot delete this device. Another device is using the same COMPORT.',
+        if ($device->deviceStatus === 'ACTIVE') {
+            // If the deviceSim matches the restricted value, prevent updating deviceSim
+            return redirect()->route('admin.management')->with(array ('message' => 'Cannot update this device as it is being used.',
             'alert-type' => 'error'));
         }
 
@@ -196,14 +205,15 @@ class DeviceController extends Controller
         // Check if devicePort or deviceSim already exists for other devices
         $existingDevice = Device::where('id', '!=', $id)
                                 ->where(function ($query) use ($request) {
-                                    $query->where('devicePort', $request->input('devicePort'))
-                                        ->orWhere('deviceSim', $request->input('deviceSim'));
+                                    $query->where('deviceSerial', $request->input('deviceSerial'))
+                                        ->orWhere('deviceSim', $request->input('deviceSim'))
+                                        ->orWhere('devicePort', $request->input('devicePort'));
                                 })
                                 ->first();
 
         if ($existingDevice) {
             // Redirect back with error message if devicePort or deviceSim already exists for another device
-            return redirect()->route('admin.management')->with(array ('message' => 'Device Port or SIM # already exists for another device.',
+            return redirect()->route('admin.management')->with(array ('message' => 'Device Serial, Port or SIM # already exists for another device.',
             'alert-type' => 'error'));
         }
 
@@ -214,11 +224,11 @@ class DeviceController extends Controller
         }
 
         // Check if the existing deviceSim matches the restricted value
-        if ($device->deviceSim === '639537399626') {
-            // If the deviceSim matches the restricted value, prevent updating deviceSim
-            return redirect()->route('admin.management')->with(array ('message' => 'Cannot update this device as it is being used.',
-            'alert-type' => 'error'));
-        }
+        // if ($device->deviceSim === '639537399626') {
+        //     // If the deviceSim matches the restricted value, prevent updating deviceSim
+        //     return redirect()->route('admin.management')->with(array ('message' => 'Cannot update this device as it is being used.',
+        //     'alert-type' => 'error'));
+        // }
 
         // Validate devicePort to ensure it is a number
         if (!is_numeric($request->input('devicePort'))) {
@@ -229,6 +239,17 @@ class DeviceController extends Controller
         // Validate deviceSim to ensure it is a number
         if (!is_numeric($request->input('deviceSim'))) {
             return redirect()->route('admin.management')->with(array ('message' => 'Device SIM # must be a valid number.',
+            'alert-type' => 'error'));
+        }
+
+        // Only update deviceDelay if a value other than 'none' is selected
+        if ($request->input('deviceDelay') !== '0') {
+            $updateData['deviceDelay'] = $request->input('deviceDelay');
+        }
+
+        if ($device->deviceStatus === 'ACTIVE') {
+            // If the deviceSim matches the restricted value, prevent updating deviceSim
+            return redirect()->route('admin.management')->with(array ('message' => 'Cannot update this device as it is being used.',
             'alert-type' => 'error'));
         }
 
@@ -244,8 +265,10 @@ class DeviceController extends Controller
         // Update the device with allowed fields (deviceName, devicePort, latitude, longitude)
         $device->update([
             'deviceName' => $request->input('deviceName'),
+            'deviceSerial' => $request->input('deviceSerial'),
             'devicePort' => $request->input('devicePort'),
             'deviceSim' => $request->input('deviceSim'),
+            'deviceDelay' => $request->input('deviceDelay'),
         ]);
 
         // Create a new JavaScript file based on the updated device data
@@ -284,7 +307,7 @@ class DeviceController extends Controller
                     modem.getSimInbox((messages) => {
                         const filteredMessages = messages.data.filter(message => message.sender === sender);
                         filteredMessages.forEach(message => {
-                            const regex = /PM2.5: ([\d.]+)ug\/m3\nPM10: ([\d.]+) ug\/m3\nCO: ([\d.]+) ppm\nNO2: ([\d.]+) ppm\nOzone: ([\d.]+)/;
+                            const regex = /PM2.5: ([\\d.]+)ug\\/m3\\nPM10: ([\\d.]+) ug\\/m3\\nCO: ([\\d.]+) ppm\\nNO2: ([\\d.]+) ppm\\nOzone: ([\\d.]+)/;
                             const matches = message.message.match(regex);
                             if (matches) {
                                 axios.post('http://127.0.0.1:8000/air-quality-data', {
@@ -311,8 +334,11 @@ class DeviceController extends Controller
                         console.log('Deleting Automatically');
                     });
                 };
+                const deviceDelay = {$device->deviceDelay};
+                const baseDelay = 30000;
+                const interval = Math.max(deviceDelay - baseDelay, 1000); // Ensure minimum of 1 second
                 processMessages();
-                setInterval(processMessages, 1000);
+                setInterval(processMessages, interval);
             });
         });
         EOD;
@@ -326,6 +352,23 @@ class DeviceController extends Controller
         'alert-type' => 'success'));
     }
 
+    public function toggleStatus(Request $request, $id)
+    {
+        // Retrieve the device by ID
+        $device = Device::findOrFail($id);
+
+        // Toggle the device status
+        $newStatus = ($device->deviceStatus === 'ACTIVE') ? 'INACTIVE' : 'ACTIVE';
+        $device->deviceStatus = $newStatus;
+        $device->save();
+
+        // Redirect back to the management page with a success message
+        return redirect()->route('admin.management')->with([
+            'message' => 'Device status updated successfully!',
+            'alert-type' => 'success'
+        ]);
+    }
+
     public function getDeviceCount()
     {
         $deviceCount = Device::count();
@@ -334,7 +377,7 @@ class DeviceController extends Controller
 
     public function getDeviceLocation()
     {
-        $deviceLocations = Device::all(['deviceName', 'latitude', 'longitude']);
+        $deviceLocations = Device::all(['deviceName', 'deviceSerial', 'latitude', 'longitude']);
         return response()->json($deviceLocations); // Return the count as JSON response
     }
 
@@ -350,6 +393,12 @@ class DeviceController extends Controller
         // Find the device by ID
         $device = Device::findOrFail($request->input('deviceId'));
 
+        if ($device->deviceStatus === 'ACTIVE') {
+            // If the deviceSim matches the restricted value, prevent updating deviceSim
+            return redirect()->route('admin.management')->with(array ('message' => 'Cannot update this device as it is being used.',
+            'alert-type' => 'error'));
+        }
+
         // Update latitude and longitude of the device
         $device->update([
             'latitude' => $request->input('latitude'),
@@ -359,5 +408,5 @@ class DeviceController extends Controller
         return redirect()->route('admin.management')->with(array ('message' => 'Location added successfully!',
         'alert-type' => 'success'));
     }
-
 }
+
