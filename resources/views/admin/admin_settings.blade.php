@@ -8,49 +8,10 @@
 
         <div class="row">
 
-            <!-- left wrapper start -->
-            <div class="col-sm-6 col-md-4 col-xl-3 left-wrapper">
-
-                <div class="card">
-
-                    <div class="card-body">
-                        <h6 class="mb-3 d-flex justify-content-center">Notifications</h6>
-
-                        {{-- each toggle container --}}
-                        <div class="col-12 mx-auto mb-3 d-flex justify-content-start align-items-baseline">
-                            <!-- Custom Toggle Switch -->
-                            <div class="custom-toggle my-auto">
-
-                                <input type="checkbox" class="custom-control-input" id="toggleSwitch2">
-                                <label class="custom-control-label" for="toggleSwitch2"></label>
-                            </div>
-                            <!-- custom Toggle Description -->
-                            <p>Device Update Notification</p>
-
-                        </div>
-
-                        {{-- each toggle container --}}
-                        <div class="col-12  mb-3 d-flex justify-content-start align-items-baseline">
-                            <!-- Custom Toggle Switch -->
-                            <div class="custom-toggle my-auto">
-
-                                <input type="checkbox" class="custom-control-input" id="toggleSwitch3">
-                                <label class="custom-control-label" for="toggleSwitch3"></label>
-                            </div>
-                            <!-- custom Toggle Description -->
-                            <p>Reminder Notification</p>
-
-                        </div>
-
-                    </div>
-                </div>
-
-            </div>
-            <!-- left wrapper end -->
-
-                <!-- Display Flash Messages -->
-
-            <div class="col-sm-6 col-md-9">
+            <!-- Display Flash Messages -->
+            <div class="col-2"></div>
+           
+            <div class="col-8">
                 <div class="row flex-grow-1">
                     <div class="col-11 mx-auto">
                         <div class="card">
@@ -96,6 +57,8 @@
                     </div>
                 </div>
             </div>
+            <div class="col-2"></div>
+
             <!-- right wrapper end -->
         </div>
     </div>
