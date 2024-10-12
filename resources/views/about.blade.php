@@ -7,7 +7,7 @@
         <title>AirSense - About</title>
 
         <!-- Change the href attribute to the path of your icon file -->
-        <link rel="icon" href="{{ asset('airsense.png') }}" type="image/png">
+        <link rel="icon" href="{{ !empty($logo) && !empty($logo->logo) ? asset('upload/logo/' . $logo->logo) : asset('upload/logo/no_image.png') }}" alt="Air Sense Logo" type="image/png">
 
         <!-- Styles -->
         <style>
@@ -114,7 +114,7 @@
                         <p>
                             PM10, known as coarse particulate matter, encompasses airborne particles with diameters of 10 micrometers or smaller. These particles, originating from sources like road dust, construction activities, and agricultural practices, can irritate the respiratory system upon inhalation, posing health concerns and necessitating monitoring to safeguard public well-being.
                     </p>
-                    
+
                     </div>
                     <div class="tab-pane fade mt-4" id="v-messages" role="tabpanel" aria-labelledby="v-messages-tab">
                         <h6 class="mb-3">CO</h6>

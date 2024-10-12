@@ -7,7 +7,8 @@
       <title>AirSense - Dashboard</title>
 
       <!-- Change the href attribute to the path of your icon file -->
-      <link rel="icon" href="{{ asset('airsense.png') }}" type="image/png">
+    <link rel="icon" href="{{ !empty($logo) && !empty($logo->logo) ? asset('upload/logo/' . $logo->logo) : asset('upload/logo/no_image.png') }}" alt="Air Sense Logo" type="image/png">
+
 
       <!-- core:css -->
       <link rel="stylesheet" href="{{ asset('../assets/vendors/core/core.css') }}">
@@ -116,14 +117,14 @@
                                 <div class="col-12 col-md-12 text-center">
                                     <h3 id="pm25-value" class="mb-2">
                                         <div class="spinner-grow text-primary" role="status">
-                                            <span class="visually-hidden">Loading...</span>
+
                                         </div>
                                     </h3>
-                                    <p id="pm25-classification" class="mb-2">
-                                        <span class="visually-hidden">Loading...</span>
+                                    <p id="pm25-classification" class="mb-2" style="font-weight: bold; letter-spacing: 1.25px;">
+
                                     </p>
                                     <p id="pm25-date" style="font-style: italic; font-size: 80%">
-                                        <span class="visually-hidden">Loading...</span>
+
                                     </p>
                                 </div>
                             </div>
@@ -141,14 +142,14 @@
                                 <div class="col-12 col-md-12 text-center">
                                     <h3 id="pm10-value" class="mb-2">
                                         <div class="spinner-grow text-primary" role="status">
-                                            <span class="visually-hidden">Loading...</span>
+
                                         </div>
                                     </h3>
-                                    <p id="pm10-classification" class="mb-2">
-                                        <span class="visually-hidden">Loading...</span>
+                                    <p id="pm10-classification" class="mb-2" style="font-weight: bold; letter-spacing: 1.25px;">
+
                                     </p>
                                     <p id="pm10-date" style="font-style: italic; font-size: 80%">
-                                        <span class="visually-hidden">Loading...</span>
+
                                     </p>
                                 </div>
                             </div>
@@ -166,14 +167,14 @@
                                 <div class="col-12 col-md-12 text-center">
                                     <h3 id="co-value" class="mb-2">
                                         <div class="spinner-grow text-primary" role="status">
-                                            <span class="visually-hidden">Loading...</span>
+
                                         </div>
                                     </h3>
-                                    <p id="co-classification" class="mb-2">
-                                        <span class="visually-hidden">Loading...</span>
+                                    <p id="co-classification" class="mb-2" style="font-weight: bold; letter-spacing: 1.25px;">
+
                                     </p>
                                     <p id="co-date" style="font-style: italic; font-size: 80%">
-                                        <span class="visually-hidden">Loading...</span>
+
                                     </p>
                                 </div>
                             </div>
@@ -191,14 +192,14 @@
                                 <div class="col-12 col-md-12 text-center">
                                     <h3 id="no2-value" class="mb-2">
                                         <div class="spinner-grow text-primary" role="status">
-                                            <span class="visually-hidden">Loading...</span>
+
                                         </div>
                                     </h3>
-                                    <p id="no2-classification" class="mb-2">
-                                        <span class="visually-hidden">Loading...</span>
+                                    <p id="no2-classification" class="mb-2" style="font-weight: bold; letter-spacing: 1.25px;">
+
                                     </p>
                                     <p id="no2-date" style="font-style: italic; font-size: 80%">
-                                        <span class="visually-hidden">Loading...</span>
+
                                     </p>
                                 </div>
                             </div>
@@ -216,14 +217,11 @@
                                 <div class="col-12 col-md-12 text-center">
                                     <h3 id="ozone-value" class="mb-2">
                                         <div class="spinner-grow text-primary" role="status">
-                                            <span class="visually-hidden">Loading...</span>
                                         </div>
                                     </h3>
-                                    <p id="ozone-classification" class="mb-2">
-                                        <span class="visually-hidden">Loading...</span>
+                                    <p id="ozone-classification" class="mb-2" style="font-weight: bold; letter-spacing: 1.25px;">
                                     </p>
                                     <p id="ozone-date" style="font-style: italic; font-size: 80%">
-                                        <span class="visually-hidden">Loading...</span>
                                     </p>
                                 </div>
                             </div>
@@ -350,7 +348,7 @@ function fetchDataAndUpdate(pollutant) {
     }
 
     function updateDeviceStatus(currentTime, dataTime) {
-    const thresholdMinutes = 2;
+    const thresholdMinutes = 1;
     const thresholdTime = new Date(currentTime.getTime() - thresholdMinutes * 60000);
 
     const statusElement = document.getElementById('device-status');
@@ -479,13 +477,13 @@ function fetchDataAndUpdate(pollutant) {
                     return "Good";
                 } else if (value > 0.064 && value <= 0.084) {
                     return "Moderate";
-                } else if (value > 0.085 && value <= 0.104) {
+                } else if (value > 0.084 && value <= 0.104) {
                     return "Unhealthy for Sensitive Groups";
-                } else if (value > 0.105 && value <= 0.124) {
+                } else if (value > 0.104 && value <= 0.124) {
                     return "Unhealthy";
-                } else if (value > 0.125 && value <= 0.374) {
+                } else if (value > 0.124 && value <= 0.374) {
                     return "Very Unhealthy";
-                } else if (value > 0.375 ) {
+                } else if (value > 0.374 ) {
                     return "Hazardous";
                 } else {
                     return "Over values";
@@ -504,7 +502,7 @@ function fetchDataAndUpdate(pollutant) {
             case "Good":
                 return "#00B050"; // Green
             case "Moderate":
-                return "#FFFF00"; // Yellow
+                return "#B5B303"; // Yellow
             case "Unhealthy for Sensitive Groups":
                 return "#FF6600"; // Orange
             case "Unhealthy":
