@@ -5,7 +5,8 @@
 
 # Running
 - php artisan serve
-- npm run dev 
+- npm run dev
+- node public/run/{executable}.js 
 
 pricing idea 
 - extended forecast / forecast capabilities for normal users
@@ -76,9 +77,3 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
-
-todo:
-- hide download csv element while processing download
-- put focus input login/register page
-- notification (days with missing data)
-- put input for air quality data interval (graph)
