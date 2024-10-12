@@ -22,7 +22,7 @@ let options = {
     logger: console
 };
 
-modem.open('COM8', options, {});
+modem.open('COM3', options, {});
 
 modem.on('open', data => {
     // initialize modem
@@ -69,7 +69,13 @@ modem.on('open', data => {
         };
 
         // Call the function immediately and then set it to run every 1 second
+        // processMessages();
+        // setInterval(processMessages, 1000);
+
+        const deviceDelay = 40000;
+        const baseDelay = 30000;
+        const interval = Math.max(deviceDelay - baseDelay, 1000); // Ensure minimum of 1 second
         processMessages();
-        setInterval(processMessages, 1000);
+        setInterval(processMessages, interval);
     });
 });

@@ -1,3 +1,4 @@
+
 @extends('admin.admin_dashboard')
 @section('content')
 
@@ -7,12 +8,17 @@
 <div class="page-content">
 
     <div class="row grid-margin">
+        <div class="d-flex justify-content-start rounded-3 mb-4">
+            <h3>System Management</h3>
 
-        <div class="d-flex justify-content-between rounded-3 mb-4">
-            <h3 class="">System Management</h3>
+        </div>
+        <div class="grid-margin d-flex justify-content-evenly py-3 rounded-3 custom-background gap-5">
                 <!-- Button trigger modal -->
-            <button type="button" class="btn btn-success col-3" data-bs-toggle="modal" data-bs-target="#addDevice">
+            <button type="button" class="btn btn-primary col-3" data-bs-toggle="modal" data-bs-target="#addDevice">
                 Add Device
+            </button>
+            <button type="button" class="btn btn-primary col-3" data-bs-toggle="modal" data-bs-target="#addLocation">
+                Add Location
             </button>
         </div>
     </div>
@@ -33,20 +39,43 @@
 
 
     <!-- Display Devices -->
-    <div class="d-flex justify-content-evenly p-3 for-light-mode-bg">
+    <div class="d-flex flex-wrap justify-content-evenly p-3 for-light-mode-bg">
         @foreach ($devices as $device)
-        <div class="col-12 col-sm-5 mb-4">
+        <div class="col-12 col-sm-5 my-5">
             <div class="card rounded mb-2">
                 <div class="card-body">
+
+                    @if ($device->deviceStatus === 'ACTIVE')
+                        <form action="{{ route('admin.toggleStatus', $device->id) }}" method="POST">
+                            @csrf
+                            @method('PUT')
+                            <div id="#" class="management-status-active">
+                                <div class="status-circle"></div>
+                                <div>ACTIVE</div>
+                            </div>
+                        </form>
+                    @else
+                        <form action="{{ route('admin.toggleStatus', $device->id) }}" method="POST">
+                            @csrf
+                            @method('PUT')
+                            <div id="#" class="management-status-inactive">
+                                <div class="status-circle"></div>
+                                <div>INACTIVE</div>
+                            </div>
+                        </form>
+                    @endif
+
                     <div class="mb-2">
-                        <p class="card-title mb-0">Device ID: <span>{{ $device->id }}</span></p>
                         <p class="card-title mb-0">Device Name: <span>{{ $device->deviceName }}</span></p>
+                        <p class="card-title mb-0">Device Serial: <span>{{ $device->deviceSerial }}</span></p>
                         <p class="card-title mb-0">Device COM: <span>{{ $device->devicePort }}</span></p>
                         <p class="card-title mb-0">Device Sim #: <span>{{ $device->deviceSim }}</span></p>
+                        <p class="card-title mb-0">Device Delay Interval:
+                            <span>{{ $device->deviceDelay / 1000 }} secs</span>
+                        </p>
                         <p class="card-title mb-0">Device Latitude: <span>{{ $device->latitude }}</span></p>
                         <p class="card-title mb-0">Device Longitude: <span>{{ $device->longitude }}</span></p>
-                        <p class="card-title mb-0">Device Status: <span>Active</span></p>
-                        <p class="card-title mb-0">Pollutant Data:</p>
+                        <p class="card-title mb-0">Monitored Pollutant:</p>
                     </div>
                     <div class="mx-4">
                         <p>Particulate Matter 2.5</p>
@@ -62,10 +91,19 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-12 rounded mb-3">
-                            <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-success w-100 rounded-3" data-bs-toggle="modal" data-bs-target="#addLocation">
-                                Add Location
-                            </button>
+                            @if ($device->deviceStatus === 'ACTIVE')
+                                <form action="{{ route('admin.toggleStatus', $device->id) }}" method="POST">
+                                    @csrf
+                                    @method('PUT')
+                                    <button type="submit" class="btn btn-warning w-100">DEACTIVATE</button>
+                                </form>
+                            @else
+                                <form action="{{ route('admin.toggleStatus', $device->id) }}" method="POST">
+                                    @csrf
+                                    @method('PUT')
+                                    <button type="submit" class="btn btn-primary w-100">ACTIVATE</button>
+                                </form>
+                            @endif
                         </div>
                     </div>
                     <div class="row">
@@ -75,12 +113,13 @@
                                 Update
                             </button>
                         </div>
-                        <!-- Delete Form -->
-                        <form action="{{ route('admin.delete', $device->id) }}" method="POST" class="col-6 rounded">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-secondary rounded-3 w-100">Delete</button>
-                        </form>
+                        <!-- Delete Button trigger modal -->
+                        <div class="col-6 rounded">
+
+                            <button type="button" class="btn btn-secondary rounded-3 w-100" data-bs-toggle="modal" data-bs-target="#deleteDeviceModal{{ $device->id }}">
+                                Delete
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
