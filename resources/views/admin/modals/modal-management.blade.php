@@ -13,9 +13,13 @@
                 <form action="{{ route('admin.data.store') }}" method="POST">
                     @csrf
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-8">
                             <label for="addName" class="form-label">Device Name:</label>
                             <input type="text" class="form-control" id="addName" name="deviceName" placeholder="Bukidnon State University - Main Campus" required>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="addSim" class="form-label">Device Sim#:</label>
+                            <input type="number" class="form-control" id="addSim" name="deviceSim" placeholder="639537399626" required>
                         </div>
                     </div>
                     <br>
@@ -29,8 +33,13 @@
                             <input type="number" class="form-control" id="addCom" name="devicePort" placeholder="1" required>
                         </div>
                         <div class="col-md-4">
-                            <label for="addSim" class="form-label">Device Sim#:</label>
-                            <input type="number" class="form-control" id="addSim" name="deviceSim" placeholder="639537399626" required>
+                            <label for="addDelay" class="form-label">Device Delay Interval:</label>
+                            <select class="form-control" id="addDelay" style="cursor:pointer;" name="deviceDelay">
+                                <option value="30000" selected>30 seconds (Default)</option>
+                                <option value="40000">40 seconds</option>
+                                <option value="50000">50 seconds</option>
+                                <option value="60000">60 seconds</option>
+                            </select>
                         </div>
                     </div>
                     <br>
@@ -64,12 +73,8 @@
                             <input type="text" class="form-control" id="updateName" name="deviceName" value="{{ $device->deviceName }}" required>
                         </div>
                         <div class="col-md-4">
-                            <label class="form-label" for="deviceInterval">Device Data Interval:</label>
-                            <select class="form-control" id="deviceInterval" style="cursor:pointer;">
-                                <option value="30">30 seconds</option>
-                                <option value="20">20 seconds</option>
-                                <option value="10">10 seconds</option>
-                            </select>
+                            <label for="updateSim" class="form-label">Device Sim#:</label>
+                            <input type="number" class="form-control" id="updateSim" name="deviceSim"  placeholder="{{ $device->deviceSim }}" value="{{ $device->deviceSim }}" required>
                         </div>
                     </div>
                     <br>
@@ -83,8 +88,13 @@
                             <input type="number" class="form-control" id="updateCom" name="devicePort" placeholder="{{ $device->devicePort }}" value="{{ $device->devicePort }}" required>
                         </div>
                         <div class="col-md-4">
-                            <label for="updateSim" class="form-label">Device Sim#:</label>
-                            <input type="number" class="form-control" id="updateSim" name="deviceSim"  placeholder="{{ $device->deviceSim }}" value="{{ $device->deviceSim }}" required>
+                            <label class="form-label" for="updateDelay">Device Delay Interval:</label>
+                            <select class="form-control" id="updateDelay" style="cursor:pointer;" name="deviceDelay">
+                                <option value="30000" {{ $device->deviceDelay == '30000' ? 'selected' : '' }}>30 seconds (Default)</option>
+                                <option value="40000" {{ $device->deviceDelay == '40000' ? 'selected' : '' }}>40 seconds</option>
+                                <option value="50000" {{ $device->deviceDelay == '50000' ? 'selected' : '' }}>50 seconds</option>
+                                <option value="60000" {{ $device->deviceDelay == '60000' ? 'selected' : '' }}>60 seconds</option>
+                            </select>
                         </div>
                     </div>
                     <br>

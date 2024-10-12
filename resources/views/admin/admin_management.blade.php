@@ -70,6 +70,9 @@
                         <p class="card-title mb-0">Device Serial: <span>{{ $device->deviceSerial }}</span></p>
                         <p class="card-title mb-0">Device COM: <span>{{ $device->devicePort }}</span></p>
                         <p class="card-title mb-0">Device Sim #: <span>{{ $device->deviceSim }}</span></p>
+                        <p class="card-title mb-0">Device Delay Interval:
+                            <span>{{ $device->deviceDelay / 1000 }} secs</span>
+                        </p>
                         <p class="card-title mb-0">Device Latitude: <span>{{ $device->latitude }}</span></p>
                         <p class="card-title mb-0">Device Longitude: <span>{{ $device->longitude }}</span></p>
                         <p class="card-title mb-0">Monitored Pollutant:</p>
