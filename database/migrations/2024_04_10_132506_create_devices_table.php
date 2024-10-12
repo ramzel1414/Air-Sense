@@ -14,6 +14,7 @@ class CreateDevicesTable extends Migration
             $table->string('deviceSerial')->unique();
             $table->integer('devicePort')->unique();
             $table->string('deviceSim')->unique();
+            $table->string('deviceDelay')->nullable();
             $table->string('deviceStatus')->nullable();
             $table->string('latitude')->nullable();
             $table->string('longitude')->nullable();
