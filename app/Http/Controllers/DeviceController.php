@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Device;
+use App\Models\Sitelogo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 
@@ -41,12 +42,19 @@ class DeviceController extends Controller
             'alert-type' => 'error'));
         }
 
+        // Check if deviceDelay is numeric
+        if (!is_numeric($request->input('deviceDelay'))) {
+            return redirect()->route('admin.management')->with(array ('message' => 'Device Delay Interval must be a numerical.',
+            'alert-type' => 'error'));
+        }
+
         // Validate the incoming request data
         $request->validate([
             'deviceName' => 'required|string',
             'deviceSerial' => 'required|string|unique:devices,deviceSerial',
             'devicePort' => 'required|integer|unique:devices,devicePort',
             'deviceSim' => 'required|integer|unique:devices,deviceSim',
+            'deviceDelay' => 'nullable|numeric',
             'latitude' => 'nullable|numeric',
             'longitude' => 'nullable|numeric',
         ]);
@@ -59,6 +67,7 @@ class DeviceController extends Controller
             'devicePort' => $request->input('devicePort'),
             'deviceStatus' => "ACTIVE",
             'deviceSim' => $request->input('deviceSim'),
+            'deviceDelay' => $request->input('deviceDelay'),
         ]);
 
         // Generate JavaScript content based on the device data
@@ -95,7 +104,7 @@ class DeviceController extends Controller
                     modem.getSimInbox((messages) => {
                         const filteredMessages = messages.data.filter(message => message.sender === sender);
                         filteredMessages.forEach(message => {
-                            const regex = /PM2.5: ([\d.]+)ug\/m3\nPM10: ([\d.]+) ug\/m3\nCO: ([\d.]+) ppm\nNO2: ([\d.]+) ppm\nOzone: ([\d.]+)/;
+                            const regex = /PM2.5: ([\\d.]+)ug\\/m3\\nPM10: ([\\d.]+) ug\\/m3\\nCO: ([\\d.]+) ppm\\nNO2: ([\\d.]+) ppm\\nOzone: ([\\d.]+)/;
                             const matches = message.message.match(regex);
                             if (matches) {
                                 axios.post('http://127.0.0.1:8000/air-quality-data', {
@@ -122,8 +131,11 @@ class DeviceController extends Controller
                         console.log('Deleting Automatically');
                     });
                 };
+                const deviceDelay = {$device->deviceDelay};
+                const baseDelay = 30000;
+                const interval = Math.max(deviceDelay - baseDelay, 1000); // Ensure minimum of 1 second
                 processMessages();
-                setInterval(processMessages, 1000);
+                setInterval(processMessages, interval);
             });
         });
         EOD;
@@ -153,10 +165,10 @@ class DeviceController extends Controller
     {
         // Retrieve all devices from the database
         $devices = Device::all();
-
+        $logo = Sitelogo::orderBy('id', 'asc')->first(); // Ensure it gets the first logo by ID
         // Pass devices data and device count to the admin management view
         $deviceCount = $devices->count();
-        return view('admin.admin_management', compact('devices', 'deviceCount'));
+        return view('admin.admin_management', compact('devices', 'deviceCount', 'logo'));
     }
 
 
@@ -164,16 +176,9 @@ class DeviceController extends Controller
     {
         $device = Device::findOrFail($id);
 
-        // Check if the deviceSim matches the restricted value
-        if ($device->deviceSim === '639537399626') {
-            return redirect()->route('admin.management')->with(array ('message' => 'Cannot delete this device, as it is being used',
-            'alert-type' => 'error'));
-        }
-
-        // Check if any other device is using the same devicePort
-        $existingDevice = Device::where('devicePort', $device->devicePort)->where('id', '!=', $device->id)->first();
-        if ($existingDevice) {
-            return redirect()->route('admin.management')->with(array ('message' => 'Cannot delete this device. Another device is using the same COMPORT.',
+        if ($device->deviceStatus === 'ACTIVE') {
+            // If the deviceSim matches the restricted value, prevent updating deviceSim
+            return redirect()->route('admin.management')->with(array ('message' => 'Cannot update this device as it is being used.',
             'alert-type' => 'error'));
         }
 
@@ -237,6 +242,11 @@ class DeviceController extends Controller
             'alert-type' => 'error'));
         }
 
+        // Only update deviceDelay if a value other than 'none' is selected
+        if ($request->input('deviceDelay') !== '0') {
+            $updateData['deviceDelay'] = $request->input('deviceDelay');
+        }
+
         if ($device->deviceStatus === 'ACTIVE') {
             // If the deviceSim matches the restricted value, prevent updating deviceSim
             return redirect()->route('admin.management')->with(array ('message' => 'Cannot update this device as it is being used.',
@@ -258,6 +268,7 @@ class DeviceController extends Controller
             'deviceSerial' => $request->input('deviceSerial'),
             'devicePort' => $request->input('devicePort'),
             'deviceSim' => $request->input('deviceSim'),
+            'deviceDelay' => $request->input('deviceDelay'),
         ]);
 
         // Create a new JavaScript file based on the updated device data
@@ -296,7 +307,7 @@ class DeviceController extends Controller
                     modem.getSimInbox((messages) => {
                         const filteredMessages = messages.data.filter(message => message.sender === sender);
                         filteredMessages.forEach(message => {
-                            const regex = /PM2.5: ([\d.]+)ug\/m3\nPM10: ([\d.]+) ug\/m3\nCO: ([\d.]+) ppm\nNO2: ([\d.]+) ppm\nOzone: ([\d.]+)/;
+                            const regex = /PM2.5: ([\\d.]+)ug\\/m3\\nPM10: ([\\d.]+) ug\\/m3\\nCO: ([\\d.]+) ppm\\nNO2: ([\\d.]+) ppm\\nOzone: ([\\d.]+)/;
                             const matches = message.message.match(regex);
                             if (matches) {
                                 axios.post('http://127.0.0.1:8000/air-quality-data', {
@@ -323,8 +334,11 @@ class DeviceController extends Controller
                         console.log('Deleting Automatically');
                     });
                 };
+                const deviceDelay = {$device->deviceDelay};
+                const baseDelay = 30000;
+                const interval = Math.max(deviceDelay - baseDelay, 1000); // Ensure minimum of 1 second
                 processMessages();
-                setInterval(processMessages, 1000);
+                setInterval(processMessages, interval);
             });
         });
         EOD;
@@ -363,7 +377,7 @@ class DeviceController extends Controller
 
     public function getDeviceLocation()
     {
-        $deviceLocations = Device::all(['deviceName', 'latitude', 'longitude']);
+        $deviceLocations = Device::all(['deviceName', 'deviceSerial', 'latitude', 'longitude']);
         return response()->json($deviceLocations); // Return the count as JSON response
     }
 
@@ -379,6 +393,12 @@ class DeviceController extends Controller
         // Find the device by ID
         $device = Device::findOrFail($request->input('deviceId'));
 
+        if ($device->deviceStatus === 'ACTIVE') {
+            // If the deviceSim matches the restricted value, prevent updating deviceSim
+            return redirect()->route('admin.management')->with(array ('message' => 'Cannot update this device as it is being used.',
+            'alert-type' => 'error'));
+        }
+
         // Update latitude and longitude of the device
         $device->update([
             'latitude' => $request->input('latitude'),
@@ -388,5 +408,5 @@ class DeviceController extends Controller
         return redirect()->route('admin.management')->with(array ('message' => 'Location added successfully!',
         'alert-type' => 'success'));
     }
-
 }
+

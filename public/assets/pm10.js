@@ -138,7 +138,7 @@ $(function () {
                 },
                 error: function (error) {
                     console.log('Error fetching data:', error);
-                }
+                },
             });
         }
         // Update chart every second
@@ -159,6 +159,9 @@ $(function () {
 
     // Attach click event listener to the button for exporting PM10 data
     $('#expPM10').on('click', function () {
+        $('#processing-pm10').show();  
+        $('#download-csv-pm10').hide();
+
         $.ajax({
             url: '/pm10-data',
             method: 'GET',
@@ -173,7 +176,7 @@ $(function () {
                     var healthImpact = getHealthImpact(classification);
 
                     // Format average PM10 value to one decimal place
-                    var avgPM10Formatted = item.avgPM10.toFixed(1);
+                    var avgPM10Formatted = item.avgPM10.toFixed(0);
 
                     csvContent += item.dateTime + "," + avgPM10Formatted + "," + classification + "," + healthImpact + "\n";
                 });
@@ -191,6 +194,10 @@ $(function () {
             },
             error: function (error) {
                 console.log('Error fetching data:', error);
+            },
+            complete: function () {
+                $('#processing-pm10').hide();  
+                $('#download-csv-pm10').show();
             }
         });
     });
@@ -217,6 +224,152 @@ $(function () {
             var avgPM10 = hourlyAverages[hourDateTime].sumPM10 / hourlyAverages[hourDateTime].count;
             result.push({ dateTime: hourDateTime, avgPM10: avgPM10 });
         });
+        return result;
+    }
+
+    // DAILY
+    $('#expPM10Daily').on('click', function () {
+        $('#processing-pm10').show();  
+        $('#download-csv-pm10').hide();
+        
+        $.ajax({
+            url: '/pm10-data',
+            method: 'GET',
+            success: function (data) {
+                // Calculate daily average PM10 values
+                var dailyAverageData = calculateAverageByDay(data);
+
+                // Sort dailyAverageData array by dateTime (ascending order)
+                dailyAverageData.sort((a, b) => {
+                    return new Date(a.dateTime) - new Date(b.dateTime);
+                });
+
+                // Generate CSV content with classification
+                var csvContent = "Date,PM10,Classification,Health Impact\n";
+                dailyAverageData.forEach(function (item) {
+                    var classification = getClassification(item.avgPM10);
+                    var healthImpact = getHealthImpact(classification);
+                    var avgPM10Formatted = item.avgPM10.toFixed(0);
+
+                    csvContent += item.dateTime + "," + avgPM10Formatted + "," + classification + "," + healthImpact + "\n";
+                });
+
+                // Download CSV file
+                var blob = new Blob([csvContent], { type: 'text/csv' });
+                var url = window.URL.createObjectURL(blob);
+                var a = document.createElement('a');
+                a.href = url;
+                a.download = 'pm10-average-per-day.csv';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                window.URL.revokeObjectURL(url);
+            },
+            error: function (error) {
+                console.log('Error fetching data:', error);
+            },
+            complete: function () {
+                $('#processing-pm10').hide();  
+                $('#download-csv-pm10').show();
+            }
+        });
+    });
+
+    function calculateAverageByDay(data) {
+        var dailyAverages = {};
+
+        data.forEach(function (item) {
+            var date = item.dateTime.split(' ')[0];
+
+            if (!dailyAverages[date]) {
+                dailyAverages[date] = { sumPM10: 0, count: 0 };
+            }
+
+            dailyAverages[date].sumPM10 += item.pm10;
+            dailyAverages[date].count++;
+        });
+
+        var result = [];
+        Object.keys(dailyAverages).forEach(function (date) {
+            var avgPM10 = dailyAverages[date].sumPM10 / dailyAverages[date].count;
+            result.push({ dateTime: date, avgPM10: avgPM10 });
+        });
+
+        return result;
+    }
+
+    // MONTHLY
+    $('#expPM10Monthly').on('click', function () {
+        $('#processing-pm10').show();  
+        $('#download-csv-pm10').hide();
+        
+        $.ajax({
+            url: '/pm10-data',
+            method: 'GET',
+            success: function (data) {
+                // Calculate monthly average PM10 values
+                var monthlyAverageData = calculateAverageByMonth(data);
+
+                // Sort monthlyAverageData array by dateTime (ascending order)
+                monthlyAverageData.sort((a, b) => {
+                    return new Date(a.dateTime) - new Date(b.dateTime);
+                });
+
+                // Generate CSV content with classification
+                var csvContent = "Month,PM10,Classification,Health Impact\n";
+                monthlyAverageData.forEach(function (item) {
+                    var classification = getClassification(item.avgPM10);
+                    var healthImpact = getHealthImpact(classification);
+                    var avgPM10Formatted = item.avgPM10.toFixed(0);
+
+                    csvContent += item.dateTime + "," + avgPM10Formatted + "," + classification + "," + healthImpact + "\n";
+                });
+
+                // Download CSV file
+                var blob = new Blob([csvContent], { type: 'text/csv' });
+                var url = window.URL.createObjectURL(blob);
+                var a = document.createElement('a');
+                a.href = url;
+                a.download = 'pm10-average-per-month.csv';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                window.URL.revokeObjectURL(url);
+            },
+            error: function (error) {
+                console.log('Error fetching data:', error);
+            },
+            complete: function () {
+                $('#processing-pm10').hide();  
+                $('#download-csv-pm10').show();
+            }
+        });
+    });
+
+    function calculateAverageByMonth(data) {
+        var monthlyAverages = {};
+
+        data.forEach(function (item) {
+            var date = new Date(item.dateTime);
+            var monthYearKey = date.getFullYear() + '-' + (date.getMonth() + 1);
+
+            if (!monthlyAverages[monthYearKey]) {
+                monthlyAverages[monthYearKey] = { sumPM10: 0, count: 0 };
+            }
+
+            monthlyAverages[monthYearKey].sumPM10 += item.pm10;
+            monthlyAverages[monthYearKey].count++;
+        });
+
+        var result = [];
+        Object.keys(monthlyAverages).forEach(function (monthYearKey) {
+            var avgPM10 = monthlyAverages[monthYearKey].sumPM10 / monthlyAverages[monthYearKey].count;
+            var [year, month] = monthYearKey.split('-');
+            var monthYear = `${year}-${month}`;
+
+            result.push({ dateTime: monthYear, avgPM10: avgPM10 });
+        });
+
         return result;
     }
 

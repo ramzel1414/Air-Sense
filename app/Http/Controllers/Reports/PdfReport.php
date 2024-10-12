@@ -2,15 +2,35 @@
 
 namespace App\Http\Controllers\Reports;
 
+use App\Models\Sitelogo;
 use Codedge\Fpdf\Fpdf\Fpdf;
 
 class PdfReport extends FPDF
 {
     function Header()
     {
-        //Logo
-        $this->Image('airsense.png', 76, 10, 20,);
-        $this->Image('buksu.png', 200, 10, 20);
+        //Logo's
+        $imageWidth = 20; // Width of the image
+        $pageWidth = $this->GetPageWidth();
+
+        // Calculate the x-coordinate to center the image
+        $x = ($pageWidth - $imageWidth) / 2;
+
+        // Retrieve both logos
+        $logos = Sitelogo::all();
+
+        // Check if there are logos available
+        if ($logos->count() > 0) {
+            // Placement of the first logo
+            $logoPath1 = !empty($logos[0]->logo) ? public_path('upload/logo/' . $logos[0]->logo) : public_path('upload/logo/no_image.png');
+            $this->Image($logoPath1, $x - 60, 10, $imageWidth); // Place first logo
+
+            // Placement of the second logo
+            if ($logos->count() > 1) { // Ensure there is a second logo
+                $logoPath2 = !empty($logos[1]->logo) ? public_path('upload/logo/' . $logos[1]->logo) : public_path('upload/logo/no_image.png');
+                $this->Image($logoPath2, $x + 60, 10, $imageWidth); // Place second logo
+            }
+        }
 
         // Select Arial bold 15
         $this->SetFont('Arial', 'B', 12);
@@ -32,7 +52,7 @@ class PdfReport extends FPDF
         // Select Arial italic 8
         $this->SetFont('Arial', 'I', 8);
         // Print centered page number
-        $this->Cell(0, 10, 'Electronic Generated Report. Released on: ' . date('m/d/Y (l) h:i:sa'), 0, 0, 'L');
+        $this->Cell(0, 10, 'Annual Assessment Report of MC-EMBX - Ambient Air Quality Monitoring Station. Released on: ' . date('m/d/Y (l) h:i:sa'), 0, 0, 'L');
         $this->Cell(0, 10, 'Page '.$this->PageNo(), 0, 0, 'R');
     }
 
