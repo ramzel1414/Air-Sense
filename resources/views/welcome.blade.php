@@ -348,9 +348,8 @@ function fetchDataAndUpdate(pollutant) {
     }
 
     function updateDeviceStatus(currentTime, dataTime) {
-    const thresholdMinutes = 1;
+    const thresholdMinutes = 1; // The time threshold for determining "ONLINE" status
     const thresholdTime = new Date(currentTime.getTime() - thresholdMinutes * 60000);
-
     const statusElement = document.getElementById('device-status');
         if (dataTime > thresholdTime) {
             // Device is ONLINE
@@ -363,7 +362,9 @@ function fetchDataAndUpdate(pollutant) {
             }
         } else {
             // Device is OFFLINE
-            statusElement.textContent = 'OFFLINE';
+            const timeDifference = Math.floor((currentTime - dataTime) / 1000); // Time difference in seconds
+            const formattedTime = formatTimeDifference(timeDifference); // Format the time difference
+            statusElement.textContent = `OFFLINE: ${formattedTime}`; // Display formatted time delay
             statusElement.classList.remove('device-status-online');
             statusElement.classList.add('device-status-offline');
 
@@ -371,6 +372,24 @@ function fetchDataAndUpdate(pollutant) {
                 statusElement.innerHTML = '<div class="status-circle"></div>' + statusElement.textContent;
             }
         }
+    }
+
+    // Function to format time difference into human-readable format
+    function formatTimeDifference(seconds) {
+        const minutes = Math.floor(seconds / 60);
+        const hours = Math.floor(minutes / 60);
+        const days = Math.floor(hours / 24);
+        const weeks = Math.floor(days / 7);
+        const months = Math.floor(days / 30);
+        const years = Math.floor(days / 365);
+
+        if (seconds < 60) return `${seconds} second${seconds !== 1 ? 's' : ''} ago`;
+        if (minutes < 60) return `${minutes} minute${minutes !== 1 ? 's' : ''} ago`;
+        if (hours < 24) return `${hours} hour${hours !== 1 ? 's' : ''} ago`;
+        if (days < 30) return `${days} day${days !== 1 ? 's' : ''} ago`;
+        if (weeks < 4) return `${weeks} week${weeks !== 1 ? 's' : ''} ago`;
+        if (months < 12) return `${months} month${months !== 1 ? 's' : ''} ago`;
+        return `${years} year${years !== 1 ? 's' : ''} ago`;
     }
 
     function updateUI(pollutant, data) {
