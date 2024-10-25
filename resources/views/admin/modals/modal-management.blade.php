@@ -180,16 +180,14 @@
     let marker;
 
     function initMap() {
-        // Initialize map centered at a specific location
+
         map = new google.maps.Map(document.getElementById("map"), {
-            center: { lat: 8.156804915195472, lng: 125.12483062095382},
-            zoom: 17,
+            center: { lat: 8.156804915195472, lng: 125.12483062095382 },
+            zoom: 20,
+            mapId: "{{ env('GOOGLE_MAP_ID') }}"
         });
 
-        // Fetch device locations via AJAX request and display markers
         fetchDeviceLocations();
-
-        // Add click event listener to the map to set a marker on click
         map.addListener("click", (event) => {
             const lat = event.latLng.lat();
             const lng = event.latLng.lng();
@@ -204,12 +202,12 @@
                 data.forEach(device => {
                     const { deviceName, latitude, longitude } = device;
                     if (latitude && longitude) {
-                        // Create marker for device location
-                        const deviceMarker = new google.maps.Marker({
+                        // Create AdvancedMarkerElement for device location
+                        const deviceMarker = new google.maps.marker.AdvancedMarkerElement({
                             position: { lat: parseFloat(latitude), lng: parseFloat(longitude) },
                             map: map,
                             title: deviceName,
-                            icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png' // Blue marker icon for device
+                            icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png',
                         });
                         markers.push(deviceMarker);
                     }
@@ -226,14 +224,14 @@
     function addMarker(position) {
         // Remove previous marker if it exists
         if (marker) {
-            marker.setMap(null); // Remove marker from map
+            marker.map = null;  // Remove marker from map
         }
 
-        // Create a new marker at the clicked location
-        marker = new google.maps.Marker({
+        // Create a new AdvancedMarkerElement at the clicked location
+        marker = new google.maps.marker.AdvancedMarkerElement({
             position: position,
             map: map,
-            title: `Custom Marker: ${position.lat}, ${position.lng}`,
+            title: `Custom Marker: ${position.lat}, ${position.lng}`
         });
 
         // Add the marker to the markers array
@@ -251,10 +249,9 @@
         // Adjust map bounds to fit all markers
         const bounds = new google.maps.LatLngBounds();
         markers.forEach(marker => {
-            bounds.extend(marker.getPosition());
+            bounds.extend(marker.position);
         });
         map.fitBounds(bounds);
     }
 </script>
-<script src="https://maps.googleapis.com/maps/api/js?key=GOOGLE_MAP_API&callback=initMap" async defer></script>
 
