@@ -22687,6 +22687,10 @@ div.tox .tox-dialog__body {
   cursor: pointer;
 }
 
+.custom-radius {
+  border-radius: 50%;
+}
+
 .css-processing {
   display: none;
   padding: 8px 12px;
