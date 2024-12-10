@@ -23,6 +23,7 @@ use App\Http\Controllers\WeeklyPM25Controller;
 use App\Http\Controllers\WeeklyPM10Controller;
 use App\Http\Controllers\WeeklyNO2Controller;
 use App\Http\Controllers\WeeklyO3Controller;
+use App\Http\Controllers\PublicController;
 
 use App\Http\Controllers\MonthlyPM25Controller;
 use App\Http\Controllers\MonthlyPM10Controller;
@@ -34,7 +35,6 @@ use App\Http\Controllers\PdfControllerNO2;
 use App\Http\Controllers\PdfControllerO3;
 use App\Http\Controllers\PdfControllerPM10;
 use App\Http\Controllers\PdfControllerPM25;
-use App\Http\Controllers\PublicController;
 use App\Http\Controllers\SignatoryController;
 use App\Http\Controllers\SitelogoController;
 

@@ -1,8 +1,6 @@
 @extends('admin.admin_dashboard')
 @section('content')
 
-
-
 <div class="page-content">
 
     <h3 class="mb-4">Location</h3>
@@ -19,9 +17,10 @@
         <script type="text/javascript">
             function initMap() {
                 const map = new google.maps.Map(document.getElementById("map"), {
-                    zoom: 20,
-                    center: { lat: 8.157408, lng: 125.124856 },
-                });
+                zoom: 18,
+                center: { lat: 8.157408, lng: 125.124856 },
+                mapId: "{{ env('GOOGLE_MAP_ID') }}",
+            });
 
                 // Retrieve device locations from the server
                 fetch('/device-locations')
@@ -31,16 +30,16 @@
                             const { deviceName, deviceSerial, latitude, longitude } = location;
 
                             // Create a new marker for each device
-                            const marker = new google.maps.Marker({
+                            const marker = new google.maps.marker.AdvancedMarkerElement({
                                 position: { lat: parseFloat(latitude), lng: parseFloat(longitude) },
                                 map: map,
-                                title: deviceName,
+                                title: deviceName,  // Use the device name directly as a string
                             });
 
                             const infoWindowContent = `
                                 <div style="color:#0B1215; text-align:center;">
                                     <h5>${deviceName}</h5>
-                                    <h6 style="margin-top: 3px;">Device Serial: ${deviceSerial}</h6>
+                                    <h6 style="margin-top: 10px;">Device Serial: ${deviceSerial}</h6>
                                 </div>
                             `;
 
@@ -63,13 +62,12 @@
                 const locationTitle = document.getElementById('locationTitle');
                 locationTitle.textContent = 'Device Locations';
             }
-
-            // Initialize the map
             window.initMap = initMap;
         </script>
     </div>
-    <!-- wrapper end -->
 </div>
+
+
 @endsection
 
 
