@@ -35,6 +35,11 @@
         float: left;
     }
 }
+
+.block {
+	display: block;
+}
+
 </style>
     	<div class="page-content">
 
@@ -46,16 +51,172 @@
             <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="btn-icon-prepend" data-feather="download-cloud"></i>
               Report
-            </a></button>
+            </button>
 
-                <div class="dropdown-menu">
-                <a class="dropdown-item" href="{{ route('pdf.download') }}">All Pollutants Report</a>
-                <a class="dropdown-item" href="{{ route('pdf.download.pm25') }}">PM 2.5 Report</a>
-                <a class="dropdown-item" href="{{ route('pdf.download.pm10') }}">PM 10 Report</a>
-                <a class="dropdown-item" href="{{ route('pdf.download.co') }}">CO Report</a>
-                <a class="dropdown-item" href="{{ route('pdf.download.no2') }}">NO2 Report</a>
-                <a class="dropdown-item" href="{{ route('pdf.download.o3') }}">O3 Report</a>
-                </div>
+							<div class="dropdown-menu">
+								<!-- Nested dropleft 1-->
+								<div class="block">
+									<div class="btn-group">
+										<div class="dropdown dropstart d-block" role="group">
+											<button title="filter by month" title="filter by month" type="button" class="dropdown-item dropdown-toggle dropdown-toggle-split nested-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+												<span class="visually-hidden">Toggle Dropleft</span>
+											</button>
+											<div class="dropdown-menu">
+													<a class="dropdown-item" href="#">January</a>
+													<a class="dropdown-item" href="#">February</a>
+													<a class="dropdown-item" href="#">March</a>
+													<a class="dropdown-item" href="#">April</a>
+													<a class="dropdown-item" href="#">May</a>
+													<a class="dropdown-item" href="#">June</a>
+													<a class="dropdown-item" href="#">July</a>
+													<a class="dropdown-item" href="#">August</a>
+													<a class="dropdown-item" href="#">September</a>
+													<a class="dropdown-item" href="#">October</a>
+													<a class="dropdown-item" href="#">November</a>
+													<a class="dropdown-item" href="#">December</a>
+											</div>
+										</div>
+										<a type="button" class="bg-secondary">
+											<a class="dropdown-item" href="{{ route('pdf.download') }}">All Pollutants Report</a>
+										</a>
+									</div>
+								</div>
+								<!-- Nested dropleft 2-->
+								<div class="block">
+									<div class="btn-group">
+										<div class="dropdown dropstart" role="group">
+												<button title="filter by month" type="button" class="dropdown-item dropdown-toggle dropdown-toggle-split nested-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+													<span class="visually-hidden">Toggle Dropleft</span>
+												</button>
+												<div class="dropdown-menu">
+														<a class="dropdown-item" href="#">January</a>
+														<a class="dropdown-item" href="#">February</a>
+														<a class="dropdown-item" href="#">March</a>
+														<a class="dropdown-item" href="#">April</a>
+														<a class="dropdown-item" href="#">May</a>
+														<a class="dropdown-item" href="#">June</a>
+														<a class="dropdown-item" href="#">July</a>
+														<a class="dropdown-item" href="#">August</a>
+														<a class="dropdown-item" href="#">September</a>
+														<a class="dropdown-item" href="#">October</a>
+														<a class="dropdown-item" href="#">November</a>
+														<a class="dropdown-item" href="#">December</a>
+												</div>
+										</div>
+										<a type="button" class="bg-secondary">
+											<a class="dropdown-item" href="{{ route('pdf.download.pm25') }}">PM 2.5 Report</a>
+										</a>
+									</div>
+								</div>
+								<!-- Nested dropleft 3-->
+								<div class="block">
+									<div class="btn-group">
+										<div class="dropdown dropstart" role="group">
+												<button title="filter by month" type="button" class="dropdown-item dropdown-toggle dropdown-toggle-split nested-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+													<span class="visually-hidden">Toggle Dropleft</span>
+												</button>
+												<div class="dropdown-menu">
+														<a class="dropdown-item" href="#">January</a>
+														<a class="dropdown-item" href="#">February</a>
+														<a class="dropdown-item" href="#">March</a>
+														<a class="dropdown-item" href="#">April</a>
+														<a class="dropdown-item" href="#">May</a>
+														<a class="dropdown-item" href="#">June</a>
+														<a class="dropdown-item" href="#">July</a>
+														<a class="dropdown-item" href="#">August</a>
+														<a class="dropdown-item" href="#">September</a>
+														<a class="dropdown-item" href="#">October</a>
+														<a class="dropdown-item" href="#">November</a>
+														<a class="dropdown-item" href="#">December</a>
+												</div>
+										</div>
+										<a type="button" class="bg-secondary">
+											<a class="dropdown-item" href="{{ route('pdf.download.pm10') }}">PM 10 Report</a>
+										</a>
+									</div>
+								</div>
+								<!-- Nested dropleft 4-->
+								<div class="block">
+									<div class="btn-group">
+										<div class="dropdown dropstart" role="group">
+												<button title="filter by month" type="button" class="dropdown-item dropdown-toggle dropdown-toggle-split nested-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+													<span class="visually-hidden">Toggle Dropleft</span>
+												</button>
+												<div class="dropdown-menu">
+														<a class="dropdown-item" href="#">January</a>
+														<a class="dropdown-item" href="#">February</a>
+														<a class="dropdown-item" href="#">March</a>
+														<a class="dropdown-item" href="#">April</a>
+														<a class="dropdown-item" href="#">May</a>
+														<a class="dropdown-item" href="#">June</a>
+														<a class="dropdown-item" href="#">July</a>
+														<a class="dropdown-item" href="#">August</a>
+														<a class="dropdown-item" href="#">September</a>
+														<a class="dropdown-item" href="#">October</a>
+														<a class="dropdown-item" href="#">November</a>
+														<a class="dropdown-item" href="#">December</a>
+												</div>
+										</div>
+										<a type="button" class="bg-secondary">
+											<a class="dropdown-item" href="{{ route('pdf.download.co') }}">CO Report</a>
+										</a>
+									</div>
+								</div>
+								<!-- Nested dropleft 5-->
+								<div class="block">
+									<div class="btn-group">
+										<div class="dropdown dropstart" role="group">
+												<button title="filter by month" type="button" class="dropdown-item dropdown-toggle dropdown-toggle-split nested-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+													<span class="visually-hidden">Toggle Dropleft</span>
+												</button>
+												<div class="dropdown-menu">
+														<a class="dropdown-item" href="#">January</a>
+														<a class="dropdown-item" href="#">February</a>
+														<a class="dropdown-item" href="#">March</a>
+														<a class="dropdown-item" href="#">April</a>
+														<a class="dropdown-item" href="#">May</a>
+														<a class="dropdown-item" href="#">June</a>
+														<a class="dropdown-item" href="#">July</a>
+														<a class="dropdown-item" href="#">August</a>
+														<a class="dropdown-item" href="#">September</a>
+														<a class="dropdown-item" href="#">October</a>
+														<a class="dropdown-item" href="{{ route('pdf.download.no2') }}">November</a>
+														<a class="dropdown-item" href="#">December</a>
+												</div>
+										</div>
+										<a type="button" class="bg-secondary">
+											<a class="dropdown-item" href="{{ route('pdf.download.no2') }}">NO2 Report</a>
+										</a>
+									</div>
+								</div>
+								<!-- Nested dropleft 6-->
+								<div class="block">
+									<div class="btn-group">
+										<div class="dropdown dropstart" role="group">
+												<button title="filter by month" type="button" class="dropdown-item dropdown-toggle dropdown-toggle-split nested-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+													<span class="visually-hidden">Toggle Dropleft</span>
+												</button>
+												<div class="dropdown-menu">
+														<a class="dropdown-item" href="#">January</a>
+														<a class="dropdown-item" href="#">February</a>
+														<a class="dropdown-item" href="#">March</a>
+														<a class="dropdown-item" href="#">April</a>
+														<a class="dropdown-item" href="#">May</a>
+														<a class="dropdown-item" href="#">June</a>
+														<a class="dropdown-item" href="#">July</a>
+														<a class="dropdown-item" href="#">August</a>
+														<a class="dropdown-item" href="#">September</a>
+														<a class="dropdown-item" href="#">October</a>
+														<a class="dropdown-item" href="#">November</a>
+														<a class="dropdown-item" href="{{ route('pdf.download.o3') }}">December</a>
+												</div>
+										</div>
+										<a type="button" class="bg-secondary">
+											<a class="dropdown-item" href="{{ route('pdf.download.o3') }}">O3 Report</a>
+										</a>
+									</div>
+								</div>
+							</div>
             </div>
 
 
@@ -251,6 +412,14 @@
 	</div>
 
 <script>
+		// Prevent parent dropdown from closing when interacting with nested dropdown
+		document.querySelectorAll('.nested-dropdown').forEach(function (dropdown) {
+			dropdown.addEventListener('click', function (event) {
+					event.stopPropagation();
+			});
+    });
+
+
     document.addEventListener('DOMContentLoaded', function() {
     startPolling('pm25');
     startPolling('pm10');
