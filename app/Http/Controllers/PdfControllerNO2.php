@@ -257,7 +257,7 @@ class PdfControllerNO2 extends Controller
         }
     }
 
-    private function getColor($classification)
+        private function getColor($classification)
     {
         // Define color mappings based on classification
         switch ($classification) {

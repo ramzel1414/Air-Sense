@@ -27,9 +27,6 @@ class PdfControllerPM25 extends Controller
         $weeklyAverages = $this->calculateAverages('week', $dailyAverages);
         $monthlyAverages = $this->calculateAverages('month', $dailyAverages);
 
-        $minDate = $dailyAverages->min('date');
-        $formattedMinDate = Carbon::parse($minDate)->format('F d, Y');
-
         $fpdf = new PdfReport('P', 'mm', 'A4');
         $fpdf->AddPage();
 
