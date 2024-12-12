@@ -1,28 +1,26 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Reports\PM25;
 
-use App\Http\Controllers\Reports\CO\COInfo;
+use App\Http\Controllers\Controller;
 use App\Http\Controllers\Reports\CoverPage;
 use App\Http\Controllers\Reports\PdfReport;
+use App\Http\Controllers\Reports\PM25\PM25Info;
 use App\Http\Controllers\Reports\SignatorySection;
 use App\Models\AirQualityData;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 
-class PdfControllerCOFilter extends Controller
+class PdfControllerPM25FilterYearly extends Controller
 {
-    public function index($year, $month)
+    public function index($year)
     {
         // Fetch daily averages filtered by the specified year and month
         $dailyAverages = AirQualityData::select(
                 DB::raw('DATE(dateTime) as date'),
-                DB::raw('ROUND(AVG(co), 2) as co_average'),
-
-
+                DB::raw('ROUND(AVG(pm25), 2) as pm25_average')
             )
             ->whereYear('dateTime', '=', $year)   // Filter by year
-            ->whereMonth('dateTime', '=', $month) // Filter by month
             ->groupBy('date')
             ->get();
 
@@ -31,6 +29,11 @@ class PdfControllerCOFilter extends Controller
             // Handle the case for no data (e.g., redirect or show a message)
             return response()->json(['message' => 'No data found for the selected year and month'], 404);
         }
+
+        // Apply filtering for PM2.5 averages (optional, if needed)
+            // $dailyAverages = $dailyAverages->filter(function($average) {
+            //     return $average->pm25_average > 10; // Example: Only keep data with PM2.5 greater than 10
+            // });
 
         // Calculate weekly and monthly averages
         $weeklyAverages = $this->calculateAverages('week', $dailyAverages);
@@ -46,14 +49,14 @@ class PdfControllerCOFilter extends Controller
         CoverPage::generateCoverPage($fpdf);
 
         // 2ndPage ====================================================================================================
-        COInfo::COInfo($fpdf);
+        PM25Info::PM25Info($fpdf);
 
         // 3rdPage
         // POLLUTANT TABLE Title
         $fpdf->SetFont('Arial', 'B', 12);
         $fpdf->ln(5);
         $fpdf->Cell(0, 5, '', 0, 1, 'C');
-        $fpdf->Cell(0, 10, 'NO2 Pollutant Table', 0, 1, 'C');
+        $fpdf->Cell(0, 10, 'PM2.5 Pollutant Table', 0, 1, 'C');
         $fpdf->ln(5);
 
         // Table Header
@@ -61,7 +64,7 @@ class PdfControllerCOFilter extends Controller
         $fpdf->SetFillColor(173, 216, 230);
         $fpdf->Cell(5);
         $fpdf->Cell(40, 20, 'Date of Sampling', 1, 0, 'C', true);
-        $fpdf->Cell(60, 10, 'NO2 Concentration in (ppm)', 1, 0, 'C', true);
+        $fpdf->Cell(60, 10, 'PM2.5 Concentration in (ug/m^3)', 1, 0, 'C', true);
         $fpdf->Cell(40, 20, 'Remarks', 1, 0, 'C', true);
         $fpdf->Cell(40, 20, 'Classification', 1, 0, 'C', true);
         $fpdf->Ln(10);
@@ -79,15 +82,14 @@ class PdfControllerCOFilter extends Controller
         // Table Body
         foreach ($dailyAverages as $average) {
             $date = $average->date;
-            $coaverage = $average->co_average;
+            $pm25Average = $average->pm25_average;
             $weekOfYear = Carbon::parse($date)->weekOfYear;
             $month = Carbon::parse($date)->month;
 
             // Display daily average
             $fpdf->Cell(5);
             $fpdf->Cell(40, 10, $date, 1, 0, 'C');
-            $fpdf->Cell(20, 10, number_format($coaverage, 0), 1, 0, 'C');
-
+            $fpdf->Cell(20, 10, number_format($pm25Average, 0), 1, 0, 'C');
 
             // Display weekly average (once per week)
             if (!in_array($weekOfYear, $processedWeeks)) {
@@ -116,7 +118,7 @@ class PdfControllerCOFilter extends Controller
             }
 
             // Determine classification and color
-            $classification = $this->getClassificationCO($coaverage);
+            $classification = $this->getClassificationPM25($pm25Average);
             $color = $this->getColor($classification);
 
             // Determine guideline value status
@@ -134,7 +136,7 @@ class PdfControllerCOFilter extends Controller
 
         // Output PDF with a unique filename
         $today = date('Y'); // Get current year only (YYYY format)
-        $fpdf->Output('I', "AirSense $today Annual CO Assessment.pdf");
+        $fpdf->Output('I', "AirSense $today Annual PM2.5 Assessment.pdf");
         exit;
     }
 
@@ -153,7 +155,7 @@ class PdfControllerCOFilter extends Controller
                 $counts[$key] = 0;
             }
 
-            $averages[$key][] = $average->co_average;
+            $averages[$key][] = $average->pm25_average;
             $counts[$key]++;
         }
 
@@ -180,20 +182,20 @@ class PdfControllerCOFilter extends Controller
         return isset($monthlyAverages[$month]) ? $monthlyAverages[$month] : 0;
     }
 
-        private function getClassificationCO($value)
+    private function getClassificationPM25($value)
     {
-        // Define CO classification rules
+        // Define PM2.5 classification rules
         if ($value >= 0 && $value <= 25) {
             return "Good";
-        } elseif ($value > 25 && $value <= 50) {
+        } elseif ($value > 25 && $value <= 35) {
             return "Moderate";
-        } elseif ($value > 50 && $value <= 69) {
+        } elseif ($value > 35 && $value <= 45) {
             return "Slightly Unhealthy";
-        } elseif ($value > 69 && $value <= 150) {
+        } elseif ($value > 45 && $value <= 55) {
             return "Unhealthy";
-        } elseif ($value > 150 && $value <= 400) {
+        } elseif ($value > 55 && $value <= 90) {
             return "Acutely Unhealthy";
-        } elseif ($value > 400) {
+        } elseif ($value > 90) {
             return "Hazardous";
         } else {
             return "Unknown Classification";

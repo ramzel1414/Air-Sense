@@ -11,18 +11,25 @@ use App\Http\Controllers\PollutantController;
 use App\Http\Controllers\LocationController;
 
 use App\Http\Controllers\PublicController;
-use App\Http\Controllers\PdfController;
 
+//FPDF Report
+use App\Http\Controllers\PdfController;
 use App\Http\Controllers\PdfControllerCO;
-use App\Http\Controllers\PdfControllerCOFilter;
+use App\Http\Controllers\Reports\CO\PdfControllerCOFilter;
+use App\Http\Controllers\Reports\CO\PdfControllerCOFilterYearly;
 use App\Http\Controllers\PdfControllerNO2;
-use App\Http\Controllers\PdfControllerNO2Filter;
+use App\Http\Controllers\Reports\NO2\PdfControllerNO2Filter;
+use App\Http\Controllers\Reports\NO2\PdfControllerNO2FilterYearly;
 use App\Http\Controllers\PdfControllerO3;
-use App\Http\Controllers\PdfControllerO3Filter;
+use App\Http\Controllers\Reports\O3\PdfControllerO3Filter;
+use App\Http\Controllers\Reports\O3\PdfControllerO3FilterYearly;
 use App\Http\Controllers\PdfControllerPM10;
-use App\Http\Controllers\PdfControllerPM10Filter;
+use App\Http\Controllers\Reports\PM10\PdfControllerPM10Filter;
+use App\Http\Controllers\Reports\PM10\PdfControllerPM10FilterYearly;
 use App\Http\Controllers\PdfControllerPM25;
-use App\Http\Controllers\PdfControllerPM25Filter;
+use App\Http\Controllers\Reports\PM25\PdfControllerPM25Filter;
+use App\Http\Controllers\Reports\PM25\PdfControllerPM25FilterYearly;
+
 use App\Http\Controllers\SignatoryController;
 use App\Http\Controllers\SitelogoController;
 
@@ -97,20 +104,25 @@ Route::middleware(['auth', 'role:admin'])->group(function() {
 
     Route::get('/pdf/pm25', [ PdfControllerPM25::class, 'index' ])->name('pdf.download.pm25');
     Route::get('/pdf/pm25/{year}/{month}', [PdfControllerPM25Filter::class, 'index']);
-
+    Route::get('/pdf/pm25/{year}', [PdfControllerPM25FilterYearly::class, 'index']);
 
     Route::get('/pdf/pm10', [ PdfControllerPM10::class, 'index' ])->name('pdf.download.pm10');
     Route::get('/pdf/pm10/{year}/{month}', [PdfControllerPM10Filter::class, 'index']);
-
+    Route::get('/pdf/pm10/{year}', [PdfControllerPM10FilterYearly::class, 'index']);
 
     Route::get('/pdf/co', [ PdfControllerCO::class, 'index' ])->name('pdf.download.co');
     Route::get('/pdf/co/{year}/{month}', [PdfControllerCOFilter::class, 'index']);
+    Route::get('/pdf/co/{year}', [PdfControllerCOFilterYearly::class, 'index']);
+
 
     Route::get('/pdf/no2', [ PdfControllerNO2::class, 'index' ])->name('pdf.download.no2');
     Route::get('/pdf/no2/{year}/{month}', [PdfControllerNO2Filter::class, 'index']);
+    Route::get('/pdf/no2/{year}', [PdfControllerNO2FilterYearly::class, 'index']);
+
 
     Route::get('/pdf/o3', [ PdfControllerO3::class, 'index' ])->name('pdf.download.o3');
     Route::get('/pdf/o3/{year}/{month}', [PdfControllerO3Filter::class, 'index']) ;
+    Route::get('/pdf/o3/{year}', [PdfControllerO3FilterYearly::class, 'index']) ;
 
     //Air Quality//
     //Monitoring

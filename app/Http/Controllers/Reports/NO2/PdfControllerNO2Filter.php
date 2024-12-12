@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Reports\NO2;
 
+use App\Http\Controllers\Controller;
 use App\Http\Controllers\Reports\CoverPage;
 use App\Http\Controllers\Reports\NO2\NO2Info;
 use App\Http\Controllers\Reports\PdfReport;
