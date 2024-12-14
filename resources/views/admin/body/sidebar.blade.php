@@ -26,7 +26,7 @@
           <li class="nav-item">
             <a href="{{ route ('admin.about') }}" class="nav-link">
               <i class="link-icon" data-feather="help-circle"></i>
-              <span class="link-title">About</span>
+              <span class="link-title">Legend</span>
             </a>
           </li>
 
