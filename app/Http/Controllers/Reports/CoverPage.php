@@ -8,7 +8,7 @@ class CoverPage
 {
     public static function generateCoverPage(PdfReport $fpdf)
     {
-        $fpdf->Image('airsense-prot2.png', 5, 50, 200);
+        $fpdf->Image('airsense-prot2.png', 0, 50, 210);
         $fpdf->SetFillColor(255, 255, 255, 127); // White background color
         $fpdf->Rect(40, 210, 130, 50, 'F'); // x, y, w, h, 'F' indicates to fill the rectangle
 

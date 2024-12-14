@@ -1,32 +1,65 @@
 <?php
 
-namespace App\Http\Controllers\Reports\NO2;
+namespace App\Http\Controllers\Reports;
 
 use App\Http\Controllers\Reports\PdfReport;
 use App\Models\AirQualityData;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
-class NO2Info
+class PollutantInfo
 {
-    public static function NO2Info(PdfReport $fpdf)
+    public static function PollutantInfo(PdfReport $fpdf)
     {
-        // Get daily averages for NO2
+
+        // Get daily averages for PM2.5 and PM10
         $dailyAverages = AirQualityData::select(
             DB::raw('DATE(dateTime) as date'),
-            DB::raw('ROUND(AVG(no2), 2) as no2_average'),
-
+            // DB::raw('ROUND(AVG(pm25), 2) as pm25_average'),
+            // DB::raw('ROUND(AVG(pm10), 2) as pm10_average'),
+            // DB::raw('ROUND(AVG(co), 2) as co_average'),
+            // DB::raw('ROUND(AVG(no2), 2) as no2_average'),
+            // DB::raw('ROUND(AVG(ozone), 3) as ozone_average')
         )
         ->groupBy('date')
         ->get();
 
+        $pollutants = [
+            [
+                'name' => 'PM2.5',
+                'averageField' => 'pm25',
+                'classificationMethod' => 'getClassificationPM25'
+            ],
+            [
+                'name' => 'PM10',
+                'averageField' => 'pm10',
+                'classificationMethod' => 'getClassificationPM10'
+            ],
+            [
+                'name' => 'CO',
+                'averageField' => 'co',
+                'classificationMethod' => 'getClassificationCO'
+            ],
+            [
+                'name' => 'NO2',
+                'averageField' => 'no2',
+                'classificationMethod' => 'getClassificationNO2'
+            ],
+            [
+                'name' => 'O3',
+                'averageField' => 'ozone',
+                'classificationMethod' => 'getClassificationOzone'
+            ],
+        ];
+
         $minDate = $dailyAverages->min('date');
         $formattedMinDate = Carbon::parse($minDate)->format('F d, Y');
+
 
         $fpdf->SetFont('Arial', 'B', 10);
 
         $fpdf->Cell(0, 10, 'CY 2024-2025 Daily Assessment Report from AirSense IoT Monitoring Device', 0, 1, 'C');
-        $fpdf->Cell(0, 0, 'NO2 Ambient Air Quality Monitoring Station', 0, 1, 'C');
+        $fpdf->Cell(0, 0, 'CO Ambient Air Quality Monitoring Station', 0, 1, 'C');
         $fpdf->Ln(10);
 
         $fpdf->SetFont('Arial', '', 10);                                        // REMOVING THE BOLD STYLE
@@ -56,7 +89,7 @@ class NO2Info
 
         $fpdf->Cell(25);    //INVISIBLE LEFT CELL WITH A WIDTH OF 25 AS A MARGIN
         $fpdf->Cell(40, 5, 'Measures Air Pollutant: ', 0, 0, 'L');      //42pt THE WIDTH I DECIDED FOR EVERY VISIBLE 2ND LEFT CELL
-        $fpdf->Cell(100, 5, 'Parts per million (ppm)', 'B', 1,);    //JUST GOES ALONG WITH THE 1ST AND 2ND CELL
+        $fpdf->Cell(100, 5, 'Micrograms per cubic meter (ug/m3), Parts per million (ppm)', 'B', 1,);    //JUST GOES ALONG WITH THE 1ST AND 2ND CELL
 
 
         // POLLUTANT INFORMATION

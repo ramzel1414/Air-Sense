@@ -1,27 +1,36 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Reports\O3;
 
+use App\Http\Controllers\Controller;
 use App\Http\Controllers\Reports\CoverPage;
-use App\Http\Controllers\Reports\NO2\NO2Info;
+use App\Http\Controllers\Reports\O3\O3Info;
 use App\Http\Controllers\Reports\PdfReport;
 use App\Http\Controllers\Reports\SignatorySection;
 use App\Models\AirQualityData;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 
-class PdfControllerNO2 extends Controller
+class PdfControllerO3Filter extends Controller
 {
-    public function index()
+    public function index($year, $month)
     {
-        // Get daily averages for NO2
+        // Fetch daily averages filtered by the specified year and month
         $dailyAverages = AirQualityData::select(
-            DB::raw('DATE(dateTime) as date'),
-            DB::raw('ROUND(AVG(no2), 2) as no2_average'),
+                DB::raw('DATE(dateTime) as date'),
+                DB::raw('ROUND(AVG(ozone), 2) as o3_average'),
 
-        )
-        ->groupBy('date')
-        ->get();
+            )
+            ->whereYear('dateTime', '=', $year)   // Filter by year
+            ->whereMonth('dateTime', '=', $month) // Filter by month
+            ->groupBy('date')
+            ->get();
+
+        // If no data is found, you can handle this case and return a message or a different page
+        if ($dailyAverages->isEmpty()) {
+            // Handle the case for no data (e.g., redirect or show a message)
+            return response()->json(['message' => 'No data found for the selected year and month'], 404);
+        }
 
         // Calculate weekly and monthly averages
         $weeklyAverages = $this->calculateAverages('week', $dailyAverages);
@@ -37,15 +46,14 @@ class PdfControllerNO2 extends Controller
         CoverPage::generateCoverPage($fpdf);
 
         // 2ndPage ====================================================================================================
+        O3Info::O3Info($fpdf);
 
-        NO2Info::NO2Info($fpdf);
-
-        // 3rdPage ====================================================================================================
+        // 3rdPage
         // POLLUTANT TABLE Title
         $fpdf->SetFont('Arial', 'B', 12);
         $fpdf->ln(5);
         $fpdf->Cell(0, 5, '', 0, 1, 'C');
-        $fpdf->Cell(0, 10, 'NO2 Pollutant Table', 0, 1, 'C');
+        $fpdf->Cell(0, 10, 'O3 Pollutant Table', 0, 1, 'C');
         $fpdf->ln(5);
 
         // Table Header
@@ -53,7 +61,7 @@ class PdfControllerNO2 extends Controller
         $fpdf->SetFillColor(173, 216, 230);
         $fpdf->Cell(5);
         $fpdf->Cell(40, 20, 'Date of Sampling', 1, 0, 'C', true);
-        $fpdf->Cell(60, 10, 'NO2 Concentration in (ppm)', 1, 0, 'C', true);
+        $fpdf->Cell(60, 10, 'Ozone Concentration in (ppm)', 1, 0, 'C', true);
         $fpdf->Cell(40, 20, 'Remarks', 1, 0, 'C', true);
         $fpdf->Cell(40, 20, 'Classification', 1, 0, 'C', true);
         $fpdf->Ln(10);
@@ -71,14 +79,14 @@ class PdfControllerNO2 extends Controller
         // Table Body
         foreach ($dailyAverages as $average) {
             $date = $average->date;
-            $no2Average = $average->no2_average;
+            $o3average = $average->o3_average;
             $weekOfYear = Carbon::parse($date)->weekOfYear;
             $month = Carbon::parse($date)->month;
 
             // Display daily average
             $fpdf->Cell(5);
             $fpdf->Cell(40, 10, $date, 1, 0, 'C');
-            $fpdf->Cell(20, 10, number_format($no2Average, 2, '.', ''), 1, 0, 'C');
+            $fpdf->Cell(20, 10, number_format($o3average, 3), 1, 0, 'C');
 
 
             // Display weekly average (once per week)
@@ -88,7 +96,7 @@ class PdfControllerNO2 extends Controller
                 $daysInWeek = $weeklyAverageInfo['count'];
                 $weeklyCellWidth = $daysInWeek * 10; // Adjust width based on number of days
 
-                $fpdf->Cell(20, $weeklyCellWidth, number_format($weeklyAverage, 2, '.', ''), 1, 0, 'C');
+                $fpdf->Cell(20, $weeklyCellWidth, number_format($weeklyAverage, 3), 1, 0, 'C');
                 $processedWeeks[] = $weekOfYear;
             } else {
                 $fpdf->Cell(20, 10, '', 0, 0, 'C'); // Empty cell for daily rows
@@ -101,14 +109,14 @@ class PdfControllerNO2 extends Controller
                 $daysInMonth = $monthlyAverageInfo['count'];
                 $monthlyCellWidth = $daysInMonth * 10; // Adjust width based on number of days
 
-                $fpdf->Cell(20, $monthlyCellWidth, number_format($monthlyAverage, 2, '.', ''), 1, 0, 'C');
+                $fpdf->Cell(20, $monthlyCellWidth, number_format($monthlyAverage, 3), 1, 0, 'C');
                 $processedMonths[] = $month;
             } else {
                 $fpdf->Cell(20, 10, '', 0, 0, 'C'); // Empty cell for daily rows
             }
 
             // Determine classification and color
-            $classification = $this->getClassificationNO2($no2Average);
+            $classification = $this->getClassificationO3($o3average);
             $color = $this->getColor($classification);
 
             // Determine guideline value status
@@ -126,7 +134,7 @@ class PdfControllerNO2 extends Controller
 
         // Output PDF with a unique filename
         $today = date('Y'); // Get current year only (YYYY format)
-        $fpdf->Output('I', "AirSense $today Annual NO2 Assessment.pdf");
+        $fpdf->Output('I', "AirSense $today Annual O3 Assessment.pdf");
         exit;
     }
 
@@ -145,7 +153,7 @@ class PdfControllerNO2 extends Controller
                 $counts[$key] = 0;
             }
 
-            $averages[$key][] = $average->no2_average;
+            $averages[$key][] = $average->o3_average;
             $counts[$key]++;
         }
 
@@ -172,27 +180,27 @@ class PdfControllerNO2 extends Controller
         return isset($monthlyAverages[$month]) ? $monthlyAverages[$month] : 0;
     }
 
-        private function getClassificationNO2($value)
+        private function getClassificationO3($value)
     {
         // Define NO2 classification rules
-        if ($value >= 0 && $value <= 0.05) {
+        if ($value >= 0 && $value <= 0.064) {
             return "Good";
-        } elseif ($value > 0.05 && $value <= 0.10) {
+        } elseif ($value > 0.064 && $value <= 0.084) {
             return "Moderate";
-        } elseif ($value > 0.10 && $value <= 0.36) {
+        } elseif ($value > 0.084 && $value <= 0.104) {
             return "Slightly Unhealthy";
-        } elseif ($value > 0.36 && $value <= 0.65) {
+        } elseif ($value > 0.104 && $value <= 0.124) {
             return "Unhealthy";
-        } elseif ($value > 0.65 && $value <= 1.24) {
+        } elseif ($value > 0.124 && $value <= 0.374) {
             return "Acutely Unhealthy";
-        } elseif ($value > 1.24) {
+        } elseif ($value > 0.374) {
             return "Hazardous";
         } else {
             return "Unknown Classification";
         }
     }
 
-        private function getColor($classification)
+    private function getColor($classification)
     {
         // Define color mappings based on classification
         switch ($classification) {

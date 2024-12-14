@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Reports\NO2;
 
+use App\Http\Controllers\Controller;
 use App\Http\Controllers\Reports\CoverPage;
 use App\Http\Controllers\Reports\NO2\NO2Info;
 use App\Http\Controllers\Reports\PdfReport;
@@ -10,18 +11,27 @@ use App\Models\AirQualityData;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 
-class PdfControllerNO2 extends Controller
+class PdfControllerNO2Filter extends Controller
 {
-    public function index()
+    public function index($year, $month)
     {
-        // Get daily averages for NO2
+        // Fetch daily averages filtered by the specified year and month
         $dailyAverages = AirQualityData::select(
-            DB::raw('DATE(dateTime) as date'),
-            DB::raw('ROUND(AVG(no2), 2) as no2_average'),
+                DB::raw('DATE(dateTime) as date'),
+                DB::raw('ROUND(AVG(no2), 2) as no2_average'),
 
-        )
-        ->groupBy('date')
-        ->get();
+
+            )
+            ->whereYear('dateTime', '=', $year)   // Filter by year
+            ->whereMonth('dateTime', '=', $month) // Filter by month
+            ->groupBy('date')
+            ->get();
+
+        // If no data is found, you can handle this case and return a message or a different page
+        if ($dailyAverages->isEmpty()) {
+            // Handle the case for no data (e.g., redirect or show a message)
+            return response()->json(['message' => 'No data found for the selected year and month'], 404);
+        }
 
         // Calculate weekly and monthly averages
         $weeklyAverages = $this->calculateAverages('week', $dailyAverages);
@@ -37,10 +47,9 @@ class PdfControllerNO2 extends Controller
         CoverPage::generateCoverPage($fpdf);
 
         // 2ndPage ====================================================================================================
-
         NO2Info::NO2Info($fpdf);
 
-        // 3rdPage ====================================================================================================
+        // 3rdPage
         // POLLUTANT TABLE Title
         $fpdf->SetFont('Arial', 'B', 12);
         $fpdf->ln(5);
@@ -71,14 +80,14 @@ class PdfControllerNO2 extends Controller
         // Table Body
         foreach ($dailyAverages as $average) {
             $date = $average->date;
-            $no2Average = $average->no2_average;
+            $no2average = $average->no2_average;
             $weekOfYear = Carbon::parse($date)->weekOfYear;
             $month = Carbon::parse($date)->month;
 
             // Display daily average
             $fpdf->Cell(5);
             $fpdf->Cell(40, 10, $date, 1, 0, 'C');
-            $fpdf->Cell(20, 10, number_format($no2Average, 2, '.', ''), 1, 0, 'C');
+            $fpdf->Cell(20, 10, number_format($no2average, 2), 1, 0, 'C');
 
 
             // Display weekly average (once per week)
@@ -88,7 +97,7 @@ class PdfControllerNO2 extends Controller
                 $daysInWeek = $weeklyAverageInfo['count'];
                 $weeklyCellWidth = $daysInWeek * 10; // Adjust width based on number of days
 
-                $fpdf->Cell(20, $weeklyCellWidth, number_format($weeklyAverage, 2, '.', ''), 1, 0, 'C');
+                $fpdf->Cell(20, $weeklyCellWidth, number_format($weeklyAverage, 2), 1, 0, 'C');
                 $processedWeeks[] = $weekOfYear;
             } else {
                 $fpdf->Cell(20, 10, '', 0, 0, 'C'); // Empty cell for daily rows
@@ -101,14 +110,14 @@ class PdfControllerNO2 extends Controller
                 $daysInMonth = $monthlyAverageInfo['count'];
                 $monthlyCellWidth = $daysInMonth * 10; // Adjust width based on number of days
 
-                $fpdf->Cell(20, $monthlyCellWidth, number_format($monthlyAverage, 2, '.', ''), 1, 0, 'C');
+                $fpdf->Cell(20, $monthlyCellWidth, number_format($monthlyAverage, 2), 1, 0, 'C');
                 $processedMonths[] = $month;
             } else {
                 $fpdf->Cell(20, 10, '', 0, 0, 'C'); // Empty cell for daily rows
             }
 
             // Determine classification and color
-            $classification = $this->getClassificationNO2($no2Average);
+            $classification = $this->getClassificationNO2($no2average);
             $color = $this->getColor($classification);
 
             // Determine guideline value status

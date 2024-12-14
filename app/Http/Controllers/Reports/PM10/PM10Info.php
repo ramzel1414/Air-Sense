@@ -26,7 +26,7 @@ class PM10Info
         $fpdf->SetFont('Arial', 'B', 10);
 
         $fpdf->Cell(0, 10, 'CY 2024-2025 Daily Assessment Report from AirSense IoT Monitoring Device', 0, 1, 'C');
-        $fpdf->Cell(0, 0, 'CO Ambient Air Quality Monitoring Station', 0, 1, 'C');
+        $fpdf->Cell(0, 0, 'PM10 Ambient Air Quality Monitoring Station', 0, 1, 'C');
         $fpdf->Ln(10);
 
         $fpdf->SetFont('Arial', '', 10);                                        // REMOVING THE BOLD STYLE
