@@ -41,29 +41,26 @@
 <body class="user-body">
 	@include('layouts.header');
 
-    <div class="page-content mx-4">
-        <h3 class="mb-2">Device Location</h3>
-        <div class="p-3 for-light-mode-bg rounded-1">
-            <div class="card rounded-1">
-                <div class="card-body rounded-2">
-                    <div class="col-12 rounded-3">
-                        <div class="d-flex justify-content-center">
-                            {{-- <p class="mb-3" id="locationTitle">Device Locations</p> --}}
-                        </div>
-                        <div id="map" class="rounded-3" style="height: 700px"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <div class="page-content">
 
-    <script type="text/javascript">
+    <h3 class="mb-4">Location</h3>
+    <!-- wrapper start -->
+    <div class="d-flex justify-content-evenly p-3 for-light-mode-bg">
+
+        <div class="col-12 mb-4 card p-3 rounded-2">
+            <div class="d-flex justify-content-center">
+                <h5 class="mb-3" id="locationTitle">Device Locations</h5>
+            </div>
+            <div id="map" class="rounded-3" style="height: 700px"></div>
+        </div>
+
+        <script type="text/javascript">
             function initMap() {
                 const map = new google.maps.Map(document.getElementById("map"), {
-                zoom: 18,
-                center: { lat: 8.157408, lng: 125.124856 },
-                mapId: "{{ env('GOOGLE_MAP_ID') }}",
-            });
+                    zoom: 18,
+                    center: { lat: 8.157408, lng: 125.124856 },
+                    mapId: "{{ env('GOOGLE_MAP_ID') }}",
+                });
 
                 // Retrieve device locations from the server
                 fetch('/device-locations')
@@ -73,16 +70,31 @@
                             const { deviceName, deviceSerial, latitude, longitude } = location;
 
                             // Create a new marker for each device
-                            const marker = new google.maps.marker.AdvancedMarkerElement({
+                            const marker = new google.maps.Marker({
                                 position: { lat: parseFloat(latitude), lng: parseFloat(longitude) },
                                 map: map,
                                 title: deviceName,  // Use the device name directly as a string
                             });
 
+                            // Create a circle with a radius of 12 meters
+                            const circle = new google.maps.Circle({
+                                map: map,
+                                center: { lat: parseFloat(latitude), lng: parseFloat(longitude) },
+                                radius: 8,  // Radius in meters
+                                strokeColor: "#FF0000",
+                                strokeOpacity: 0.8,
+                                strokeWeight: 2,
+                                fillColor: "#FF0000",
+                                fillOpacity: 0.35,
+                            });
+
                             const infoWindowContent = `
                                 <div style="color:#0B1215; text-align:center;">
                                     <h5>${deviceName}</h5>
-                                    <h6 style="margin-top: 10px;">Device Serial: ${deviceSerial}</h6>
+                                    <h6 style="margin-top: 5px;">Device Serial: ${deviceSerial}</h6>
+                                    <h6 style="margin-top: 10px;">Placement</h6>
+                                    <h7>12 Meters (Detection Radius)</h7>
+                                    <h7>6 Meters (Vertical Coverage)</h7>
                                 </div>
                             `;
 
@@ -96,17 +108,6 @@
                                 infoWindow.open(map, marker);
                             });
                         });
-
-                        // const circle = new google.maps.Circle({
-                        //     strokeColor: "#FF0000",
-                        //     strokeOpacity: 0.8,
-                        //     strokeWeight: 2,
-                        //     fillColor: "#FF0000",
-                        //     fillOpacity: 0.35,
-                        //     map: map,
-                        //     center: marker.getPosition(),
-                        //     radius: 3, // 20 meters radius
-                        // });
                     })
                     .catch(error => {
                         console.error('Error fetching device locations:', error);
@@ -118,6 +119,8 @@
             }
             window.initMap = initMap;
         </script>
+    </div>
+</div>
 
 <!-- Include the Google Maps API script with the callback to initialize the maps -->
 {{-- <script async defer src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAP_API') }}&callback=initMap"></script> --}}
