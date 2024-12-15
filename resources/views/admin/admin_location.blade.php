@@ -17,10 +17,10 @@
         <script type="text/javascript">
             function initMap() {
                 const map = new google.maps.Map(document.getElementById("map"), {
-                zoom: 18,
-                center: { lat: 8.157408, lng: 125.124856 },
-                mapId: "{{ env('GOOGLE_MAP_ID') }}",
-            });
+                    zoom: 18,
+                    center: { lat: 8.157408, lng: 125.124856 },
+                    mapId: "{{ env('GOOGLE_MAP_ID') }}",
+                });
 
                 // Retrieve device locations from the server
                 fetch('/device-locations')
@@ -30,16 +30,31 @@
                             const { deviceName, deviceSerial, latitude, longitude } = location;
 
                             // Create a new marker for each device
-                            const marker = new google.maps.marker.AdvancedMarkerElement({
+                            const marker = new google.maps.Marker({
                                 position: { lat: parseFloat(latitude), lng: parseFloat(longitude) },
                                 map: map,
                                 title: deviceName,  // Use the device name directly as a string
                             });
 
+                            // Create a circle with a radius of 12 meters
+                            const circle = new google.maps.Circle({
+                                map: map,
+                                center: { lat: parseFloat(latitude), lng: parseFloat(longitude) },
+                                radius: 8,  // Radius in meters
+                                strokeColor: "#FF0000",
+                                strokeOpacity: 0.8,
+                                strokeWeight: 2,
+                                fillColor: "#FF0000",
+                                fillOpacity: 0.35,
+                            });
+
                             const infoWindowContent = `
                                 <div style="color:#0B1215; text-align:center;">
                                     <h5>${deviceName}</h5>
-                                    <h6 style="margin-top: 10px;">Device Serial: ${deviceSerial}</h6>
+                                    <h6 style="margin-top: 5px;">Device Serial: ${deviceSerial}</h6>
+                                    <h6 style="margin-top: 10px;">Placement</h6>
+                                    <h7>12 Meters (Detection Radius)</h7>
+                                    <h7>6 Meters (Vertical Coverage)</h7>
                                 </div>
                             `;
 
