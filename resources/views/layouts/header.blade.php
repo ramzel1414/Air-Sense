@@ -28,7 +28,7 @@
         </li>
         <li>
           <a href="{{route('about')}}" class="p-1 mx-2 nav-link">
-            About
+            Legend
           </a>
         </li>
         <li>
