@@ -62,72 +62,18 @@
 
           {{-- 3 toggle buttons --}}
           <div>
-            <a class="btn btn-primary" data-bs-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Pollutant Description</a>
-            <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">Pollutant Classification</button>
-            <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target=".multi-collapse" aria-expanded="false" aria-controls="multiCollapseExample1 multiCollapseExample2">Toggle Both</button>
+
+            <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#multiCollapseExample1" aria-expanded="false" aria-controls="multiCollapseExample2">Pollutant Classification</button>
+
           </div>
 
         </div>
         {{-- toggle content --}}
         {{-- move this out to the div up there so that it won't affect the structure (space-between) --}}
         <div class="row mb-3">
-          {{-- 1st collapse --}}
-          <div class="col">
+          {{-- collapse --}}
+          <div class="">
             <div class="collapse multi-collapse" id="multiCollapseExample1">
-                <div class="d-flex">
-                  <div class="col-5 col-md-2 pe-0 grid-margin">
-                          <div class="card-body">
-                              <div class="nav nav-tabs nav-tabs-vertical" id="v-tab" role="tablist" aria-orientation="vertical">
-                                  <a class="nav-link active" id="v-home-tab" data-bs-toggle="pill" href="#v-home" role="tab" aria-controls="v-home" aria-selected="true">PM2.5</a>
-                                  <a class="nav-link" id="v-profile-tab" data-bs-toggle="pill" href="#v-profile" role="tab" aria-controls="v-profile" aria-selected="false">PM10</a>
-                                  <a class="nav-link" id="v-messages-tab" data-bs-toggle="pill" href="#v-messages" role="tab" aria-controls="v-messages" aria-selected="false">CO</a>
-                                  <a class="nav-link" id="v-no2-tab" data-bs-toggle="pill" href="#v-no2" role="tab" aria-controls="v-no2" aria-selected="false">NO2</a>
-                                  <a class="nav-link" id="v-settings-tab" data-bs-toggle="pill" href="#v-settings" role="tab" aria-controls="v-settings" aria-selected="false">O3</a>
-                              </div>
-                          </div>
-                  </div>
-                  <div class="col-7 col-md-10 ps-0 grid-margin pol-desc">
-                    <div class="tab-content tab-content-vertical border py-2 px-3" id="v-tabContent">
-                      <div class="tab-pane fade show active" id="v-home" role="tabpanel" aria-labelledby="v-home-tab">
-                        <h6 class="mb-2">PM2.5</h6>
-                        <p>
-                            PM2.5, or fine particulate matter, refers to tiny airborne particles with diameters of 2.5 micrometers or smaller. These particles, often from sources like vehicle emissions and industrial processes, can penetrate deep into the lungs and pose health risks, making monitoring essential for safeguarding air quality and public health.
-                        </p>
-      
-      
-                      </div>
-                      <div class="tab-pane fade" id="v-profile" role="tabpanel" aria-labelledby="v-profile-tab">
-                          <h6 class="mb-2">PM10</h6>
-                          <p>
-                              PM10, known as coarse particulate matter, encompasses airborne particles with diameters of 10 micrometers or smaller. These particles, originating from sources like road dust, construction activities, and agricultural practices, can irritate the respiratory system upon inhalation, posing health concerns and necessitating monitoring to safeguard public well-being.
-                        </p>
-      
-                      </div>
-                      <div class="tab-pane fade" id="v-messages" role="tabpanel" aria-labelledby="v-messages-tab">
-                          <h6 class="mb-2">CO</h6>
-                          <p>
-                              CO, or carbon monoxide, is a colorless and odorless gas produced by incomplete combustion of fossil fuels in vehicles, industrial processes, and residential heating systems. Due to its high affinity for hemoglobin, CO can impair the blood's ability to carry oxygen, leading to symptoms such as headaches, dizziness, and even death in high concentrations.        </p>
-                          </div>
-                      <div class="tab-pane fade" id="v-no2" role="tabpanel" aria-labelledby="v-no2-tab">
-                          <h6 class="mb-2">NO2</h6>
-                          <p>
-                              NO2, or nitrogen dioxide, is a reddish-brown gas primarily emitted from combustion processes in vehicles, power plants, and industrial facilities. Exposure to NO2 can exacerbate respiratory conditions such as asthma and increase susceptibility to respiratory infections. 
-                          </p>
-                        </div>
-                      <div class="tab-pane fade" id="v-settings" role="tabpanel" aria-labelledby="v-settings-tab">
-                          <h6 class="mb-2">03</h6>
-                          <p>
-                              O3, or ozone, is a reactive gas composed of three oxygen atoms formed through complex chemical reactions involving pollutants such as nitrogen oxides and volatile organic compounds in the presence of sunlight. While beneficial in the stratosphere for blocking harmful UV radiation, ground-level ozone can irritate the respiratory, trigger asthma, and cause lung inflammation. 
-                          </p>
-                      </div>
-                    </div>
-                  </div>
-              </div>
-            </div>
-          </div>
-          {{-- 2nd collapse --}}
-          <div class="col-md-6">
-            <div class="collapse multi-collapse" id="multiCollapseExample2">
                 <div class="card-body">
                   <div class="table-responsive">
                       <table class="table classification">

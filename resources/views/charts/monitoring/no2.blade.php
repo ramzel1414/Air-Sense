@@ -3,7 +3,11 @@
       <div class="card-body">
         <div class="row">
           <div class="col-2 d-flex justify-content-between w-100">
-            <h5 class="d-flex align-items-center">NO2</h5>
+            <div class="d-flex align-items-center gap-2">
+              <button type="button" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="right" title="NO2 is a toxic gas from burning fuels that can irritate the lungs, reduce air quality, and contribute to smog formation.">
+                NO2
+              </button>
+            </div>
             <div class="btns">
               <div class="btn-group">
                 <div id="processing-no2" class="css-processing" class="css-processing"><span>P</span><span>r</span><span>o</span><span>c</span><span>e</span><span>s</span><span>s</span><span>i</span><span>n</span><span>g</span><span>.</span><span>.</span><span>.</span></div>
