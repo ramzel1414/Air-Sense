@@ -43,34 +43,213 @@
 </style>
     	<div class="page-content">
 
-        <div class="d-flex justify-content-between align-items-center flex-wrap grid-margin">
+        <div class="mb-3 d-flex justify-content-between align-items-center flex-wrap grid-margin">
+          <h3 class="">Overview</h3>
+        </div>
 
-          <h3 class="mb-3">Overview</h3>
-              <div class="btn-group">
+        <div class="mb-3 d-flex justify-content-between align-items-center flex-wrap grid-margin">
+          {{-- Tabs for Monitoring and Forecasting--}}
+          <div>
+            <ul class="nav nav-tabs nav-tabs-line" id="lineTab" role="tablist">
+              <li class="nav-item">
+                <a class="nav-link active" id="monitoring-line-tab" data-bs-toggle="tab" href="#monitoring" role="tab" aria-controls="monitoring" aria-selected="true">Monitoring</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="forecasting-line-tab" data-bs-toggle="tab" href="#forecasting" role="tab" aria-controls="forecasting" aria-selected="false">Forecasting</a>
+              </li>
+            </ul>
+          </div>
+
+          {{-- 3 toggle buttons --}}
+          <div>
+            <a class="btn btn-primary" data-bs-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Pollutant Description</a>
+            <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">Pollutant Classification</button>
+            <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target=".multi-collapse" aria-expanded="false" aria-controls="multiCollapseExample1 multiCollapseExample2">Toggle Both</button>
+          </div>
+
+        </div>
+        {{-- toggle content --}}
+        {{-- move this out to the div up there so that it won't affect the structure (space-between) --}}
+        <div class="row mb-3">
+          {{-- 1st collapse --}}
+          <div class="col">
+            <div class="collapse multi-collapse" id="multiCollapseExample1">
+                <div class="d-flex">
+                  <div class="col-5 col-md-2 pe-0 grid-margin">
+                          <div class="card-body">
+                              <div class="nav nav-tabs nav-tabs-vertical" id="v-tab" role="tablist" aria-orientation="vertical">
+                                  <a class="nav-link active" id="v-home-tab" data-bs-toggle="pill" href="#v-home" role="tab" aria-controls="v-home" aria-selected="true">PM2.5</a>
+                                  <a class="nav-link" id="v-profile-tab" data-bs-toggle="pill" href="#v-profile" role="tab" aria-controls="v-profile" aria-selected="false">PM10</a>
+                                  <a class="nav-link" id="v-messages-tab" data-bs-toggle="pill" href="#v-messages" role="tab" aria-controls="v-messages" aria-selected="false">CO</a>
+                                  <a class="nav-link" id="v-no2-tab" data-bs-toggle="pill" href="#v-no2" role="tab" aria-controls="v-no2" aria-selected="false">NO2</a>
+                                  <a class="nav-link" id="v-settings-tab" data-bs-toggle="pill" href="#v-settings" role="tab" aria-controls="v-settings" aria-selected="false">O3</a>
+                              </div>
+                          </div>
+                  </div>
+                  <div class="col-7 col-md-10 ps-0 grid-margin pol-desc">
+                    <div class="tab-content tab-content-vertical border py-2 px-3" id="v-tabContent">
+                      <div class="tab-pane fade show active" id="v-home" role="tabpanel" aria-labelledby="v-home-tab">
+                        <h6 class="mb-2">PM2.5</h6>
+                        <p>
+                            PM2.5, or fine particulate matter, refers to tiny airborne particles with diameters of 2.5 micrometers or smaller. These particles, often from sources like vehicle emissions and industrial processes, can penetrate deep into the lungs and pose health risks, making monitoring essential for safeguarding air quality and public health.
+                        </p>
+      
+      
+                      </div>
+                      <div class="tab-pane fade" id="v-profile" role="tabpanel" aria-labelledby="v-profile-tab">
+                          <h6 class="mb-2">PM10</h6>
+                          <p>
+                              PM10, known as coarse particulate matter, encompasses airborne particles with diameters of 10 micrometers or smaller. These particles, originating from sources like road dust, construction activities, and agricultural practices, can irritate the respiratory system upon inhalation, posing health concerns and necessitating monitoring to safeguard public well-being.
+                        </p>
+      
+                      </div>
+                      <div class="tab-pane fade" id="v-messages" role="tabpanel" aria-labelledby="v-messages-tab">
+                          <h6 class="mb-2">CO</h6>
+                          <p>
+                              CO, or carbon monoxide, is a colorless and odorless gas produced by incomplete combustion of fossil fuels in vehicles, industrial processes, and residential heating systems. Due to its high affinity for hemoglobin, CO can impair the blood's ability to carry oxygen, leading to symptoms such as headaches, dizziness, and even death in high concentrations.        </p>
+                          </div>
+                      <div class="tab-pane fade" id="v-no2" role="tabpanel" aria-labelledby="v-no2-tab">
+                          <h6 class="mb-2">NO2</h6>
+                          <p>
+                              NO2, or nitrogen dioxide, is a reddish-brown gas primarily emitted from combustion processes in vehicles, power plants, and industrial facilities. Exposure to NO2 can exacerbate respiratory conditions such as asthma and increase susceptibility to respiratory infections. 
+                          </p>
+                        </div>
+                      <div class="tab-pane fade" id="v-settings" role="tabpanel" aria-labelledby="v-settings-tab">
+                          <h6 class="mb-2">03</h6>
+                          <p>
+                              O3, or ozone, is a reactive gas composed of three oxygen atoms formed through complex chemical reactions involving pollutants such as nitrogen oxides and volatile organic compounds in the presence of sunlight. While beneficial in the stratosphere for blocking harmful UV radiation, ground-level ozone can irritate the respiratory, trigger asthma, and cause lung inflammation. 
+                          </p>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+            </div>
+          </div>
+          {{-- 2nd collapse --}}
+          <div class="col-md-6">
+            <div class="collapse multi-collapse" id="multiCollapseExample2">
+                <div class="card-body">
+                  <div class="table-responsive">
+                      <table class="table classification">
+                          <thead>
+                              <tr>
+                                  <th>CATEGORY</th>
+                                  <th>PM<sub>10</sub> (ug/m<sup>3</sup>)</th>
+                                  <th>PM<sub>2.5</sub> (ug/m<sup>3</sup>)</th>
+                                  <th>CO (ppm)</th>
+                                  <th>NO2 (ppm)</th>
+                                  <th>O3 (ppm)</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              <tr>
+                                  <td style="color: #00B050; width:50%;">Good</td>
+                                  <td>0 - 54</td>
+                                  <td>0 - 25</td>
+                                  <td>0 - 25</td>
+                                  <td>0 - 0.05</td>
+                                  <td>0 - 0.064</td>
+                              </tr>
+                              <tr>
+                                  <td style="color: #B5B303;">Moderate</td>
+                                  <td>55 - 154</td>
+                                  <td>25.1 - 35.0</td>
+                                  <td>25 - 50</td>
+                                  <td>0.06 - 0.10</td>
+                                  <td>0.065 - 0.084</td>
+                              </tr>
+                              <tr>
+                                  <td style="color: #FF6600;">Unhealthy for Sensitive Groups</td>
+                                  <td>155 - 254</td>
+                                  <td>35.1 - 45.0</td>
+                                  <td>51 - 69</td>
+                                  <td>0.11 - 0.36</td>
+                                  <td>0.085 - 0.104</td>
+                              </tr>
+                              <tr>
+                                  <td style="color: #FF0000;">Unhealthy</td>
+                                  <td>255 - 354</td>
+                                  <td>45.1 - 55</td>
+                                  <td>70 - 150</td>
+                                  <td>0.37 - 0.65</td>
+                                  <td>0.105 - 0.124</td>
+                              </tr>
+                              <tr>
+                                  <td style="color: #7030A0;">Very Unhealthy</td>
+                                  <td>355 - 424</td>
+                                  <td>55.1 - 90</td>
+                                  <td>151 - 400</td>
+                                  <td>0.66 - 1.24</td>
+                                  <td>0.125 - 0.374</td>
+                              </tr>
+                              <tr>
+                                  <td style="color:#990033;">Hazardous</td>
+                                  <td>425 - 504</td>
+                                  <td>Above 91</td>
+                                  <td>Above 401</td>
+                                  <td>Above 1.24</td>
+                                  <td>Above 0.374</td>
+                              </tr>
+                          </tbody>
+                      </table>
+                  </div>
+                </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="btn-group float-end">
           <div class="d-flex align-items-center flex-wrap text-nowrap">
             <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="btn-icon-prepend" data-feather="download-cloud"></i>
               Report
             </button>
 
-              <div class="dropdown-menu">
-                <!-- Nested dropleft 1-->
-                <div class="block">
-                  <div class="btn-group">
-                    <div class="dropdown dropstart" role="group">
-                      <button title="filter by year" title="filter by year" type="button" class="dropdown-item dropdown-toggle dropdown-toggle-split nested-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <div class="dropdown-menu">
+              <!-- Nested dropleft 1-->
+              <div class="block">
+                <div class="btn-group">
+                  <div class="dropdown dropstart" role="group">
+                    <button title="filter by year" title="filter by year" type="button" class="dropdown-item dropdown-toggle dropdown-toggle-split nested-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="visually-hidden">Toggle Dropleft</span>
+                    </button>
+                    {{-- Year Dropdown --}}
+                    <div class="dropdown-menu" style="min-width: 5rem;">
+                      <div class="block">
+                        <div class="btn-group">
+                          <div class="dropdown dropstart" role="group">
+                            <button title="filter by month" title="filter by month" type="button" class="dropdown-item dropdown-toggle dropdown-toggle-split nested-dropdown test" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                               <span class="visually-hidden">Toggle Dropleft</span>
-                      </button>
-                      {{-- Year Dropdown --}}
-                      <div class="dropdown-menu" style="min-width: 5rem;">
-                        <div class="block">
-                          <div class="btn-group">
-                            <div class="dropdown dropstart" role="group">
-                              <button title="filter by month" title="filter by month" type="button" class="dropdown-item dropdown-toggle dropdown-toggle-split nested-dropdown test" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="visually-hidden">Toggle Dropleft</span>
-                              </button>
-                              {{-- Month Dropdown --}}
-                              <div class="dropdown-menu" style="min-width: 4rem;">
+                            </button>
+                            {{-- Month Dropdown --}}
+                            <div class="dropdown-menu" style="min-width: 4rem;">
+                            <a class="dropdown-item" href="#">Jan</a>
+                            <a class="dropdown-item" href="#">Feb</a>
+                            <a class="dropdown-item" href="#">Mar</a>
+                            <a class="dropdown-item" href="#">Apr</a>
+                            <a class="dropdown-item" href="#">May</a>
+                            <a class="dropdown-item" href="#">Jun</a>
+                            <a class="dropdown-item" href="#">Jul</a>
+                            <a class="dropdown-item" href="#">Aug</a>
+                              <a class="dropdown-item" href="#">Sep</a>
+                              <a class="dropdown-item" href="#">Oct</a>
+                              <a class="dropdown-item" href="#">Nov</a>
+                              <a class="dropdown-item" href="#">Dec</a>
+                            </div>
+                          </div>
+                          <a type="button" class="bg-secondary">
+                              <a class="dropdown-item" href="#">2024</a>
+                          </a>
+                        </div>
+                      </div>
+                      <div class="block">
+                        <div class="btn-group">
+                          <div class="dropdown dropstart" role="group">
+                            <button title="filter by month" title="filter by month" type="button" class="dropdown-item dropdown-toggle dropdown-toggle-split nested-dropdown test" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              <span class="visually-hidden">Toggle Dropleft</span>
+                            </button>
+                            {{-- Month Dropdown --}}
+                            <div class="dropdown-menu" style="min-width: 4rem;">
                               <a class="dropdown-item" href="#">Jan</a>
                               <a class="dropdown-item" href="#">Feb</a>
                               <a class="dropdown-item" href="#">Mar</a>
@@ -79,603 +258,564 @@
                               <a class="dropdown-item" href="#">Jun</a>
                               <a class="dropdown-item" href="#">Jul</a>
                               <a class="dropdown-item" href="#">Aug</a>
-                                <a class="dropdown-item" href="#">Sep</a>
-                                <a class="dropdown-item" href="#">Oct</a>
-                                <a class="dropdown-item" href="#">Nov</a>
-                                <a class="dropdown-item" href="#">Dec</a>
-                              </div>
+                              <a class="dropdown-item" href="#">Sep</a>
+                              <a class="dropdown-item" href="#">Oct</a>
+                              <a class="dropdown-item" href="#">Nov</a>
+                              <a class="dropdown-item" href="#">Dec</a>
                             </div>
-                            <a type="button" class="bg-secondary">
-                                <a class="dropdown-item" href="#">2024</a>
-                            </a>
                           </div>
-                        </div>
-                        <div class="block">
-                          <div class="btn-group">
-                            <div class="dropdown dropstart" role="group">
-                              <button title="filter by month" title="filter by month" type="button" class="dropdown-item dropdown-toggle dropdown-toggle-split nested-dropdown test" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="visually-hidden">Toggle Dropleft</span>
-                              </button>
-                              {{-- Month Dropdown --}}
-                              <div class="dropdown-menu" style="min-width: 4rem;">
-                                <a class="dropdown-item" href="#">Jan</a>
-                                <a class="dropdown-item" href="#">Feb</a>
-                                <a class="dropdown-item" href="#">Mar</a>
-                                <a class="dropdown-item" href="#">Apr</a>
-                                <a class="dropdown-item" href="#">May</a>
-                                <a class="dropdown-item" href="#">Jun</a>
-                                <a class="dropdown-item" href="#">Jul</a>
-                                <a class="dropdown-item" href="#">Aug</a>
-                                <a class="dropdown-item" href="#">Sep</a>
-                                <a class="dropdown-item" href="#">Oct</a>
-                                <a class="dropdown-item" href="#">Nov</a>
-                                <a class="dropdown-item" href="#">Dec</a>
-                              </div>
-                            </div>
-                            <a type="button" class="bg-secondary">
-                                <a class="dropdown-item" href="#">2025</a>
-                            </a>
-                          </div>
+                          <a type="button" class="bg-secondary">
+                              <a class="dropdown-item" href="#">2025</a>
+                          </a>
                         </div>
                       </div>
                     </div>
-                    <a type="button" class="bg-secondary">
-                            <a class="dropdown-item" href="{{ route('pdf.download') }}">All Pollutants Report</a>
-                    </a>
                   </div>
-                  
+                  <a type="button" class="bg-secondary">
+                          <a class="dropdown-item" href="{{ route('pdf.download') }}">All Pollutants Report</a>
+                  </a>
                 </div>
-                <!-- Nested dropleft 2-->
-                <div class="block">
-                  <div class="btn-group">
-                    <div class="dropdown dropstart" role="group">
-                      <button title="filter by year" title="filter by year" type="button" class="dropdown-item dropdown-toggle dropdown-toggle-split nested-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                
+              </div>
+              <!-- Nested dropleft 2-->
+              <div class="block">
+                <div class="btn-group">
+                  <div class="dropdown dropstart" role="group">
+                    <button title="filter by year" title="filter by year" type="button" class="dropdown-item dropdown-toggle dropdown-toggle-split nested-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="visually-hidden">Toggle Dropleft</span>
+                    </button>
+                    {{-- Year Dropdown --}}
+                    <div class="dropdown-menu" style="min-width: 5rem;">
+                      <div class="block">
+                        <div class="btn-group">
+                          <div class="dropdown dropstart" role="group">
+                            <button title="filter by month" title="filter by month" type="button" class="dropdown-item dropdown-toggle dropdown-toggle-split nested-dropdown test" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                               <span class="visually-hidden">Toggle Dropleft</span>
-                      </button>
-                      {{-- Year Dropdown --}}
-                      <div class="dropdown-menu" style="min-width: 5rem;">
-                        <div class="block">
-                          <div class="btn-group">
-                            <div class="dropdown dropstart" role="group">
-                              <button title="filter by month" title="filter by month" type="button" class="dropdown-item dropdown-toggle dropdown-toggle-split nested-dropdown test" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="visually-hidden">Toggle Dropleft</span>
-                              </button>
-                              {{-- Month Dropdown --}}
-                              <div class="dropdown-menu" style="min-width: 4rem;">
-                                <a class="dropdown-item" href="#">Jan</a>
-                                <a class="dropdown-item" href="#">Feb</a>
-                                <a class="dropdown-item" href="#">Mar</a>
-                                <a class="dropdown-item" href="#">Apr</a>
-                                <a class="dropdown-item" href="#">May</a>
-                                <a class="dropdown-item" href="#">Jun</a>
-                                <a class="dropdown-item" href="#">Jul</a>
-                                <a class="dropdown-item" href="#">Aug</a>
-                                <a class="dropdown-item" href="#">Sep</a>
-                                <a class="dropdown-item" href="#">Oct</a>
-                                <a class="dropdown-item" href="#">Nov</a>
-                                <a class="dropdown-item" href="#">Dec</a>
-                              </div>
+                            </button>
+                            {{-- Month Dropdown --}}
+                            <div class="dropdown-menu" style="min-width: 4rem;">
+                              <a class="dropdown-item" href="#">Jan</a>
+                              <a class="dropdown-item" href="#">Feb</a>
+                              <a class="dropdown-item" href="#">Mar</a>
+                              <a class="dropdown-item" href="#">Apr</a>
+                              <a class="dropdown-item" href="#">May</a>
+                              <a class="dropdown-item" href="#">Jun</a>
+                              <a class="dropdown-item" href="#">Jul</a>
+                              <a class="dropdown-item" href="#">Aug</a>
+                              <a class="dropdown-item" href="#">Sep</a>
+                              <a class="dropdown-item" href="#">Oct</a>
+                              <a class="dropdown-item" href="#">Nov</a>
+                              <a class="dropdown-item" href="#">Dec</a>
                             </div>
-                            <a type="button" class="bg-secondary">
-                                <a class="dropdown-item" href="#">2024</a>
-                            </a>
                           </div>
+                          <a type="button" class="bg-secondary">
+                              <a class="dropdown-item" href="#">2024</a>
+                          </a>
                         </div>
-                        <div class="block">
-                          <div class="btn-group">
-                            <div class="dropdown dropstart" role="group">
-                              <button title="filter by month" title="filter by month" type="button" class="dropdown-item dropdown-toggle dropdown-toggle-split nested-dropdown test" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="visually-hidden">Toggle Dropleft</span>
-                              </button>
-                              {{-- Month Dropdown --}}
-                              <div class="dropdown-menu" style="min-width: 4rem;">
-                                <a class="dropdown-item" href="#">Jan</a>
-                                <a class="dropdown-item" href="#">Feb</a>
-                                <a class="dropdown-item" href="#">Mar</a>
-                                <a class="dropdown-item" href="#">Apr</a>
-                                <a class="dropdown-item" href="#">May</a>
-                                <a class="dropdown-item" href="#">Jun</a>
-                                <a class="dropdown-item" href="#">Jul</a>
-                                <a class="dropdown-item" href="#">Aug</a>
-                                <a class="dropdown-item" href="#">Sep</a>
-                                <a class="dropdown-item" href="#">Oct</a>
-                                <a class="dropdown-item" href="#">Nov</a>
-                                <a class="dropdown-item" href="#">Dec</a>
-                              </div>
+                      </div>
+                      <div class="block">
+                        <div class="btn-group">
+                          <div class="dropdown dropstart" role="group">
+                            <button title="filter by month" title="filter by month" type="button" class="dropdown-item dropdown-toggle dropdown-toggle-split nested-dropdown test" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              <span class="visually-hidden">Toggle Dropleft</span>
+                            </button>
+                            {{-- Month Dropdown --}}
+                            <div class="dropdown-menu" style="min-width: 4rem;">
+                              <a class="dropdown-item" href="#">Jan</a>
+                              <a class="dropdown-item" href="#">Feb</a>
+                              <a class="dropdown-item" href="#">Mar</a>
+                              <a class="dropdown-item" href="#">Apr</a>
+                              <a class="dropdown-item" href="#">May</a>
+                              <a class="dropdown-item" href="#">Jun</a>
+                              <a class="dropdown-item" href="#">Jul</a>
+                              <a class="dropdown-item" href="#">Aug</a>
+                              <a class="dropdown-item" href="#">Sep</a>
+                              <a class="dropdown-item" href="#">Oct</a>
+                              <a class="dropdown-item" href="#">Nov</a>
+                              <a class="dropdown-item" href="#">Dec</a>
                             </div>
-                            <a type="button" class="bg-secondary">
-                                <a class="dropdown-item" href="#">2025</a>
-                            </a>
                           </div>
+                          <a type="button" class="bg-secondary">
+                              <a class="dropdown-item" href="#">2025</a>
+                          </a>
                         </div>
                       </div>
                     </div>
-                    <a type="button" class="bg-secondary">
-                      <a class="dropdown-item" href="{{ route('pdf.download.pm25') }}">PM 2.5 Report</a>
-                    </a>
                   </div>
-                  
+                  <a type="button" class="bg-secondary">
+                    <a class="dropdown-item" href="{{ route('pdf.download.pm25') }}">PM 2.5 Report</a>
+                  </a>
                 </div>
-                <!-- Nested dropleft 3-->
-                <div class="block">
-                  <div class="btn-group">
-                    <div class="dropdown dropstart" role="group">
-                      <button title="filter by year" title="filter by year" type="button" class="dropdown-item dropdown-toggle dropdown-toggle-split nested-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                
+              </div>
+              <!-- Nested dropleft 3-->
+              <div class="block">
+                <div class="btn-group">
+                  <div class="dropdown dropstart" role="group">
+                    <button title="filter by year" title="filter by year" type="button" class="dropdown-item dropdown-toggle dropdown-toggle-split nested-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="visually-hidden">Toggle Dropleft</span>
+                    </button>
+                    {{-- Year Dropdown --}}
+                    <div class="dropdown-menu" style="min-width: 5rem;">
+                      <div class="block">
+                        <div class="btn-group">
+                          <div class="dropdown dropstart" role="group">
+                            <button title="filter by month" title="filter by month" type="button" class="dropdown-item dropdown-toggle dropdown-toggle-split nested-dropdown test" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                               <span class="visually-hidden">Toggle Dropleft</span>
-                      </button>
-                      {{-- Year Dropdown --}}
-                      <div class="dropdown-menu" style="min-width: 5rem;">
-                        <div class="block">
-                          <div class="btn-group">
-                            <div class="dropdown dropstart" role="group">
-                              <button title="filter by month" title="filter by month" type="button" class="dropdown-item dropdown-toggle dropdown-toggle-split nested-dropdown test" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="visually-hidden">Toggle Dropleft</span>
-                              </button>
-                              {{-- Month Dropdown --}}
-                              <div class="dropdown-menu" style="min-width: 4rem;">
-                                <a class="dropdown-item" href="#">Jan</a>
-                                <a class="dropdown-item" href="#">Feb</a>
-                                <a class="dropdown-item" href="#">Mar</a>
-                                <a class="dropdown-item" href="#">Apr</a>
-                                <a class="dropdown-item" href="#">May</a>
-                                <a class="dropdown-item" href="#">Jun</a>
-                                <a class="dropdown-item" href="#">Jul</a>
-                                <a class="dropdown-item" href="#">Aug</a>
-                                <a class="dropdown-item" href="#">Sep</a>
-                                <a class="dropdown-item" href="#">Oct</a>
-                                <a class="dropdown-item" href="#">Nov</a>
-                                <a class="dropdown-item" href="#">Dec</a>
-                              </div>
+                            </button>
+                            {{-- Month Dropdown --}}
+                            <div class="dropdown-menu" style="min-width: 4rem;">
+                              <a class="dropdown-item" href="#">Jan</a>
+                              <a class="dropdown-item" href="#">Feb</a>
+                              <a class="dropdown-item" href="#">Mar</a>
+                              <a class="dropdown-item" href="#">Apr</a>
+                              <a class="dropdown-item" href="#">May</a>
+                              <a class="dropdown-item" href="#">Jun</a>
+                              <a class="dropdown-item" href="#">Jul</a>
+                              <a class="dropdown-item" href="#">Aug</a>
+                              <a class="dropdown-item" href="#">Sep</a>
+                              <a class="dropdown-item" href="#">Oct</a>
+                              <a class="dropdown-item" href="#">Nov</a>
+                              <a class="dropdown-item" href="#">Dec</a>
                             </div>
-                            <a type="button" class="bg-secondary">
-                                <a class="dropdown-item" href="#">2024</a>
-                            </a>
                           </div>
+                          <a type="button" class="bg-secondary">
+                              <a class="dropdown-item" href="#">2024</a>
+                          </a>
                         </div>
-                        <div class="block">
-                          <div class="btn-group">
-                            <div class="dropdown dropstart" role="group">
-                              <button title="filter by month" title="filter by month" type="button" class="dropdown-item dropdown-toggle dropdown-toggle-split nested-dropdown test" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="visually-hidden">Toggle Dropleft</span>
-                              </button>
-                              {{-- Month Dropdown --}}
-                              <div class="dropdown-menu" style="min-width: 4rem;">
-                                <a class="dropdown-item" href="#">Jan</a>
-                                <a class="dropdown-item" href="#">Feb</a>
-                                <a class="dropdown-item" href="#">Mar</a>
-                                <a class="dropdown-item" href="#">Apr</a>
-                                <a class="dropdown-item" href="#">May</a>
-                                <a class="dropdown-item" href="#">Jun</a>
-                                <a class="dropdown-item" href="#">Jul</a>
-                                <a class="dropdown-item" href="#">Aug</a>
-                                <a class="dropdown-item" href="#">Sep</a>
-                                <a class="dropdown-item" href="#">Oct</a>
-                                <a class="dropdown-item" href="#">Nov</a>
-                                <a class="dropdown-item" href="#">Dec</a>
-                              </div>
+                      </div>
+                      <div class="block">
+                        <div class="btn-group">
+                          <div class="dropdown dropstart" role="group">
+                            <button title="filter by month" title="filter by month" type="button" class="dropdown-item dropdown-toggle dropdown-toggle-split nested-dropdown test" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              <span class="visually-hidden">Toggle Dropleft</span>
+                            </button>
+                            {{-- Month Dropdown --}}
+                            <div class="dropdown-menu" style="min-width: 4rem;">
+                              <a class="dropdown-item" href="#">Jan</a>
+                              <a class="dropdown-item" href="#">Feb</a>
+                              <a class="dropdown-item" href="#">Mar</a>
+                              <a class="dropdown-item" href="#">Apr</a>
+                              <a class="dropdown-item" href="#">May</a>
+                              <a class="dropdown-item" href="#">Jun</a>
+                              <a class="dropdown-item" href="#">Jul</a>
+                              <a class="dropdown-item" href="#">Aug</a>
+                              <a class="dropdown-item" href="#">Sep</a>
+                              <a class="dropdown-item" href="#">Oct</a>
+                              <a class="dropdown-item" href="#">Nov</a>
+                              <a class="dropdown-item" href="#">Dec</a>
                             </div>
-                            <a type="button" class="bg-secondary">
-                                <a class="dropdown-item" href="#">2025</a>
-                            </a>
                           </div>
+                          <a type="button" class="bg-secondary">
+                              <a class="dropdown-item" href="#">2025</a>
+                          </a>
                         </div>
                       </div>
                     </div>
-                    <a type="button" class="bg-secondary">
-                      <a class="dropdown-item" href="{{ route('pdf.download.pm10') }}">PM 10 Report</a>
-                    </a>
                   </div>
-                  
+                  <a type="button" class="bg-secondary">
+                    <a class="dropdown-item" href="{{ route('pdf.download.pm10') }}">PM 10 Report</a>
+                  </a>
                 </div>
-                <!-- Nested dropleft 4-->
-                <div class="block">
-                  <div class="btn-group">
-                    <div class="dropdown dropstart" role="group">
-                      <button title="filter by year" title="filter by year" type="button" class="dropdown-item dropdown-toggle dropdown-toggle-split nested-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                
+              </div>
+              <!-- Nested dropleft 4-->
+              <div class="block">
+                <div class="btn-group">
+                  <div class="dropdown dropstart" role="group">
+                    <button title="filter by year" title="filter by year" type="button" class="dropdown-item dropdown-toggle dropdown-toggle-split nested-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="visually-hidden">Toggle Dropleft</span>
+                    </button>
+                    {{-- Year Dropdown --}}
+                    <div class="dropdown-menu" style="min-width: 5rem;">
+                      <div class="block">
+                        <div class="btn-group">
+                          <div class="dropdown dropstart" role="group">
+                            <button title="filter by month" title="filter by month" type="button" class="dropdown-item dropdown-toggle dropdown-toggle-split nested-dropdown test" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                               <span class="visually-hidden">Toggle Dropleft</span>
-                      </button>
-                      {{-- Year Dropdown --}}
-                      <div class="dropdown-menu" style="min-width: 5rem;">
-                        <div class="block">
-                          <div class="btn-group">
-                            <div class="dropdown dropstart" role="group">
-                              <button title="filter by month" title="filter by month" type="button" class="dropdown-item dropdown-toggle dropdown-toggle-split nested-dropdown test" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="visually-hidden">Toggle Dropleft</span>
-                              </button>
-                              {{-- Month Dropdown --}}
-                              <div class="dropdown-menu" style="min-width: 4rem;">
-                                <a class="dropdown-item" href="#">Jan</a>
-                                <a class="dropdown-item" href="#">Feb</a>
-                                <a class="dropdown-item" href="#">Mar</a>
-                                <a class="dropdown-item" href="#">Apr</a>
-                                <a class="dropdown-item" href="#">May</a>
-                                <a class="dropdown-item" href="#">Jun</a>
-                                <a class="dropdown-item" href="#">Jul</a>
-                                <a class="dropdown-item" href="#">Aug</a>
-                                <a class="dropdown-item" href="#">Sep</a>
-                                <a class="dropdown-item" href="#">Oct</a>
-                                <a class="dropdown-item" href="#">Nov</a>
-                                <a class="dropdown-item" href="#">Dec</a>
-                              </div>
+                            </button>
+                            {{-- Month Dropdown --}}
+                            <div class="dropdown-menu" style="min-width: 4rem;">
+                              <a class="dropdown-item" href="#">Jan</a>
+                              <a class="dropdown-item" href="#">Feb</a>
+                              <a class="dropdown-item" href="#">Mar</a>
+                              <a class="dropdown-item" href="#">Apr</a>
+                              <a class="dropdown-item" href="#">May</a>
+                              <a class="dropdown-item" href="#">Jun</a>
+                              <a class="dropdown-item" href="#">Jul</a>
+                              <a class="dropdown-item" href="#">Aug</a>
+                              <a class="dropdown-item" href="#">Sep</a>
+                              <a class="dropdown-item" href="#">Oct</a>
+                              <a class="dropdown-item" href="#">Nov</a>
+                              <a class="dropdown-item" href="#">Dec</a>
                             </div>
-                            <a type="button" class="bg-secondary">
-                                <a class="dropdown-item" href="#">2024</a>
-                            </a>
                           </div>
+                          <a type="button" class="bg-secondary">
+                              <a class="dropdown-item" href="#">2024</a>
+                          </a>
                         </div>
-                        <div class="block">
-                          <div class="btn-group">
-                            <div class="dropdown dropstart" role="group">
-                              <button title="filter by month" title="filter by month" type="button" class="dropdown-item dropdown-toggle dropdown-toggle-split nested-dropdown test" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="visually-hidden">Toggle Dropleft</span>
-                              </button>
-                              {{-- Month Dropdown --}}
-                              <div class="dropdown-menu" style="min-width: 4rem;">
-                                <a class="dropdown-item" href="#">Jan</a>
-                                <a class="dropdown-item" href="#">Feb</a>
-                                <a class="dropdown-item" href="#">Mar</a>
-                                <a class="dropdown-item" href="#">Apr</a>
-                                <a class="dropdown-item" href="#">May</a>
-                                <a class="dropdown-item" href="#">Jun</a>
-                                <a class="dropdown-item" href="#">Jul</a>
-                                <a class="dropdown-item" href="#">Aug</a>
-                                <a class="dropdown-item" href="#">Sep</a>
-                                <a class="dropdown-item" href="#">Oct</a>
-                                <a class="dropdown-item" href="#">Nov</a>
-                                <a class="dropdown-item" href="#">Dec</a>
-                              </div>
+                      </div>
+                      <div class="block">
+                        <div class="btn-group">
+                          <div class="dropdown dropstart" role="group">
+                            <button title="filter by month" title="filter by month" type="button" class="dropdown-item dropdown-toggle dropdown-toggle-split nested-dropdown test" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              <span class="visually-hidden">Toggle Dropleft</span>
+                            </button>
+                            {{-- Month Dropdown --}}
+                            <div class="dropdown-menu" style="min-width: 4rem;">
+                              <a class="dropdown-item" href="#">Jan</a>
+                              <a class="dropdown-item" href="#">Feb</a>
+                              <a class="dropdown-item" href="#">Mar</a>
+                              <a class="dropdown-item" href="#">Apr</a>
+                              <a class="dropdown-item" href="#">May</a>
+                              <a class="dropdown-item" href="#">Jun</a>
+                              <a class="dropdown-item" href="#">Jul</a>
+                              <a class="dropdown-item" href="#">Aug</a>
+                              <a class="dropdown-item" href="#">Sep</a>
+                              <a class="dropdown-item" href="#">Oct</a>
+                              <a class="dropdown-item" href="#">Nov</a>
+                              <a class="dropdown-item" href="#">Dec</a>
                             </div>
-                            <a type="button" class="bg-secondary">
-                                <a class="dropdown-item" href="#">2025</a>
-                            </a>
                           </div>
+                          <a type="button" class="bg-secondary">
+                              <a class="dropdown-item" href="#">2025</a>
+                          </a>
                         </div>
                       </div>
                     </div>
+                  </div>
 
-                    <a type="button" class="bg-secondary">
-                      <a class="dropdown-item" href="{{ route('pdf.download.co') }}">CO Report</a>
-                    </a>
-                  </div>
-                  
+                  <a type="button" class="bg-secondary">
+                    <a class="dropdown-item" href="{{ route('pdf.download.co') }}">CO Report</a>
+                  </a>
                 </div>
-                <!-- Nested dropleft 5-->
-                <div class="block">
-                  <div class="btn-group">
-                    <div class="dropdown dropstart" role="group">
-                      <button title="filter by year" title="filter by year" type="button" class="dropdown-item dropdown-toggle dropdown-toggle-split nested-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                
+              </div>
+              <!-- Nested dropleft 5-->
+              <div class="block">
+                <div class="btn-group">
+                  <div class="dropdown dropstart" role="group">
+                    <button title="filter by year" title="filter by year" type="button" class="dropdown-item dropdown-toggle dropdown-toggle-split nested-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="visually-hidden">Toggle Dropleft</span>
+                    </button>
+                    {{-- Year Dropdown --}}
+                    <div class="dropdown-menu" style="min-width: 5rem;">
+                      <div class="block">
+                        <div class="btn-group">
+                          <div class="dropdown dropstart" role="group">
+                            <button title="filter by month" title="filter by month" type="button" class="dropdown-item dropdown-toggle dropdown-toggle-split nested-dropdown test" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                               <span class="visually-hidden">Toggle Dropleft</span>
-                      </button>
-                      {{-- Year Dropdown --}}
-                      <div class="dropdown-menu" style="min-width: 5rem;">
-                        <div class="block">
-                          <div class="btn-group">
-                            <div class="dropdown dropstart" role="group">
-                              <button title="filter by month" title="filter by month" type="button" class="dropdown-item dropdown-toggle dropdown-toggle-split nested-dropdown test" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="visually-hidden">Toggle Dropleft</span>
-                              </button>
-                              {{-- Month Dropdown --}}
-                              <div class="dropdown-menu" style="min-width: 4rem;">
-                                <a class="dropdown-item" href="#">Jan</a>
-                                <a class="dropdown-item" href="#">Feb</a>
-                                <a class="dropdown-item" href="#">Mar</a>
-                                <a class="dropdown-item" href="#">Apr</a>
-                                <a class="dropdown-item" href="#">May</a>
-                                <a class="dropdown-item" href="#">Jun</a>
-                                <a class="dropdown-item" href="#">Jul</a>
-                                <a class="dropdown-item" href="#">Aug</a>
-                                <a class="dropdown-item" href="#">Sep</a>
-                                <a class="dropdown-item" href="#">Oct</a>
-                                <a class="dropdown-item" href="#">Nov</a>
-                                <a class="dropdown-item" href="#">Dec</a>
-                              </div>
+                            </button>
+                            {{-- Month Dropdown --}}
+                            <div class="dropdown-menu" style="min-width: 4rem;">
+                              <a class="dropdown-item" href="#">Jan</a>
+                              <a class="dropdown-item" href="#">Feb</a>
+                              <a class="dropdown-item" href="#">Mar</a>
+                              <a class="dropdown-item" href="#">Apr</a>
+                              <a class="dropdown-item" href="#">May</a>
+                              <a class="dropdown-item" href="#">Jun</a>
+                              <a class="dropdown-item" href="#">Jul</a>
+                              <a class="dropdown-item" href="#">Aug</a>
+                              <a class="dropdown-item" href="#">Sep</a>
+                              <a class="dropdown-item" href="#">Oct</a>
+                              <a class="dropdown-item" href="#">Nov</a>
+                              <a class="dropdown-item" href="#">Dec</a>
                             </div>
-                            <a type="button" class="bg-secondary">
-                                <a class="dropdown-item" href="#">2024</a>
-                            </a>
                           </div>
+                          <a type="button" class="bg-secondary">
+                              <a class="dropdown-item" href="#">2024</a>
+                          </a>
                         </div>
-                        <div class="block">
-                          <div class="btn-group">
-                            <div class="dropdown dropstart" role="group">
-                              <button title="filter by month" title="filter by month" type="button" class="dropdown-item dropdown-toggle dropdown-toggle-split nested-dropdown test" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="visually-hidden">Toggle Dropleft</span>
-                              </button>
-                              {{-- Month Dropdown --}}
-                              <div class="dropdown-menu" style="min-width: 4rem;">
-                                <a class="dropdown-item" href="#">Jan</a>
-                                <a class="dropdown-item" href="#">Feb</a>
-                                <a class="dropdown-item" href="#">Mar</a>
-                                <a class="dropdown-item" href="#">Apr</a>
-                                <a class="dropdown-item" href="#">May</a>
-                                <a class="dropdown-item" href="#">Jun</a>
-                                <a class="dropdown-item" href="#">Jul</a>
-                                <a class="dropdown-item" href="#">Aug</a>
-                                <a class="dropdown-item" href="#">Sep</a>
-                                <a class="dropdown-item" href="#">Oct</a>
-                                <a class="dropdown-item" href="#">Nov</a>
-                                <a class="dropdown-item" href="#">Dec</a>
-                              </div>
+                      </div>
+                      <div class="block">
+                        <div class="btn-group">
+                          <div class="dropdown dropstart" role="group">
+                            <button title="filter by month" title="filter by month" type="button" class="dropdown-item dropdown-toggle dropdown-toggle-split nested-dropdown test" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              <span class="visually-hidden">Toggle Dropleft</span>
+                            </button>
+                            {{-- Month Dropdown --}}
+                            <div class="dropdown-menu" style="min-width: 4rem;">
+                              <a class="dropdown-item" href="#">Jan</a>
+                              <a class="dropdown-item" href="#">Feb</a>
+                              <a class="dropdown-item" href="#">Mar</a>
+                              <a class="dropdown-item" href="#">Apr</a>
+                              <a class="dropdown-item" href="#">May</a>
+                              <a class="dropdown-item" href="#">Jun</a>
+                              <a class="dropdown-item" href="#">Jul</a>
+                              <a class="dropdown-item" href="#">Aug</a>
+                              <a class="dropdown-item" href="#">Sep</a>
+                              <a class="dropdown-item" href="#">Oct</a>
+                              <a class="dropdown-item" href="#">Nov</a>
+                              <a class="dropdown-item" href="#">Dec</a>
                             </div>
-                            <a type="button" class="bg-secondary">
-                                <a class="dropdown-item" href="#">2025</a>
-                            </a>
                           </div>
+                          <a type="button" class="bg-secondary">
+                              <a class="dropdown-item" href="#">2025</a>
+                          </a>
                         </div>
                       </div>
                     </div>
-
-                    <a type="button" class="bg-secondary">
-                      <a class="dropdown-item" href="{{ route('pdf.download.no2') }}">NO2 Report</a>
-                    </a>
                   </div>
-                  
+
+                  <a type="button" class="bg-secondary">
+                    <a class="dropdown-item" href="{{ route('pdf.download.no2') }}">NO2 Report</a>
+                  </a>
                 </div>
-                <!-- Nested dropleft 5-->
-                <div class="block">
-                  <div class="btn-group">
-                    <div class="dropdown dropstart" role="group">
-                      <button title="filter by year" title="filter by year" type="button" class="dropdown-item dropdown-toggle dropdown-toggle-split nested-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                
+              </div>
+              <!-- Nested dropleft 5-->
+              <div class="block">
+                <div class="btn-group">
+                  <div class="dropdown dropstart" role="group">
+                    <button title="filter by year" title="filter by year" type="button" class="dropdown-item dropdown-toggle dropdown-toggle-split nested-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="visually-hidden">Toggle Dropleft</span>
+                    </button>
+                    {{-- Year Dropdown --}}
+                    <div class="dropdown-menu" style="min-width: 5rem;">
+                      <div class="block">
+                        <div class="btn-group">
+                          <div class="dropdown dropstart" role="group">
+                            <button title="filter by month" title="filter by month" type="button" class="dropdown-item dropdown-toggle dropdown-toggle-split nested-dropdown test" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                               <span class="visually-hidden">Toggle Dropleft</span>
-                      </button>
-                      {{-- Year Dropdown --}}
-                      <div class="dropdown-menu" style="min-width: 5rem;">
-                        <div class="block">
-                          <div class="btn-group">
-                            <div class="dropdown dropstart" role="group">
-                              <button title="filter by month" title="filter by month" type="button" class="dropdown-item dropdown-toggle dropdown-toggle-split nested-dropdown test" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="visually-hidden">Toggle Dropleft</span>
-                              </button>
-                              {{-- Month Dropdown --}}
-                              <div class="dropdown-menu" style="min-width: 4rem;">
-                                <a class="dropdown-item" href="#">Jan</a>
-                                <a class="dropdown-item" href="#">Feb</a>
-                                <a class="dropdown-item" href="#">Mar</a>
-                                <a class="dropdown-item" href="#">Apr</a>
-                                <a class="dropdown-item" href="#">May</a>
-                                <a class="dropdown-item" href="#">Jun</a>
-                                <a class="dropdown-item" href="#">Jul</a>
-                                <a class="dropdown-item" href="#">Aug</a>
-                                <a class="dropdown-item" href="#">Sep</a>
-                                <a class="dropdown-item" href="#">Oct</a>
-                                <a class="dropdown-item" href="#">Nov</a>
-                                <a class="dropdown-item" href="#">Dec</a>
-                              </div>
+                            </button>
+                            {{-- Month Dropdown --}}
+                            <div class="dropdown-menu" style="min-width: 4rem;">
+                              <a class="dropdown-item" href="#">Jan</a>
+                              <a class="dropdown-item" href="#">Feb</a>
+                              <a class="dropdown-item" href="#">Mar</a>
+                              <a class="dropdown-item" href="#">Apr</a>
+                              <a class="dropdown-item" href="#">May</a>
+                              <a class="dropdown-item" href="#">Jun</a>
+                              <a class="dropdown-item" href="#">Jul</a>
+                              <a class="dropdown-item" href="#">Aug</a>
+                              <a class="dropdown-item" href="#">Sep</a>
+                              <a class="dropdown-item" href="#">Oct</a>
+                              <a class="dropdown-item" href="#">Nov</a>
+                              <a class="dropdown-item" href="#">Dec</a>
                             </div>
-                            <a type="button" class="bg-secondary">
-                                <a class="dropdown-item" href="#">2024</a>
-                            </a>
                           </div>
+                          <a type="button" class="bg-secondary">
+                              <a class="dropdown-item" href="#">2024</a>
+                          </a>
                         </div>
-                        <div class="block">
-                          <div class="btn-group">
-                            <div class="dropdown dropstart" role="group">
-                              <button title="filter by month" title="filter by month" type="button" class="dropdown-item dropdown-toggle dropdown-toggle-split nested-dropdown test" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="visually-hidden">Toggle Dropleft</span>
-                              </button>
-                              {{-- Month Dropdown --}}
-                              <div class="dropdown-menu" style="min-width: 4rem;">
-                                <a class="dropdown-item" href="#">Jan</a>
-                                <a class="dropdown-item" href="#">Feb</a>
-                                <a class="dropdown-item" href="#">Mar</a>
-                                <a class="dropdown-item" href="#">Apr</a>
-                                <a class="dropdown-item" href="#">May</a>
-                                <a class="dropdown-item" href="#">Jun</a>
-                                <a class="dropdown-item" href="#">Jul</a>
-                                <a class="dropdown-item" href="#">Aug</a>
-                                <a class="dropdown-item" href="#">Sep</a>
-                                <a class="dropdown-item" href="#">Oct</a>
-                                <a class="dropdown-item" href="#">Nov</a>
-                                <a class="dropdown-item" href="#">Dec</a>
-                              </div>
+                      </div>
+                      <div class="block">
+                        <div class="btn-group">
+                          <div class="dropdown dropstart" role="group">
+                            <button title="filter by month" title="filter by month" type="button" class="dropdown-item dropdown-toggle dropdown-toggle-split nested-dropdown test" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              <span class="visually-hidden">Toggle Dropleft</span>
+                            </button>
+                            {{-- Month Dropdown --}}
+                            <div class="dropdown-menu" style="min-width: 4rem;">
+                              <a class="dropdown-item" href="#">Jan</a>
+                              <a class="dropdown-item" href="#">Feb</a>
+                              <a class="dropdown-item" href="#">Mar</a>
+                              <a class="dropdown-item" href="#">Apr</a>
+                              <a class="dropdown-item" href="#">May</a>
+                              <a class="dropdown-item" href="#">Jun</a>
+                              <a class="dropdown-item" href="#">Jul</a>
+                              <a class="dropdown-item" href="#">Aug</a>
+                              <a class="dropdown-item" href="#">Sep</a>
+                              <a class="dropdown-item" href="#">Oct</a>
+                              <a class="dropdown-item" href="#">Nov</a>
+                              <a class="dropdown-item" href="#">Dec</a>
                             </div>
-                            <a type="button" class="bg-secondary">
-                                <a class="dropdown-item" href="#">2025</a>
-                            </a>
                           </div>
+                          <a type="button" class="bg-secondary">
+                              <a class="dropdown-item" href="#">2025</a>
+                          </a>
                         </div>
                       </div>
                     </div>
-
-                    <a type="button" class="bg-secondary">
-                      <a class="dropdown-item" href="{{ route('pdf.download.o3') }}">O3 Report</a>
-                    </a>
                   </div>
-                  
+
+                  <a type="button" class="bg-secondary">
+                    <a class="dropdown-item" href="{{ route('pdf.download.o3') }}">O3 Report</a>
+                  </a>
                 </div>
+                
               </div>
             </div>
-
-
-            {{-- <a href="{{ route('pdf.download') }}" class="btn btn-primary btn-icon-text mb-2 mb-md-0">
-            <i class="btn-icon-prepend" data-feather="download-cloud"></i>
-              Report
-            </a> --}}
           </div>
-        </div>
 
-        {{-- Tabs for Monitoring and Forecasting--}}
-        <ul class="nav nav-tabs nav-tabs-line" id="lineTab" role="tablist">
-          <li class="nav-item">
-            <a class="nav-link active" id="monitoring-line-tab" data-bs-toggle="tab" href="#monitoring" role="tab" aria-controls="monitoring" aria-selected="true">Monitoring</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" id="forecasting-line-tab" data-bs-toggle="tab" href="#forecasting" role="tab" aria-controls="forecasting" aria-selected="false">Forecasting</a>
-          </li>
-        </ul>
+
+          {{-- <a href="{{ route('pdf.download') }}" class="btn btn-primary btn-icon-text mb-2 mb-md-0">
+          <i class="btn-icon-prepend" data-feather="download-cloud"></i>
+            Report
+          </a> --}}
+        </div>
         {{-- End of Tabs --}}
         <br>
         {{-- Tab contents --}}
         <div class="tab-content" id="lineTabContent">
 
-      {{-- Start of Monitoring content --}}
+        {{-- Start of Monitoring content --}}
         <div class="tab-pane fade show active" id="monitoring" role="tabpanel" aria-labelledby="monitoring-line-tab">
-        <h5 class="mb-2">REAL-TIME AIR QUALITY MONITORING </h5>
-
-            <div class="p-3 for-light-mode-bg">
-                <div class="mb-3 d-flex justify-content-between align-items-center">
-                    <h5>Bukidnon State University</h5>
-                    <div class="text-status d-flex gap-2 align-items-center">
-                        <div>STATUS:</div>
-                        <div id="device-status" class="device-status-offline">
-                            <div class="status-circle"></div>
-                            <div>OFFLINE</div>
-                        </div>
-                    </div>
-                </div>
-            {{-- Cards Container --}}
-            <div class="row flex-grow-1">
-                {{-- Card 1 --}}
-                  <div class="col-sm-15 grid-margin stretch-card">
-                      <div class="card">
-                          <div class="card-body" style="border-top: 1rem solid #6571ff;">
-                              <div class="d-flex justify-content-between align-items-baseline">
-                                  <h6 class="card-title mb-0">PM2.5 (ug/m3)</h6>
-                              </div>
-                              <div class="row">
-                                  <div class="col-12 col-md-12 text-center">
-                                      <h3 id="pm25-value" class="mb-2">
-                                          <div class="spinner-grow text-primary" role="status">
-
-                                          </div>
-                                      </h3>
-                                      <p id="pm25-classification" class="mb-2" style="font-weight: bold; letter-spacing: 1.25px;">
-
-                                      </p>
-                                      <p id="pm25-date" style="font-style: italic; font-size: 80%">
-
-                                      </p>
-                                  </div>
-                              </div>
-                          </div>
+          <h5 class="mb-2">REAL-TIME AIR QUALITY MONITORING </h5>
+          <div class="p-3 for-light-mode-bg">
+              <div class="mb-3 d-flex justify-content-between align-items-center">
+                  <h5>Bukidnon State University</h5>
+                  <div class="text-status d-flex gap-2 align-items-center">
+                      <div>STATUS:</div>
+                      <div id="device-status" class="device-status-offline">
+                          <div class="status-circle"></div>
+                          <div>OFFLINE</div>
                       </div>
                   </div>
-                {{-- Card 2 --}}
-                  <div class="col-sm-15 grid-margin stretch-card">
-                      <div class="card">
-                          <div class="card-body" style="border-top: 1rem solid #6571ff;">
-                              <div class="d-flex justify-content-between align-items-baseline">
-                                  <h6 class="card-title mb-0">PM10 (ug/m3)</h6>
-                              </div>
-                              <div class="row">
-                                  <div class="col-12 col-md-12 text-center">
-                                      <h3 id="pm10-value" class="mb-2">
-                                          <div class="spinner-grow text-primary" role="status">
-
-                                          </div>
-                                      </h3>
-                                      <p id="pm10-classification" class="mb-2" style="font-weight: bold; letter-spacing: 1.25px;">
-
-                                      </p>
-                                      <p id="pm10-date" style="font-style: italic; font-size: 80%">
-
-                                      </p>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-                {{-- Card 3 --}}
-                <div class="col-sm-15 grid-margin stretch-card">
-                      <div class="card">
-                          <div class="card-body" style="border-top: 1rem solid #6571ff;">
-                              <div class="d-flex justify-content-between align-items-baseline">
-                                  <h6 class="card-title mb-0">CO (ppm)</h6>
-                              </div>
-                              <div class="row">
-                                  <div class="col-12 col-md-12 text-center">
-                                      <h3 id="co-value" class="mb-2">
-                                          <div class="spinner-grow text-primary" role="status">
-
-                                          </div>
-                                      </h3>
-                                      <p id="co-classification" class="mb-2" style="font-weight: bold; letter-spacing: 1.25px;">
-
-                                      </p>
-                                      <p id="co-date" style="font-style: italic; font-size: 80%">
-
-                                      </p>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                </div>
-                {{-- Card 4 --}}
-                <div class="col-sm-15 grid-margin stretch-card">
-                      <div class="card">
-                          <div class="card-body" style="border-top: 1rem solid #6571ff;">
-                              <div class="d-flex justify-content-between align-items-baseline">
-                                  <h6 class="card-title mb-0">NO2 (ppm)</h6>
-                              </div>
-                              <div class="row">
-                                  <div class="col-12 col-md-12 text-center">
-                                      <h3 id="no2-value" class="mb-2">
-                                          <div class="spinner-grow text-primary" role="status">
-
-                                          </div>
-                                      </h3>
-                                      <p id="no2-classification" class="mb-2" style="font-weight: bold; letter-spacing: 1.25px;">
-
-                                      </p>
-                                      <p id="no2-date" style="font-style: italic; font-size: 80%">
-
-                                      </p>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                </div>
-                {{-- Card 5 --}}
-                <div class="col-sm-15 grid-margin stretch-card">
-                      <div class="card">
-                          <div class="card-body" style="border-top: 1rem solid #6571ff;">
-                              <div class="d-flex justify-content-between align-items-baseline">
-                                  <h6 class="card-title mb-0">O3 (ppm)</h6>
-                              </div>
-                              <div class="row">
-                                  <div class="col-12 col-md-12 text-center">
-                                      <h3 id="ozone-value" class="mb-2">
-                                          <div class="spinner-grow text-primary" role="status">
-                                          </div>
-                                      </h3>
-                                      <p id="ozone-classification" class="mb-2" style="font-weight: bold; letter-spacing: 1.25px;">
-                                      </p>
-                                      <p id="ozone-date" style="font-style: italic; font-size: 80%">
-                                      </p>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                </div>
               </div>
+          {{-- Cards Container --}}
+          <div class="row flex-grow-1">
+              {{-- Card 1 --}}
+                <div class="col-sm-15 grid-margin stretch-card">
+                    <div class="card">
+                        <div class="card-body" style="border-top: 1rem solid #6571ff;">
+                            <div class="d-flex justify-content-center align-items-baseline">
+                                <h6 data-bs-toggle="tooltip" data-bs-placement="top" data-bs-html="true" title="Particulate Matter 2.5 <br><i>see Pollutant Description<br>for more information</i>"class="card-title mb-0 text-center">PM2.5 (ug/m3)</h6>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 col-md-12 text-center">
+                                    <h3 id="pm25-value" class="my-2">
+                                        <div class="spinner-grow text-primary" role="status">
 
-        {{-- Monitoring Graphs --}}
-                <div class="row">
-                    <div class="col-12 col-xl-12 stretch-card ">
-                        <div class="row flex-grow-1" >
-                        @include('charts.monitoring.pm25')
-                        @include('charts.monitoring.pm10')
-                        @include('charts.monitoring.co')
-                        @include('charts.monitoring.no2')
-                        @include('charts.monitoring.o3')
+                                        </div>
+                                    </h3>
+                                    <p id="pm25-classification" class="mb-2" style="font-weight: bold; letter-spacing: 1.25px;">
+
+                                    </p>
+                                    <p id="pm25-date" style="font-style: italic; font-size: 80%">
+
+                                    </p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-      {{-- End of Monitoring content --}}
+              {{-- Card 2 --}}
+                <div class="col-sm-15 grid-margin stretch-card">
+                    <div class="card">
+                        <div class="card-body" style="border-top: 1rem solid #6571ff;">
+                            <div class="d-flex justify-content-center align-items-baseline">
+                                <h6 data-bs-toggle="tooltip" data-bs-placement="top" data-bs-html="true" title="Particulate Matter 10 <br><i>see Pollutant Description<br>for more information</i>"class="card-title mb-0 text-center">PM10 (ug/m3)</h6>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 col-md-12 text-center">
+                                    <h3 id="pm10-value" class="my-2">
+                                        <div class="spinner-grow text-primary" role="status">
 
-            {{-- Start of Forecasting content --}}
-            <div class="tab-pane fade p-3 for-light-mode-bg" id="forecasting" role="tabpanel" aria-labelledby="forecasting-line-tab">
-                <div class="mb-3">
-                <h5>AIR QUALITY FORECASTING</h5">
+                                        </div>
+                                    </h3>
+                                    <p id="pm10-classification" class="mb-2" style="font-weight: bold; letter-spacing: 1.25px;">
+
+                                    </p>
+                                    <p id="pm10-date" style="font-style: italic; font-size: 80%">
+
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                {{-- Forecasting Graphs --}}
-                @include('charts.forecastingpm25')
-                @include('charts.forecastingpm10')
+              {{-- Card 3 --}}
+              <div class="col-sm-15 grid-margin stretch-card">
+                    <div class="card">
+                        <div class="card-body" style="border-top: 1rem solid #6571ff;">
+                            <div class="d-flex justify-content-center align-items-baseline">
+                                <h6 data-bs-toggle="tooltip" data-bs-placement="top" data-bs-html="true" title="Carbon Monoxide <br><i>see Pollutant Description<br>for more information</i>"class="card-title mb-0 text-center">CO (PPM)</h6>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 col-md-12 text-center">
+                                    <h3 id="co-value" class="my-2">
+                                        <div class="spinner-grow text-primary" role="status">
+
+                                        </div>
+                                    </h3>
+                                    <p id="co-classification" class="mb-2" style="font-weight: bold; letter-spacing: 1.25px;">
+
+                                    </p>
+                                    <p id="co-date" style="font-style: italic; font-size: 80%">
+
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+              </div>
+              {{-- Card 4 --}}
+              <div class="col-sm-15 grid-margin stretch-card">
+                    <div class="card">
+                        <div class="card-body" style="border-top: 1rem solid #6571ff;">
+                          <div class="d-flex justify-content-center align-items-baseline">
+                            <h6 data-bs-toggle="tooltip" data-bs-placement="top" data-bs-html="true" title="Nitrogen Dioxide <br><i>see Pollutant Description<br>for more information</i>"class="card-title mb-0 text-center">NO2 (PPM)</h6>
+                        </div>
+                            <div class="row">
+                                <div class="col-12 col-md-12 text-center">
+                                    <h3 id="no2-value" class="my-2">
+                                        <div class="spinner-grow text-primary" role="status">
+
+                                        </div>
+                                    </h3>
+                                    <p id="no2-classification" class="mb-2" style="font-weight: bold; letter-spacing: 1.25px;">
+
+                                    </p>
+                                    <p id="no2-date" style="font-style: italic; font-size: 80%">
+
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+              </div>
+              {{-- Card 5 --}}
+              <div class="col-sm-15 grid-margin stretch-card">
+                    <div class="card">
+                        <div class="card-body" style="border-top: 1rem solid #6571ff;">
+                            <div class="d-flex justify-content-center align-items-baseline">
+                                <h6 data-bs-toggle="tooltip" data-bs-placement="top" data-bs-html="true" title="Ozone <br><i>see Pollutant Description<br>for more information</i>"class="card-title mb-0 text-center">O3 (PPM)</h6>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 col-md-12 text-center">
+                                    <h3 id="ozone-value" class="my-2">
+                                        <div class="spinner-grow text-primary" role="status">
+                                        </div>
+                                    </h3>
+                                    <p id="ozone-classification" class="mb-2" style="font-weight: bold; letter-spacing: 1.25px;">
+                                    </p>
+                                    <p id="ozone-date" style="font-style: italic; font-size: 80%">
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+              </div>
             </div>
-            {{-- End of forecasting content --}}
-            </div>
+
+          {{-- Monitoring Graphs --}}
+              <div class="row">
+                  <div class="col-12 col-xl-12 stretch-card ">
+                      <div class="row flex-grow-1" >
+                      @include('charts.monitoring.pm25')
+                      @include('charts.monitoring.pm10')
+                      @include('charts.monitoring.co')
+                      @include('charts.monitoring.no2')
+                      @include('charts.monitoring.o3')
+                      </div>
+                  </div>
+              </div>
+          </div>
+        </div>
+        {{-- End of Monitoring content --}}
+
+        {{-- Start of Forecasting content --}}
+        <div class="tab-pane" id="forecasting" role="tabpanel" aria-labelledby="forecasting-line-tab">
+          <h5 class="mb-2">AIR QUALITY FORECASTING</h5>
+          <div class="p-3 for-light-mode-bg">
+              {{-- Forecasting Graphs --}}
+              @include('charts.forecastingpm25')
+              @include('charts.forecastingpm10')
+          </div>
+        </div>
+        {{-- End of forecasting content --}}
+        </div>
 	</div>
 
 <script>
