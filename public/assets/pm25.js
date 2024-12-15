@@ -1,16 +1,17 @@
 $(function () {
     'use strict';
 
-    var colors = {
-        "Good (Green)": "#00B050",
-        "Moderate (Yellow)": "#FFFF00",
-        "Unhealthy for Sensitive Groups (Orange)": "#FF6600",
-        "Unhealthy (Red)": "#FF0000",
-        "Very Unhealthy (Purple)": "#7030A0",
-        "Hazardous (Maroon)": "#990033"
-    };
+    // Define the color ranges based on the PM2.5 values
+    const colorRanges = [
+        { value: 0, color: '#800000' },  // Green for 0-25
+        { value: 25, color: '#9b1d20' }, // Yellow for 25.1-35
+        { value: 35, color: '#ef4444' }, // Orange for 35.1-45
+        { value: 45, color: '#fb923c' }, // Red for 45.1-55
+        { value: 55, color: '#ffce63' }, // Purple for 55.1-90
+        { value: 90, color: '#22c55f' },  // Maroon for values above 90
+        { value: 100, color: '#22c55f' }  // Maroon for values above 90
 
-    var fontFamily = "'Roboto', Helvetica, sans-serif";
+    ];
 
     function renderChart(data) {
         // Retrieve only the latest 20 data points
@@ -21,6 +22,17 @@ $(function () {
         });
         var pm25 = latestData.map(function (item) {
             return item.pm25;
+        });
+
+        // Calculate the color stops based on fixed value ranges
+        const colorStops = colorRanges.map((range, index) => {
+            // Map the color value based on the fixed PM2.5 thresholds
+            const offset = (index / (colorRanges.length - 1)) * 100; // Calculate the offset for each range
+            return {
+                offset: offset,
+                color: range.color,
+                opacity: 1
+            };
         });
 
         var options = {
@@ -34,6 +46,7 @@ $(function () {
                         speed: 500
                     }
                 },
+
                 toolbar: {
                     show: false,
                     offsetX: 0,
@@ -51,6 +64,17 @@ $(function () {
                 },
             },
 
+            fill: {
+                type: "gradient",
+                gradient: {
+                    type: 'vertical',
+                    shadeIntensity: 1,
+                    opacityFrom: 1,
+                    opacityTo: 1,
+                    colorStops: colorStops
+                }
+            },
+
             series: [
                 {
                     name: 'PM2.5',
@@ -60,23 +84,10 @@ $(function () {
             xaxis: {
                 type: 'date',
                 categories: dateTime,
-                labels: {
-                    style: {
-                        colors: 'var(--bs-body-color)',
-                    },
-                },
             },
             yaxis: {
                 title: {
                     text: 'Concentration (µg/m³)',
-                    style: {
-                        color: 'var(--bs-body-color)',
-                    },
-                },
-                labels: {
-                    style: {
-                        colors: 'var(--bs-body-color)',
-                    },
                 },
             },
             stroke: {
@@ -160,7 +171,7 @@ $(function () {
 
     // Attach click event listener to the button for exporting PM2.5 data
     $('#expPM25').on('click', function () {
-        $('#processing-pm25').show();  
+        $('#processing-pm25').show();
         $('#download-csv-pm25').hide();
 
         $.ajax({
@@ -202,7 +213,7 @@ $(function () {
                 console.log('Error fetching data:', error);
             },
             complete: function () {
-                $('#processing-pm25').hide();  
+                $('#processing-pm25').hide();
                 $('#download-csv-pm25').show();
             }
         });
@@ -235,7 +246,7 @@ $(function () {
 
     // DAILY
     $('#expPM25Daily').on('click', function () {
-        $('#processing-pm25').show();  
+        $('#processing-pm25').show();
         $('#download-csv-pm25').hide();
 
         $.ajax({
@@ -275,7 +286,7 @@ $(function () {
                 console.log('Error fetching data:', error);
             },
             complete: function () {
-                $('#processing-pm25').hide();  
+                $('#processing-pm25').hide();
                 $('#download-csv-pm25').show();
             }
         });
@@ -306,7 +317,7 @@ $(function () {
 
     // MONTHLY
     $('#expPM25Monthly').on('click', function () {
-        $('#processing-pm25').show();  
+        $('#processing-pm25').show();
         $('#download-csv-pm25').hide();
 
         $.ajax({
@@ -346,7 +357,7 @@ $(function () {
                 console.log('Error fetching data:', error);
             },
             complete: function () {
-                $('#processing-pm25').hide();  
+                $('#processing-pm25').hide();
                 $('#download-csv-pm25').show();
             }
         });

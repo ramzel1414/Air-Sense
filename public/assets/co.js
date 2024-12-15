@@ -1,38 +1,28 @@
 $(function () {
     'use strict';
 
-    var colors = {
-        "Good (Green)": "#00B050",
-        "Moderate (Yellow)": "#FFFF00",
-        "Unhealthy for Sensitive Groups (Orange)": "#FF6600",
-        "Unhealthy (Red)": "#FF0000",
-        "Very Unhealthy (Purple)": "#7030A0",
-        "Hazardous (Maroon)": "#990033"
-    };
-
-    var fontFamily = "'Roboto', Helvetica, sans-serif";
-
     function renderChart(data) {
         // Retrieve only the latest 20 data points
-        var latestData = data.slice(-20);
+        const latestData = data.slice(-20);
 
-        var dateTime = latestData.map(function (item) {
-            return item.dateTime;
-        });
-        var co = latestData.map(function (item) {
-            return item.co;
-        });
+        const dateTime = latestData.map((item) => item.dateTime);
+        const co = latestData.map((item) => item.co);
 
-        var options = {
+        // Set all color stops to yellow (#ffce63)
+        const colorStops = [
+            { offset: 0, color: '#ffce63', opacity: 1 }, // Start with yellow
+            { offset: 100, color: '#ffce63', opacity: 1 } // End with yellow
+        ];
+
+        // ApexCharts configuration
+        const options = {
             chart: {
                 type: "line",
                 height: 400,
                 animations: {
                     enabled: true,
-                    easing: 'linear',
-                    dynamicAnimation: {
-                        speed: 500
-                    }
+                    easing: "linear",
+                    dynamicAnimation: { speed: 500 }
                 },
                 toolbar: {
                     show: false,
@@ -47,57 +37,62 @@ $(function () {
                         pan: false,
                         reset: false,
                         customIcons: []
-                    },
-                },
+                    }
+                }
             },
-
+            fill: {
+                type: "gradient",
+                gradient: {
+                    type: "vertical",
+                    shadeIntensity: 1,
+                    opacityFrom: 1,
+                    opacityTo: 1,
+                    colorStops: colorStops
+                }
+            },
             series: [
                 {
-                    name: 'CO',
+                    name: "CO",
                     data: co
                 }
             ],
             xaxis: {
-                type: 'date',
+                type: "date",
                 categories: dateTime,
                 labels: {
                     style: {
-                        colors: 'var(--bs-body-color)',
-                    },
-                },
+                        colors: "var(--bs-body-color)"
+                    }
+                }
             },
             yaxis: {
                 title: {
-                    text: 'Concentration (ppm)',
+                    text: "Concentration (ppm)",
                     style: {
-                        color: 'var(--bs-body-color)',
-                    },
+                        color: "var(--bs-body-color)"
+                    }
                 },
                 labels: {
                     style: {
-                        colors: 'var(--bs-body-color)',
-                    },
-                },
+                        colors: "var(--bs-body-color)"
+                    }
+                }
             },
             stroke: {
                 width: 2,
                 curve: "smooth"
             },
             markers: {
-                size: 4,
+                size: 4
             },
-
             tooltip: {
-                x: {
-                    show: false,
-                },
-                marker: {
-                    show: false,
-                },
+                x: { show: false },
+                marker: { show: false }
             }
         };
 
-        var chart = new ApexCharts(document.querySelector("#co"), options);
+        // Render the chart
+        const chart = new ApexCharts(document.querySelector("#co"), options);
         chart.render();
 
         var intervalId;
@@ -160,7 +155,7 @@ $(function () {
 
     // Attach click event listener to export CO data
     $('#expCO').on('click', function () {
-        $('#processing-co').show();  
+        $('#processing-co').show();
         $('#download-csv-co').hide();
         $.ajax({
             url: '/co-data',
@@ -195,7 +190,7 @@ $(function () {
                 console.log('Error fetching CO data:', error);
             },
             complete: function () {
-                $('#processing-co').hide();  
+                $('#processing-co').hide();
                 $('#download-csv-co').show();
             }
         });
@@ -228,7 +223,7 @@ $(function () {
 
     // DAILY
     $('#expCODaily').on('click', function () {
-        $('#processing-co').show();  
+        $('#processing-co').show();
         $('#download-csv-co').hide();
         $.ajax({
             url: '/co-data',
@@ -267,7 +262,7 @@ $(function () {
                 console.log('Error fetching data:', error);
             },
             complete: function () {
-                $('#processing-co').hide();  
+                $('#processing-co').hide();
                 $('#download-csv-co').show();
             }
         });
@@ -299,7 +294,7 @@ $(function () {
 
     // MONTHLY
     $('#expCOMonthly').on('click', function () {
-        $('#processing-co').show();  
+        $('#processing-co').show();
         $('#download-csv-co').hide();
         $.ajax({
             url: '/co-data',
@@ -338,7 +333,7 @@ $(function () {
                 console.log('Error fetching data:', error);
             },
             complete: function () {
-                $('#processing-co').hide();  
+                $('#processing-co').hide();
                 $('#download-csv-co').show();
             }
         });

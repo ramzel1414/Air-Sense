@@ -57,74 +57,12 @@
                 <!-- Nested dropleft 1-->
                 <div class="block">
                   <div class="btn-group">
-                    <div class="dropdown dropstart" role="group">
-                      <button title="filter by year" title="filter by year" type="button" class="dropdown-item dropdown-toggle dropdown-toggle-split nested-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                              <span class="visually-hidden">Toggle Dropleft</span>
-                      </button>
-                      {{-- Year Dropdown --}}
-                      <div class="dropdown-menu" style="min-width: 5rem;">
-                        <div class="block">
-                          <div class="btn-group">
-                            <div class="dropdown dropstart" role="group">
-                              <button title="filter by month" title="filter by month" type="button" class="dropdown-item dropdown-toggle dropdown-toggle-split nested-dropdown test" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="visually-hidden">Toggle Dropleft</span>
-                              </button>
-                              {{-- Month Dropdown --}}
-                              <div class="dropdown-menu" style="min-width: 4rem;">
-                              <a class="dropdown-item" href="#">Jan</a>
-                              <a class="dropdown-item" href="#">Feb</a>
-                              <a class="dropdown-item" href="#">Mar</a>
-                              <a class="dropdown-item" href="#">Apr</a>
-                              <a class="dropdown-item" href="#">May</a>
-                              <a class="dropdown-item" href="#">Jun</a>
-                              <a class="dropdown-item" href="#">Jul</a>
-                              <a class="dropdown-item" href="#">Aug</a>
-                                <a class="dropdown-item" href="#">Sep</a>
-                                <a class="dropdown-item" href="#">Oct</a>
-                                <a class="dropdown-item" href="#">Nov</a>
-                                <a class="dropdown-item" href="#">Dec</a>
-                              </div>
-                            </div>
-                            <a type="button" class="bg-secondary">
-                                <a class="dropdown-item" href="#">2024</a>
-                            </a>
-                          </div>
-                        </div>
-                        <div class="block">
-                          <div class="btn-group">
-                            <div class="dropdown dropstart" role="group">
-                              <button title="filter by month" title="filter by month" type="button" class="dropdown-item dropdown-toggle dropdown-toggle-split nested-dropdown test" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="visually-hidden">Toggle Dropleft</span>
-                              </button>
-                              {{-- Month Dropdown --}}
-                              <div class="dropdown-menu" style="min-width: 4rem;">
-                                <a class="dropdown-item" href="#">Jan</a>
-                                <a class="dropdown-item" href="#">Feb</a>
-                                <a class="dropdown-item" href="#">Mar</a>
-                                <a class="dropdown-item" href="#">Apr</a>
-                                <a class="dropdown-item" href="#">May</a>
-                                <a class="dropdown-item" href="#">Jun</a>
-                                <a class="dropdown-item" href="#">Jul</a>
-                                <a class="dropdown-item" href="#">Aug</a>
-                                <a class="dropdown-item" href="#">Sep</a>
-                                <a class="dropdown-item" href="#">Oct</a>
-                                <a class="dropdown-item" href="#">Nov</a>
-                                <a class="dropdown-item" href="#">Dec</a>
-                              </div>
-                            </div>
-                            <a type="button" class="bg-secondary">
-                                <a class="dropdown-item" href="#">2025</a>
-                            </a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
                     <a type="button" class="bg-secondary">
-                            <a class="dropdown-item" href="{{ route('pdf.download') }}">All Pollutants Report</a>
+                            <a class="dropdown-item" href="{{ route('pdf.download') }}">Overall Report</a>
                     </a>
                   </div>
-                  
                 </div>
+
                 <!-- Nested dropleft 2-->
                 <div class="block">
                   <div class="btn-group">
@@ -142,22 +80,14 @@
                               </button>
                               {{-- Month Dropdown --}}
                               <div class="dropdown-menu" style="min-width: 4rem;">
-                                <a class="dropdown-item" href="#">Jan</a>
-                                <a class="dropdown-item" href="#">Feb</a>
-                                <a class="dropdown-item" href="#">Mar</a>
-                                <a class="dropdown-item" href="#">Apr</a>
-                                <a class="dropdown-item" href="#">May</a>
-                                <a class="dropdown-item" href="#">Jun</a>
-                                <a class="dropdown-item" href="#">Jul</a>
-                                <a class="dropdown-item" href="#">Aug</a>
-                                <a class="dropdown-item" href="#">Sep</a>
-                                <a class="dropdown-item" href="#">Oct</a>
-                                <a class="dropdown-item" href="#">Nov</a>
-                                <a class="dropdown-item" href="#">Dec</a>
+                                <a class="dropdown-item" href="http://127.0.0.1:8000/pdf/pm25/2024/4">Apr</a>
+                                <a class="dropdown-item" href="http://127.0.0.1:8000/pdf/pm25/2024/5">May</a>
+                                <a class="dropdown-item" href="http://127.0.0.1:8000/pdf/pm25/2024/11">Nov</a>
+                                <a class="dropdown-item" href="http://127.0.0.1:8000/pdf/pm25/2024/12">Dec</a>
                               </div>
                             </div>
                             <a type="button" class="bg-secondary">
-                                <a class="dropdown-item" href="#">2024</a>
+                                <a class="dropdown-item" href="http://127.0.0.1:8000/pdf/pm25/2024">2024</a>
                             </a>
                           </div>
                         </div>
@@ -169,22 +99,11 @@
                               </button>
                               {{-- Month Dropdown --}}
                               <div class="dropdown-menu" style="min-width: 4rem;">
-                                <a class="dropdown-item" href="#">Jan</a>
-                                <a class="dropdown-item" href="#">Feb</a>
-                                <a class="dropdown-item" href="#">Mar</a>
-                                <a class="dropdown-item" href="#">Apr</a>
-                                <a class="dropdown-item" href="#">May</a>
-                                <a class="dropdown-item" href="#">Jun</a>
-                                <a class="dropdown-item" href="#">Jul</a>
-                                <a class="dropdown-item" href="#">Aug</a>
-                                <a class="dropdown-item" href="#">Sep</a>
-                                <a class="dropdown-item" href="#">Oct</a>
-                                <a class="dropdown-item" href="#">Nov</a>
-                                <a class="dropdown-item" href="#">Dec</a>
+                                <a class="dropdown-item" href="http://127.0.0.1:8000/pdf/pm25/2025/1">Jan</a>
                               </div>
                             </div>
                             <a type="button" class="bg-secondary">
-                                <a class="dropdown-item" href="#">2025</a>
+                                <a class="dropdown-item" href="http://127.0.0.1:8000/pdf/pm25/2025">2025</a>
                             </a>
                           </div>
                         </div>
@@ -194,8 +113,8 @@
                       <a class="dropdown-item" href="{{ route('pdf.download.pm25') }}">PM 2.5 Report</a>
                     </a>
                   </div>
-                  
                 </div>
+
                 <!-- Nested dropleft 3-->
                 <div class="block">
                   <div class="btn-group">
@@ -213,22 +132,14 @@
                               </button>
                               {{-- Month Dropdown --}}
                               <div class="dropdown-menu" style="min-width: 4rem;">
-                                <a class="dropdown-item" href="#">Jan</a>
-                                <a class="dropdown-item" href="#">Feb</a>
-                                <a class="dropdown-item" href="#">Mar</a>
-                                <a class="dropdown-item" href="#">Apr</a>
-                                <a class="dropdown-item" href="#">May</a>
-                                <a class="dropdown-item" href="#">Jun</a>
-                                <a class="dropdown-item" href="#">Jul</a>
-                                <a class="dropdown-item" href="#">Aug</a>
-                                <a class="dropdown-item" href="#">Sep</a>
-                                <a class="dropdown-item" href="#">Oct</a>
-                                <a class="dropdown-item" href="#">Nov</a>
-                                <a class="dropdown-item" href="#">Dec</a>
+                                <a class="dropdown-item" href="http://127.0.0.1:8000/pdf/pm10/2024/4">Apr</a>
+                                <a class="dropdown-item" href="http://127.0.0.1:8000/pdf/pm10/2024/5">May</a>
+                                <a class="dropdown-item" href="http://127.0.0.1:8000/pdf/pm10/2024/11">Nov</a>
+                                <a class="dropdown-item" href="http://127.0.0.1:8000/pdf/pm10/2024/12">Dec</a>
                               </div>
                             </div>
                             <a type="button" class="bg-secondary">
-                                <a class="dropdown-item" href="#">2024</a>
+                                <a class="dropdown-item" href="http://127.0.0.1:8000/pdf/pm10/2024">2024</a>
                             </a>
                           </div>
                         </div>
@@ -240,22 +151,11 @@
                               </button>
                               {{-- Month Dropdown --}}
                               <div class="dropdown-menu" style="min-width: 4rem;">
-                                <a class="dropdown-item" href="#">Jan</a>
-                                <a class="dropdown-item" href="#">Feb</a>
-                                <a class="dropdown-item" href="#">Mar</a>
-                                <a class="dropdown-item" href="#">Apr</a>
-                                <a class="dropdown-item" href="#">May</a>
-                                <a class="dropdown-item" href="#">Jun</a>
-                                <a class="dropdown-item" href="#">Jul</a>
-                                <a class="dropdown-item" href="#">Aug</a>
-                                <a class="dropdown-item" href="#">Sep</a>
-                                <a class="dropdown-item" href="#">Oct</a>
-                                <a class="dropdown-item" href="#">Nov</a>
-                                <a class="dropdown-item" href="#">Dec</a>
+                                <a class="dropdown-item" href="http://127.0.0.1:8000/pdf/pm10/2025/1">Jan</a>
                               </div>
                             </div>
                             <a type="button" class="bg-secondary">
-                                <a class="dropdown-item" href="#">2025</a>
+                                <a class="dropdown-item" href="http://127.0.0.1:8000/pdf/pm10/2025">2025</a>
                             </a>
                           </div>
                         </div>
@@ -265,8 +165,8 @@
                       <a class="dropdown-item" href="{{ route('pdf.download.pm10') }}">PM 10 Report</a>
                     </a>
                   </div>
-                  
                 </div>
+
                 <!-- Nested dropleft 4-->
                 <div class="block">
                   <div class="btn-group">
@@ -284,22 +184,14 @@
                               </button>
                               {{-- Month Dropdown --}}
                               <div class="dropdown-menu" style="min-width: 4rem;">
-                                <a class="dropdown-item" href="#">Jan</a>
-                                <a class="dropdown-item" href="#">Feb</a>
-                                <a class="dropdown-item" href="#">Mar</a>
-                                <a class="dropdown-item" href="#">Apr</a>
-                                <a class="dropdown-item" href="#">May</a>
-                                <a class="dropdown-item" href="#">Jun</a>
-                                <a class="dropdown-item" href="#">Jul</a>
-                                <a class="dropdown-item" href="#">Aug</a>
-                                <a class="dropdown-item" href="#">Sep</a>
-                                <a class="dropdown-item" href="#">Oct</a>
-                                <a class="dropdown-item" href="#">Nov</a>
-                                <a class="dropdown-item" href="#">Dec</a>
+                                <a class="dropdown-item" href="http://127.0.0.1:8000/pdf/co/2024/4">Apr</a>
+                                <a class="dropdown-item" href="http://127.0.0.1:8000/pdf/co/2024/5">May</a>
+                                <a class="dropdown-item" href="http://127.0.0.1:8000/pdf/co/2024/11">Nov</a>
+                                <a class="dropdown-item" href="http://127.0.0.1:8000/pdf/co/2024/12">Dec</a>
                               </div>
                             </div>
                             <a type="button" class="bg-secondary">
-                                <a class="dropdown-item" href="#">2024</a>
+                                <a class="dropdown-item" href="http://127.0.0.1:8000/pdf/co/2024">2024</a>
                             </a>
                           </div>
                         </div>
@@ -311,22 +203,12 @@
                               </button>
                               {{-- Month Dropdown --}}
                               <div class="dropdown-menu" style="min-width: 4rem;">
-                                <a class="dropdown-item" href="#">Jan</a>
-                                <a class="dropdown-item" href="#">Feb</a>
-                                <a class="dropdown-item" href="#">Mar</a>
-                                <a class="dropdown-item" href="#">Apr</a>
-                                <a class="dropdown-item" href="#">May</a>
-                                <a class="dropdown-item" href="#">Jun</a>
-                                <a class="dropdown-item" href="#">Jul</a>
-                                <a class="dropdown-item" href="#">Aug</a>
-                                <a class="dropdown-item" href="#">Sep</a>
-                                <a class="dropdown-item" href="#">Oct</a>
-                                <a class="dropdown-item" href="#">Nov</a>
-                                <a class="dropdown-item" href="#">Dec</a>
+                                <a class="dropdown-item" href="http://127.0.0.1:8000/pdf/co/2025/1">Jan</a>
+
                               </div>
                             </div>
                             <a type="button" class="bg-secondary">
-                                <a class="dropdown-item" href="#">2025</a>
+                                <a class="dropdown-item" href="http://127.0.0.1:8000/pdf/co/2025/">2025</a>
                             </a>
                           </div>
                         </div>
@@ -337,7 +219,7 @@
                       <a class="dropdown-item" href="{{ route('pdf.download.co') }}">CO Report</a>
                     </a>
                   </div>
-                  
+
                 </div>
                 <!-- Nested dropleft 5-->
                 <div class="block">
@@ -356,22 +238,14 @@
                               </button>
                               {{-- Month Dropdown --}}
                               <div class="dropdown-menu" style="min-width: 4rem;">
-                                <a class="dropdown-item" href="#">Jan</a>
-                                <a class="dropdown-item" href="#">Feb</a>
-                                <a class="dropdown-item" href="#">Mar</a>
-                                <a class="dropdown-item" href="#">Apr</a>
-                                <a class="dropdown-item" href="#">May</a>
-                                <a class="dropdown-item" href="#">Jun</a>
-                                <a class="dropdown-item" href="#">Jul</a>
-                                <a class="dropdown-item" href="#">Aug</a>
-                                <a class="dropdown-item" href="#">Sep</a>
-                                <a class="dropdown-item" href="#">Oct</a>
-                                <a class="dropdown-item" href="#">Nov</a>
-                                <a class="dropdown-item" href="#">Dec</a>
+                                <a class="dropdown-item" href="http://127.0.0.1:8000/pdf/no2/2024/4">Apr</a>
+                                <a class="dropdown-item" href="http://127.0.0.1:8000/pdf/no2/2024/5">May</a>
+                                <a class="dropdown-item" href="http://127.0.0.1:8000/pdf/no2/2024/11">Nov</a>
+                                <a class="dropdown-item" href="http://127.0.0.1:8000/pdf/no2/2024/12">Dec</a>
                               </div>
                             </div>
                             <a type="button" class="bg-secondary">
-                                <a class="dropdown-item" href="#">2024</a>
+                                <a class="dropdown-item" href="http://127.0.0.1:8000/pdf/no2/2024">2024</a>
                             </a>
                           </div>
                         </div>
@@ -383,22 +257,11 @@
                               </button>
                               {{-- Month Dropdown --}}
                               <div class="dropdown-menu" style="min-width: 4rem;">
-                                <a class="dropdown-item" href="#">Jan</a>
-                                <a class="dropdown-item" href="#">Feb</a>
-                                <a class="dropdown-item" href="#">Mar</a>
-                                <a class="dropdown-item" href="#">Apr</a>
-                                <a class="dropdown-item" href="#">May</a>
-                                <a class="dropdown-item" href="#">Jun</a>
-                                <a class="dropdown-item" href="#">Jul</a>
-                                <a class="dropdown-item" href="#">Aug</a>
-                                <a class="dropdown-item" href="#">Sep</a>
-                                <a class="dropdown-item" href="#">Oct</a>
-                                <a class="dropdown-item" href="#">Nov</a>
-                                <a class="dropdown-item" href="#">Dec</a>
+                                <a class="dropdown-item" href="http://127.0.0.1:8000/pdf/no2/2025/1">Jan</a>
                               </div>
                             </div>
                             <a type="button" class="bg-secondary">
-                                <a class="dropdown-item" href="#">2025</a>
+                                <a class="dropdown-item" href="http://127.0.0.1:8000/pdf/no2/2025">2025</a>
                             </a>
                           </div>
                         </div>
@@ -409,8 +272,8 @@
                       <a class="dropdown-item" href="{{ route('pdf.download.no2') }}">NO2 Report</a>
                     </a>
                   </div>
-                  
                 </div>
+
                 <!-- Nested dropleft 5-->
                 <div class="block">
                   <div class="btn-group">
@@ -428,22 +291,14 @@
                               </button>
                               {{-- Month Dropdown --}}
                               <div class="dropdown-menu" style="min-width: 4rem;">
-                                <a class="dropdown-item" href="#">Jan</a>
-                                <a class="dropdown-item" href="#">Feb</a>
-                                <a class="dropdown-item" href="#">Mar</a>
-                                <a class="dropdown-item" href="#">Apr</a>
-                                <a class="dropdown-item" href="#">May</a>
-                                <a class="dropdown-item" href="#">Jun</a>
-                                <a class="dropdown-item" href="#">Jul</a>
-                                <a class="dropdown-item" href="#">Aug</a>
-                                <a class="dropdown-item" href="#">Sep</a>
-                                <a class="dropdown-item" href="#">Oct</a>
-                                <a class="dropdown-item" href="#">Nov</a>
-                                <a class="dropdown-item" href="#">Dec</a>
+                                <a class="dropdown-item" href="http://127.0.0.1:8000/pdf/o3/2024/4">Apr</a>
+                                <a class="dropdown-item" href="http://127.0.0.1:8000/pdf/o3/2024/5">May</a>
+                                <a class="dropdown-item" href="http://127.0.0.1:8000/pdf/o3/2024/11">Nov</a>
+                                <a class="dropdown-item" href="http://127.0.0.1:8000/pdf/o3/2024/12">Dec</a>
                               </div>
                             </div>
                             <a type="button" class="bg-secondary">
-                                <a class="dropdown-item" href="#">2024</a>
+                                <a class="dropdown-item" href="http://127.0.0.1:8000/pdf/o3/2024/">2024</a>
                             </a>
                           </div>
                         </div>
@@ -455,22 +310,11 @@
                               </button>
                               {{-- Month Dropdown --}}
                               <div class="dropdown-menu" style="min-width: 4rem;">
-                                <a class="dropdown-item" href="#">Jan</a>
-                                <a class="dropdown-item" href="#">Feb</a>
-                                <a class="dropdown-item" href="#">Mar</a>
-                                <a class="dropdown-item" href="#">Apr</a>
-                                <a class="dropdown-item" href="#">May</a>
-                                <a class="dropdown-item" href="#">Jun</a>
-                                <a class="dropdown-item" href="#">Jul</a>
-                                <a class="dropdown-item" href="#">Aug</a>
-                                <a class="dropdown-item" href="#">Sep</a>
-                                <a class="dropdown-item" href="#">Oct</a>
-                                <a class="dropdown-item" href="#">Nov</a>
-                                <a class="dropdown-item" href="#">Dec</a>
+                                <a class="dropdown-item" href="http://127.0.0.1:8000/pdf/o3/2025/1">Jan</a>
                               </div>
                             </div>
                             <a type="button" class="bg-secondary">
-                                <a class="dropdown-item" href="#">2025</a>
+                                <a class="dropdown-item" href="http://127.0.0.1:8000/pdf/o3/2025/">2025</a>
                             </a>
                           </div>
                         </div>
@@ -481,7 +325,7 @@
                       <a class="dropdown-item" href="{{ route('pdf.download.o3') }}">O3 Report</a>
                     </a>
                   </div>
-                  
+
                 </div>
               </div>
             </div>
