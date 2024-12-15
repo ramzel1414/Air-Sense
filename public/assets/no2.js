@@ -1,44 +1,43 @@
 $(function () {
     'use strict';
 
-    var colors = {
-        primary: "#6571ff",
-        secondary: "#7987a1",
-        success: "#05a34a",
-        info: "#66d1d1",
-        warning: "#fbbc06",
-        danger: "#ff3366",
-        light: "#e9ecef",
-        dark: "#060c17",
-        muted: "#7987a1",
-        gridBorder: "rgba(77, 138, 240, .15)",
-        bodyColor: "#000",
-        cardBg: "#fff"
-    };
+    // Define the color ranges based on the PM2.5 values
+    const colorRanges = [
+        { value: 50, color: '#ef4444' },
+        { value: 20, color: '#fb923c' },
+        { value: 15, color: '#ffce63' },
+        { value: 10, color: '#22c55f' },
+        { value: 1, color: '#22c55f' } // End with green
 
-    var fontFamily = "'Roboto', Helvetica, sans-serif";
+    ];
 
     function renderChart(data) {
         // Retrieve only the latest 20 data points
-        var latestData = data.slice(-20);
+        const latestData = data.slice(-20);
 
-        var dateTime = latestData.map(function (item) {
-            return item.dateTime;
-        });
-        var no2 = latestData.map(function (item) {
-            return item.no2;
+        const dateTime = latestData.map((item) => item.dateTime);
+        const no2 = latestData.map((item) => item.no2);
+
+        // Calculate the color stops based on NO2 thresholds
+        const colorStops = colorRanges.map((range, index) => {
+            // Ensure offsets are distributed evenly across thresholds
+            const offset = (index / (colorRanges.length - 1)) * 100;
+            return {
+                offset: offset,
+                color: range.color,
+                opacity: 1
+            };
         });
 
-        var options = {
+        // ApexCharts configuration
+        const options = {
             chart: {
                 type: "line",
                 height: 400,
                 animations: {
                     enabled: true,
-                    easing: 'linear',
-                    dynamicAnimation: {
-                        speed: 500
-                    }
+                    easing: "linear",
+                    dynamicAnimation: { speed: 500 }
                 },
                 toolbar: {
                     show: false,
@@ -53,37 +52,46 @@ $(function () {
                         pan: false,
                         reset: false,
                         customIcons: []
-                    },
-                },
+                    }
+                }
             },
-
+            fill: {
+                type: "gradient",
+                gradient: {
+                    type: "vertical",
+                    shadeIntensity: 1,
+                    opacityFrom: 1,
+                    opacityTo: 1,
+                    colorStops: colorStops
+                }
+            },
             series: [
                 {
-                    name: 'NO2',
+                    name: "NO₂",
                     data: no2
                 }
             ],
             xaxis: {
-                type: 'date',
+                type: "date",
                 categories: dateTime,
                 labels: {
                     style: {
-                        colors: 'var(--bs-body-color)',
-                    },
-                },
+                        colors: "var(--bs-body-color)"
+                    }
+                }
             },
             yaxis: {
                 title: {
-                    text: 'Concentration (ppm)',
+                    text: "Concentration (ppm)",
                     style: {
-                        color: 'var(--bs-body-color)',
-                    },
+                        color: "var(--bs-body-color)"
+                    }
                 },
                 labels: {
                     style: {
-                        colors: 'var(--bs-body-color)',
-                    },
-                },
+                        colors: "var(--bs-body-color)"
+                    }
+                }
             },
             stroke: {
                 width: 2,
@@ -92,18 +100,14 @@ $(function () {
             markers: {
                 size: 4
             },
-
             tooltip: {
-                x: {
-                    show: false,
-                },
-                marker: {
-                    show: false,
-                },
+                x: { show: false },
+                marker: { show: false }
             }
         };
 
-        var chart = new ApexCharts(document.querySelector("#no2"), options);
+        // Render the chart
+        const chart = new ApexCharts(document.querySelector("#no2"), options);
         chart.render();
 
         var intervalId;
@@ -166,7 +170,7 @@ $(function () {
 
     // Attach click event listener to export NO2 data
     $('#expNO2').on('click', function () {
-        $('#processing-no2').show();  
+        $('#processing-no2').show();
         $('#download-csv-no2').hide();
         $.ajax({
             url: '/no2-data',
@@ -202,7 +206,7 @@ $(function () {
                 console.log('Error fetching NO2 data:', error);
             },
             complete: function () {
-                $('#processing-no2').hide();  
+                $('#processing-no2').hide();
                 $('#download-csv-no2').show();
             }
         });
@@ -236,7 +240,7 @@ $(function () {
 
     // DAILY
     $('#expNO2Daily').on('click', function () {
-        $('#processing-no2').show();  
+        $('#processing-no2').show();
         $('#download-csv-no2').hide();
         $.ajax({
             url: '/no2-data',
@@ -275,7 +279,7 @@ $(function () {
                 console.log('Error fetching data:', error);
             },
             complete: function () {
-                $('#processing-no2').hide();  
+                $('#processing-no2').hide();
                 $('#download-csv-no2').show();
             }
         });
@@ -307,7 +311,7 @@ $(function () {
 
     // MONTHLY
     $('#expNO2Monthly').on('click', function () {
-        $('#processing-no2').show();  
+        $('#processing-no2').show();
         $('#download-csv-no2').hide();
         $.ajax({
             url: '/no2-data',
@@ -346,7 +350,7 @@ $(function () {
                 console.log('Error fetching data:', error);
             },
             complete: function () {
-                $('#processing-no2').hide();  
+                $('#processing-no2').hide();
                 $('#download-csv-no2').show();
             }
         });
