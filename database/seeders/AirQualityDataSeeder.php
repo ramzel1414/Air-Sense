@@ -15,6 +15,6 @@ class AirQualityDataSeeder extends Seeder
     public function run()
     {
         // Generate 17,520 rows of data
-        AirQualityData::factory()->count(17520)->create();
+        AirQualityData::factory()->count(10000)->create();
     }
 }
