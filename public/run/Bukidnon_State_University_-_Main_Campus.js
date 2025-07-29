@@ -1,7 +1,7 @@
 import axios from 'axios';
 import serialportgsm from 'serialport-gsm';
 
-const sender = '639537399626';
+const sender = '639658208285';
 let modem = serialportgsm.Modem();
 let options = {
     baudRate: 9600,
@@ -21,9 +21,7 @@ let options = {
     cnmiCommand: 'AT+CNMI=2,1,0,2,1',
     logger: console
 };
-
-modem.open('COM3', options, {});
-
+modem.open('COM4', options, {});
 modem.on('open', data => {
     modem.initializeModem(() => {
         console.log("Modem is initialized");
@@ -58,7 +56,7 @@ modem.on('open', data => {
                 console.log('Deleting Automatically');
             });
         };
-        const deviceDelay = 60000;
+        const deviceDelay = 30000;
         const baseDelay = 30000;
         const interval = Math.max(deviceDelay - baseDelay, 1000); // Ensure minimum of 1 second
         processMessages();

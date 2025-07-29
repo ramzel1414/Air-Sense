@@ -41,88 +41,91 @@
 <body class="user-body">
 	@include('layouts.header');
 
-    <div class="page-content mx-4">
-        <h3 class="mb-2">Device Location</h3>
-        <div class="p-3 for-light-mode-bg rounded-1">
-            <div class="card rounded-1">
-                <div class="card-body rounded-2">
-                    <div class="col-12 rounded-3">
-                        <div class="d-flex justify-content-center">
-                            {{-- <p class="mb-3" id="locationTitle">Device Locations</p> --}}
-                        </div>
-                        <div id="map" class="rounded-3" style="height: 700px"></div>
-                    </div>
-                </div>
+    <div class="page-content">
+
+    <h3 class="mb-4">Location</h3>
+    <!-- wrapper start -->
+    <div class="d-flex justify-content-evenly p-3 for-light-mode-bg">
+
+        <div class="col-12 mb-4 card p-3 rounded-2">
+            <div class="d-flex justify-content-center">
+                <h5 class="mb-3" id="locationTitle">Device Locations</h5>
             </div>
+            <div id="map" class="rounded-3" style="height: 700px"></div>
         </div>
-    </div>
 
-    <script type="text/javascript">
-        function initMap() {
-            const map = new google.maps.Map(document.getElementById("map"), {
-                zoom: 19,
-                center: { lat: 8.157408, lng: 125.124856 },
-            });
+        <script type="text/javascript">
+            function initMap() {
+                const map = new google.maps.Map(document.getElementById("map"), {
+                    zoom: 18,
+                    center: { lat: 8.157408, lng: 125.124856 },
+                    mapId: "{{ env('GOOGLE_MAP_ID') }}",
+                });
 
-            // Retrieve device locations from the server
-            fetch('/device-locations')
-                .then(response => response.json())
-                .then(deviceLocations => {
-                    deviceLocations.forEach(location => {
-                        const { deviceName, deviceSerial, latitude, longitude } = location;
+                // Retrieve device locations from the server
+                fetch('/device-locations')
+                    .then(response => response.json())
+                    .then(deviceLocations => {
+                        deviceLocations.forEach(location => {
+                            const { deviceName, deviceSerial, latitude, longitude } = location;
 
-                        // Create a new marker for each device
-                        const marker = new google.maps.Marker({
-                            position: { lat: parseFloat(latitude), lng: parseFloat(longitude) },
-                            map: map,
-                            title: deviceName, deviceSerial
-                        });
+                            // Create a new marker for each device
+                            const marker = new google.maps.Marker({
+                                position: { lat: parseFloat(latitude), lng: parseFloat(longitude) },
+                                map: map,
+                                title: deviceName,  // Use the device name directly as a string
+                            });
 
-                        const infoWindowContent = `
+                            // Create a circle with a radius of 12 meters
+                            const circle = new google.maps.Circle({
+                                map: map,
+                                center: { lat: parseFloat(latitude), lng: parseFloat(longitude) },
+                                radius: 8,  // Radius in meters
+                                strokeColor: "#FF0000",
+                                strokeOpacity: 0.8,
+                                strokeWeight: 2,
+                                fillColor: "#FF0000",
+                                fillOpacity: 0.35,
+                            });
+
+                            const infoWindowContent = `
                                 <div style="color:#0B1215; text-align:center;">
-                                    <h5 >${deviceName}</h5>
-                                    <h6 style="margin-top: 3px;">${deviceSerial}</h6>
+                                    <h5>${deviceName}</h5>
+                                    <h6 style="margin-top: 5px;">Device Serial: ${deviceSerial}</h6>
+                                    <h6 style="margin-top: 10px;">Placement</h6>
+                                    <h7>12 Meters (Detection Radius)</h7>
+                                    <h7>6 Meters (Vertical Coverage)</h7>
                                 </div>
                             `;
 
-                        // Create an info window to display deviceName on marker click
-                        const infoWindow = new google.maps.InfoWindow({
-                            content: infoWindowContent,
-                        });
+                            // Create an info window to display deviceName on marker click
+                            const infoWindow = new google.maps.InfoWindow({
+                                content: infoWindowContent,
+                            });
 
-                        // Show deviceName in info window when marker is clicked
-                        marker.addListener("click", () => {
-                            infoWindow.open(map, marker);
+                            // Show deviceName in info window when marker is clicked
+                            marker.addListener("click", () => {
+                                infoWindow.open(map, marker);
+                            });
                         });
-
-                        // Draw a circle around the marker to represent the sensor range (30 meters)
-                        // const circle = new google.maps.Circle({
-                        //     strokeColor: "#FF0000",
-                        //     strokeOpacity: 0.8,
-                        //     strokeWeight: 2,
-                        //     fillColor: "#FF0000",
-                        //     fillOpacity: 0.35,
-                        //     map: map,
-                        //     center: marker.getPosition(),
-                        //     radius: 20, // 20 meters radius
-                        // });
+                    })
+                    .catch(error => {
+                        console.error('Error fetching device locations:', error);
                     });
-                })
-                .catch(error => {
-                    console.error('Error fetching device locations:', error);
-                });
 
-            // Update the title to reflect the location information
-            const locationTitle = document.getElementById('locationTitle');
-            locationTitle.textContent = 'Device Locations';
-        }
-
-        // Initialize the map
-        window.initMap = initMap;
-    </script>
+                // Update the title to reflect the location information
+                const locationTitle = document.getElementById('locationTitle');
+                locationTitle.textContent = 'Device Locations';
+            }
+            window.initMap = initMap;
+        </script>
+    </div>
+</div>
 
 <!-- Include the Google Maps API script with the callback to initialize the maps -->
-<script async defer src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAP_API') }}&callback=initMap"></script>
+{{-- <script async defer src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAP_API') }}&callback=initMap"></script> --}}
+<script async defer src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAP_API') }}&callback=initMap&v=weekly&libraries=marker" ></script>
+
 
 </body>
 </html>

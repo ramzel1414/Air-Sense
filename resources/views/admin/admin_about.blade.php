@@ -128,7 +128,7 @@
                                         <td>No</td>
                                     </tr>
                                     <tr>
-                                        <td>Fair</td>
+                                        <td>Moderate</td>
                                         <td style="background: yellow;" class="text-dark">Yellow</td>
                                         <td>55 - 154</td>
                                         <td>25.1 - 35.0</td>

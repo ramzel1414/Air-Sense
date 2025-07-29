@@ -1,49 +1,29 @@
 $(function () {
     'use strict';
 
-    var colors = {
-        primary: "#6571ff",
-        secondary: "#7987a1",
-        success: "#05a34a",
-        info: "#66d1d1",
-        warning: "#fbbc06",
-        danger: "#ff3366",
-        light: "#e9ecef",
-        dark: "#060c17",
-        muted: "#7987a1",
-        gridBorder: "rgba(77, 138, 240, .15)",
-        bodyColor: "#000",
-        cardBg: "#fff"
-    };
-
-    var fontFamily = "'Roboto', Helvetica, sans-serif";
-
     function renderChart(data) {
         // Retrieve only the latest 20 data points
-        var latestData = data.slice(-20);
+        const latestData = data.slice(-20);
 
-        var dateTime = latestData.map(function (item) {
-            return item.dateTime;
-        });
-        var ozone = latestData.map(function (item) {
-            return item.ozone;
-        });
+        const dateTime = latestData.map((item) => item.dateTime);
+        const ozone = latestData.map((item) => item.ozone);
 
-        var options = {
+        // Set all color stops to green (#22c55f)
+        const colorStops = [
+            { offset: 0, color: '#22c55f', opacity: 1 }, // Start with green
+            { offset: 100, color: '#22c55f', opacity: 1 } // End with green
+        ];
+
+        // ApexCharts configuration
+        const options = {
             chart: {
                 type: "line",
                 height: 400,
                 animations: {
                     enabled: true,
-                    easing: 'linear',
-                    dynamicAnimation: {
-                        speed: 500
-                    }
+                    easing: "linear",
+                    dynamicAnimation: { speed: 500 }
                 },
-
-                show: false,
-                offsetX: 0,
-                offsetY: 0,
                 toolbar: {
                     show: false,
                     offsetX: 0,
@@ -57,57 +37,64 @@ $(function () {
                         pan: false,
                         reset: false,
                         customIcons: []
-                    },
-                },
+                    }
+                }
             },
-
+            fill: {
+                type: "gradient",
+                gradient: {
+                    type: "vertical",
+                    shadeIntensity: 1,
+                    opacityFrom: 1,
+                    opacityTo: 1,
+                    colorStops: colorStops
+                }
+            },
             series: [
                 {
-                    name: 'O3',
+                    name: "O₃",
                     data: ozone
                 }
             ],
             xaxis: {
-                type: 'date',
+                type: "date",
                 categories: dateTime,
                 labels: {
                     style: {
-                        colors: 'var(--bs-body-color)',
-                    },
-                },
+                        colors: "var(--bs-body-color)"
+                    }
+                }
             },
             yaxis: {
                 title: {
-                    text: 'Concentration (ppm)',
+                    text: "Concentration (ppm)",
                     style: {
-                        color: 'var(--bs-body-color)',
-                    },
+                        color: "var(--bs-body-color)"
+                    }
                 },
                 labels: {
                     style: {
-                        colors: 'var(--bs-body-color)',
-                    },
-                },
+                        colors: "var(--bs-body-color)"
+                    }
+                }
             },
             stroke: {
                 width: 2,
-                curve: "smooth"
+                curve: "smooth",
+                colors: ['#22c55f'] // Line color set to green
             },
             markers: {
-                size: 4
+                size: 4,
+                colors: ['#22c55f'] // Marker color set to green
             },
-
             tooltip: {
-                x: {
-                    show: false,
-                },
-                marker: {
-                    show: false,
-                },
+                x: { show: false },
+                marker: { show: false }
             }
         };
 
-        var chart = new ApexCharts(document.querySelector("#o3"), options);
+        // Render the chart
+        const chart = new ApexCharts(document.querySelector("#o3"), options);
         chart.render();
 
         var intervalId;
@@ -168,7 +155,7 @@ $(function () {
     });
 
     $('#expO3').on('click', function () {
-        $('#processing-o3').show();  
+        $('#processing-o3').show();
         $('#download-csv-o3').hide();
         $.ajax({
             url: '/o3-data',
@@ -204,7 +191,7 @@ $(function () {
                 console.log('Error fetching O3 data:', error);
             },
             complete: function () {
-                $('#processing-o3').hide();  
+                $('#processing-o3').hide();
                 $('#download-csv-o3').show();
             }
         });
@@ -239,7 +226,7 @@ $(function () {
 
     // DAILY
     $('#expO3Daily').on('click', function () {
-        $('#processing-o3').show();  
+        $('#processing-o3').show();
         $('#download-csv-o3').hide();
         $.ajax({
             url: '/o3-data',
@@ -278,7 +265,7 @@ $(function () {
                 console.log('Error fetching data:', error);
             },
             complete: function () {
-                $('#processing-o3').hide();  
+                $('#processing-o3').hide();
                 $('#download-csv-o3').show();
             }
         });
@@ -309,7 +296,7 @@ $(function () {
 
     // MONTHLY
     $('#expO3Monthly').on('click', function () {
-        $('#processing-o3').show();  
+        $('#processing-o3').show();
         $('#download-csv-o3').hide();
         $.ajax({
             url: '/o3-data',
@@ -348,7 +335,7 @@ $(function () {
                 console.log('Error fetching data:', error);
             },
             complete: function () {
-                $('#processing-o3').hide();  
+                $('#processing-o3').hide();
                 $('#download-csv-o3').show();
             }
         });

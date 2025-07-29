@@ -10,31 +10,26 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\PollutantController;
 use App\Http\Controllers\LocationController;
 
-use App\Http\Controllers\PdfController;
-
-use App\Http\Controllers\DailyPM25Controller;
-use App\Http\Controllers\DailyPM10Controller;
-use App\Http\Controllers\DailyCOController;
-use App\Http\Controllers\DailyNO2Controller;
-use App\Http\Controllers\DailyO3Controller;
-
-use App\Http\Controllers\WeeklyCOController;
-use App\Http\Controllers\WeeklyPM25Controller;
-use App\Http\Controllers\WeeklyPM10Controller;
-use App\Http\Controllers\WeeklyNO2Controller;
-use App\Http\Controllers\WeeklyO3Controller;
-
-use App\Http\Controllers\MonthlyPM25Controller;
-use App\Http\Controllers\MonthlyPM10Controller;
-use App\Http\Controllers\MonthlyCOController;
-use App\Http\Controllers\MonthlyNO2Controller;
-use App\Http\Controllers\MonthlyO3Controller;
-use App\Http\Controllers\PdfControllerCO;
-use App\Http\Controllers\PdfControllerNO2;
-use App\Http\Controllers\PdfControllerO3;
-use App\Http\Controllers\PdfControllerPM10;
-use App\Http\Controllers\PdfControllerPM25;
 use App\Http\Controllers\PublicController;
+
+//FPDF Report
+use App\Http\Controllers\PdfController;
+use App\Http\Controllers\PdfControllerCO;
+use App\Http\Controllers\Reports\CO\PdfControllerCOFilter;
+use App\Http\Controllers\Reports\CO\PdfControllerCOFilterYearly;
+use App\Http\Controllers\PdfControllerNO2;
+use App\Http\Controllers\Reports\NO2\PdfControllerNO2Filter;
+use App\Http\Controllers\Reports\NO2\PdfControllerNO2FilterYearly;
+use App\Http\Controllers\PdfControllerO3;
+use App\Http\Controllers\Reports\O3\PdfControllerO3Filter;
+use App\Http\Controllers\Reports\O3\PdfControllerO3FilterYearly;
+use App\Http\Controllers\PdfControllerPM10;
+use App\Http\Controllers\Reports\PM10\PdfControllerPM10Filter;
+use App\Http\Controllers\Reports\PM10\PdfControllerPM10FilterYearly;
+use App\Http\Controllers\PdfControllerPM25;
+use App\Http\Controllers\Reports\PM25\PdfControllerPM25Filter;
+use App\Http\Controllers\Reports\PM25\PdfControllerPM25FilterYearly;
+
 use App\Http\Controllers\SignatoryController;
 use App\Http\Controllers\SitelogoController;
 
@@ -102,40 +97,32 @@ Route::middleware(['auth', 'role:admin'])->group(function() {
 
 
 
-}); //End Group Admin middleware
-
-// Route::get('/admin/login', [AdminController::class, 'AdminLogin'])->name('admin.login');
-
-//login and register route is in the auth.php
-
+});
 
     //REPORT
     Route::get('/pdf', [ PdfController::class, 'index' ])->name('pdf.download');
+
     Route::get('/pdf/pm25', [ PdfControllerPM25::class, 'index' ])->name('pdf.download.pm25');
+    Route::get('/pdf/pm25/{year}/{month}', [PdfControllerPM25Filter::class, 'index']);
+    Route::get('/pdf/pm25/{year}', [PdfControllerPM25FilterYearly::class, 'index']);
+
     Route::get('/pdf/pm10', [ PdfControllerPM10::class, 'index' ])->name('pdf.download.pm10');
+    Route::get('/pdf/pm10/{year}/{month}', [PdfControllerPM10Filter::class, 'index']);
+    Route::get('/pdf/pm10/{year}', [PdfControllerPM10FilterYearly::class, 'index']);
+
     Route::get('/pdf/co', [ PdfControllerCO::class, 'index' ])->name('pdf.download.co');
+    Route::get('/pdf/co/{year}/{month}', [PdfControllerCOFilter::class, 'index']);
+    Route::get('/pdf/co/{year}', [PdfControllerCOFilterYearly::class, 'index']);
+
+
     Route::get('/pdf/no2', [ PdfControllerNO2::class, 'index' ])->name('pdf.download.no2');
+    Route::get('/pdf/no2/{year}/{month}', [PdfControllerNO2Filter::class, 'index']);
+    Route::get('/pdf/no2/{year}', [PdfControllerNO2FilterYearly::class, 'index']);
+
+
     Route::get('/pdf/o3', [ PdfControllerO3::class, 'index' ])->name('pdf.download.o3');
-
-    Route::get('/dailypm25', [ DailyPM25Controller::class, 'index' ])->name('daily.pm25');
-    Route::get('/dailypm10', [ DailyPM10Controller::class, 'index' ])->name('daily.pm10');
-    Route::get('/dailyco', [ DailyCOController::class, 'index' ])->name('daily.co');
-    Route::get('/dailyno2', [ DailyNO2Controller::class, 'index' ])->name('daily.no2');
-    Route::get('/dailyo3', [ DailyO3Controller::class, 'index' ])->name('daily.o3');
-
-    Route::get('/weeklypm25', [ WeeklyPM25Controller::class, 'index' ])->name('weekly.pm25');
-    Route::get('/weeklypm10', [ WeeklyPM10Controller::class, 'index' ])->name('weekly.pm10');
-    Route::get('/weeklyco', [ WeeklyCOController::class, 'index' ])->name('weekly.co');
-    Route::get('/weeklyno2', [ WeeklyNO2Controller::class, 'index' ])->name('weekly.no2');
-    Route::get('/weeklyo3', [ WeeklyO3Controller::class, 'index' ])->name('weekly.o3');
-
-    Route::get('/monthlypm25', [ MonthlyPM25Controller::class, 'index' ])->name('monthly.pm25');
-    Route::get('/monthlypm10', [ MonthlyPM10Controller::class, 'index' ])->name('monthly.pm10');
-    Route::get('/monthlyco', [ MonthlyCOController::class, 'index' ])->name('monthly.co');
-    Route::get('/monthlyno2', [ MonthlyNO2Controller::class, 'index' ])->name('monthly.no2');
-    Route::get('/monthlyo3', [ MonthlyO3Controller::class, 'index' ])->name('monthly.o3');
-    // Route::get('/site/logo', [ SitelogoController::class, 'logo' ])->name('site.logo');
-
+    Route::get('/pdf/o3/{year}/{month}', [PdfControllerO3Filter::class, 'index']) ;
+    Route::get('/pdf/o3/{year}', [PdfControllerO3FilterYearly::class, 'index']) ;
 
     //Air Quality//
     //Monitoring

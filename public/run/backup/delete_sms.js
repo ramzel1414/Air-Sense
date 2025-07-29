@@ -20,7 +20,7 @@ let options = {
     logger: console
 };
 
-modem.open('COM8', options, {});
+modem.open('COM4', options, {});
 
 modem.on('open', data => {
     // initialize modem

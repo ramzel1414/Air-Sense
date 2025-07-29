@@ -3,7 +3,11 @@
       <div class="card-body">
         <div class="row">
           <div class="col-2 d-flex justify-content-between w-100">
-            <h5 class="d-flex align-items-center">PM10</h5>
+            <div class="d-flex align-items-center gap-2">
+              <button type="button" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="right" title="PM10 includes coarse particulate matter up to 10 micrometers in size, which can irritate the respiratory system and cause health issues.">
+                PM10
+              </button>
+            </div>
             <div class="btns">
 
               {{-- <button id="expPM10" class="btn btn-outline-secondary btn-icon-text me-2 mb-2 mb-md-0">Download CSV</button> --}}

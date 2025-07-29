@@ -1,104 +1,120 @@
 $(function () {
     'use strict';
 
-    var colors = {
-        "Good (Green)": "#00B050",
-        "Moderate (Yellow)": "#FFFF00",
-        "Unhealthy for Sensitive Groups (Orange)": "#FF6600",
-        "Unhealthy (Red)": "#FF0000",
-        "Very Unhealthy (Purple)": "#7030A0",
-        "Hazardous (Maroon)": "#990033"
-    };
-
-    var fontFamily = "'Roboto', Helvetica, sans-serif";
+    const colorRanges = [
+        { value: 0, color: '#800000' },  // Maroon for 0-25
+        { value: 25, color: '#9b1d20' }, // Purple for 25.1-35
+        { value: 35, color: '#ef4444' }, // Red for 35.1-45
+        { value: 45, color: '#fb923c' }, // Orange for 45.1-55
+        { value: 55, color: '#ffce63' }, // Yellow for 55.1-90
+        { value: 90, color: '#22c55f' }  // Green for values above 90
+    ];
 
     function renderChart(data) {
         // Retrieve only the latest 20 data points
-        var latestData = data.slice(-20);
+        const latestData = data.slice(-20);
 
-        var dateTime = latestData.map(function (item) {
-            return item.dateTime;
+        const dateTime = latestData.map((item) => item.dateTime);
+        const pm10 = latestData.map((item) => item.pm10);
+
+        // Calculate the color stops based on fixed PM10 value ranges
+        const colorStops = colorRanges.map((range, index) => {
+            // Map the color value based on the fixed PM10 thresholds
+            const offset = (index / (colorRanges.length - 1)) * 100; // Ensure last offset is exactly 100%
+            return {
+                offset: offset,
+                color: range.color,
+                opacity: 1
+            };
         });
-        var pm10 = latestData.map(function (item) {
-            return item.pm10; // Changed from pm25 to pm10
+    }
+
+    // Function to render the chart
+    function renderChart(data) {
+        // Retrieve only the latest 20 data points
+        const latestData = data.slice(-20);
+
+        const dateTime = latestData.map((item) => item.dateTime);
+        const pm10 = latestData.map((item) => item.pm10);
+
+        // Calculate the color stops based on fixed PM10 value ranges
+        const colorStops = colorRanges.map((range, index) => {
+            // Map the color value based on the fixed PM10 thresholds
+            const offset = (index / (colorRanges.length - 1)) * 100; // Ensure last offset is exactly 100%
+            return {
+                offset: offset,
+                color: range.color,
+                opacity: 1
+            };
         });
 
-        var options = {
+        // ApexCharts configuration
+        const options = {
             chart: {
                 type: "line",
                 height: 400,
                 animations: {
                     enabled: true,
-                    easing: 'linear',
-                    dynamicAnimation: {
-                        speed: 500
-                    }
+                    easing: "linear",
+                    dynamicAnimation: { speed: 500 }
                 },
                 toolbar: {
                     show: false,
-                    offsetX: 0,
-                    offsetY: 0,
-                    tools: {
-                        download: true,
-                        selection: false,
-                        zoom: false,
-                        zoomin: false,
-                        zoomout: false,
-                        pan: false,
-                        reset: false,
-                        customIcons: []
-                    },
-                },
+                }
             },
-
+            fill: {
+                type: "gradient",
+                gradient: {
+                    type: "vertical",
+                    shadeIntensity: 1,
+                    opacityFrom: 1,
+                    opacityTo: 1,
+                    colorStops: colorStops
+                }
+            },
             series: [
                 {
-                    name: 'PM10', // Changed from PM2.5 to PM10
-                    data: pm10 // Changed from pm25 to pm10
+                    name: "PM10",
+                    data: pm10
                 }
             ],
             xaxis: {
-                type: 'date',
+                type: "date",
                 categories: dateTime,
                 labels: {
                     style: {
-                        colors: 'var(--bs-body-color)',
-                    },
-                },
+                        colors: "var(--bs-body-color)"
+                    }
+                }
             },
             yaxis: {
                 title: {
-                    text: 'Concentration (µg/m³)',
+                    text: "Concentration (µg/m³)",
                     style: {
-                        color: 'var(--bs-body-color)',
-                    },
+                        color: "var(--bs-body-color)"
+                    }
                 },
                 labels: {
                     style: {
-                        colors: 'var(--bs-body-color)',
-                    },
-                },
+                        colors: "var(--bs-body-color)"
+                    }
+                }
             },
             stroke: {
                 width: 2,
                 curve: "smooth"
             },
             markers: {
-                size: 4,
+                size: 4
             },
-
             tooltip: {
-                x: {
-                    show: false,
-                },
-                marker: {
-                    show: false,
-                },
+                x: { show: false },
+                marker: { show: false }
             }
-
         };
 
-        var chart = new ApexCharts(document.querySelector("#pm10"), options);
+        // Render the chart
+        const chart = new ApexCharts(document.querySelector("#pm10"), options);
         chart.render();
 
         var intervalId;
@@ -159,7 +175,7 @@ $(function () {
 
     // Attach click event listener to the button for exporting PM10 data
     $('#expPM10').on('click', function () {
-        $('#processing-pm10').show();  
+        $('#processing-pm10').show();
         $('#download-csv-pm10').hide();
 
         $.ajax({
@@ -196,7 +212,7 @@ $(function () {
                 console.log('Error fetching data:', error);
             },
             complete: function () {
-                $('#processing-pm10').hide();  
+                $('#processing-pm10').hide();
                 $('#download-csv-pm10').show();
             }
         });
@@ -229,9 +245,9 @@ $(function () {
 
     // DAILY
     $('#expPM10Daily').on('click', function () {
-        $('#processing-pm10').show();  
+        $('#processing-pm10').show();
         $('#download-csv-pm10').hide();
-        
+
         $.ajax({
             url: '/pm10-data',
             method: 'GET',
@@ -269,7 +285,7 @@ $(function () {
                 console.log('Error fetching data:', error);
             },
             complete: function () {
-                $('#processing-pm10').hide();  
+                $('#processing-pm10').hide();
                 $('#download-csv-pm10').show();
             }
         });
@@ -300,9 +316,9 @@ $(function () {
 
     // MONTHLY
     $('#expPM10Monthly').on('click', function () {
-        $('#processing-pm10').show();  
+        $('#processing-pm10').show();
         $('#download-csv-pm10').hide();
-        
+
         $.ajax({
             url: '/pm10-data',
             method: 'GET',
@@ -340,7 +356,7 @@ $(function () {
                 console.log('Error fetching data:', error);
             },
             complete: function () {
-                $('#processing-pm10').hide();  
+                $('#processing-pm10').hide();
                 $('#download-csv-pm10').show();
             }
         });
